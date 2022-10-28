@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import '../utils/modal.css';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { AppContext } from '../AppContext';
 
-const LoginModal = (props) => {
+const LoginModal = () => {
+  const context = useContext(AppContext)  
+  const [ismatched, setIsmatched] = useState(true);
+
+  const open = context.state.loginmodalOpen;
+  const close = () => {
+    context.action.setLoginModalOpen(false);
+  }
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
-  const { open, close, header } = props;
 
   const theme = createTheme();
 
@@ -27,6 +30,11 @@ const LoginModal = (props) => {
       id: data.get('id'),
       password: data.get('password'),
     });
+
+   // DB 에서 불러온 데이터랑, id, password랑 비교해서 close를 결정. 같으면 setIsLoggedIn을 true로 아니면 비밀번호를 확인해주세요.
+   // setIsmathced();
+    context.action.setIsLoggedin(true);
+    close();
   };
 
   return (
@@ -35,7 +43,7 @@ const LoginModal = (props) => {
       {open ? (
         <section>
           <header>
-            {header}
+            Login
             <button className="close" onClick={close}>
               &times;
             </button>
@@ -87,6 +95,7 @@ const LoginModal = (props) => {
                     Sign In
                   </Button>
                 </Box>
+                {ismatched ? <Typography></Typography> : <Typography>비밀번호를 확인해주세요</Typography>}
               </Box>
             </Container>
           </ThemeProvider></main>
