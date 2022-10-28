@@ -13,25 +13,20 @@ import { AppContext } from "../AppContext";
 
 const Header = () => {
   const context = useContext(AppContext);
-  // yellow color
-
 
 const IsLogin = () => {
   return (
-    <>
       <Stack spacing={3} direction="row" style={{ justifyContent: "flex-end" }}>
         <NavLink className="account-link" style={{textDecoration:"none"}} to='/account'><Button size='medium' variant="contained" component="label" >Send</Button></NavLink>
         <NavLink style={{textDecoration:"none"}} to='/mint'><Button size='medium' variant="contained" component="label" >Mint</Button></NavLink>
         <NavLink style={{textDecoration:"none"}} to='/write'><Button size='medium' variant="contained" component="label" >Write</Button></NavLink>
         <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> {/* send와 합치는거 고민해보기. */}
       </Stack>
-    </>
   )
 }
 
   const IsNotLogin = () => {
     return (
-      <>
         <Stack spacing={3} direction="row" style={{ justifyContent: "flex-end" }}>
           <Button size='medium' variant="contained" component="label" onClick={() => context.action.setLoginModalOpen(true)}>Login</Button>
           <Button size='medium' variant="contained" component="label" onClick={() => context.action.setSignupModalOpen(true)}>Signup</Button>
@@ -39,7 +34,6 @@ const IsLogin = () => {
           <LoginModal/>
           <SignupModal/>
         </Stack>
-      </>
     )
   }
 
@@ -47,6 +41,7 @@ const IsLogin = () => {
     <ThemeProvider theme={context.state.theme}>
       <AppBar position="static">
         <Toolbar disableGutters>
+          <Box sx={{ flexGrow: 0.05}}></Box>
           <Typography
             variant="h6"
             component="a"
@@ -61,6 +56,7 @@ const IsLogin = () => {
           >Takoyaki</Typography>
           <Box sx={{ flexGrow: 1}}></Box>
           {context.state.isLoggedin ? <IsLogin /> : <IsNotLogin/>}
+          <Box sx={{ flexGrow: 0.05}}></Box>
         </Toolbar>
       </AppBar>
     </ThemeProvider>

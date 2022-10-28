@@ -45,6 +45,35 @@ const MainPage = () => {
       {/* {mynfts ? (
                  df   
                 ) : null} */}
+        <Grid item xs={6}>
+          <Card sx={{ maxWidth: 345 }}>
+            <CardHeader 
+              avatar={
+                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  U
+                </Avatar>
+              }
+              title="Tako"
+              subheader="September 14, 2022"
+            />
+            <CardMedia
+              component="img"
+              height="194"
+              image={mynfts.image_preview_url}
+            />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary" description={mynfts.description}/>
+            </CardContent>
+            <CardActions disableSpacing>
+
+            </CardActions>
+
+          </Card>
+
+        </Grid>
+        <Grid item xs={6}>
+
+        </Grid>
       </Grid>
     </Box>
 
