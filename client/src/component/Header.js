@@ -12,7 +12,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { yellow } from '@mui/material/colors';
 import { Button, Stack } from "@mui/material";
 
-const Header = () => {
+const Header = (props) => {
 
   // 로그인, 회원가입 모달 
   const [loginmodalOpen, setLoginModalOpen] = useState(false);
@@ -53,6 +53,7 @@ const Header = () => {
     window.location.href = "/write"
   }
 
+  // 로그인했을 때 메뉴
   const IsLogin = () => {
     return (
       <>
@@ -66,13 +67,13 @@ const Header = () => {
     )
   }
 
+  // 로그인 안했을 때 메뉴
   const IsNotLogin = () => {
     return (
       <>
       <Stack spacing={3} direction="row" style={{ justifyContent: "flex-end" }}>
         <Button size='medium' variant="contained" component="label" onClick={openLoginModal}>Login</Button>
         <Button size='medium' variant="contained" component="label" onClick={openSignupModal}>Signup</Button>
-        {/* 로그인, 회원가입 모달 */}
         <LoginModal  open={loginmodalOpen} close={closeLoginModal} header="Login" />
         <SignupModal open={signupmodalOpen} close={closeSignupModal} header="Signup"/>
       </Stack>
@@ -97,26 +98,11 @@ const Header = () => {
             }}
           >Takoyaki</Typography>
           <Box sx={{ flexGrow: 1}}></Box>
-
-          {/* <Stack spacing={3} direction="row" style={{ justifyContent: "flex-end" }}> */}
-            {/* <Button size='medium' variant="contained" component="label" onClick={handleSendClick}>Send</Button>
-            <Button size='medium' variant="contained" component="label" onClick={handleMintClick}>Mint</Button>
-            <Button size='medium' variant="contained" component="label" onClick={handleWriteClick}>Write</Button>
-            <Button size='medium' variant="contained" component="label" onClick={openLoginModal}>Login</Button>
-            <Button size='medium' variant="contained" component="label" onClick={openSignupModal}>Signup</Button> */}
-            {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
-            {/* 로그인, 회원가입 모달
-            <LoginModal  open={loginmodalOpen} close={closeLoginModal} header="Login" />
-            <SignupModal open={signupmodalOpen} close={closeSignupModal} header="Signup"/> */}
-          {/* </Stack> */}
-            {isLoggedin ? <IsLogin /> : <IsNotLogin/>}
-          
+          {isLoggedin ? <IsLogin /> : <IsNotLogin/>}   
         </Toolbar>
       </AppBar>
     </ThemeProvider>
   );
-  
-    
 }
 
 export default Header;

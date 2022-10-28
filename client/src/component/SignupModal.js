@@ -4,9 +4,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -24,11 +21,19 @@ const SignupModal = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('id'),
-            password: data.get('password'),
-            confirm_password: data.get('confirm_password')
-        });
+        const p = data.get('password');
+        const p_c = data.get('confirm_password');
+        if(p !== p_c){
+            console.log("not correct");
+            alert('not correct');
+        }
+        else{
+            console.log("correct");
+            console.log({
+                email: data.get('id'),
+                password: data.get('password'),
+            });
+        }
     };
     return (
         // 모달이 열릴때 openModal 클래스가 생성된다.
