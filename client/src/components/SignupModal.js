@@ -37,6 +37,8 @@ const SignupModal = () => {
     }
     else{
         console.log("correct");
+
+        //DB로 보내기
         console.log({
             email: data.get('id'),
             password: data.get('password'),
