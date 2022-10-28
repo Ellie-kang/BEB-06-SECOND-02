@@ -16,7 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const LoginModal = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
-  const { open, close, header, setIsLoggedin } = props;
+  const { open, close, header } = props;
 
   const theme = createTheme();
 

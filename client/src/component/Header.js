@@ -85,6 +85,7 @@ const Header = (props) => {
     <ThemeProvider theme={theme}>
       <AppBar position="static">
         <Toolbar disableGutters>
+        <Box sx={{ flexGrow: 0.05}}></Box>
           <Typography
             variant="h6"
             component="a"
@@ -99,6 +100,7 @@ const Header = (props) => {
           >Takoyaki</Typography>
           <Box sx={{ flexGrow: 1}}></Box>
           {isLoggedin ? <IsLogin /> : <IsNotLogin/>}   
+          <Box sx={{ flexGrow: 0.05}}></Box>
         </Toolbar>
       </AppBar>
     </ThemeProvider>
