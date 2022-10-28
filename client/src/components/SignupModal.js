@@ -29,15 +29,23 @@ const SignupModal = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    //DB로 보내기
-    console.log({
-      email: data.get('id'),
-      password: data.get('password'),
-      confirm_password: data.get('confirm_password')
-    });
+    const p = data.get('password');
+    const p_c = data.get('confirm_password');
+    if(p != p_c){
+        console.log("not correct");
+        alert('not correct');
+    }
+    else{
+        console.log("correct");
 
+        //DB로 보내기
+        console.log({
+            email: data.get('id'),
+            password: data.get('password'),
+        });
+    }
     close();
-  };
+};
 
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
