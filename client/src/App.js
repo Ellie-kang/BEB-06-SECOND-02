@@ -11,7 +11,8 @@ import Footer from './components/Footer';
 import { AppContext } from './AppContext';
 import { yellow } from '@mui/material/colors';
 import {createTheme} from '@mui/material/styles';
-
+import { Shadows } from '@mui/material';
+import './App.css'
 
 const App = () => {
     // 서버에서 account 데이터를 불러와서 contextAPI로 저장.
@@ -26,11 +27,22 @@ const App = () => {
   // 회원가입 모달
   const [loginmodalOpen, setLoginModalOpen] = useState(false);
   const [signupModalOpen, setSignupModalOpen] = useState(false);
+  
   const theme = createTheme({
     palette: {
-      primary: {
-        main: yellow[600],
+      background: {
+        paper: "#ffffff",
+        footer: "#aed1ef",
+        header: "#aed1ef",
+        lock: "#aed1ef"
       },
+      text: {
+        primary: "#ffffff",
+      },
+      button: {
+        primary: "#ba5624"
+      },
+
     },
   });
 
@@ -45,7 +57,7 @@ const App = () => {
       isLoggedin: isLoggedin,
       loginmodalOpen:loginmodalOpen,
       signupmodalOpen: signupModalOpen,
-      theme: theme
+      theme: theme,
       //imgFile: imgFile
     },
     action: {

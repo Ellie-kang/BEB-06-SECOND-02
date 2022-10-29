@@ -21,7 +21,7 @@ const LoginModal = () => {
   }
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
 
-  const theme = createTheme();
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,27 +43,27 @@ const LoginModal = () => {
       {open ? (
         <section>
           <header>
-            Login
+            Sign In
             <button className="close" onClick={close}>
               &times;
             </button>
           </header>
-          <main><ThemeProvider theme={theme}>
+          <main><ThemeProvider theme={context.state.theme}>
             <Container component="main" maxWidth="xs">
               <CssBaseline />
               <Box
                 sx={{
-                  marginTop: 8,
+                  
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                 }}
               >
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                <Avatar sx={{ m: 1, bgcolor: 'background.lock' }}>
                   <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                  Login
+                  Sign In
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                   <TextField
@@ -95,7 +95,7 @@ const LoginModal = () => {
                     Sign In
                   </Button>
                 </Box>
-                {ismatched ? <Typography></Typography> : <Typography>비밀번호를 확인해주세요</Typography>}
+                {ismatched ? <Typography>나나나</Typography> : <Typography>비밀번호를 확인해주세요</Typography>}
               </Box>
             </Container>
           </ThemeProvider></main>

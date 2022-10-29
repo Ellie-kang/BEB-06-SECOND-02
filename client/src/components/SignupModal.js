@@ -24,8 +24,6 @@ const SignupModal = () => {
     context.action.setSignupModalOpen(false);
   }
 
-  const theme = createTheme();
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -59,7 +57,7 @@ const SignupModal = () => {
             </button>
           </header>
           <main>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={context.state.theme}>
               <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -70,7 +68,7 @@ const SignupModal = () => {
                     alignItems: 'center',
                   }}
                 >
-                  <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                  <Avatar sx={{ m: 1, bgcolor: 'background.lock' }}>
                     <LockOutlinedIcon />
                   </Avatar>
                   <Typography component="h1" variant="h5">
