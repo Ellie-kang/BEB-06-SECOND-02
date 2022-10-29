@@ -1,10 +1,14 @@
 import React from 'react'
 import Grid from '@mui/material/Unstable_Grid2';
 import { Box } from '@mui/material'
+import Header from '../components/Header';
 
 const MainPage = () => {
   return (
-    <div>Main</div>
+    <>
+      <p>12345</p>
+    </>
+    
   )
   // return (
  
