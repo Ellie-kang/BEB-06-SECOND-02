@@ -1,19 +1,8 @@
-import React, { useState } from 'react'
-import Grid from '@mui/material/Unstable_Grid2';
+import React, { useState } from 'react';
 import './MainPage.css';
+import Usercontents from '../components/Usercontents';
 
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-
+import { Stack } from '@mui/material';
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -26,13 +15,12 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 
-import img from './우주.jpeg'
-import { Box, Stack } from '@mui/material';
-import { positions } from '@mui/system';
-
 const MainPage = () => {
-  const [openkorea, setOpenKorea] = useState(true);
-  const [openEurope, setOpenEurope] = useState(true);
+  const [openkorea, setOpenKorea] = useState(false);
+  const [openEurope, setOpenEurope] = useState(false);
+  const [openAmerica, setOpenAmerica] = useState(false);
+  const [openAfrica, setOpenAfrica] = useState(false);
+  const [openME, setOpenME] = useState(false);
 
   const handleClick1 = () => {
     setOpenKorea(!openkorea);
@@ -40,38 +28,119 @@ const MainPage = () => {
   const handleClick2 = () => {
     setOpenEurope(!openEurope);
   };
-
+  const handleClick3 = () => {
+    setOpenAmerica(!openAmerica);
+  };
+  const handleClick4 = () => {
+    setOpenAfrica(!openAfrica);
+  };
+  const handleClick5 = () => {
+    setOpenME(!openME);
+  };
 
   return (
-    <Stack maxWidth={1000} className='back'>
-          <Stack direction="row" spacing={2}>
-            <Stack sx={300}>
-            <List
-            sx={{ width: '100%',maxWidth: 360, bgcolor: 'background.paper' }}
+    <Stack maxWidth={950} className='back'>
+      <Stack direction="row" spacing={5}>
+        <Stack>
+          <List
+            sx={{ width:300, bgcolor: 'background.paper' }}
             component="nav"
             aria-labelledby="nested-list-subheader"
             subheader={
-              <ListSubheader component="div" id="nested-list-subheader">
-                TRAVEL
-              </ListSubheader>
-            }>
-              <ListItemButton onClick={handleClick1}>
-                <ListItemIcon>
-                  <FlightTakeoffIcon />
-                </ListItemIcon>
-                <ListItemText primary="KOREA"/>
+            <ListSubheader component="div" id="nested-list-subheader">
+              TRAVEL                             
+            </ListSubheader>
+          }>
+          <ListItemButton onClick={handleClick1}>
+            <ListItemIcon>
+              <FlightTakeoffIcon />
+            </ListItemIcon>
+              <ListItemText primary="ASIA"/>
                 {openkorea ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
               <Collapse in={openkorea} timeour="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl:4 }}>
+                  <ListItemButton sx={{ pl: 4 }}>
                     <ListItemIcon>
                       <FlagCircleIcon />
                     </ListItemIcon>
                     <ListItemText primary="Seoul"/>
                   </ListItemButton>
                 </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Tokyo"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Beijing"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Taipei"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Bangkok"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Singapore"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Hanoi"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Phnum Penh"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Manila"/>
+                  </ListItemButton>
+                </List>
               </Collapse>
+
               <ListItemButton onClick={handleClick2}>
                 <ListItemIcon>
                   <FlightTakeoffIcon />
@@ -85,94 +154,261 @@ const MainPage = () => {
                     <ListItemIcon>
                       <FlagCircleIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Eastern Europe"/>
+                    <ListItemText primary="Paris"/>
                   </ListItemButton>
                 </List>
+
                 <List component="div" disablePadding>
                   <ListItemButton sx={{ pl:4 }}>
                     <ListItemIcon>
                       <FlagCircleIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Western Europe"/>
+                    <ListItemText primary="Roma"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="London"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Vienna"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Praha"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Budapest"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Bern"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Amsterdam"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Berlin"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Madrid"/>
                   </ListItemButton>
                 </List>
               </Collapse>
-          </List>
-          </Stack>
 
- 
-            <Stack>
-          <Card sx={{ maxWidth: 600 }}>
-            <CardHeader 
-              avatar={
-                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                  U
-                </Avatar>
-              }
-              title="Tako"
-              subheader="September 14, 2022"
-            />
-            <CardMedia
-              component="img"
-              height="194"
-              image={img}
-            />
-            <CardContent>
-              <Typography variant="body2" color="text.secondary" description=''>
-                왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??
-                왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??
-                왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??
-                왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??
-                왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??
-                왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??왜 안돼지??? 왜지??? 왜일까??
-               
-                
-              </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton aria-label="share">
-                <ShareIcon />
-              </IconButton>
-            </CardActions>
-          </Card>
-          </Stack>
+              <ListItemButton onClick={handleClick3}>
+                <ListItemIcon>
+                  <FlightTakeoffIcon />
+                </ListItemIcon>
+                <ListItemText primary="AMERICA"/>
+                {openAmerica ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={openAmerica} timeour="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Washington DC"/>
+                  </ListItemButton>
+                </List>
 
-          {/* <Grid item xs={6}>
-          <Card sx={{ maxWidth: 345 }}>
-            <CardHeader 
-              avatar={
-                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                  U
-                </Avatar>
-              }
-              title="Tako"
-              subheader="September 14, 2022"
-            />
-            <CardMedia
-              component="img"
-              height="194"
-              image={img}
-            />
-            <CardContent>
-              <Typography variant="body2" color="text.secondary" description=''>
-                왜 안돼지??? 왜지??? 왜일까??
-              </Typography> */}
-            {/* </CardContent>
-            <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton aria-label="share">
-                <ShareIcon />
-              </IconButton>
-            </CardActions>
-          </Card>
-          </Grid> */}
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Ottawa"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Mexico City"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Brasilia"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Buenos Aires"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl:4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Santiago"/>
+                  </ListItemButton>
+                </List>
+              </Collapse>
+
+              <ListItemButton onClick={handleClick4}>
+                <ListItemIcon>
+                  <FlightTakeoffIcon />
+                </ListItemIcon>
+                <ListItemText primary="AFRICA"/>
+                {openAfrica ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={openAfrica} timeour="auto" unmountOnExit>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Ghana"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Morocco"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Egypt"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Tanzania"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Kenya"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Nigeria"/>
+                  </ListItemButton>
+                </List>
+              </Collapse>
+
+              <ListItemButton onClick={handleClick5}>
+                <ListItemIcon>
+                  <FlightTakeoffIcon />
+                </ListItemIcon>
+                <ListItemText primary="MIDDLE EAST"/>
+                {openME ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={openME} timeour="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Iran"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Israel"/>
+                  </ListItemButton>
+                </List>
+
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon>
+                      <FlagCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Iraq"/>
+                  </ListItemButton>
+                </List>
+              </Collapse>
+            </List>
           </Stack>
+        <Stack>
+          <Usercontents />
         </Stack>
+      </Stack>
+    </Stack>
   )
 }
 
