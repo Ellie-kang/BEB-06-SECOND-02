@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import "../utils/AccountPage.css"
 import AccountInfo from '../components/AccountComponents/AccountInfo'
-import AccountContents from '../components/AccountComponents/AccountContents'
+import AccountArticles from '../components/AccountComponents/AccountContents'
 import AccountNft from '../components/AccountComponents/AccountNft'
 
 
@@ -57,7 +57,7 @@ const AccountPage = () => {
         </div>
       </div>
       <div className='account-contents-container'>
-        <AccountContents />
+        <AccountArticles />
         <AccountNft />
       </div>
     </div>

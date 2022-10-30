@@ -3,7 +3,7 @@ import { AppContext } from '../../AppContext';
 import { Dummy } from '../../Dummy';
 import { NavLink } from 'react-router-dom';
 
-const AccountContents = () => {
+const AccountArticles = () => {
 
   const context = useContext(AppContext);
 
@@ -34,4 +34,4 @@ const AccountContents = () => {
   )
 }
 
-export default AccountContents
+export default AccountArticles

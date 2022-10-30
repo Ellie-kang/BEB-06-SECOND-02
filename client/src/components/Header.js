@@ -60,7 +60,8 @@ const Header = () => {
         maxHeight: "80px",
         bgcolor: "background.header",
         mt: "-8px",
-        
+        height: "80px",
+        justifyContent: "center"  
       }}>
         <Toolbar disableGutters>
           <Box>
