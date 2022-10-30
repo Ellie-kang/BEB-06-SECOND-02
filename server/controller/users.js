@@ -16,32 +16,18 @@ const signup = async (req, res) => {
     account: null
   });
 
-  const user_data = await User.find();
-
-  let overlap = user_data.some((el) => { //아이디 중복확인
-    if (el.userId == userId) {
-      return true; // break
-    }
-    else {
-      return false;
-    }
-  });
-
-  if (overlap) { //아이디 중복일시
-    res.status(403).send();
-  }
-  else {
-    user.validate().then(
-      async (error) => {
-        if (error) {
-          res.status(400).send({ error });
-        } else {
-          const newDocument = await user.save();
-          res.status(201).send(newDocument);
-        }
+  // User Model에서 userID에 unique 옵션을 설정했기 때문에
+  // validate() 함수에서 유효성 조사하는 과정 중 이중 아이디를 검출가능
+  user.validate().then(
+    async (error) => {
+      if (error) {
+        res.status(400).send({ error });
+      } else {
+        const newDocument = await user.save();
+        res.status(201).send(newDocument);
       }
-    );
-  }
+    }
+  );
 };
 
 const login = async (req, res) => {
@@ -69,5 +55,6 @@ const login = async (req, res) => {
 module.exports = {
   find,
   signup,
-  login
+  login,
+  uploadProfile
 };

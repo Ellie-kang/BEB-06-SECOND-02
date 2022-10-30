@@ -1,9 +1,17 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-  userId: String,
-  password: String,
+  userId: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
   salt: String,
+  profile_image: Buffer,
   account: String
 });
 
