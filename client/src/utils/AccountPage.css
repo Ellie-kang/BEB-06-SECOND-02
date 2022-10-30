@@ -3,17 +3,29 @@
 }
 
 .account-profile {
-  overflow: hidden;
-  width: 150px;
-  border-radius: 70%;
-  height: 150px;
+  flex-direction: column;
+
 }
 
 .account-profile > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 200px;
+  height: 150px;
+  border-radius: 70%;
+  background-color: #aed1ef;
+  overflow: hidden;
 }
+
+.account-profile > input {
+  display: block;
+  align-items: center;
+}
+
+.account-profile > button {
+  display: block;
+  margin-top: 30px;
+  margin-left: 65px;
+}
+
 
 .account-sender-container {
   display: flex;
@@ -37,7 +49,7 @@
 }
 
 .account-sender-form {
-  padding-top: 50px;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
 }
