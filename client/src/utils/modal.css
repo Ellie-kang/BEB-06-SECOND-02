@@ -65,10 +65,20 @@
     background-color: transparent;
   }
   .modal > section > main {
-    
+    color: #aed1ef;
     padding: 16px;
     border-bottom: 1px solid #dee2e6;
     border-top: 1px solid #dee2e6;
+  }
+
+  #id {
+    color: black;
+  }
+  #password {
+    color: black
+  }
+  #confirm_password {
+    color: black;
   }
 
   .modal > section > footer {
