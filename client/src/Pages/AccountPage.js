@@ -1,17 +1,44 @@
-import React, {useState} from 'react'
+import React, {useContext} from 'react'
 import "../utils/AccountPage.css"
 import AccountInfo from '../components/AccountComponents/AccountInfo'
-import AccountContents from '../components/AccountComponents/AccountContents'
+import AccountArticles from '../components/AccountComponents/AccountContents'
 import AccountNft from '../components/AccountComponents/AccountNft'
-
+import AccountSend from '../components/AccountComponents/AccountSend'
+import { Box } from '@mui/system'
+import { AppContext } from '../AppContext'
+import axios from 'axios'
 
 
 const AccountPage = () => {
-  const [img, setImg] = useState('');
+  
+  const context = useContext(AppContext);
+  const imgSrc = context.state.imgSrc;
+  const setImgSrc = context.action.setImgSrc;
 
-  const handleChange = (e) => {
-    setImg(e.target.value)
+  const encodeFileToBase64 = (fileBlob) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(fileBlob);
+    return new Promise((resolve) => {
+        reader.onload = () => {
+            setImgSrc(reader.result);
+            resolve();
+            };
+        });
+  };
+  const handleImageChange = (e) => {
+    if (e.target.files) {
+      encodeFileToBase64(e.target.files[0])
+    } else {
+      return;
+    }
+    
   }
+
+  const handleImgToChange = () => {
+    console.log(imgSrc)
+    //axios.post()
+  }
+
 
   return (
     // account Profile Img ul
@@ -19,12 +46,15 @@ const AccountPage = () => {
     <div className='account-contianer'>
       <div className='account-wrapper'>
         <div className='account-profile'>
-          <img src='https://user-images.githubusercontent.com/97439643/198324425-a8bf7911-4631-4617-a8c3-fa6f31369a80.png' alt="tako"/>
+          <Box component="img" sx={{width: "300px", height: "250px"}} src={imgSrc} />
+            {imgSrc ? null : <input type="file" name="image"  onChange={handleImageChange}/>}
+            <button type='button' onClick={handleImgToChange}>변경하기</button>
         </div>
         <AccountInfo />
       </div>
+      <AccountSend />
       <div className='account-contents-container'>
-        <AccountContents />
+        <AccountArticles />
         <AccountNft />
       </div>
     </div>

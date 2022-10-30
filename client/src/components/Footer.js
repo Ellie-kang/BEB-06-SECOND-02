@@ -26,9 +26,9 @@ const Footer = () => {
 	return (
 		<div>
 			<ThemeProvider theme={context.state.theme}>
-				<AppBar position="static" elevation={0} component="footer" >
-					<Toolbar style={{ justifyContent: "end" }}>
-						<Box p={1} mx={2} my={3}>
+				<AppBar position="static" elevation={0} component="footer" sx={{bgcolor: "background.footer"}} >
+					<Toolbar style={{ justifyContent: "end"}}>
+						<Box p={1} mx={2} my={3} mr={3}>
 							<Stack spacing={2}>
 								<Stack direction="row" spacing={2} style={{ justifyContent: "center" }}>
 									<GitHubIcon fontSize="large" onClick={handle1Click} />
@@ -36,11 +36,11 @@ const Footer = () => {
 									<GitHubIcon fontSize="large" onClick={handle3Click} />
 									<GitHubIcon fontSize="large" onClick={handle4Click} />
 								</Stack>
-								<Typography variant="subtitle1" align="center">
+								<Typography variant="subtitle1">
 									⚒️ 강영아  김현구  홍찬우  박희인 ⚒️
 								</Typography>
 								<Typography variant="overline" align="end">
-									2022@codeStates BEB6th Takoyaki
+									2022@codeStates BEB6th 타코야끼
 								</Typography>
 							</Stack>
 						</Box>

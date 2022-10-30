@@ -3,30 +3,77 @@
 }
 
 .account-profile {
-  overflow: hidden;
-  width: 150px;
-  border-radius: 70%;
-  height: 150px;
+  flex-direction: column;
+
 }
 
 .account-profile > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 200px;
+  height: 150px;
+  border-radius: 70%;
+  background-color: #aed1ef;
+  overflow: hidden;
+}
+
+.account-profile > input {
+  display: block;
+  align-items: center;
+}
+
+.account-profile > button {
+  display: block;
+  margin-top: 30px;
+  margin-left: 65px;
+}
+
+
+.account-sender-container {
+  display: flex;
+  justify-content: center;
+  padding-top:100px;
+  padding: 0 300px;
+}
+
+.account-sender-wrapper {
+  margin-left: 300px;
 }
 
 .account-wrapper {
   padding: 0 300px;
   display: flex;
   justify-content: space-around;
-  
 }
+
+.account-sender-continaer {
+  display: flex;
+}
+
+.account-sender-form {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.account-sender-label {
+  margin-right: 10px;
+}
+
+.account-sender {
+  display: flex;
+}
+
 
 .account-contents-container {
   margin-top: 150px;
   display: flex;
   justify-content: space-between;
-  padding: 0 400px;
+  padding: 0 400px; 
+}
+
+.account-contents {
+  margin-right: 30px;
+  justify-content: center;
+  width: auto;
 }
 
 .account-info-container {
@@ -35,6 +82,7 @@
 
 .account-info {
   list-style: none;
+  
 }
 .account-name-wrapper {
   display: flex;
@@ -44,22 +92,44 @@
 .account-name {
   width: 18vw;
   border-radius: 5px;
-  border: 1px solid black
+  border: 1px solid black;
+  padding-left: 10px
 }
-.account-contents {
+.account-contents-info {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .accoutn-contents-box {
-
+  width: auto;
   display: flex;
   flex-direction: column;
 }
 
 .account-contents-only {
-  padding-right: 300px;
   flex-direction: column;
+  
+}
+
+.account-contents-wrapper {
+  border-radius: 10px;
+  margin-top: 50px;
+  padding: 20px 0px;
+  border: 1px solid black;
 }
 
 .account-nft {
   display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  justify-content: center;
+}
+.account-nft-info {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.account-nft-img > img {
+  width: 100%;
 }

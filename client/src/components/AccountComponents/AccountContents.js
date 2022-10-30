@@ -1,8 +1,9 @@
 import React, {useContext} from 'react'
 import { AppContext } from '../../AppContext';
 import { Dummy } from '../../Dummy';
+import { NavLink } from 'react-router-dom';
 
-const AccountContents = () => {
+const AccountArticles = () => {
 
   const context = useContext(AppContext);
 
@@ -13,18 +14,18 @@ const AccountContents = () => {
       <div className='account-contents-info'>
         <h2>Comments</h2>
         <div>
-          <button>Write</button>
+          <NavLink to='/write'><button>Write</button></NavLink>
         </div>
       </div>
       <div className='account-contents-box'>
         <div className='account-contents-only'>
-          <div>
+          <div className='account-contents-wrapper'>
           {Dummy.contents[0]}
           </div>
-          <div>
+          <div className='account-contents-wrapper'>
           {Dummy.contents[1]}
           </div>
-          <div>
+          <div className='account-contents-wrapper'>
           {Dummy.contents[2]}
           </div>
         </div>
@@ -33,4 +34,4 @@ const AccountContents = () => {
   )
 }
 
-export default AccountContents
+export default AccountArticles
