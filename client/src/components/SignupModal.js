@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from "axios"
 import { AppContext } from '../AppContext';
 
 
@@ -35,14 +36,30 @@ const SignupModal = () => {
     }
     else{
         console.log("correct");
-
         //DB로 보내기
-        console.log({
-            email: data.get('id'),
-            password: data.get('password'),
-        });
+        axios.post('http://localhost:3001/users/signup', {
+          userId : data.get('id'),
+          password: data.get('password'),
+        })
+        .then((res) => {
+          console.log(res.data);
+          alert("회원가입이 완료되었습니다.");
+          close();
+        }).catch((err)=> {
+          console.log(err.response.status);
+          if(err.response.status == 403){
+            alert("중복된 아이디입니다.");
+          }
+          else{
+            console.log(err);
+          }
+        })
+        // console.log({
+        //     id: data.get('id'),
+        //     password: data.get('password'),
+        // });
     }
-    close();
+    
 };
 
   return (

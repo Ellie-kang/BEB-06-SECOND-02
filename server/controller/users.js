@@ -16,16 +16,32 @@ const signup = async (req, res) => {
     account: null
   });
 
-  user.validate().then(
-    async (error) => {
-      if (error) {
-        res.status(400).send({ error });
-      } else {
-        const newDocument = await user.save();
-        res.status(201).send(newDocument);
-      }
+  const user_data = await User.find();
+
+  let overlap = user_data.some((el) => { //아이디 중복확인
+    if (el.userId == userId) {
+      return true; // break
     }
-  );
+    else {
+      return false;
+    }
+  });
+
+  if (overlap) { //아이디 중복일시
+    res.status(403).send();
+  }
+  else {
+    user.validate().then(
+      async (error) => {
+        if (error) {
+          res.status(400).send({ error });
+        } else {
+          const newDocument = await user.save();
+          res.status(201).send(newDocument);
+        }
+      }
+    );
+  }
 };
 
 const login = async (req, res) => {
