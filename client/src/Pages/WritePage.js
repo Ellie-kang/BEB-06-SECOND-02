@@ -12,15 +12,18 @@ import WriteForm from '../components/WriteForm';
 import Review from '../components/Review';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom'
+import {useContext} from 'react';
 import axios from 'axios';
-
+import AppContext from '../AppContext' 
 
 const theme = createTheme();
 
 export default function WritePage() {
+  const context = useContext(AppContext);
   const [activeStep, setActiveStep] = React.useState(0);
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
+  const {userId}= context.state;
 
   const steps = ['글쓰기', '미리보기', '작성 완료'];
 
@@ -58,7 +61,7 @@ export default function WritePage() {
         axios.post('http://localhost:3001/articles/write', {
           title : title,
           content: content,
-          author: 'test' // 후에 로그인 후 작성자 기입
+          author: userId // 후에 로그인 후 작성자 기입
         })
         .then((res) => {
       
