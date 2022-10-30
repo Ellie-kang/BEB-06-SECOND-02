@@ -21,7 +21,9 @@ const App = () => {
   const [tokenAmount, setTokenAmount] = useState('');
   const [userArticles, setUserArticles] = useState('');
   const [userNft, setUserNft] = useState('');
-  //const [imgFile, setImgFile] = useState('');
+  const [address, setAddress] = useState('0x1929381920399281');
+  const [imgSrc, setImgSrc] = useState('');
+  
 
   //login 상태
   const [isLoggedin, setIsLoggedin] = useState(false);
@@ -55,6 +57,8 @@ const App = () => {
       tokenAmount: tokenAmount,
       userArticles: userArticles,
       userNft: userNft,
+      address: address,
+      imgSrc: imgSrc,
       isLoggedin: isLoggedin,
       loginmodalOpen:loginmodalOpen,
       signupmodalOpen: signupModalOpen,
@@ -67,6 +71,8 @@ const App = () => {
       setTokenAmount: setTokenAmount,
       setUserArticles: setUserArticles,
       setUserNft: setUserNft,
+      setAddress: setAddress,
+      setImgSrc: setImgSrc,
       setIsLoggedin: setIsLoggedin,
       setLoginModalOpen: setLoginModalOpen,
       setSignupModalOpen: setSignupModalOpen
