@@ -45,25 +45,28 @@ const signup = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  res.status(501).send();
-  // const { title, content, author } = req.body;
+  const { userId, password, salt } = req.body;
+  console.log(req.body)
+  const user = await User.find();
+  console.log(user)
+  let success = user.some((el)=>{
+    if(el.userId == userId && el.password == password){
+      return true
+    }
+    else{
+      return false
+    }
 
-  // const article = new Article({
-  //   title,
-  //   content,
-  //   author
-  // });
+   
+  })
+  console.log(success)
+  if(success){
+    res.status(201).send(req.body)
+  }
+  else{
+    res.status(400).send({message : "error"})
+  }
 
-  // article.validate().then(
-  //   async (error) => {
-  //     if (error) {
-  //       res.status(400).send({ error });
-  //     } else {
-  //       const newDocument = await article.save();
-  //       res.status(201).send(newDocument);
-  //     }
-  //   }
-  // );
 };
 
 module.exports = {
