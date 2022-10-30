@@ -12,6 +12,7 @@ import WriteForm from '../components/WriteForm';
 import Review from '../components/Review';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 
 const theme = createTheme();
@@ -53,9 +54,20 @@ export default function WritePage() {
       alert('빈칸을 채워주세요');
     }
     else {
-      if (activeStep == 1) { //db에 저장하는 코드를 실행하는 곳
-        console.log('title : ' + title);
-        console.log('content : ' + content);
+      if (activeStep == 1) { 
+        axios.post('http://localhost:3001/articles/write', {
+          title : title,
+          content: content,
+          author: 'test' // 후에 로그인 후 작성자 기입
+        })
+        .then((res) => {
+      
+          console.log('완료');
+          console.log(res.data)
+
+        }).catch((err)=> {
+          console.log(err);
+        })
       }
       setActiveStep(activeStep + 1);
     }
