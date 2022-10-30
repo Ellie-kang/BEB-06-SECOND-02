@@ -37,6 +37,7 @@ const SignupModal = () => {
         axios.post('http://localhost:3001/users/signup', {
           userId : data.get('id'),
           password: data.get('password'),
+          salt: null
         })
         .then((res) => {
           console.log(res.data);
