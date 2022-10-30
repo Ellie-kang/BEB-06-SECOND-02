@@ -15,7 +15,7 @@ import axios from "axios"
 const LoginModal = () => {
   const context = useContext(AppContext);
   const [ismatched, setIsmatched] = useState(true);
-  const {setUserId, setEmail, setTokenAmount, setUserArticles, setUserNft, setLoginModalOpen, setIsLoggedin}= context.action;
+  const {setUserId, setEmail, setTokenAmount, setUserArticles, setUserNft, setLoginModalOpen, setIsLoggedin, setAddress, setImgSrc}= context.action;
   const open = context.state.loginmodalOpen;
   const close = () => {
     setLoginModalOpen(false);
@@ -35,6 +35,7 @@ const LoginModal = () => {
       salt: null
     })
     .then((res) => {
+    
       setIsLoggedin(true);
       setUserId(res.data.userId);
         // setEmail, setTokenAmount, setUserArticles, setUserNft 

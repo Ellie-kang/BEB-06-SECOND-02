@@ -15,21 +15,19 @@ import HeaderButton from "./HeaderButton";
 const Header = () => {
   const context = useContext(AppContext);
   // yellow color
-
-
   const IsLogin = () => {
     return (
       <>
         <Stack spacing={3} direction="row" sx={{
            justifyContent: "flex-end",
-           pr: 3,
+           pr: "56px",
            width: "200px",
            boxShadow: 0,
            alignItems: "center"}}>
           <NavLink style={{textDecoration:"none"}} to='/account'><HeaderButton name="Send" cb={() => {}}/></NavLink>
           <NavLink style={{textDecoration:"none"}} to='/mint'><HeaderButton name="Mint" cb={() => {}}/></NavLink>
           <NavLink style={{textDecoration:"none"}} to='/write'><HeaderButton name="Write" cb={() => {}}/></NavLink>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> {/* send와 합치는거 고민해보기. */}
+          <NavLink to='/account'><Avatar alt="Remy Sharp" src={context.state.imgSrc} /></NavLink>
         </Stack>
       </>
     )
@@ -39,8 +37,8 @@ const Header = () => {
     return (
       <>
         <Stack spacing={3} direction="row" sx={{
-          pr: 7,
-          width: "auto",
+          pr: '40px',
+          justifyContent: "flex-end",
           boxShadow: 0,
           }}>
           <HeaderButton name="Sign In" cb={() => context.action.setLoginModalOpen(true)}/>
@@ -61,7 +59,7 @@ const Header = () => {
         bgcolor: "background.header",
         mt: "-8px",
         height: "80px",
-        justifyContent: "center"  
+        justifyContent: "center"
       }}>
         <Toolbar disableGutters>
           <Box>
