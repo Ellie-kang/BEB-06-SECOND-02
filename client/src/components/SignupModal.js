@@ -4,9 +4,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -31,7 +28,7 @@ const SignupModal = () => {
     const data = new FormData(event.currentTarget);
     const p = data.get('password');
     const p_c = data.get('confirm_password');
-    if(p != p_c){
+    if(p !== p_c){
         console.log("not correct");
         alert('not correct');
     }

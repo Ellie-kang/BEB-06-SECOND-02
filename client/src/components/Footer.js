@@ -4,8 +4,7 @@ import AppBar from '@mui/material/AppBar';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import Stack from '@mui/material/Stack';
 import { Box, Typography } from "@mui/material";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { yellow } from '@mui/material/colors';
+import { ThemeProvider } from '@mui/material/styles';
 import { AppContext } from "../AppContext";
 
 const Footer = () => {
