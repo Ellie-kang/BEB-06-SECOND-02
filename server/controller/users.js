@@ -32,6 +32,7 @@ const signup = async (req, res) => {
   }
 };
 
+// userID와 password를 입력하면 token: (jwt값)을 보냅니다.
 const login = async (req, res) => {
   const { userId, password } = req.body;
 
@@ -40,8 +41,8 @@ const login = async (req, res) => {
     const result = await user.compare(password, user.password);
     if (!user || !result) throw new Error('Authentication failed. Invalid user or password.');
     else {
-      const token = jwt.sign({ userId }, process.env.SECRET, { expiresIn: '1h' });
-      res.json({ Authorization: `Bearer ${token}` });
+      const token = jwt.sign({ userId }, process.env.SECRET, { expiresIn: '1d' });
+      res.json({ token });
     }
   } catch (err) {
     res.status(401).send({ message: err.message });
