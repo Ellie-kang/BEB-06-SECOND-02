@@ -31,7 +31,6 @@ const LoginModal = () => {
 
     axios.post('http://localhost:3001/users/login',{
       userId : data.get('id'),
-      salt: null
       password: data.get('password')
     })
     .then((res) => {
