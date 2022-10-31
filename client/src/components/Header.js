@@ -14,7 +14,6 @@ import HeaderButton from "./HeaderButton";
 
 const Header = () => {
   const context = useContext(AppContext);
-  // yellow color
   const IsLogin = () => {
     return (
       <>
@@ -35,7 +34,6 @@ const Header = () => {
 
   const IsNotLogin = () => {
     return (
-      <>
         <Stack spacing={3} direction="row" sx={{
           pr: '40px',
           justifyContent: "flex-end",
@@ -46,7 +44,6 @@ const Header = () => {
           <LoginModal/>
           <SignupModal/>
         </Stack>
-      </>
     )
   }
 
@@ -79,6 +76,7 @@ const Header = () => {
           {/* <Box component="img" sx={{ml: 3, overflow: "hidden", borderRadius: 70, width: "auto", height:72,}} alt=''src="https://img.freepik.com/free-vector/cute-octopus-eating-takoyaki-cartoon-vector-icon-illustration-animal-food-icon-concept-isolated-pr_138676-4795.jpg?size=338&ext=jpg&ga=GA1.2.560317433.1666977347" ></Box> */}
           <Box sx={{ flexGrow: 1}}></Box>
           {context.state.isLoggedin ? <IsLogin /> : <IsNotLogin/>}
+          <Box sx={{ flexGrow: 0.05}}></Box>
         </Toolbar>
       </AppBar>
     </ThemeProvider>

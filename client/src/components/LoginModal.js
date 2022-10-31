@@ -13,7 +13,7 @@ import { AppContext } from '../AppContext';
 import axios from "axios"
 
 const LoginModal = () => {
-  const context = useContext(AppContext)  
+  const context = useContext(AppContext);
   const [ismatched, setIsmatched] = useState(true);
   const {setUserId, setEmail, setTokenAmount, setUserArticles, setUserNft, setLoginModalOpen, setIsLoggedin, setAddress, setImgSrc}= context.action;
   const open = context.state.loginmodalOpen;
@@ -29,22 +29,23 @@ const LoginModal = () => {
       password: data.get('password'),
     });
 
-    axios.get('http://localhost:3001/users')
+    axios.post('http://localhost:3001/users/login',{
+      userId : data.get('id'),
+      password: data.get('password'),
+      salt: null
+    })
     .then((res) => {
-      const loginUser = res.data.filter((user) => {
-        return user.userId === data.get('id') && user.password === data.get('password');
-      });
-      
-      if (loginUser.length === 1) {
-        setIsLoggedin(true);
-        setUserId(loginUser[0].userId);
-        // setEmail, setTokenAmount, setUserArticles, setUserNft, setAddress, , setImgSrc
+    
+      setIsLoggedin(true);
+      setUserId(res.data.userId);
+        // setEmail, setTokenAmount, setUserArticles, setUserNft 
 
-        close();
-      } else {
-        setIsLoggedin(true);
-        setIsmatched(false);
-      }
+      close();
+
+    }).catch((err) => {
+      setIsLoggedin(false);
+      setIsmatched(false);
+      console.log(err);
     })
    // DB 에서 불러온 데이터랑, id, password랑 비교해서 close를 결정. 같으면 setIsLoggedIn을 true로 아니면 비밀번호를 확인해주세요.
    // setIsmathced();
