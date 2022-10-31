@@ -15,7 +15,7 @@ import axios from "axios"
 const LoginModal = () => {
   const context = useContext(AppContext);
   const [ismatched, setIsmatched] = useState(true);
-  const {setUserId, setEmail, setTokenAmount, setUserArticles, setUserNft, setLoginModalOpen, setIsLoggedin, setAddress, setImgSrc}= context.action;
+  const {setUserId, setJwt, setEmail, setTokenAmount, setUserArticles, setUserNft, setLoginModalOpen, setIsLoggedin, setAddress, setImgSrc}= context.action;
   const open = context.state.loginmodalOpen;
   const close = () => {
     setLoginModalOpen(false);
@@ -31,11 +31,12 @@ const LoginModal = () => {
 
     axios.post('http://localhost:3001/users/login',{
       userId : data.get('id'),
-      password: data.get('password'),
       salt: null
+      password: data.get('password')
     })
     .then((res) => {
-    
+      // Web API에서 받은 token 값을 jwt context에 넣습니다.
+      setJwt(res.data.token);
       setIsLoggedin(true);
       setUserId(res.data.userId);
         // setEmail, setTokenAmount, setUserArticles, setUserNft 
