@@ -1,5 +1,9 @@
 const User = require('../model/user');
 
+
+
+
+
 const find = async (req, res) => {
   const user = await User.find();
   res.send(user);
@@ -21,16 +25,14 @@ const signup = async (req, res) => {
   let overlap = user_data.some((el) => { //아이디 중복확인
     if (el.userId == userId) {
       return true; // break
-    }
-    else {
+    } else {
       return false;
     }
   });
 
   if (overlap) { //아이디 중복일시
     res.status(403).send();
-  }
-  else {
+  } else {
     user.validate().then(
       async (error) => {
         if (error) {
