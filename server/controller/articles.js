@@ -1,7 +1,8 @@
 const Article = require('../model/article');
 
 const find = async (req, res) => {
-  const articles = await Article.find();
+  const _queries = req.query;
+  const articles = await Article.find(_queries);
   res.send(articles);
 };
 
@@ -14,16 +15,15 @@ const write = async (req, res) => {
     author
   });
 
-  article.validate().then(
-    async (error) => {
-      if (error) {
-        res.status(400).send({ error });
-      } else {
-        const newDocument = await article.save();
-        res.status(201).send(newDocument);
-      }
-    }
-  );
+  try {
+    const validation = article.validateSync();
+    if (validation) throw validation.errors;
+
+    const newDocument = await article.save();
+    res.status(201).send(newDocument);
+  } catch (errors) {
+    res.status(400).send({ errors });
+  }
 };
 
 module.exports = {
