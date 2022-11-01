@@ -1,5 +1,6 @@
 require('dotenv').config();
 const User = require('../model/user');
+const reward = require('../utility/reward');
 const jwt = require('jsonwebtoken');
 
 const new_account = require('../utility/createaccount')
@@ -8,7 +9,33 @@ const {main, transferFrom} = require('./web3');
 
 const find = async (req, res) => {
   const _queries = req.query;
-  const user = await User.find(_queries, 'userId profile_image created_at account');
+  const user = await User.aggregate([
+    {$match: _queries},
+    {$lookup: {
+      from: 'Takoyaki-Comment',
+      localField: '_id',
+      foreignField: 'userId',
+      pipeline: [
+        {$project: {
+          content: 0,
+          userId: 0
+        }}
+      ],
+      as: 'comments'
+    }},
+    {$lookup: {
+      from: 'Takoyaki-Article',
+      localField: '_id',
+      foreignField: 'userId',
+      pipeline: [
+        {$project: {
+          content: 0,
+          userId: 0
+        }}
+      ],
+      as: 'articles'
+    }},
+  ]);
   res.send(user);
 };
 
