@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const find = async (req, res) => {
   const _queries = req.query;
-  const user = await User.find(_queries, 'userId created_at account');
+  const user = await User.find(_queries, '_id userId created_at account');
   res.send(user);
 };
 

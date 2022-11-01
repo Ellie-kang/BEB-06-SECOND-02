@@ -9,8 +9,8 @@ const schema = new mongoose.Schema({
     type: String,
     required: true
   },
-  author: {
-    type: String,
+  userId: {
+    type: mongoose.ObjectId,
     required: true
   },
   created_at: Date

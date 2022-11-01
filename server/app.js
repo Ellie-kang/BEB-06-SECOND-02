@@ -24,6 +24,14 @@ const web3Router = require('./router/web3');
 app.use(cors());
 app.use(express.json());
 
+app.use(
+  jwtMiddleware({
+    secret: process.env.SECRET,
+    credentialsRequired: false,
+    algorithms: ['HS256']
+  })
+);
+
 app.use('/articles', articleRouter);
 app.use('/users', userRouter);
 app.use('/', web3Router);
@@ -31,14 +39,6 @@ app.use('/', web3Router);
 app.get('/', (req, res) => {
   res.status(200).send('Welcome');
 });
-
-app.use(
-  jwt({
-    secret: process.env.SECRET,
-    credentialsRequired: false,
-    algorithms: ['HS256']
-  }).unless({ path: ['/token'] })
-);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
