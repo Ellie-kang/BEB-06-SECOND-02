@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const jwt = require('jsonwebtoken');
+const cookieParser = require("cookie-parser");
 const { expressjwt: jwtMiddleware } = require('express-jwt');
 
 const mongoose = require('mongoose');
@@ -21,7 +22,10 @@ const articleRouter = require('./router/articles');
 const userRouter = require('./router/users');
 /* const web3Router = require('./router/web3'); */
 
-app.use(cors());
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
 app.use(express.json());
 
 app.use(
@@ -32,9 +36,13 @@ app.use(
   })
 );
 
+app.use(cookieParser())
+
 app.use('/articles', articleRouter);
 app.use('/users', userRouter);
-/* app.use('/', web3Router); */
+
+//app.use('/', web3Router);
+
 
 app.get('/', (req, res) => {
   res.status(200).send('Welcome');
