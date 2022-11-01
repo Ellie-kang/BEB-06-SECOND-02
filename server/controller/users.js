@@ -60,6 +60,7 @@ const login = async (req, res) => {
   }
 };
 
+// profile 사진 업로드.
 const uploadProfile = async (req, res) => {
   const {profile_image, userId} = req.body;
   try {
@@ -81,7 +82,7 @@ const refresh = async (req, res) => {
     const user = await User.findOne({ userId });
     // profile 이미지도 같이 불러오기.
     const profile = user.profile_image;
-    
+
     res.status(200).json({userId, token, profile})
   } catch (err) {
     res.status(401).send(err)
