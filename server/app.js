@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const jwt = require('jsonwebtoken');
+const { expressjwt: jwtMiddleware } = require('express-jwt');
 
 const mongoose = require('mongoose');
 const credential = './credentials/X509-cert.pem';
@@ -18,30 +19,26 @@ const port = 3001;
 
 const articleRouter = require('./router/articles');
 const userRouter = require('./router/users');
+const web3Router = require('./router/web3');
 
 app.use(cors());
 app.use(express.json());
 
 app.use('/articles', articleRouter);
 app.use('/users', userRouter);
-
-app.use((req, res, next) => {
-  console.log(req.headers);
-  if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT') {
-    jwt.verify(req.headers.authorization.split(' ')[1], process.env.SECRET, (err, decode) => {
-      if (err) req.user = undefined;
-      req.user = decode;
-      next();
-    });
-  } else {
-    req.user = undefined;
-    next();
-  }
-});
+app.use('/', web3Router);
 
 app.get('/', (req, res) => {
   res.status(200).send('Welcome');
 });
+
+app.use(
+  jwt({
+    secret: process.env.SECRET,
+    credentialsRequired: false,
+    algorithms: ['HS256']
+  }).unless({ path: ['/token'] })
+);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
