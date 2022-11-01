@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import "../utils/MainPage.css";
-import Usercontents from '../components/UserContents';
+import Articles from '../components/Articles';
+
 
 import { Stack } from '@mui/material';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -15,6 +16,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 import { AppContext } from '../AppContext';
+
 
 const MainPage = () => {
   const context = useContext(AppContext);
@@ -148,9 +150,9 @@ const MainPage = () => {
               </List>
             </Stack>
           <Stack>
-            <Usercontents />
-            <Usercontents />
-            <Usercontents />
+            <Articles />
+            <Articles />
+            <Articles />
           </Stack>
         </Stack>
       </Stack>

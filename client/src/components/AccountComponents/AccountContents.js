@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import { AppContext } from '../../AppContext';
 import { Dummy } from '../../Dummy';
 import { NavLink } from 'react-router-dom';
-import UserContents from '../UserContents';
+import Articles from '../Articles';
 
 const AccountArticles = () => {
 
@@ -21,13 +21,13 @@ const AccountArticles = () => {
       <div className='account-contents-box'>
         <div className='account-contents-only'>
           <div className='account-contents-wrapper'>
-          <UserContents />
+          <Articles />
           </div>
           <div className='account-contents-wrapper'>
-          <UserContents />
+          <Articles />
           </div>
           <div className='account-contents-wrapper'>
-          <UserContents />
+          <Articles />
           </div>
         </div>
       </div>
