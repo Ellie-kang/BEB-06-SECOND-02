@@ -1,7 +1,6 @@
 require('dotenv').config();
 const User = require('../model/user');
 const jwt = require('jsonwebtoken');
-
 const new_account = require('../utility/createaccount')
 const {main, transferFrom} = require('./web3');
 
@@ -47,11 +46,14 @@ const login = async (req, res) => {
     const result = await user.compare(password, user.password);
     if (!user || !result) throw new Error('Authentication failed. Invalid user or password.');
     else {
+      //profile불러오기 추가. 로그인시.
+      const user = await User.findOne({ userId });
+      const profile = user.profile_image
       const token = jwt.sign({ userId }, process.env.SECRET, { expiresIn: '1h' });
       res.cookie("token", token, {
         maxAge: 60 * 60 * 1000
       });
-      res.json({ userId, token });
+      res.json({ userId, token, profile });
     }
   } catch (err) {
     res.status(401).send({ message: err.message });
@@ -59,7 +61,14 @@ const login = async (req, res) => {
 };
 
 const uploadProfile = async (req, res) => {
-  res.status(501).send();
+  const {profile_image, userId} = req.body;
+  try {
+    // userId 찾아서, profileimg 바꾸기.
+    await User.updateOne({userId: userId}, {profile_image: profile_image});
+  } catch(e) {
+    console.log(e);
+  }
+  
 };
 
 const refresh = async (req, res) => {
@@ -70,17 +79,14 @@ const refresh = async (req, res) => {
     const data = jwt.verify(token, process.env.SECRET);
     const userId = data.userId;
     const user = await User.findOne({ userId });
-    console.log(user)
+    // profile 이미지도 같이 불러오기.
+    const profile = user.profile_image;
     
-    res.status(200).json({userId, token})
+    res.status(200).json({userId, token, profile})
   } catch (err) {
     res.status(401).send(err)
   }
-
-
 }
-
-
 
 module.exports = {
   find,

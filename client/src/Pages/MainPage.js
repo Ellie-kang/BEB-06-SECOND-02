@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import "../utils/MainPage.css";
 import Articles from '../components/Articles';
 import { Stack } from '@mui/material';
@@ -14,6 +14,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 import { AppContext } from '../AppContext';
+import axios from "axios";
 
 
 const MainPage = () => {
