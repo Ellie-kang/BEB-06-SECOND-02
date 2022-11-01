@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './MainPage.css';
-import Usercontents from '../components/Usercontents';
+import Usercontents from '../components/Articles';
 
 import { Stack } from '@mui/material';
 import ListSubheader from '@mui/material/ListSubheader';

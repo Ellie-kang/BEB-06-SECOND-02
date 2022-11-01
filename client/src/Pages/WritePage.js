@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom'
 import {useContext} from 'react';
 import axios from 'axios';
-import AppContext from '../AppContext' 
+import { AppContext } from '../AppContext'
 
 const theme = createTheme();
 
