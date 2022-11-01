@@ -1,5 +1,4 @@
- // SPDX-License-Identifier: GPL-3.0
-
+// SPDX-License-Identifier: GPL-3.0
 pragma solidity 0.8.14;
 
 interface ERC20Interface {
@@ -15,21 +14,22 @@ interface ERC20Interface {
 contract SimpleToken is ERC20Interface {
     mapping (address => uint256) private _balances;
 
+    address private _owner;
     uint256 public _totalSupply;
     string public _name;
     string public _symbol;
-    uint8 public _decimals;
     uint private E18 = 1000000000000000000;
+    
 
     constructor(string memory getName, string memory getSymbol) {
+        _owner = msg.sender;
         _name = getName;
         _symbol = getSymbol;
-        _decimals = 18;
-        _totalSupply = 100000000 * E18;
-        _balances[msg.sender] = _totalSupply; // 추가
+        _totalSupply = 100000000e18;
+        _balances[msg.sender] = _totalSupply;
     }
 
-    function balanceOf(address account) external view virtual override returns (uint256) {
+     function balanceOf(address account) external view virtual override returns (uint256) {
         return _balances[account];
     }
 
@@ -40,6 +40,7 @@ contract SimpleToken is ERC20Interface {
     }
 
     function transferFrom(address sender, address recipient, uint256 amount) external virtual override returns (bool) {
+        require(_owner == msg.sender, "not owner"); //추가
         _transfer(sender, recipient, amount);
         emit Transfer(msg.sender, sender, recipient, amount);
         return true;
@@ -53,6 +54,5 @@ contract SimpleToken is ERC20Interface {
         _balances[sender] = senderBalance - amount;
         _balances[recipient] += amount;
     }
+    
 }
-
-// pulic = > private
