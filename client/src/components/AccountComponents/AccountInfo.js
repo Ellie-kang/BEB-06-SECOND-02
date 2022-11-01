@@ -4,10 +4,17 @@ import { AppContext } from '../../AppContext';
 const AccountInfo = () => {
   const context = useContext(AppContext);
   const {userId, email, tokenAmount} = context.state;
+  const {deleteCookie, setCookie} = context.action;
+  const delete_cookie = () => {
+    deleteCookie('token');
+    window.location.replace("/");
+    alert("logout")
+  }
 
   return (
     <div className='acocunt-info-container'>
       <ul className='account-info'>
+      <button type='button' onClick={delete_cookie} > logout</button><br></br>
         <li className='account-name-continaer'>
           <div className='account-name-wrapper'>
             <div className='account-name-label'>User Id</div>

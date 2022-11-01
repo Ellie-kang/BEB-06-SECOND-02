@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const jwt = require('jsonwebtoken');
+const cookieParser = require("cookie-parser");
 const { expressjwt: jwtMiddleware } = require('express-jwt');
 
 const mongoose = require('mongoose');
@@ -19,9 +20,12 @@ const port = 3001;
 
 const articleRouter = require('./router/articles');
 const userRouter = require('./router/users');
-const web3Router = require('./router/web3');
+/* const web3Router = require('./router/web3'); */
 
-app.use(cors());
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
 app.use(express.json());
 
 // 토큰 읽는 미들웨어
@@ -34,9 +38,13 @@ app.use(
   })
 );
 
+app.use(cookieParser())
+
 app.use('/articles', articleRouter);
 app.use('/users', userRouter);
-app.use('/', web3Router);
+
+//app.use('/', web3Router);
+
 
 app.get('/', (req, res) => {
   res.status(200).send('Welcome');

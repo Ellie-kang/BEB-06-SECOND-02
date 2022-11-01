@@ -9,13 +9,16 @@ import AccountPage from './Pages/AccountPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { AppContext } from './AppContext';
-import { yellow } from '@mui/material/colors';
 import {createTheme} from '@mui/material/styles';
-import { Shadows } from '@mui/material';
+import {useCookies} from 'react-cookie'
+
 import './App.css'
+import axios from 'axios';
 
 const App = () => {
     // 서버에서 account 데이터를 불러와서 contextAPI로 저장.
+  
+
   const [userId, setUserId] = useState('');
   const [email, setEmail] = useState('');
   const [tokenAmount, setTokenAmount] = useState('');
@@ -24,6 +27,7 @@ const App = () => {
   const [address, setAddress] = useState('0x1929381920399281');
   const [imgSrc, setImgSrc] = useState('');
   const [jwt, setJwt] = useState('');
+  const [cookie, setCookie, deleteCookie] = useCookies(['token']);
 
   //login 상태
   const [isLoggedin, setIsLoggedin] = useState(false);
@@ -35,9 +39,9 @@ const App = () => {
     palette: {
       background: {
         paper: "#ffffff",
-        footer: "#aed1ef",
-        header: "#aed1ef",
-        lock: "#aed1ef"
+        footer: "rgba(47, 83, 239)",
+        header: "rgba(47, 83, 239)",
+        lock: "rgba(47, 83, 239)"
       },
       text: {
         primary: "#ffffff",
@@ -48,7 +52,6 @@ const App = () => {
 
     },
   });
-
 
   const context = {
     state: {
@@ -63,7 +66,8 @@ const App = () => {
       loginmodalOpen:loginmodalOpen,
       signupmodalOpen: signupModalOpen,
       theme: theme,
-      jwt: jwt
+      jwt: jwt,
+      cookie: cookie
       //imgFile: imgFile
     },
     action: {
@@ -77,7 +81,9 @@ const App = () => {
       setIsLoggedin: setIsLoggedin,
       setLoginModalOpen: setLoginModalOpen,
       setSignupModalOpen: setSignupModalOpen,
-      setJwt: setJwt
+      setJwt: setJwt,
+      deleteCookie: deleteCookie,
+      setCookie: setCookie
     }
   }
 
