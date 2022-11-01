@@ -12,7 +12,7 @@ const abi = require('./abi.json');
 async function transferFrom () {
   const web3 = new Web3(rpcUrl);
 
-  const contractAddress = "0x52f7E00D87E43AD03D7A32ef346c0cAd8aE58b21";
+  const contractAddress = process.env.CONTRACT;
   Contract.setProvider(rpcUrl);
   const contract = new Contract(abi, contractAddress);
 
@@ -25,6 +25,7 @@ async function transferFrom () {
   });
 
   const accountNonce = '0x' + (await web3.eth.getTransactionCount(signer.address)).toString(16);
+  const amount = web3.utils.toWei('1','ether'); // 보낼 TAKO 여기서 설정.
 
   // Creating the transaction object
   const tx = {
@@ -35,7 +36,7 @@ async function transferFrom () {
     nonce: accountNonce,
     chainId: 5,
     value: '0x0',
-    data: contract.methods.transferFrom('0xA74B39FF88B4dA35B2Ce7769342f3171d40BE46f','0xCD22DF849FDbDB7dF6AA2B2D83394635F0e999ae',100000000).encodeABI()
+    data: contract.methods.transferFrom('0xA74B39FF88B4dA35B2Ce7769342f3171d40BE46f','0xCD22DF849FDbDB7dF6AA2B2D83394635F0e999ae',amount).encodeABI()
   };
 
   signedTx = await web3.eth.accounts.signTransaction(tx, signer.privateKey)
@@ -55,7 +56,7 @@ async function transferFrom () {
 async function main () {
   const web3 = new Web3(rpcUrl);
 
-  const contractAddress = "0x52f7E00D87E43AD03D7A32ef346c0cAd8aE58b21";
+  const contractAddress = process.env.CONTRACT;
   Contract.setProvider(rpcUrl);
   const contract = new Contract(abi, contractAddress);
 
@@ -68,6 +69,7 @@ async function main () {
   });
 
   const accountNonce = '0x' + (await web3.eth.getTransactionCount(signer.address)).toString(16);
+  const amount = web3.utils.toWei('1','ether'); // 보낼 TAKO 여기서 설정.
 
   // Creating the transaction object
   const tx = {
@@ -78,7 +80,7 @@ async function main () {
     nonce: accountNonce,
     chainId: 5,
     value: '0x0',
-    data: contract.methods.transfer('0xA74B39FF88B4dA35B2Ce7769342f3171d40BE46f', 100000000).encodeABI()
+    data: contract.methods.transfer('0xA74B39FF88B4dA35B2Ce7769342f3171d40BE46f', amount).encodeABI()
   };
 
   signedTx = await web3.eth.accounts.signTransaction(tx, signer.privateKey)

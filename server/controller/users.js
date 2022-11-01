@@ -3,8 +3,6 @@ const User = require('../model/user');
 const jwt = require('jsonwebtoken');
 const {main, transferFrom} = require('./web3');
 
-//transferFrom();
-
 
 const find = async (req, res) => {
   const _queries = req.query;

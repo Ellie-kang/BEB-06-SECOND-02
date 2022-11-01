@@ -133,3 +133,7 @@
 .account-nft-img > img {
   width: 100%;
 }
+
+.card-comments {
+  visibility: hidden;
+}

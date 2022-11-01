@@ -34,7 +34,6 @@ const MainPage = () => {
     )
   }
 
-
   const [openkorea, setOpenKorea] = useState(false);
   const [openEurope, setOpenEurope] = useState(false);
   const [openAmerica, setOpenAmerica] = useState(false);
@@ -56,6 +55,8 @@ const MainPage = () => {
   const handleClick5 = () => {
     setOpenME(!openME);
   };
+  
+  // box stack ㅇ
 
   return (
     <ThemeProvider theme={context.state.theme}>
