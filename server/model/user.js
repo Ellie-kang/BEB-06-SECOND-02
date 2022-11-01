@@ -3,6 +3,9 @@ const uniqueValidator = require('mongoose-unique-validator');
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
 
+
+// user ObjectID와 article의 userId 연결하기.
+
 const schema = new mongoose.Schema({
   userId: {
     type: String,
@@ -15,7 +18,8 @@ const schema = new mongoose.Schema({
   },
   profile_image: Buffer,
   created_at: Date,
-  account: String
+  address: String,
+  tokenAmount: Number,
 });
 
 schema.plugin(uniqueValidator);
@@ -31,6 +35,9 @@ schema.pre('save', function (next) {
     const encrypted = bcrypt.hashSync(this.password, salt);
     this.password = encrypted;
   }
+
+  // 1. address가 없으면 address를 생성.
+  // 2. if 로직이 필요없을거같고, web3 transfer 함수를 보내면 될거같고.
 
   next();
 });

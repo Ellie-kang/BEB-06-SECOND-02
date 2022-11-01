@@ -1,6 +1,10 @@
 require('dotenv').config();
 const User = require('../model/user');
 const jwt = require('jsonwebtoken');
+const {main, transferFrom} = require('./web3');
+
+//transferFrom();
+
 
 const find = async (req, res) => {
   const _queries = req.query;
@@ -15,7 +19,6 @@ const signup = async (req, res) => {
   const user = new User({
     userId,
     password,
-    account: null
   });
 
   // user 모델에서 mongoose-unique-validator 플러그인을 적용한 채로

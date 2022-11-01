@@ -1,0 +1,27 @@
+.back {
+  margin: auto;
+  margin-top: 10px;
+}
+
+.nav-list {
+  width: auto;
+  background-color: #ffffff;
+  border: 1px solid rgba(47, 83, 239);
+  border-radius: 5px;
+}
+
+#list-subheader {
+  text-align: center;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+#flight {
+  color: rgba(47, 83, 239);
+}
+
+#flag {
+  color: rgba(47, 83, 239);
+}
+

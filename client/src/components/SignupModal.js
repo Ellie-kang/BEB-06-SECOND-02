@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import axios from "axios"
 import { AppContext } from '../AppContext';
 
@@ -27,38 +27,37 @@ const SignupModal = () => {
     const data = new FormData(event.currentTarget);
     const p = data.get('password');
     const p_c = data.get('confirm_password');
-    if(p !== p_c){
-        console.log("not correct");
-        alert('not correct');
+    if (p !== p_c) {
+      console.log("not correct");
+      alert('not correct');
     }
-    else{
-        console.log("correct");
-        //DB로 보내기
-        axios.post('http://localhost:3001/users/signup', {
-          userId : data.get('id'),
-          password: data.get('password'),
-          salt: null
-        })
+    else {
+      console.log("correct");
+      //DB로 보내기
+      axios.post('http://localhost:3001/users/signup', {
+        userId: data.get('id'),
+        password: data.get('password'),
+        salt: null
+      })
         .then((res) => {
           console.log(res.data);
           alert("회원가입이 완료되었습니다.");
           close();
-        }).catch((err)=> {
+        }).catch((err) => {
           console.log(err.response.status);
-          if(err.response.status == 403){
+          if (err.response.status == 403) {
             alert("중복된 아이디입니다.");
           }
-          else{
+          else {
             console.log(err);
           }
         })
-        // console.log({
-        //     id: data.get('id'),
-        //     password: data.get('password'),
-        // });
+      // console.log({
+      //     id: data.get('id'),
+      //     password: data.get('password'),
+      // });
     }
-    
-};
+  };
 
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.

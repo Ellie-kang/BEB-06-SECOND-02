@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
@@ -18,14 +18,15 @@ const Header = () => {
     return (
       <>
         <Stack spacing={3} direction="row" sx={{
-           justifyContent: "flex-end",
-           pr: "56px",
-           width: "200px",
-           boxShadow: 0,
-           alignItems: "center"}}>
-          <NavLink style={{textDecoration:"none"}} to='/account'><HeaderButton name="Send" cb={() => {}}/></NavLink>
-          <NavLink style={{textDecoration:"none"}} to='/mint'><HeaderButton name="Mint" cb={() => {}}/></NavLink>
-          <NavLink style={{textDecoration:"none"}} to='/write'><HeaderButton name="Write" cb={() => {}}/></NavLink>
+          justifyContent: "flex-end",
+          pr: "56px",
+          width: "200px",
+          boxShadow: 0,
+          alignItems: "center"
+        }}>
+          <NavLink style={{ textDecoration: "none" }} to='/account'><HeaderButton name="Send" cb={() => { }} /></NavLink>
+          <NavLink style={{ textDecoration: "none" }} to='/mint'><HeaderButton name="Mint" cb={() => { }} /></NavLink>
+          <NavLink style={{ textDecoration: "none" }} to='/write'><HeaderButton name="Write" cb={() => { }} /></NavLink>
           <NavLink to='/account'><Avatar alt="Remy Sharp" src={context.state.imgSrc} /></NavLink>
         </Stack>
       </>
@@ -34,16 +35,16 @@ const Header = () => {
 
   const IsNotLogin = () => {
     return (
-        <Stack spacing={3} direction="row" sx={{
-          pr: '40px',
-          justifyContent: "flex-end",
-          boxShadow: 0,
-          }}>
-          <HeaderButton name="Sign In" cb={() => context.action.setLoginModalOpen(true)}/>
-          <HeaderButton name='Sign up' cb={() => context.action.setSignupModalOpen(true)}/>
-          <LoginModal/>
-          <SignupModal/>
-        </Stack>
+      <Stack spacing={3} direction="row" sx={{
+        pr: '40px',
+        justifyContent: "flex-end",
+        boxShadow: 0,
+      }}>
+        <HeaderButton name="Sign In" cb={() => context.action.setLoginModalOpen(true)} />
+        <HeaderButton name='Sign up' cb={() => context.action.setSignupModalOpen(true)} />
+        <LoginModal />
+        <SignupModal />
+      </Stack>
     )
   }
 
@@ -66,17 +67,15 @@ const Header = () => {
               textDecoration: 'none',
               pl: 7,
               color: "text.primary",
-              fontSize: 27
+              fontSize: 22
             }}
-            variant="h6"
-            component="a"
-            href="/"
-            >Takoyaki</Typography>
+              component="a"
+              href="/"
+            >TAKO</Typography>
           </Box>
           {/* <Box component="img" sx={{ml: 3, overflow: "hidden", borderRadius: 70, width: "auto", height:72,}} alt=''src="https://img.freepik.com/free-vector/cute-octopus-eating-takoyaki-cartoon-vector-icon-illustration-animal-food-icon-concept-isolated-pr_138676-4795.jpg?size=338&ext=jpg&ga=GA1.2.560317433.1666977347" ></Box> */}
-          <Box sx={{ flexGrow: 1}}></Box>
-          {context.state.isLoggedin ? <IsLogin /> : <IsNotLogin/>}
-          <Box sx={{ flexGrow: 0.05}}></Box>
+          <Box sx={{ flexGrow: 1 }}></Box>
+          {context.state.isLoggedin ? <IsLogin /> : <IsNotLogin />}
         </Toolbar>
       </AppBar>
     </ThemeProvider>
