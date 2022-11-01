@@ -14,11 +14,12 @@ import ShareIcon from '@mui/icons-material/Share';
 
 import img from './우주.jpeg'
 
-const Usercontents = () => {
+const UserContents = () => {
   const context = useContext(AppContext);
   return (
     <Card sx={{ maxWidth: 600 }}>
-      <CardHeader 
+      <CardHeader
+        sx={{bgcolor:"rgba(47, 83, 239)"}}
         avatar={
           <Avatar src={context.state.imgSrc} aria-label="recipe" />
         }
@@ -55,4 +56,4 @@ const Usercontents = () => {
   )
 }
 
-export default Usercontents;
+export default UserContents;

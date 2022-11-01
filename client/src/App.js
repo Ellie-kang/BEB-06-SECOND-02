@@ -9,9 +9,7 @@ import AccountPage from './Pages/AccountPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { AppContext } from './AppContext';
-import { yellow } from '@mui/material/colors';
 import {createTheme} from '@mui/material/styles';
-import { Shadows } from '@mui/material';
 import './App.css'
 
 const App = () => {
@@ -23,7 +21,6 @@ const App = () => {
   const [userNft, setUserNft] = useState('');
   const [address, setAddress] = useState('0x1929381920399281');
   const [imgSrc, setImgSrc] = useState('');
-  
 
   //login 상태
   const [isLoggedin, setIsLoggedin] = useState(false);
@@ -35,9 +32,9 @@ const App = () => {
     palette: {
       background: {
         paper: "#ffffff",
-        footer: "#aed1ef",
-        header: "#aed1ef",
-        lock: "#aed1ef"
+        footer: "rgba(47, 83, 239)",
+        header: "rgba(47, 83, 239)",
+        lock: "rgba(47, 83, 239)"
       },
       text: {
         primary: "#ffffff",
@@ -48,7 +45,6 @@ const App = () => {
 
     },
   });
-
 
   const context = {
     state: {
