@@ -118,10 +118,19 @@ async function getAccounts() {
   }
 }
 
+async function reward() {
+
+}
+async function transfer() {
+
+}
+
 
 module.exports = {
   /* getWeb3, */
-  main,
-  transferFrom
+  reward,
+  transfer,
+  // main,
+  // transferFrom
 }
 
