@@ -11,66 +11,66 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import WriteForm from '../components/WriteForm';
 import Review from '../components/Review';
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom'
-import {useContext} from 'react';
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 import axios from 'axios';
 import {AppContext} from '../AppContext'
 
 const theme = createTheme();
 
-export default function WritePage() {
+export default function WritePage () {
   const context = useContext(AppContext);
   const [activeStep, setActiveStep] = React.useState(0);
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
-  const {userId}= context.state;
+  const { jwt } = context.state; // jwt 토큰
 
   const steps = ['글쓰기', '미리보기', '작성 완료'];
 
-
-  function getStepContent(step) {
+  function getStepContent (step) {
     switch (step) {
       case 0:
         return <WriteForm activeStep={activeStep} steps={steps} handleNext={handleNext} setTitle={setTitle} setContent={setContent} title={title} content={content} />;
       case 1:
         return <Review activeStep={activeStep} handleBack={handleBack} handleNext={handleNext} title={title} content={content} />;
       case 2:
-        return (<React.Fragment>
-          <Typography variant="h5" gutterBottom>
-            게시글 작성이 완료되었습니다.
-          </Typography>
-          <Link to="/">
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <Button variant="contained" sx={{ mt: 3, ml: 1 }}>
-                HOME
-              </Button>
-            </Box>
-          </Link>
-        </React.Fragment>)
+        return (
+          <>
+            <Typography variant='h5' gutterBottom>
+              게시글 작성이 완료되었습니다.
+            </Typography>
+            <Link to='/'>
+              <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button variant='contained' sx={{ mt: 3, ml: 1 }}>
+                  HOME
+                </Button>
+              </Box>
+            </Link>
+          </>
+        );
       default:
         throw new Error('Unknown step');
     }
   }
 
   const handleNext = () => {
-    if (title == '' || content == '') {
+    if (title === '' || content === '') {
       alert('빈칸을 채워주세요');
-    }
-    else {
-      if (activeStep == 1) { 
+    } else {
+      if (activeStep === 1) {
         axios.post('http://localhost:3001/articles/write', {
-          title : title,
+          title: title,
           content: content,
-          author: userId // 후에 로그인 후 작성자 기입
+          headers: {
+            Authorization: `Bearer ${jwt}`
+          }
         })
-        .then((res) => {
-      
-          console.log('완료');
-          console.log(res.data)
-
-        }).catch((err)=> {
-          console.log(err);
-        })
+          .then((res) => {
+            console.log('완료');
+            console.log(res.data);
+          }).catch((err) => {
+            console.log(err);
+          });
       }
       setActiveStep(activeStep + 1);
     }
@@ -83,9 +83,9 @@ export default function WritePage() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-          <Typography component="h1" variant="h4" align="center">
+      <Container component='main' maxWidth='md' sx={{ mb: 4 }}>
+        <Paper variant='outlined' sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+          <Typography component='h1' variant='h4' align='center'>
             게시글 작성하기
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
@@ -95,9 +95,9 @@ export default function WritePage() {
               </Step>
             ))}
           </Stepper>
-          <React.Fragment>
+          <>
             {getStepContent(activeStep)}
-          </React.Fragment>
+          </>
         </Paper>
       </Container>
     </ThemeProvider>

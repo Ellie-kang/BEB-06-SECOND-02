@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const jwt = require('jsonwebtoken');
+const { expressjwt: jwtMiddleware } = require('express-jwt');
 
 const mongoose = require('mongoose');
 const credential = './credentials/X509-cert.pem';
@@ -17,19 +19,33 @@ const port = 3001;
 
 const articleRouter = require('./router/articles');
 const userRouter = require('./router/users');
+const web3Router = require('./router/web3');
 
 app.use(cors());
 app.use(express.json());
 
+app.use(
+  jwtMiddleware({
+    secret: process.env.SECRET,
+    credentialsRequired: false,
+    algorithms: ['HS256']
+  })
+);
+
 app.use('/articles', articleRouter);
 app.use('/users', userRouter);
+app.use('/', web3Router);
 
 app.get('/', (req, res) => {
   res.status(200).send('Welcome');
 });
 
-app.use((req, res, next) => {
-  res.status(404).send('Not Found!');
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send({
+    message: 'Internal Server Error',
+    stacktrace: err.toString()
+  });
 });
 
 app.use((err, req, res, next) => {

@@ -8,7 +8,7 @@ const {main, transferFrom} = require('./web3');
 
 const find = async (req, res) => {
   const _queries = req.query;
-  const user = await User.find(_queries, 'userId profile_image created_at account');
+  const user = await User.find(_queries, '_id userId created_at account');
   res.send(user);
 };
 
@@ -35,6 +35,7 @@ const signup = async (req, res) => {
   }
 };
 
+// userID와 password를 입력하면 token: (jwt값)을 보냅니다.
 const login = async (req, res) => {
   const { userId, password } = req.body;
 
@@ -43,7 +44,7 @@ const login = async (req, res) => {
     const result = await user.compare(password, user.password);
     if (!user || !result) throw new Error('Authentication failed. Invalid user or password.');
     else {
-      const token = jwt.sign({ userId }, process.env.SECRET, { expiresIn: '1h' });
+      const token = jwt.sign({ userId }, process.env.SECRET, { expiresIn: '1d' });
       res.json({ token });
     }
   } catch (err) {
@@ -51,13 +52,8 @@ const login = async (req, res) => {
   }
 };
 
-const uploadProfile = async (req, res) => {
-  res.status(501).send();
-};
-
 module.exports = {
   find,
   signup,
-  login,
-  uploadProfile
+  login
 };
