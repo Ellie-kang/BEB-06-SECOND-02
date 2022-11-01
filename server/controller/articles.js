@@ -8,23 +8,25 @@ const find = async (req, res) => {
 };
 
 const write = async (req, res) => {
-  console.log(req);
-  const { title, content, userId } = req.body;
-
-  const article = new Article({
-    title,
-    content,
-    userId
-  });
-
   try {
+    // Authorization 헤더에 jwt token을 넣고 보낸 요청인 경우
+    // req.auth라는 오브젝트 값으로 userId를 받을 수 있다.
+    if (!req.auth) throw new Error('Unauthorized to write an article. Please sign in.');
+    const { title, content } = req.body;
+
+    const article = new Article({
+      title,
+      content,
+      userId: req.auth.userId
+    });
+
     const validation = article.validateSync();
     if (validation) throw validation.errors;
 
     const newDocument = await article.save();
     res.status(201).send(newDocument);
-  } catch (errors) {
-    res.status(400).send({ errors });
+  } catch (error) {
+    res.status(400).send({ error });
   }
 };
 
