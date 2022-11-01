@@ -1,3 +1,3 @@
-const incentivise = () => {};
+const reward = () => {};
 
-module.exports = incentivise;
+module.exports = reward;

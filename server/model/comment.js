@@ -20,7 +20,6 @@ const schema = new mongoose.Schema({
 schema.pre('save', function (next) {
   // 생성 날짜를 자동 기입함
   if (!this.created_at) this.created_at = new Date();
-
   next();
 });
 
