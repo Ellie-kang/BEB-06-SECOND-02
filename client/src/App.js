@@ -78,7 +78,6 @@ const App = () => {
     }
   }
 
-
   return (
     <AppContext.Provider value={context}>
       <Header />
