@@ -1,72 +1,52 @@
+require('dotenv').config();
 const User = require('../model/user');
+const jwt = require('jsonwebtoken');
 
 const find = async (req, res) => {
-  const user = await User.find();
+  const _queries = req.query;
+  const user = await User.find(_queries, '_id userId created_at account');
   res.send(user);
 };
 
 const signup = async (req, res) => {
-  const { userId, password, salt } = req.body;
+  const { userId, password } = req.body;
 
   // 여기 있는 account 데이터는 추후 이더리움 노드와 연동되면 채워질 부분입니다.
   const user = new User({
     userId,
     password,
-    salt,
     account: null
   });
 
-  const user_data = await User.find();
+  // user 모델에서 mongoose-unique-validator 플러그인을 적용한 채로
+  // User Model에서 userID에 unique 옵션을 설정했기 때문에
+  // validate() 함수에서 유효성 조사하는 과정 중 이중 아이디를 검출가능
+  try {
+    const validation = user.validateSync();
+    if (validation) throw validation.errors;
 
-  let overlap = user_data.some((el) => { //아이디 중복확인
-    if (el.userId == userId) {
-      return true; // break
-    }
-    else {
-      return false;
-    }
-  });
-
-  if (overlap) { //아이디 중복일시
-    res.status(403).send();
-  }
-  else {
-    user.validate().then(
-      async (error) => {
-        if (error) {
-          res.status(400).send({ error });
-        } else {
-          const newDocument = await user.save();
-          res.status(201).send(newDocument);
-        }
-      }
-    );
+    const newDocument = await user.save();
+    res.status(201).send(newDocument);
+  } catch (errors) {
+    res.status(400).send({ errors });
   }
 };
 
+// userID와 password를 입력하면 token: (jwt값)을 보냅니다.
 const login = async (req, res) => {
-  const { userId, password, salt } = req.body;
-  console.log(req.body)
-  const user = await User.find();
-  console.log(user)
-  let success = user.some((el)=>{
-    if(el.userId == userId && el.password == password){
-      return true
-    }
-    else{
-      return false
-    }
+  const { userId, password } = req.body;
 
-   
-  })
-  console.log(success)
-  if(success){
-    res.status(201).send(req.body)
+  try {
+    const user = await User.findOne({ userId });
+    const result = await user.compare(password, user.password);
+    if (!user || !result) throw new Error('Authentication failed. Invalid user or password.');
+    else {
+      const token = jwt.sign({ userId }, process.env.SECRET, { expiresIn: '1d' });
+      res.json({ token });
+    }
+  } catch (err) {
+    res.status(401).send({ message: err.message });
   }
-  else{
-    res.status(400).send({message : "error"})
-  }
-
 };
 
 module.exports = {

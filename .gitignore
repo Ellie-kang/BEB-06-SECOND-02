@@ -3,4 +3,4 @@
 /server/.env
 /server/credentials
 server/package-lock.json
-server/package-lock.json
+.vscode
