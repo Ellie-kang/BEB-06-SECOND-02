@@ -24,6 +24,8 @@ const web3Router = require('./router/web3');
 app.use(cors());
 app.use(express.json());
 
+// 토큰 읽는 미들웨어
+// Authorization => req.auth 객체
 app.use(
   jwtMiddleware({
     secret: process.env.SECRET,

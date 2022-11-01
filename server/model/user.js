@@ -13,9 +13,9 @@ const schema = new mongoose.Schema({
     type: String,
     required: true
   },
-  profile_image: Buffer,
+  profile_image: String,
   created_at: Date,
-  account: String
+  address: String
 });
 
 schema.plugin(uniqueValidator);

@@ -1,10 +1,37 @@
 require('dotenv').config();
 const User = require('../model/user');
+const reward = require('../utility/reward');
 const jwt = require('jsonwebtoken');
 
 const find = async (req, res) => {
   const _queries = req.query;
-  const user = await User.find(_queries, '_id userId created_at account');
+  const user = await User.aggregate([
+    {$match: _queries},
+    {$lookup: {
+      from: 'Takoyaki-Comment',
+      localField: '_id',
+      foreignField: 'userId',
+      pipeline: [
+        {$project: {
+          content: 0,
+          userId: 0
+        }}
+      ],
+      as: 'comments'
+    }},
+    {$lookup: {
+      from: 'Takoyaki-Article',
+      localField: '_id',
+      foreignField: 'userId',
+      pipeline: [
+        {$project: {
+          content: 0,
+          userId: 0
+        }}
+      ],
+      as: 'articles'
+    }},
+  ]);
   res.send(user);
 };
 
@@ -15,7 +42,7 @@ const signup = async (req, res) => {
   const user = new User({
     userId,
     password,
-    account: null
+    address: null
   });
 
   // user 모델에서 mongoose-unique-validator 플러그인을 적용한 채로
