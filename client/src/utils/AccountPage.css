@@ -11,7 +11,7 @@
   width: 200px;
   height: 150px;
   border-radius: 70%;
-  background-color: #aed1ef;
+  background-color: rgba(47, 83, 239);
   overflow: hidden;
 }
 
@@ -87,7 +87,6 @@
 .account-name-wrapper {
   display: flex;
   flex-direction: column;
-  
 }
 .account-name {
   width: 18vw;
@@ -117,6 +116,7 @@
   margin-top: 50px;
   padding: 20px 0px;
   border: 1px solid black;
+  width: 400px;
 }
 
 .account-nft {

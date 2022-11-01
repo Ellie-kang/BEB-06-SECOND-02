@@ -12,12 +12,13 @@ import axios from 'axios'
 const AccountPage = () => {
   
   const context = useContext(AppContext);
-  const imgSrc = context.state.imgSrc;
-  const setImgSrc = context.action.setImgSrc;
+  const {imgSrc} = context.state;
+  const {setImgSrc} = context.action;
 
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
+    
     return new Promise((resolve) => {
         reader.onload = () => {
             setImgSrc(reader.result);
@@ -31,14 +32,12 @@ const AccountPage = () => {
     } else {
       return;
     }
-    
   }
 
   const handleImgToChange = () => {
     console.log(imgSrc)
     //axios.post()
   }
-
 
   return (
     // account Profile Img ul

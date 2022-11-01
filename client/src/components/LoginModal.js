@@ -43,7 +43,7 @@ const LoginModal = () => {
       close();
 
     }).catch((err) => {
-      setIsLoggedin(false);
+      setIsLoggedin(true);
       setIsmatched(false);
       console.log(err);
     })
