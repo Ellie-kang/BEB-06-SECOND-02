@@ -8,12 +8,13 @@ const find = async (req, res) => {
 };
 
 const write = async (req, res) => {
-  const { title, content, author } = req.body;
+  console.log(req);
+  const { title, content, userId } = req.body;
 
   const article = new Article({
     title,
     content,
-    author
+    userId
   });
 
   try {
@@ -50,6 +51,6 @@ const comment = async (req, res) => {
 
 module.exports = {
   find,
-  write
+  write,
   comment
 };

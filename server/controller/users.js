@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const find = async (req, res) => {
   const _queries = req.query;
-  const user = await User.find(_queries, 'userId profile_image created_at account');
+  const user = await User.find(_queries, 'userId created_at account');
   res.send(user);
 };
 
@@ -49,13 +49,8 @@ const login = async (req, res) => {
   }
 };
 
-const uploadProfile = async (req, res) => {
-  res.status(501).send();
-};
-
 module.exports = {
   find,
   signup,
-  login,
-  uploadProfile
+  login
 };
