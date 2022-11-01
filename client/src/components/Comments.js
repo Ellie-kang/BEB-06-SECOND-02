@@ -4,6 +4,10 @@ import { AppContext } from "../AppContext";
 import { Link } from 'react-router-dom';
 import { Box, Stack, Input, Button } from '@mui/material';
 
+const CommentList = (props) => {
+  return
+}
+
 export const Comments = () => {
   const [commentInput, setCommentInput] = useState('');
   const [contentComments, setContentComments] = useState([]);
@@ -34,7 +38,6 @@ export const Comments = () => {
         <Button onClick={handleSubmit}>
           Post
         </Button>
-
     </div>
   )
 }

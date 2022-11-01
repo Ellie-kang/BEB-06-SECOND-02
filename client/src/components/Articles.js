@@ -59,15 +59,6 @@ const Articles = () => {
           가나다라마차카타파하가나다라마차카타파하가나다라마차카타파하가나다라마차카타파하가나다라마차카타파하가나다라마차카타파하가나다라마차카타파하
           가나다라마차카타파하가나다라마차카타파하가나다라마차카타파하가나다라마차카타파하가나다라마차카타파하가나다라마차카타파하가나다라마차카타파하
         </Typography>
-        <Link
-        component="button"
-        underline="none"
-        fontSize="sm"
-        startDecorator="…"
-        sx={{ color: 'text.tertiary' }}
-        >
-          더 보기
-        </Link> 
         <Comments />
       </CardContent>
     </Card>
