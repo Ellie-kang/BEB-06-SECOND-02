@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-  title: {
-    type: String,
+  userId: {
+    type: mongoose.ObjectId,
+    required: true
+  },
+  postId: {
+    type: mongoose.ObjectId,
     required: true
   },
   content: {
-    type: String,
-    required: true
-  },
-  author: {
     type: String,
     required: true
   },
@@ -24,6 +24,6 @@ schema.pre('save', function (next) {
   next();
 });
 
-const Article = mongoose.model('Article', schema, 'Takoyaki-Article');
+const Comment = mongoose.model('Comment', schema, 'Takoyaki-Comment');
 
-module.exports = Article;
+module.exports = Comment;
