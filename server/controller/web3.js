@@ -1,9 +1,13 @@
-const _incentivise = require('../util/incentivise');
+const _reward = require('../utility/reward');
 
-const incentivise = async (req, res) => {
-  _incentivise();
+const reward = async (req, res) => {
+  _reward();
+};
+
+const transfer = async (req, res) => {
 };
 
 module.exports = {
-  incentivise
+  reward,
+  transfer
 };
