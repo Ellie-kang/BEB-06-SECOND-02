@@ -3,6 +3,16 @@ import { AppContext } from "../AppContext";
 
 import { Link } from 'react-router-dom';
 import { Box, Stack, Input, Button } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
+const CommentList = (props) => {
+  return (
+    <Box>
+      <p>userId</p>
+      <div>Comment</div>
+    </Box>
+  )
+}
 
 export const Comments = () => {
   const [commentInput, setCommentInput] = useState('');
@@ -34,7 +44,6 @@ export const Comments = () => {
         <Button onClick={handleSubmit}>
           Post
         </Button>
-
     </div>
   )
 }
