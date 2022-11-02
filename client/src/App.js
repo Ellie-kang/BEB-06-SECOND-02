@@ -45,6 +45,7 @@ const App = () => {
       },
       text: {
         primary: "#ffffff",
+        secondary: "black"
       },
       button: {
         primary: "#ba5624"
