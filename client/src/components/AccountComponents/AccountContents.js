@@ -21,7 +21,7 @@ const AccountArticles = () => {
       <div className='account-contents-box'>
         <div className='account-contents-only'>
           <div className='account-contents-wrapper'>
-          <Articles />
+          <Articles sx={{width: "100%", height: "auto"}}/>
           </div>
           <div className='account-contents-wrapper'>
           <Articles />

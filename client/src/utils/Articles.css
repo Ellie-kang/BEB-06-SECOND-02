@@ -1,0 +1,13 @@
+.contents-container {
+  max-width: 600px;
+  background-color: white;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+
+.css-1qbkelo-MuiCardHeader-content > span {
+  color: rgba(47, 83, 239);
+  font-weight: 600;
+  font-size: 17px;
+
+}

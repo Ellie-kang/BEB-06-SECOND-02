@@ -1,24 +1,22 @@
-.back {
-  margin: auto;
-  margin-top: 10px;
-}
 
 .nav-list {
-  width: auto;
   background-color: #ffffff;
   border: 1px solid rgba(47, 83, 239);
-  border-radius: 5px;
-}
-
-.MuiListItemIcon-root  {
-  margin-right: -12px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 #list-subheader {
   text-align: center;
   padding: 10px;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 17px;
+}
+
+#list-contianer > footer {
+  z-index: 1;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 #flight {

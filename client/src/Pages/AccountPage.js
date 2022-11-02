@@ -7,13 +7,13 @@ import AccountSend from '../components/AccountComponents/AccountSend'
 import { Box } from '@mui/system'
 import { AppContext } from '../AppContext'
 import axios from 'axios'
-
+import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
 
 const AccountPage = () => {
   const context = useContext(AppContext);
   const {imgSrc, jwt, userId} = context.state;
   const {setImgSrc} = context.action;
-
 
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
@@ -50,9 +50,14 @@ const AccountPage = () => {
     <div className='account-contianer'>
       <div className='account-wrapper'>
         <div className='account-profile'>
-          <Box component="img" sx={{width: "300px", height: "250px"}} src={imgSrc} />
-            {imgSrc ? null : <input type="file" name="image"  onChange={handleImageChange}/>}
-            <button type='button' onClick={handleImgToChange}>변경하기</button>
+          {imgSrc ? <Box component="img" sx={{width: "300px", height: "250px"}} src={imgSrc} alt="" /> :<Avatar sx={{width: "200px", height: "200px"}} alt="Remy Sharp"/> }
+          <input id="contained-button-file" style={{display: "none"}} type="file" accept="image/*" name="image"  onChange={handleImageChange} />
+            <label htmlFor="contained-button-file"> 
+            <Button sx={{"&.MuiButtonBase-root:hover": {
+                bgcolor: "transparent"
+              }, color: "rgba(47, 83, 239)", background: 'none', boxShadow: "none", }} component="span">프로필 바꾸기</Button>
+            </label>
+          <Button type='button' onClick={handleImgToChange} sx={{color: "rgba(47, 83, 239)"}}>프로필 변경</Button>
         </div>
         <AccountInfo />
       </div>
