@@ -8,43 +8,53 @@ const find = async (req, res) => {
   const articles = await Article.aggregate([
     // /article?queries라는 uri에서 queries에 해당되는 부분을
     // match로 필터함
-    {$match: _queries},
+    { $match: _queries },
     // 유저DB에서 글쓴이를 가져옴
-    {$lookup: {
-      from: 'Takoyaki-User',
-      localField: 'userId',
-      foreignField: '_id',
-      as: 'author'
-    }},
-    // 코멘트DB에서 코멘트를 가져옴
-    {$lookup: {
-      from: 'Takoyaki-Comment',
-      localField: '_id',
-      foreignField: 'articleId',
-      pipeline: [
-        {$lookup: {
-          from: 'Takoyaki-User',
-          localField: 'userId',
-          foreignField: '_id',
-          as: 'author'
-        }},
-        {$project: {
-          userId: 0,
-          articleId: 0,
-          author : {
-            password : 0
-          }
-        }}
-      ],
-      as: 'comments'
-    }},
-    {$unwind: '$author'},
-    {$project:{
-      userId: 0,
-      author : {
-        password : 0
+    {
+      $lookup: {
+        from: 'Takoyaki-User',
+        localField: 'userId',
+        foreignField: '_id',
+        as: 'author'
       }
-    }}
+    },
+    // 코멘트DB에서 코멘트를 가져옴
+    {
+      $lookup: {
+        from: 'Takoyaki-Comment',
+        localField: '_id',
+        foreignField: 'articleId',
+        pipeline: [
+          {
+            $lookup: {
+              from: 'Takoyaki-User',
+              localField: 'userId',
+              foreignField: '_id',
+              as: 'author'
+            }
+          },
+          {
+            $project: {
+              userId: 0,
+              articleId: 0,
+              author: {
+                password: 0
+              }
+            }
+          }
+        ],
+        as: 'comments'
+      }
+    },
+    { $unwind: '$author' },
+    {
+      $project: {
+        userId: 0,
+        author: {
+          password: 0
+        }
+      }
+    }
   ]);
 
   res.send(articles);
@@ -79,7 +89,7 @@ const write = async (req, res) => {
 
 const comment = async (req, res) => {
   try {
-    if (!req.auth) throw new Error('Unauthorized to write an article. Please sign in.');
+    if (!req.auth) throw 'Unauthorized to write an article. Please sign in.';
     const { content, postId } = req.body;
     const author = await User.findOne({ userId: req.auth.userId }, '_id');
 
