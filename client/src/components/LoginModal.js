@@ -25,10 +25,6 @@ const LoginModal = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      id: data.get('id'),
-      password: data.get('password')
-    });
 
     axios.post('http://localhost:3001/users/login', {
       userId: data.get('id'),
@@ -41,19 +37,14 @@ const LoginModal = () => {
         setJwt(res.data.token);
         setIsLoggedin(true);
         setUserId(res.data.userId);
-        console.log(res.data.userId);
         setImgSrc(res.data.profile);
-
-        // setEmail, setTokenAmount, setUserArticles, setUserNft
 
         close();
       }).catch((err) => {
-        setIsLoggedin(true);
+        setIsLoggedin(false);
         setIsmatched(false);
-        console.log(err);
+        console.error(err);
       });
-    // DB 에서 불러온 데이터랑, id, password랑 비교해서 close를 결정. 같으면 setIsLoggedIn을 true로 아니면 비밀번호를 확인해주세요.
-    // setIsmathced();
   };
 
   return (
@@ -63,68 +54,68 @@ const LoginModal = () => {
         ? (
           <section>
             <header>
-      Sign In
-            <button className='close' onClick={close}>
-              &times;
-            </button>
-    </header>
+              Sign In
+              <button className='close' onClick={close}>
+                &times;
+              </button>
+            </header>
             <main>
-      <ThemeProvider theme={context.state.theme}>
-              <Container component='main' maxWidth='xs'>
-                <CssBaseline />
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                  }}
-                >
-                  <Avatar sx={{ m: 1, bgcolor: 'background.lock' }}>
-                    <LockOutlinedIcon />
-                  </Avatar>
-                  <Typography component='h1' variant='h5'>
-                    Sign In
-                  </Typography>
-                  <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                    <TextField
-                      margin='normal'
-                      required
-                      fullWidth
-                      id='id'
-                      label='ID'
-                      name='id'
-                      autoComplete='id'
-                      autoFocus
-                    />
-                    <TextField
-                      margin='normal'
-                      required
-                      fullWidth
-                      name='password'
-                      label='Password'
-                      type='password'
-                      id='password'
-                      autoComplete='current-password'
-                    />
-                    <Button
-                      type='submit'
-                      fullWidth
-                      variant='contained'
-                      sx={{ mt: 3, mb: 2 }}
-                    >
+              <ThemeProvider theme={context.state.theme}>
+                <Container component='main' maxWidth='xs'>
+                  <CssBaseline />
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <Avatar sx={{ m: 1, bgcolor: 'background.lock' }}>
+                      <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component='h1' variant='h5'>
                       Sign In
-                    </Button>
+                    </Typography>
+                    <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                      <TextField
+                        margin='normal'
+                        required
+                        fullWidth
+                        id='id'
+                        label='ID'
+                        name='id'
+                        autoComplete='id'
+                        autoFocus
+                      />
+                      <TextField
+                        margin='normal'
+                        required
+                        fullWidth
+                        name='password'
+                        label='Password'
+                        type='password'
+                        id='password'
+                        autoComplete='current-password'
+                      />
+                      <Button
+                        type='submit'
+                        fullWidth
+                        variant='contained'
+                        sx={{ mt: 3, mb: 2 }}
+                      >
+                        Sign In
+                      </Button>
+                    </Box>
+                    {ismatched ? null : <Typography sx={{ color: 'black' }}>비밀번호를 확인해주세요</Typography>}
                   </Box>
-                  {ismatched ? null : <Typography sx={{ color: 'black' }}>비밀번호를 확인해주세요</Typography>}
-                </Box>
-              </Container>
-            </ThemeProvider>
-    </main>
+                </Container>
+              </ThemeProvider>
+            </main>
             <footer>
-      <button className='close' onClick={close}>
-              close
-            </button>
-    </footer>
+              <button className='close' onClick={close}>
+                close
+              </button>
+            </footer>
           </section>
           )
         : null}
