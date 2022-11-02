@@ -1,4 +1,26 @@
 .css-8atqhb {
-  border: 2px solid rgba(47, 83, 239);
+  border: none;
   border-radius: 5px;
+}
+
+.comments-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3px;
+}
+
+.users-comments {
+  align-items: center;
+
+}
+
+.users-comments  > span{
+  font-weight: 600;
+  text-align: center;
+}
+
+.users-comments  > p{
+  font-size: 13px;
+  padding-left: 10px;
 }
