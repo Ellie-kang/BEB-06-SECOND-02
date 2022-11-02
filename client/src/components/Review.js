@@ -5,10 +5,12 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
 export default function Review (props) {
-  console.log(props);
+  const date = new Date();
+  const dateString = `${date.getFullYear()}.${date.getMonth()}.${date.getDate()} ${date.getHours()}:${date.getMinutes()} ${date.getHours() > 12 ? 'PM' : 'AM'}`;
+
   const information = [
     { name: '이름', detail: props.userId },
-    { name: '작성일자', detail: Date() }
+    { name: '작성일자', detail: dateString }
   ];
 
   return (
