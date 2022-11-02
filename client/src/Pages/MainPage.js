@@ -66,7 +66,7 @@ const MainPage = () => {
               subheader={
               <ListSubheader sx={{
                 bgcolor: "background.header",
-                color: "text.primary",
+                color: "black",
                 borderRadius:"2px",
                 }}
                 component="div" id="list-subheader">WHERE IS TAKO?</ListSubheader>
