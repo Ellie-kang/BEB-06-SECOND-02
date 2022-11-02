@@ -36,8 +36,8 @@ const LoginModal = () => {
         // Web API에서 받은 token 값을 jwt context에 넣습니다.
         setJwt(res.data.token);
         setIsLoggedin(true);
-        setUserId(res.data.userId);
-        setImgSrc(res.data.profile);
+        setUserId(res.data.user.userId);
+        setImgSrc(res.data.user.profileImage);
 
         close();
       }).catch((err) => {

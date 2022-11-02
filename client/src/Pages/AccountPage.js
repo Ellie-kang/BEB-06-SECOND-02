@@ -10,16 +10,15 @@ import axios from 'axios'
 
 
 const AccountPage = () => {
-  
   const context = useContext(AppContext);
   const {imgSrc, jwt, userId} = context.state;
   const {setImgSrc} = context.action;
-  
+
 
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
-    
+
     return new Promise((resolve) => {
         reader.onload = () => {
             setImgSrc(reader.result);

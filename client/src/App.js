@@ -42,7 +42,8 @@ const App = () => {
         lock: 'rgba(47, 83, 239)'
       },
       text: {
-        primary: '#ffffff'
+        primary: '#ffffff',
+        secondary: 'black'
       },
       button: {
         primary: '#ba5624'
