@@ -56,7 +56,7 @@ const MainPage = () => {
     setOpenME(!openME);
   };
   
-  // box stack ㅇ
+  // box stack
 
   return (
     <ThemeProvider theme={context.state.theme}>

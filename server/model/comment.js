@@ -5,7 +5,7 @@ const schema = new mongoose.Schema({
     type: mongoose.ObjectId,
     required: true
   },
-  postId: {
+  articleId: {
     type: mongoose.ObjectId,
     required: true
   },
