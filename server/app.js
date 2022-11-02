@@ -37,6 +37,9 @@ app.use(
     algorithms: ['HS256']
   })
 );
+//파일 길이가 너무 길어서  limit 최대치.
+app.use(express.json({limit: '100mb'}));
+app.use(express.urlencoded({limit: '100mb', extended: false}));
 
 app.use(cookieParser())
 
