@@ -46,7 +46,7 @@ const LoginModal = () => {
       setUserId(res.data.userId);
       console.log(res.data.userId);
       setImgSrc(res.data.profile);
-      
+
         // setEmail, setTokenAmount, setUserArticles, setUserNft 
 
       close();
