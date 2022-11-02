@@ -50,20 +50,19 @@ const signup = async (req, res) => {
     password,
     account: new_account.address
   });
-  res.redirect('/')
 
   // user 모델에서 mongoose-unique-validator 플러그인을 적용한 채로
   // User Model에서 userID에 unique 옵션을 설정했기 때문에
   // validate() 함수에서 유효성 조사하는 과정 중 이중 아이디를 검출가능
-  // try {
-  //   const validation = user.validateSync();
-  //   if (validation) throw validation.errors;
+  try {
+    const validation = user.validateSync();
+    if (validation) throw validation.errors;
 
-  //   const newDocument = await user.save();
-  //   res.status(201).send(newDocument);
-  // } catch (errors) {
-  //   res.status(400).send({ errors });
-  // }
+    const newDocument = await user.save();
+    res.status(201).send(newDocument);
+  } catch (errors) {
+    res.status(400).send({ errors });
+  }
 };
 
 const login = async (req, res) => {
