@@ -14,7 +14,7 @@ import HeaderButton from "./HeaderButton";
 import axios from "axios"
 
 const Header = () => {
-  
+
   const context = useContext(AppContext);
   const {cookie} = context.state;
   const {setUserId, setJwt, setEmail, setTokenAmount, setUserArticles, setUserNft, setLoginModalOpen, setIsLoggedin, setAddress, setImgSrc}= context.action;

@@ -10,6 +10,7 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
+import { Box } from '@mui/system';
 
 const ListContainer = () => {
   const [openAsia, setOpenAsia] = useState(false);
@@ -66,15 +67,15 @@ const ListContainer = () => {
 
   return (
     <>
-      <Stack sx={{
-          width:"200px",
+        <Stack id="list-contianer" sx={{
+          width:"auto",
+          borderRadius:"2px",
         }}>
           <List component="nav" className='nav-list'
           subheader={
           <ListSubheader sx={{
             bgcolor: "background.header",
             color: "text.primary",
-            borderRadius:"2px",
             }}
             component="div" id="list-subheader">WHERE IS TAKO?</ListSubheader>
           }>
@@ -114,7 +115,8 @@ const ListContainer = () => {
               <ListContainer primary="dubai" />
             </Collapse>
           </List>
-        </Stack>
+          <Box component='footer' sx={{height:"30px",bgcolor:"background.header"}}></Box>
+       </Stack>
     </>
   )
 };

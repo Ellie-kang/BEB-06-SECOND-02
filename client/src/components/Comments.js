@@ -39,10 +39,10 @@ export const Comments = () => {
       <Stack>
         <Stack className='comments-text' direction="row" sx={{ marginY:"20px", color:"text.secondary" }} >
           <Box
+            sx={{width: "100%"}}
             component="input"
             type="text"
             placeholder="Add a comment…"
-            sx = {{width: '100%'}}
             onChange={(e) => {
               setComment(e.target.value);
             }}

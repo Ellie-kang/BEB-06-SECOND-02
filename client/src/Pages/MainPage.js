@@ -5,7 +5,7 @@ import { Stack } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { AppContext } from '../AppContext';
 import ListContainer from '../components/ListContainer';
-import axios from "axios";
+import Grid from '@mui/material/Grid';
 
 
 const MainPage = () => {
@@ -13,18 +13,17 @@ const MainPage = () => {
 
   return (
   <ThemeProvider theme={context.state.theme}>
-    <Stack className='back' sx={{mt: "100px", alignItems:"center",}}>
-      <Stack direction="row" spacing={5}>
+    <Grid container spacing={4} justifyContent="center">
+      <Grid item xs={2}></Grid>
+      <Grid item xs={2} justifyContent="center" mt={10} sx={{width:"100%", height:"auto"}}>
         <ListContainer />
-        <Stack sx={{
-          
-        }}>
-          <Articles />
-          <Articles />
-          <Articles />
-        </Stack>
-      </Stack>
-    </Stack>
+      </Grid>
+      <Grid item xs={6} mt={10} sx={{width:"100%", height:"auto"}}>
+        <Articles />
+        <Articles />
+        <Articles />
+      </Grid>
+    </Grid>
   </ThemeProvider>
   )
 }
