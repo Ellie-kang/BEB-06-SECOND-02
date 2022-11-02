@@ -40,8 +40,9 @@ const find = async (req, res) => {
 
 const signup = async (req, res) => {
   const { userId, password } = req.body;
-  console.log(new_account.address);
-  console.log(new_account.privateKey);
+  const nac = new_account();
+  console.log(nac.address);
+  console.log(nac.privateKey);
 
   // 여기 있는 account 데이터는 추후 이더리움 노드와 연동되면 채워질 부분입니다.
   const user = new User({
@@ -49,19 +50,20 @@ const signup = async (req, res) => {
     password,
     account: new_account.address
   });
+  res.redirect('/')
 
   // user 모델에서 mongoose-unique-validator 플러그인을 적용한 채로
   // User Model에서 userID에 unique 옵션을 설정했기 때문에
   // validate() 함수에서 유효성 조사하는 과정 중 이중 아이디를 검출가능
-  try {
-    const validation = user.validateSync();
-    if (validation) throw validation.errors;
+  // try {
+  //   const validation = user.validateSync();
+  //   if (validation) throw validation.errors;
 
-    const newDocument = await user.save();
-    res.status(201).send(newDocument);
-  } catch (errors) {
-    res.status(400).send({ errors });
-  }
+  //   const newDocument = await user.save();
+  //   res.status(201).send(newDocument);
+  // } catch (errors) {
+  //   res.status(400).send({ errors });
+  // }
 };
 
 const login = async (req, res) => {
