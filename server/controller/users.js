@@ -2,7 +2,7 @@ require('dotenv').config();
 const User = require('../model/user');
 const reward = require('../utility/reward');
 const jwt = require('jsonwebtoken');
-const new_account = require('../utility/createaccount')
+const new_account = require('../utility/createAccount')
 const {main, transferFrom} = require('./web3');
 
 
@@ -48,7 +48,7 @@ const signup = async (req, res) => {
   const user = new User({
     userId,
     password,
-    account: new_account.address
+    account: nac.address
   });
 
   // user 모델에서 mongoose-unique-validator 플러그인을 적용한 채로
