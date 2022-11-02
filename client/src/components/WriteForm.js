@@ -6,11 +6,10 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
 export default function WriteForm (props) {
-  
-  const handleChange_title = (e) => {
+  const handleChangeTitle = (e) => {
     props.setTitle(e.target.value);
   };
-  const handleChange_content = (e) => {
+  const handleChangeContent = (e) => {
     props.setContent(e.target.value);
   };
 
@@ -19,19 +18,17 @@ export default function WriteForm (props) {
     reader.readAsDataURL(fileBlob);
 
     return new Promise((resolve) => {
-        reader.onload = () => {
-            props.setWriteImg(reader.result);
-            resolve();
-            };
-        });
+      reader.onload = () => {
+        props.setWriteImg(reader.result);
+        resolve();
+      };
+    });
   };
-  const handleChange_image = (e) => {
+  const handleChangeImage = (e) => {
     if (e.target.files) {
-      encodeFileToBase64(e.target.files[0])
-    } else {
-      return;
+      encodeFileToBase64(e.target.files[0]);
     }
-  }
+  };
 
   return (
     <>
@@ -48,11 +45,11 @@ export default function WriteForm (props) {
             autoComplete='cc-name'
             variant='standard'
             value={props.title}
-            onChange={handleChange_title}
+            onChange={handleChangeTitle}
           />
         </Grid>
         <Grid item xs={12}>
-          <Typography sx={{width:"100%", height:"auto"}} component="img" src={props.writeImg} alt=""/>
+          <Typography sx={{ width: '100%', height: 'auto' }} component='img' src={props.writeImg} alt='' />
         </Grid>
         <Grid item xs={12}>
           <TextField
@@ -63,30 +60,30 @@ export default function WriteForm (props) {
             fullWidth
             placeholder='내용을 입력하세요'
             value={props.content}
-            onChange={handleChange_content}
+            onChange={handleChangeContent}
           />
         </Grid>
       </Grid>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button
-            variant="contained"
-            component="label"
-            sx={{ mt: 3, ml: 1 }}
-          >
-            Upload File
-            <input
-              type="file"
-              hidden
-              onChange={handleChange_image}
-            />
-          </Button>
-          <Button
+          variant='contained'
+          component='label'
+          sx={{ mt: 3, ml: 1 }}
+        >
+          Upload File
+          <input
+            type='file'
+            hidden
+            onChange={handleChangeImage}
+          />
+        </Button>
+        <Button
           variant='contained'
           onClick={props.handleNext}
           sx={{ mt: 3, ml: 1 }}
-          >
-            {props.activeStep !== 0 ? 'Place order' : 'Next'}
-          </Button>
+        >
+          {props.activeStep !== 0 ? 'Place order' : 'Next'}
+        </Button>
       </Box>
     </>
   );

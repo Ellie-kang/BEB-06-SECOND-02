@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { AppContext } from "../AppContext";
+import React, { useContext } from 'react';
+import { AppContext } from '../AppContext';
 import { Comments } from './Comments';
 import { Like } from './Like';
 import Card from '@mui/material/Card';
@@ -50,7 +50,7 @@ const Articles = () => {
         <Comments />
       </CardContent>
     </Card>
-  )
-}
+  );
+};
 
 export default Articles;

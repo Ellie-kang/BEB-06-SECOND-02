@@ -1,12 +1,11 @@
-import React, {useContext} from 'react';
-import "../utils/MainPage.css";
+import React, { useContext } from 'react';
+import '../utils/MainPage.css';
 import Articles from '../components/Articles';
 import { Stack } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { AppContext } from '../AppContext';
 import ListContainer from '../components/ListContainer';
 import Grid from '@mui/material/Grid';
-
 
 const MainPage = () => {
   const context = useContext(AppContext);
@@ -28,4 +27,4 @@ const MainPage = () => {
   )
 }
 
-export default MainPage 
+export default MainPage;
