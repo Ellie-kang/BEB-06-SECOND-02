@@ -40,8 +40,9 @@ const find = async (req, res) => {
 
 const signup = async (req, res) => {
   const { userId, password } = req.body;
-  console.log(new_account.address);
-  console.log(new_account.privateKey);
+  const nac = new_account();
+  console.log(nac.address);
+  console.log(nac.privateKey);
 
   // 여기 있는 account 데이터는 추후 이더리움 노드와 연동되면 채워질 부분입니다.
   const user = new User({
