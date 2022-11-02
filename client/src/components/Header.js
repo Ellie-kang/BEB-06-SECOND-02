@@ -30,7 +30,7 @@ const Header = () => {
         setJwt(res.data.token);
         setIsLoggedin(true);
         setUserId(res.data.userId);
-        setImgSrc(res.data.profile)
+        setImgSrc(res.data.profile);
 
           // setEmail, setTokenAmount, setUserArticles, setUserNft 
       }).catch((err) => {
