@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
@@ -11,9 +11,37 @@ import { ThemeProvider } from '@mui/material/styles';
 import { Stack } from "@mui/material";
 import { AppContext } from "../AppContext";
 import HeaderButton from "./HeaderButton";
+import axios from "axios"
 
 const Header = () => {
+  
   const context = useContext(AppContext);
+  const {cookie} = context.state;
+  const {setUserId, setJwt, setEmail, setTokenAmount, setUserArticles, setUserNft, setLoginModalOpen, setIsLoggedin, setAddress, setImgSrc}= context.action;
+
+   useEffect(()=> {
+    if(cookie.token != undefined){
+      axios.get('http://localhost:3001/users/refresh',{
+        withCredentials: true
+      })
+      .then((res) => {
+        console.log(res.data)
+        // Web API에서 받은 token 값을 jwt context에 넣습니다.
+        setJwt(res.data.token);
+        setIsLoggedin(true);
+        setUserId(res.data.userId);
+        setImgSrc(res.data.profile)
+
+          // setEmail, setTokenAmount, setUserArticles, setUserNft 
+      }).catch((err) => {
+        setIsLoggedin(true);
+        console.log(err);
+      })
+    }
+  }, []);
+  
+
+
   const IsLogin = () => {
     return (
       <>
@@ -42,7 +70,7 @@ const Header = () => {
       }}>
         <HeaderButton name="Sign In" cb={() => context.action.setLoginModalOpen(true)} />
         <HeaderButton name='Sign up' cb={() => context.action.setSignupModalOpen(true)} />
-        <LoginModal />
+        <LoginModal cookie={cookie}/>
         <SignupModal />
       </Stack>
     )

@@ -1,8 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import "../utils/MainPage.css";
 import Articles from '../components/Articles';
-
-
 import { Stack } from '@mui/material';
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
@@ -16,147 +14,128 @@ import { ThemeProvider } from '@mui/material/styles';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 import { AppContext } from '../AppContext';
+import axios from "axios";
 
 
 const MainPage = () => {
   const context = useContext(AppContext);
-
-  const ListContainer = ({primary}) => {
-    return (
-      <List component="div" disablePadding>
-        <ListItemButton sx={{ pl:4 }}>
-          <ListItemIcon>
-            <FlagCircleIcon id="flag"/>
-          </ListItemIcon>
-          <ListItemText primary={primary}/>
-        </ListItemButton>
-      </List>
-    )
-  }
-
-
-  const [openkorea, setOpenKorea] = useState(false);
+  const [openAsia, setOpenAsia] = useState(false);
   const [openEurope, setOpenEurope] = useState(false);
   const [openAmerica, setOpenAmerica] = useState(false);
   const [openAfrica, setOpenAfrica] = useState(false);
   const [openME, setOpenME] = useState(false);
 
-  const handleClick1 = () => {
-    setOpenKorea(!openkorea);
+  const handleClick = (e) => {
+    console.log(e.target.innerText);
+    
+  }
+
+  const handleAsiaClick = () => {
+    setOpenAsia(!openAsia);
   };
-  const handleClick2 = () => {
+  const handleEuropeClick = () => {
     setOpenEurope(!openEurope);
   };
-  const handleClick3 = () => {
+  const handleAmericaClick = () => {
     setOpenAmerica(!openAmerica);
   };
-  const handleClick4 = () => {
+  const handleAfricaClick = () => {
     setOpenAfrica(!openAfrica);
   };
-  const handleClick5 = () => {
+  const handleMeClick = () => {
     setOpenME(!openME);
   };
 
+  const ListContainer = ({primary}) => {
+    return (
+        <List component="div" disablePadding>
+          <ListItemButton sx={{ pl:4 }}>
+            <ListItemIcon>
+              <FlagCircleIcon id="flag"/>
+            </ListItemIcon>
+            <ListItemText primary={primary}/>
+          </ListItemButton>
+        </List>
+    )
+  }
+
+  const ListButton = ({handle, open, primary}) => {
+    return (
+      <ListItemButton onClick={handle}>
+        <ListItemIcon>
+          <FlightTakeoffIcon id="flight"/>
+        </ListItemIcon>
+        <ListItemText primary={primary}/>
+        {open ? <ExpandLess /> : <ExpandMore />}
+      </ListItemButton>
+    )
+  }
+
+  // box stack ㅇ
+
   return (
-    <ThemeProvider theme={context.state.theme}>
-      <Stack className='back' sx={{mt: "100px", alignItems:"center"}}>
-        <Stack direction="row" spacing={5}>
-          <Stack>
-              <List component="nav" className='nav-list'
-              subheader={
-              <ListSubheader sx={{
-                bgcolor: "background.header",
-                color: "black",
-                borderRadius:"2px",
-                }}
-                component="div" id="list-subheader">WHERE IS TAKO?</ListSubheader>
-              }>
-                <ListItemButton onClick={handleClick1}>
-                  <ListItemIcon><FlightTakeoffIcon id="flight"/></ListItemIcon>
-                    <ListItemText primary="ASIA"/>
-                      {openkorea ? <ExpandLess /> : <ExpandMore />}
-                </ListItemButton>
-                <Collapse in={openkorea} timeour="auto" unmountOnExit>
-                  <ListContainer primary="Seoul" />
-                  <ListContainer primary="Tokyo" />
-                  <ListContainer primary="Beijing" />
-                  <ListContainer primary="Taipei" />
-                  <ListContainer primary="Bangkok" />
-                  <ListContainer primary="Singapore" />
-                  <ListContainer primary="Hanoi" />
-                </Collapse>
+  <ThemeProvider theme={context.state.theme}>
+    <Stack className='back' sx={{mt: "100px", alignItems:"center",}}>
+      <Stack direction="row" spacing={5}>
+        <Stack sx={{
+          width:"200px",
+        }}>
+          <List component="nav" className='nav-list'
+          subheader={
+          <ListSubheader sx={{
+            bgcolor: "background.header",
+            color: "text.primary",
+            borderRadius:"2px",
+            }}
+            component="div" id="list-subheader">WHERE IS TAKO?</ListSubheader>
+          }>
+            <ListButton sx={{
+              
+            }} handle={handleAsiaClick} open={openAsia} primary="Asia"/>
+            <Collapse in={openAsia} timeout="auto">
+              <ListContainer primary="Seoul" />
+              <ListContainer primary="Tokyo" />
+              <ListContainer primary="BangKok" />
+            </Collapse>
 
-                <ListItemButton onClick={handleClick2}>
-                  <ListItemIcon>
-                    <FlightTakeoffIcon id="flight"/>
-                  </ListItemIcon>
-                  <ListItemText primary="EUROPE"/>
-                  {openEurope ? <ExpandLess /> : <ExpandMore />}
-                </ListItemButton>
-                <Collapse in={openEurope} timeour="auto" unmountOnExit>
-                  <ListContainer primary="Paris" />
-                  <ListContainer primary="Roma" />
-                  <ListContainer primary="London" />
-                  <ListContainer primary="Vienna" />
-                  <ListContainer primary="Praha" />
-                  <ListContainer primary="Budapest" />
-                  <ListContainer primary="Berlin" />
-                </Collapse>
+            <ListButton handle={handleEuropeClick} open={openEurope} primary="Europe"/>
+            <Collapse in={openEurope} timeout="auto">
+              <ListContainer primary="Paris" />
+              <ListContainer primary="Roma" />
+              <ListContainer primary="London" />
+            </Collapse>
 
-                <ListItemButton onClick={handleClick3}>
-                  <ListItemIcon>
-                    <FlightTakeoffIcon id="flight"/>
-                  </ListItemIcon>
-                  <ListItemText primary="AMERICA"/>
-                  {openAmerica ? <ExpandLess /> : <ExpandMore />}
-                </ListItemButton>
-                <Collapse in={openAmerica} timeour="auto" unmountOnExit>
-                  <ListContainer primary="DC" />
-                  <ListContainer primary="Roma" />
-                  <ListContainer primary="Ottawa" />
-                  <ListContainer primary="Santiago" />
-                  <ListContainer primary="NewYork" />
-                  <ListContainer primary="Buenos Aires" />
-                  <ListContainer primary="California" />
-                </Collapse>
+            <ListButton handle={handleAmericaClick} open={openAmerica} primary="America"/>
+            <Collapse in={openAmerica} timeour="auto" unmountOnExit>
+              <ListContainer primary="DC" />
+              <ListContainer primary="Ottawa" />
+              <ListContainer primary="NewYork" />
+            </Collapse>
 
-                <ListItemButton onClick={handleClick4}>
-                  <ListItemIcon>
-                    <FlightTakeoffIcon id="flight"/>
-                  </ListItemIcon>
-                  <ListItemText primary="AFRICA"/>
-                  {openAfrica ? <ExpandLess /> : <ExpandMore />}
-                </ListItemButton>
-                <Collapse in={openAfrica} timeour="auto" unmountOnExit>
-                  <ListContainer primary="Ghana" />
-                  <ListContainer primary="Morocco" />
-                  <ListContainer primary="Egypt" />
-                  <ListContainer primary="Kenya" />
-                  <ListContainer primary="Nigeria" />
-                </Collapse>
+            <ListButton handle={handleAfricaClick} open={openAfrica} primary="Africa"/>
+            <Collapse in={openAfrica} timeour="auto" unmountOnExit>
+              <ListContainer primary="Morocco" />
+              <ListContainer primary="Egypt" />
+            </Collapse>
 
-                <ListItemButton onClick={handleClick5}>
-                  <ListItemIcon>
-                    <FlightTakeoffIcon id="flight"/>
-                  </ListItemIcon>
-                  <ListItemText primary="MIDDLE EAST"/>
-                  {openME ? <ExpandLess /> : <ExpandMore />}
-                </ListItemButton>
-                <Collapse in={openME} timeour="auto" unmountOnExit>
-                  <ListContainer primary="Iran" />
-                  <ListContainer primary="Riyadh" />
-                  <ListContainer primary="dubai" />
-                </Collapse>
-              </List>
-            </Stack>
-          <Stack>
-            <Articles />
-            <Articles />
-            <Articles />
-          </Stack>
+            <ListButton handle={handleClick} open={openME} primary="Middle East"/>
+            <Collapse in={openME} timeour="auto" unmountOnExit>
+              <ListContainer primary="Iran" />
+              <ListContainer primary="Riyadh" />
+              <ListContainer primary="dubai" />
+            </Collapse>
+          </List>
+        </Stack>
+        <Stack sx={{
+          
+        }}>
+          <Articles />
+          <Articles />
+          <Articles />
         </Stack>
       </Stack>
-    </ThemeProvider>
+    </Stack>
+  </ThemeProvider>
   )
 }
 

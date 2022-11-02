@@ -10,10 +10,15 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import { AppContext } from './AppContext';
 import {createTheme} from '@mui/material/styles';
+import {useCookies} from 'react-cookie'
+
 import './App.css'
+import axios from 'axios';
 
 const App = () => {
     // 서버에서 account 데이터를 불러와서 contextAPI로 저장.
+  
+
   const [userId, setUserId] = useState('');
   const [email, setEmail] = useState('');
   const [tokenAmount, setTokenAmount] = useState('');
@@ -22,6 +27,7 @@ const App = () => {
   const [address, setAddress] = useState('0x1929381920399281');
   const [imgSrc, setImgSrc] = useState('');
   const [jwt, setJwt] = useState('');
+  const [cookie, setCookie, deleteCookie] = useCookies(['token']);
 
   //login 상태
   const [isLoggedin, setIsLoggedin] = useState(false);
@@ -60,7 +66,8 @@ const App = () => {
       loginmodalOpen:loginmodalOpen,
       signupmodalOpen: signupModalOpen,
       theme: theme,
-      jwt: jwt
+      jwt: jwt,
+      cookie: cookie
       //imgFile: imgFile
     },
     action: {
@@ -74,10 +81,11 @@ const App = () => {
       setIsLoggedin: setIsLoggedin,
       setLoginModalOpen: setLoginModalOpen,
       setSignupModalOpen: setSignupModalOpen,
-      setJwt: setJwt
+      setJwt: setJwt,
+      deleteCookie: deleteCookie,
+      setCookie: setCookie
     }
   }
-
 
   return (
     <AppContext.Provider value={context}>

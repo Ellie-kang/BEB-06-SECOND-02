@@ -23,16 +23,18 @@ export default function WritePage () {
   const [activeStep, setActiveStep] = React.useState(0);
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
-  const { jwt } = context.state; // jwt 토큰
+  const { userId, jwt } = context.state; // jwt 토큰, userId
+  //imguplaod
+  const [writeImg, setWriteImg] = React.useState('');
 
   const steps = ['글쓰기', '미리보기', '작성 완료'];
 
   function getStepContent (step) {
     switch (step) {
       case 0:
-        return <WriteForm activeStep={activeStep} steps={steps} handleNext={handleNext} setTitle={setTitle} setContent={setContent} title={title} content={content} />;
+        return <WriteForm activeStep={activeStep} steps={steps} handleNext={handleNext} setTitle={setTitle} setContent={setContent} title={title} content={content} writeImg={writeImg} setWriteImg={setWriteImg} />;
       case 1:
-        return <Review activeStep={activeStep} handleBack={handleBack} handleNext={handleNext} title={title} content={content} />;
+        return <Review activeStep={activeStep} handleBack={handleBack} handleNext={handleNext} title={title} content={content} writeImg={writeImg} setWriteImg={setWriteImg} />;
       case 2:
         return (
           <>
@@ -61,6 +63,8 @@ export default function WritePage () {
         axios.post('http://localhost:3001/articles/write', {
           title: title,
           content: content,
+          imgFile: writeImg,
+          userId: userId,
           headers: {
             Authorization: `Bearer ${jwt}`
           }

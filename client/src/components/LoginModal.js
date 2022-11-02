@@ -12,14 +12,17 @@ import { ThemeProvider } from '@mui/material/styles';
 import { AppContext } from '../AppContext';
 import axios from "axios"
 
+
 const LoginModal = () => {
   const context = useContext(AppContext);
   const [ismatched, setIsmatched] = useState(true);
+  
   const {setUserId, setJwt, setEmail, setTokenAmount, setUserArticles, setUserNft, setLoginModalOpen, setIsLoggedin, setAddress, setImgSrc}= context.action;
   const open = context.state.loginmodalOpen;
   const close = () => {
     setLoginModalOpen(false);
   }
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,12 +35,18 @@ const LoginModal = () => {
     axios.post('http://localhost:3001/users/login',{
       userId : data.get('id'),
       password: data.get('password')
+    }, {
+      withCredentials: true
     })
     .then((res) => {
+      console.log(res)
       // Web API에서 받은 token 값을 jwt context에 넣습니다.
       setJwt(res.data.token);
       setIsLoggedin(true);
       setUserId(res.data.userId);
+      console.log(res.data.userId);
+      setImgSrc(res.data.profile);
+      
         // setEmail, setTokenAmount, setUserArticles, setUserNft 
 
       close();
