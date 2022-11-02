@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -10,29 +10,34 @@ export const Like = () => {
 
   return (
     <div>
-      {isLike ? 
-        (<IconButton  
-            aria-label="add to favorites" 
-            style={{ color:'red'}} 
-            onClick={() =>{
-              setIsLike(false) 
-        }}>
-          <FavoriteIcon />
-          <Typography style={{ color:'black'}}> 좋아요 
-            <span onclick= {() => {
-              setCount(count + 1)
-            }}>
-            </span>{count}
-          </Typography>
-        </IconButton>) :
-        (<IconButton 
-            aria-label="add to favorites" 
+      {isLike
+        ? (
+          <IconButton
+            aria-label='add to favorites'
+            style={{ color: 'red' }}
             onClick={() => {
-              setIsLike(true)
-        }}>
-          <FavoriteBorderIcon />
-        </IconButton>)
-      }
+              setIsLike(false);
+            }}
+          >
+            <FavoriteIcon />
+            <Typography style={{ color: 'black' }}> 좋아요
+              <span onClick={() => {
+                setCount(count + 1);
+              }}
+              />{count}
+            </Typography>
+          </IconButton>
+          )
+        : (
+          <IconButton
+            aria-label='add to favorites'
+            onClick={() => {
+              setIsLike(true);
+            }}
+          >
+            <FavoriteBorderIcon />
+          </IconButton>
+          )}
     </div>
-  )
-}
+  );
+};
