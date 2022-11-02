@@ -1,49 +1,74 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { AppContext } from "../AppContext";
 
-import { Link } from 'react-router-dom';
-import { Box, Stack, Input, Button } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-
-const CommentList = (props) => {
-  return (
-    <Box>
-      <p>userId</p>
-      <div>Comment</div>
-    </Box>
-  )
-}
+import { Stack,Button } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
 
 export const Comments = () => {
-  const [commentInput, setCommentInput] = useState('');
-  const [contentComments, setContentComments] = useState([]);
+  const [comment, setComment] = useState('');
+  const [id, setId] = useState(1);
+  const [commentLists, setCommentLists] = useState([]);
+  const [isValid, setIsValid] = useState(false);
 
-  const context = useContext(AppContext);
+  const post = (e) => {
+    setId(id + 1);
+    const newCommentLists = {
+      id: id,
+      content: comment,
+    };
+    setCommentLists([...commentLists, newCommentLists]);
+    setComment('');
+  };
 
-  const hadleInput = (e) => {
-    setCommentInput(e.target.value);
-  }
+  // const CommentList = () => {
+  //   return (
+  //     <div className='userCommentLists'>
+  //       <span color="text.secondary"> {comment.id}</span>
+  //       <span>{comment.content}</span>
+  //     </div>
+  //   )
+  // }
 
-  const handleSubmit = (e) => {
-    const newComments = [...contentComments];
-    newComments.push(commentInput);
-    setContentComments(newComments);
-    setContentComments('');
-  }
+  return (
 
-  return(
-    <div>
-       <Input
-          variant="plain"
-          size="sm"
+    <Stack >
+      <Stack direction="row" sx={{ marginY:"20px" }} >
+        <TextField 
+          type="text"
           placeholder="Add a comment…"
-          sx={{ flexGrow: 1, mr: 1, '--Input-focusedThickness': '0px' }}
-          onChange={hadleInput}
-          value={commentInput}
+          style = {{width: '100%', color: 'black'}}
+          // inputProps={ariaLabel}
+          onChange={(e) => {
+            setComment(e.target.value);
+          }}
+          onKeyUp={(e) => {
+            e.target.value.length > 0 ? setIsValid(true) : setIsValid(false);
+          }}
+          value={comment}
         />
-        <Button onClick={handleSubmit}>
-          Post
+        <Button 
+          type="button"
+          onClick={post}
+          disabled={isValid ? false : true}
+          >
+          post
         </Button>
-    </div>
-  )
+      </Stack>
+      
+      {commentLists.map((comment) => {
+        return (
+          <Stack direction="row">
+            <Typography color="text.secondary"> {comment.id}</Typography>
+            <Typography>{comment.content}</Typography>
+          </Stack>
+        )
+      })}
+      </Stack>
+      
+  
+    
+  )  
 }
+
+
