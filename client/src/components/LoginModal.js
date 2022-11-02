@@ -44,7 +44,9 @@ const LoginModal = () => {
       setJwt(res.data.token);
       setIsLoggedin(true);
       setUserId(res.data.userId);
-      console.log(res.data.userId)
+      console.log(res.data.userId);
+      setImgSrc(res.data.profile);
+      
         // setEmail, setTokenAmount, setUserArticles, setUserNft 
 
       close();

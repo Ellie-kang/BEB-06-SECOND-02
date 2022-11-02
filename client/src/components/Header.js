@@ -19,7 +19,7 @@ const Header = () => {
   const {cookie} = context.state;
   const {setUserId, setJwt, setEmail, setTokenAmount, setUserArticles, setUserNft, setLoginModalOpen, setIsLoggedin, setAddress, setImgSrc}= context.action;
 
-  useEffect(()=> {
+   useEffect(()=> {
     if(cookie.token != undefined){
       axios.get('http://localhost:3001/users/refresh',{
         withCredentials: true
@@ -30,7 +30,8 @@ const Header = () => {
         setJwt(res.data.token);
         setIsLoggedin(true);
         setUserId(res.data.userId);
-        
+        setImgSrc(res.data.profile)
+
           // setEmail, setTokenAmount, setUserArticles, setUserNft 
       }).catch((err) => {
         setIsLoggedin(true);
