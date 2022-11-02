@@ -2,53 +2,55 @@ require('dotenv').config();
 const User = require('../model/user');
 const reward = require('../utility/reward');
 const jwt = require('jsonwebtoken');
-const new_account = require('../utility/createAccount')
-const {main, transferFrom} = require('./web3');
-
+const { main, transferFrom } = require('./web3');
 
 const find = async (req, res) => {
   const _queries = req.query;
   const user = await User.aggregate([
-    {$match: _queries},
-    {$lookup: {
-      from: 'Takoyaki-Comment',
-      localField: '_id',
-      foreignField: 'userId',
-      pipeline: [
-        {$project: {
-          content: 0,
-          userId: 0
-        }}
-      ],
-      as: 'comments'
-    }},
-    {$lookup: {
-      from: 'Takoyaki-Article',
-      localField: '_id',
-      foreignField: 'userId',
-      pipeline: [
-        {$project: {
-          content: 0,
-          userId: 0
-        }}
-      ],
-      as: 'articles'
-    }},
+    { $match: _queries },
+    {
+      $lookup: {
+        from: 'Takoyaki-Comment',
+        localField: '_id',
+        foreignField: 'userId',
+        pipeline: [
+          {
+            $project: {
+              content: 0,
+              userId: 0
+            }
+          }
+        ],
+        as: 'comments'
+      }
+    },
+    {
+      $lookup: {
+        from: 'Takoyaki-Article',
+        localField: '_id',
+        foreignField: 'userId',
+        pipeline: [
+          {
+            $project: {
+              content: 0,
+              userId: 0
+            }
+          }
+        ],
+        as: 'articles'
+      }
+    }
   ]);
   res.send(user);
 };
 
 const signup = async (req, res) => {
   const { userId, password } = req.body;
-  const nac = new_account();
-  console.log(nac.address);
-  console.log(nac.privateKey);
 
   // 여기 있는 account 데이터는 추후 이더리움 노드와 연동되면 채워질 부분입니다.
   const user = new User({
     userId,
-    password,
-    account: nac.address
+    password
   });
 
   // user 모델에서 mongoose-unique-validator 플러그인을 적용한 채로
@@ -67,55 +69,50 @@ const signup = async (req, res) => {
 
 const login = async (req, res) => {
   const { userId, password } = req.body;
-  console.log(req.cookies)
 
   try {
     const user = await User.findOne({ userId });
     const result = await user.compare(password, user.password);
     if (!user || !result) throw new Error('Authentication failed. Invalid user or password.');
     else {
-      //profile불러오기 추가. 로그인시.
-      const user = await User.findOne({ userId });
-      const profile = user.profile_image
+      // profile 불러오기 추가. 로그인시.
+      const user = await User.findOne({ userId }, '_id userId profileImage createdAt');
       const token = jwt.sign({ userId }, process.env.SECRET, { expiresIn: '1h' });
-      res.cookie("token", token, {
+      res.cookie('token', token, {
         maxAge: 60 * 60 * 1000
       });
-      res.json({ userId, token, profile });
+      res.json({ user, token });
     }
   } catch (err) {
-    res.status(401).send({ message: err.message });
+    res.status(401).json(err);
   }
 };
 
 // profile 사진 업로드.
 const uploadProfile = async (req, res) => {
-  const {profile_image, userId} = req.body;
+  const { profileImage, userId } = req.body;
   try {
     // userId 찾아서, profileimg 바꾸기.
-    await User.updateOne({userId: userId}, {profile_image: profile_image});
-  } catch(e) {
+    await User.updateOne({ userId: userId }, { profile_image: profileImage });
+  } catch (e) {
     console.log(e);
   }
-  
 };
 
 const refresh = async (req, res) => {
-  //console.log(req)
+  // console.log(req)
   const token = req.cookies.token;
 
   try {
     const data = jwt.verify(token, process.env.SECRET);
     const userId = data.userId;
-    const user = await User.findOne({ userId });
-    // profile 이미지도 같이 불러오기.
-    const profile = user.profile_image;
+    const user = await User.findOne({ userId }, '_id userId profileImage createdAt');
 
-    res.status(200).json({userId, token, profile})
+    res.status(200).json({ user, token });
   } catch (err) {
-    res.status(401).send(err)
+    res.status(401).send(err);
   }
-}
+};
 
 module.exports = {
   find,

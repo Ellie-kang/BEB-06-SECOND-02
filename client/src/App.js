@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import DetailPage from './Pages/DetailPage';
@@ -9,15 +9,13 @@ import AccountPage from './Pages/AccountPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { AppContext } from './AppContext';
-import {createTheme} from '@mui/material/styles';
-import {useCookies} from 'react-cookie'
+import { createTheme } from '@mui/material/styles';
+import { useCookies } from 'react-cookie';
 
-import './App.css'
-import axios from 'axios';
+import './App.css';
 
 const App = () => {
-    // 서버에서 account 데이터를 불러와서 contextAPI로 저장.
-  
+  // 서버에서 account 데이터를 불러와서 contextAPI로 저장.
 
   const [userId, setUserId] = useState('');
   const [email, setEmail] = useState('');
@@ -29,7 +27,7 @@ const App = () => {
   const [jwt, setJwt] = useState('');
   const [cookie, setCookie, deleteCookie] = useCookies(['token']);
 
-  //login 상태
+  // login 상태
   const [isLoggedin, setIsLoggedin] = useState(false);
   // 회원가입 모달
   const [loginmodalOpen, setLoginModalOpen] = useState(false);
@@ -38,20 +36,20 @@ const App = () => {
   const theme = createTheme({
     palette: {
       background: {
-        paper: "#ffffff",
-        footer: "rgba(47, 83, 239)",
-        header: "rgba(47, 83, 239)",
-        lock: "rgba(47, 83, 239)"
+        paper: '#ffffff',
+        footer: 'rgba(47, 83, 239)',
+        header: 'rgba(47, 83, 239)',
+        lock: 'rgba(47, 83, 239)'
       },
       text: {
-        primary: "#ffffff",
-        secondary: "black"
+        primary: '#ffffff',
+        secondary: 'black'
       },
       button: {
-        primary: "#ba5624"
-      },
+        primary: '#ba5624'
+      }
 
-    },
+    }
   });
 
   const context = {
@@ -64,12 +62,11 @@ const App = () => {
       address: address,
       imgSrc: imgSrc,
       isLoggedin: isLoggedin,
-      loginmodalOpen:loginmodalOpen,
+      loginmodalOpen: loginmodalOpen,
       signupmodalOpen: signupModalOpen,
       theme: theme,
       jwt: jwt,
       cookie: cookie
-      //imgFile: imgFile
     },
     action: {
       setUserId: setUserId,
@@ -86,7 +83,7 @@ const App = () => {
       deleteCookie: deleteCookie,
       setCookie: setCookie
     }
-  }
+  };
 
   return (
     <AppContext.Provider value={context}>
@@ -100,7 +97,8 @@ const App = () => {
       </Routes>
       <Footer />
     </AppContext.Provider>
-  )
-}
+  );
+};
 
 export default App
+;

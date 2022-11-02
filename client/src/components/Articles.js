@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { AppContext } from "../AppContext";
+import React, { useContext } from 'react';
+import { AppContext } from '../AppContext';
 import { Comments } from './Comments';
 import { Like } from './Like';
 
@@ -17,10 +17,10 @@ const Articles = () => {
   const context = useContext(AppContext);
   return (
     <Card sx={{ maxWidth: 600 }}>
-    <CardHeader
-      sx={{bgcolor:"rgba(47, 83, 239)"}}
-      avatar={
-        <Avatar src={context.state.imgSrc} aria-label="recipe" />
+      <CardHeader
+        sx={{ bgcolor: 'rgba(47, 83, 239)' }}
+        avatar={
+          <Avatar src={context.state.imgSrc} aria-label='recipe' />
       }
       user={context.state.userId}
       title="Tako"
@@ -46,7 +46,7 @@ const Articles = () => {
       <Comments />
     </CardContent>
     </Card>
-  )
-}
+  );
+};
 
 export default Articles;

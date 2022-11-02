@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import axios from 'axios';
-import {AppContext} from '../AppContext'
+import { AppContext } from '../AppContext';
 
 const theme = createTheme();
 
@@ -23,8 +23,9 @@ export default function WritePage () {
   const [activeStep, setActiveStep] = React.useState(0);
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
-  const { userId, jwt } = context.state; // jwt 토큰, userId
-  //imguplaod
+  const { userId } = context.state; // jwt 토큰, userId
+  console.log(context);
+  // imguplaod
   const [writeImg, setWriteImg] = React.useState('');
 
   const steps = ['글쓰기', '미리보기', '작성 완료'];
@@ -34,7 +35,7 @@ export default function WritePage () {
       case 0:
         return <WriteForm activeStep={activeStep} steps={steps} handleNext={handleNext} setTitle={setTitle} setContent={setContent} title={title} content={content} writeImg={writeImg} setWriteImg={setWriteImg} />;
       case 1:
-        return <Review activeStep={activeStep} handleBack={handleBack} handleNext={handleNext} title={title} content={content} writeImg={writeImg} setWriteImg={setWriteImg} />;
+        return <Review activeStep={activeStep} handleBack={handleBack} handleNext={handleNext} title={title} userId={userId} content={content} writeImg={writeImg} setWriteImg={setWriteImg} />;
       case 2:
         return (
           <>
@@ -59,24 +60,27 @@ export default function WritePage () {
     if (title === '' || content === '') {
       alert('빈칸을 채워주세요');
     } else {
-      if (activeStep === 1) {
-        axios.post('http://localhost:3001/articles/write', {
-          title: title,
-          content: content,
-          imgFile: writeImg,
-          userId: userId,
-          headers: {
-            Authorization: `Bearer ${jwt}`
-          }
-        })
-          .then((res) => {
+      switch (activeStep) {
+        case 0 :
+          setActiveStep(activeStep + 1);
+          break;
+        case 1 :
+          axios.post('http://localhost:3001/articles/write', {
+            title: title,
+            content: content,
+            imgFile: writeImg
+          }, {
+            withCredentials: true
+          }).then((res) => {
             console.log('완료');
             console.log(res.data);
+            setActiveStep(activeStep + 1);
           }).catch((err) => {
-            console.log(err);
+            alert('게시글 작성 중 문제가 발생했습니다.');
+            console.error(err);
           });
+          break;
       }
-      setActiveStep(activeStep + 1);
     }
   };
 
