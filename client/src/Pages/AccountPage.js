@@ -12,8 +12,9 @@ import axios from 'axios'
 const AccountPage = () => {
   
   const context = useContext(AppContext);
-  const {imgSrc} = context.state;
+  const {imgSrc, jwt, userId} = context.state;
   const {setImgSrc} = context.action;
+  
 
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
@@ -35,8 +36,13 @@ const AccountPage = () => {
   }
 
   const handleImgToChange = () => {
-    console.log(imgSrc)
-    //axios.post()
+    axios.post('http://localhost:3001/users/uploadProfile', {
+      userId: userId,
+      profile_image: imgSrc,
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    })
   }
 
   return (
