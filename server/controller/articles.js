@@ -64,9 +64,13 @@ const write = async (req, res) => {
   try {
     // Authorization 헤더에 jwt token을 넣고 보낸 요청인 경우
     // req.auth라는 오브젝트 값으로 userId를 받을 수 있다.
-    if (!req.auth) throw 'Unauthorized to write an article. Please sign in.';
-    const { title, content } = req.body;
-    const author = await User.findOne({ userId: req.auth.userId }, '_id');
+
+    // req.auth를 인식못함.
+    //if (!req.auth) throw 'Unauthorized to write an article. Please sign in.';
+
+    const { title, content, imgFile, userId } = req.body;
+    //const author = await User.findOne({ userId: req.auth.userId }, '_id');
+    const author = await User.findOne({userId: userId}, '_id')
 
     // 여기서 필요한 userId는 User DB의 _id를 기입합니다.
     // 따라서 userId로 User model를 필터하여 필요한 _id 정보만 가져와서
@@ -74,6 +78,7 @@ const write = async (req, res) => {
     const article = new Article({
       title,
       content,
+      imgFile,
       userId: author._id
     });
 

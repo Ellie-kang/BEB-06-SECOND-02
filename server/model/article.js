@@ -13,6 +13,8 @@ const schema = new mongoose.Schema({
     type: mongoose.ObjectId,
     required: true
   },
+  // imgFile 불러오기.
+  imgFile: String,
   created_at: Date
 });
 
