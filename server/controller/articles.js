@@ -49,6 +49,25 @@ const find = async (req, res) => {
     },
     { $unwind: '$author' },
     {
+      $lookup: {
+        from: 'Takoyaki-Region',
+        localField: 'city',
+        foreignField: '_id',
+        pipeline: [],
+        as: 'city'
+      }
+    },
+    { $set: { city: { $first: '$city' } } },
+    { $set: { city: '$city.city' } },
+    {
+      $project: {
+        userId: 0,
+        author: {
+          password: 0
+        }
+      }
+    },
+    {
       $project: {
         userId: 0,
         author: {
@@ -75,7 +94,7 @@ const write = async (req, res) => {
 
     const token = req.cookies.token;
     const data = jwt.verify(token, process.env.SECRET);
-    const author = await User.findOne({userId: data.userId}, '_id account');
+    const author = await User.findOne({ userId: data.userId }, '_id account');
     const _city = await Region.findOne({ city: city }, '_id');
 
     // 여기서 필요한 userId는 User DB의 _id를 기입합니다.
@@ -97,7 +116,7 @@ const write = async (req, res) => {
       res.status(401).send('transaction err');
     }
   } catch (error) {
-    res.status(400).send({ error });
+    res.status(400).json(error);
   }
 };
 
@@ -116,12 +135,21 @@ const comment = async (req, res) => {
     const newDocument = await comment.save();
     res.status(201).send(newDocument);
   } catch (error) {
-    res.status(400).send({ error });
+    res.status(400).json(error);
+  }
+};
+
+const like = async (req, res) => {
+  try {
+    res.status(200).send();
+  } catch (error) {
+    res.status(400).json(error);
   }
 };
 
 module.exports = {
   find,
   write,
-  comment
+  comment,
+  like
 };
