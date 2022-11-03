@@ -19,8 +19,7 @@ const schema = new mongoose.Schema({
   profileImage: String,
   createdAt: Date,
   address: {
-    type: String,
-    required: true
+    type: String
   },
   tokenAmount: Number
 });

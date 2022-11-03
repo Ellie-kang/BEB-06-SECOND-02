@@ -58,9 +58,6 @@ const signup = async (req, res) => {
   // User Model에서 userID에 unique 옵션을 설정했기 때문에
   // validate() 함수에서 유효성 조사하는 과정 중 이중 아이디를 검출가능
   try {
-    const validation = user.validateSync();
-    if (validation) throw validation.errors;
-
     const newDocument = await user.save();
     res.status(201).send(newDocument);
   } catch (error) {

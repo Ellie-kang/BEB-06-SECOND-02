@@ -86,10 +86,7 @@ const write = async (req, res) => {
       city: _region._id,
       userId: author._id
     });
-
-    const validation = article.validateSync();
-    if (validation) throw validation.errors;
-
+    
     const newDocument = await article.save();
     res.status(201).send(newDocument);
   } catch (error) {
@@ -108,9 +105,6 @@ const comment = async (req, res) => {
       postId,
       userId: author._id
     });
-
-    const validation = comment.validateSync();
-    if (validation) throw validation.errors;
 
     const newDocument = await comment.save();
     res.status(201).send(newDocument);
