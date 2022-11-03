@@ -10,7 +10,6 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import '../utils/Article.css';
 import '../utils/Font.css';
-import img from './우주.jpeg';
 
 const Article = (props) => {
   const context = useContext(AppContext);
@@ -19,9 +18,7 @@ const Article = (props) => {
   return (
     <Card
       className='contents-container'
-      sx={{
-        borderRadius: '10px'
-      }}
+      sx={{ borderRadius: '10px' }}
     >
       <CardHeader
         avatar={
@@ -33,14 +30,21 @@ const Article = (props) => {
       />
       <CardMedia
         component='img'
-        height='194'
+        height='350'
         image={imgFile}
       />
       <Like />
       <CardContent>
         <Typography
-          sx={{ color: 'text.secondary' }}
-          noWrap variant='body2' description=''
+          variant='body2' description='' 
+          sx={{ 
+            color: 'text.secondary',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            display: '-webkit-box',
+            WebkitLineClamp: '3',
+            WebkitBoxOrient: 'vertical'
+          }}
         >
           {content}
         </Typography>
