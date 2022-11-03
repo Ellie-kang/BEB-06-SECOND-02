@@ -14,8 +14,7 @@ const schema = new mongoose.Schema({
     required: true
   },
   region: {
-    type: mongoose.ObjectId,
-    required: true
+    type: mongoose.ObjectId
   },
   // imgFile 불러오기.
   imgFile: String,
