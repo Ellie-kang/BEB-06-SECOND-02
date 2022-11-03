@@ -1,5 +1,6 @@
 import React, {useState, useContext} from 'react'
 import { AppContext } from '../../AppContext';
+import axios from 'axios'
 
 const AccountSend = () => {
   const context = useContext(AppContext);
@@ -21,6 +22,22 @@ const AccountSend = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({sendAddress, sendAmount})
+    if(sendAddress == "" || sendAmount == ""){
+      alert('빈칸을 채워주세요')
+    }
+    else{
+      axios.post('http://localhost:3001/web3/userSend', {
+        recipient: sendAddress,
+        amount: sendAmount
+        }, {
+          withCredentials: true
+        })
+        .then((res)=> {
+          console.log(res);
+        }).catch((err)=>{
+          console.log(err);
+        })
+    }
     // handleSubmit을 하면, 현재의 계정 address 에서 address
   }
 

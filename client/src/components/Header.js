@@ -29,8 +29,9 @@ const Header = () => {
           setIsLoggedin(true);
           setUserId(res.data.user.userId);
           setImgSrc(res.data.user.profileImage);
+          setAddress(res.data.user.address);
         }).catch((err) => {
-          setIsLoggedin(true);
+          setIsLoggedin(false);
           console.error(err);
         });
     }

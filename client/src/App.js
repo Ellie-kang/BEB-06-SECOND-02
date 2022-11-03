@@ -22,7 +22,7 @@ const App = () => {
   const [tokenAmount, setTokenAmount] = useState('');
   const [userArticles, setUserArticles] = useState('');
   const [userNft, setUserNft] = useState('');
-  const [address, setAddress] = useState('0x1929381920399281');
+  const [address, setAddress] = useState('');
   const [imgSrc, setImgSrc] = useState('');
   const [jwt, setJwt] = useState('');
   const [cookie, setCookie, deleteCookie] = useCookies(['token']);
