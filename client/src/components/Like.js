@@ -11,34 +11,38 @@ export const Like = () => {
 
   return (
     <div>
-      {isLike
-        ? (
-          <IconButton
-            aria-label='add to favorites'
-            style={{ color: 'red' }}
-            onClick={() => {
-              setIsLike(false);
-            }}
-          >
+    {isLike
+      ? (
+        <IconButton
+          aria-label='add to favorites'
+          style={{ color: 'red' }}
+          onClick={() => {
+            setIsLike(false);
+          }}
+        >
+          <FavoriteIcon />
+          <Badge color="secondary" badgeContent={6} showZero>
+            {/*  */}
             <FavoriteIcon />
-            <Typography style={{ color: 'black' }}> 좋아요
-              <span onClick={() => {
-                setCount(count + 1);
-              }}
-              />{count}
-            </Typography>
-          </IconButton>
-          )
-        : (
-          <IconButton
-            aria-label='add to favorites'
-            onClick={() => {
-              setIsLike(true);
+          </Badge>
+          <Typography style={{ color: 'black' }}> 좋아요
+            <span onClick={() => {
+              setCount(count + 1);
             }}
-          >
-            <FavoriteBorderIcon />
-          </IconButton>
-          )}
-    </div>
+            />{count}
+          </Typography>
+        </IconButton>
+        )
+      : (
+        <IconButton
+          aria-label='add to favorites'
+          onClick={() => {
+            setIsLike(true);
+          }}
+        >
+          <FavoriteBorderIcon />
+        </IconButton>
+        )}
+  </div>
   );
 };

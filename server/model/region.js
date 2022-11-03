@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
 
+/*
+  { city, region } 형태로 데이터를 가져옵니다.
+*/
 const schema = new mongoose.Schema({
-  name: {
+  city: {
     type: String,
     required: true
   },
-  continent: {
+  region: {
     type: String,
     required: true
   }

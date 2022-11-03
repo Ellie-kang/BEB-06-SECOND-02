@@ -3,7 +3,6 @@ import { AppContext } from "../AppContext";
 import { ThemeProvider } from '@mui/material/styles';
 import { Stack,Button, fabClasses } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
 import "../utils/Comments.css"
 import { Box } from '@mui/system';
@@ -16,7 +15,6 @@ export const Comments = () => {
   const [isValid, setIsValid] = useState(false);
 
   const post = (e) => {
-
     const newCommentLists = {
       id: userId,
       content: comment,
@@ -26,14 +24,11 @@ export const Comments = () => {
     setIsValid(false);
   };
 
-  // const CommentList = () => {
-  //   return (
-  //     <div className='userCommentLists'>
-  //       <span color="text.secondary"> {comment.id}</span>
-  //       <span>{comment.content}</span>
-  //     </div>
-  //   )
-  // }
+  const onEnterPost = (e) => {
+    if(e.key === 'Enter')  {
+      post();
+    }
+  }
 
   return (
     <ThemeProvider theme={context.state.theme}>
@@ -45,13 +40,14 @@ export const Comments = () => {
             component="input"
             type="text"
             placeholder="댓글 달기..."
+            value={comment}
             onChange={(e) => {
               setComment(e.target.value);
             }}
             onKeyUp={(e) => {
               (e.target.value.length > 0) ? setIsValid(true) : setIsValid(false);
             }}
-            value={comment}
+            onKeyPress={onEnterPost}
           />
           <Button
             type="button"
@@ -63,7 +59,7 @@ export const Comments = () => {
         </Stack>
         {commentLists.map((comment) => {
           return (
-            <Stack spacing={1} className="users-comments" direction="row" sx={{marginY:"20px", color:"text.secondary" }} >
+            <Stack spacing={1} className="users-comments" direction="row" sx={{marginY:"5px", color:"text.secondary" }} >
               <Avatar sx={{width: "30px", height: "30px"}} src={context.state.imgSrc} />
               <Typography component="span" sx={{textAlign:"center"}}>{userId}</Typography>
               <Typography component="p">{comment.content}</Typography>
