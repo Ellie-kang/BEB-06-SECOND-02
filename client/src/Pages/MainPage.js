@@ -1,49 +1,41 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../utils/MainPage.css';
-import Articles from '../components/Articles';
-import { Slide, Stack, Grow, Box, Button } from '@mui/material';
+import Article from '../components/Article';
 import { ThemeProvider } from '@mui/material/styles';
 import { AppContext } from '../AppContext';
 import ListContainer from '../components/ListContainer';
 import Grid from '@mui/material/Grid';
-import { display } from '@mui/system';
+import axios from 'axios';
 
 const MainPage = () => {
   const context = useContext(AppContext);
-  const [scrollY, setScrollY] = useState(0);
+  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    axios.get('http://localhost:3001/articles', {
+      withCredentials: true
+    }).then((res) => {
+      setArticles(res.data);
+    }).catch((err) => {
+      console.error(err);
+    });
   }, []);
 
   return (
-  <ThemeProvider theme={context.state.theme}>
-    <Grid container spacing={4} justifyContent="center">
-      <Grid item xs={2}></Grid>
-      <Grid item xs={2} justifyContent="center" sx={{width:"100%", height:"auto", }}>
-        <ListContainer/>
-      </Grid>
-
-      <Grow in={true} style={{ transformOrigin: '0 2 0' }} {...(true ? { timeout: 1200 } : {})}>
-        <Grid item xs={6} mt={10} sx={{width:"100%", height:"auto"}}>
-          {/*List 에 따른 Articles를 불러오기. */}
-          <Articles />
-          <Articles />
-          <Articles />
+    <ThemeProvider theme={context.state.theme}>
+      <Grid container spacing={4} justifyContent='center'>
+        <Grid item xs={2} />
+        <Grid item xs={2} justifyContent='center' mt={10} sx={{ width: '100%', height: 'auto' }}>
+          <ListContainer />
         </Grid>
-      </Grow>
-    </Grid>
-    
-  </ThemeProvider>
-  )
-}
+        <Grid item xs={6} mt={10} sx={{ width: '100%', height: 'auto' }}>
+          {articles.map((item) => {
+            return <Article key={item._id} title={item.title} content={item.content} imgFile={item.imgFile} />;
+          })}
+        </Grid>
+      </Grid>
+    </ThemeProvider>
+  );
+};
 
 export default MainPage;
