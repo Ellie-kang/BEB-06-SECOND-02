@@ -98,6 +98,7 @@ export default function WritePage () {
           break;
         case 1 :
           axios.post('http://localhost:3001/articles/write', {
+            userId: userId,
             title: title,
             content: content,
             imgFile: writeImg

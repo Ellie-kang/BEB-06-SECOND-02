@@ -59,9 +59,6 @@ const signup = async (req, res) => {
   // User Model에서 userID에 unique 옵션을 설정했기 때문에
   // validate() 함수에서 유효성 조사하는 과정 중 이중 아이디를 검출가능
   try {
-    const validation = user.validateSync();
-    if (validation) throw validation.errors;
-
     const newDocument = await user.save();
     res.status(201).send(newDocument);
   } catch (error) {
@@ -78,7 +75,7 @@ const login = async (req, res) => {
     if (!user || !result) throw new Error('Authentication failed. Invalid user or password.');
     else {
       // profile 불러오기 추가. 로그인시.
-      const user = await User.findOne({ userId }, '_id userId profileImage createdAt');
+      const user = await User.findOne({ userId }, '_id userId profileImage createdAt address');
       const token = jwt.sign({ userId }, process.env.SECRET, { expiresIn: '1h' });
       res.cookie('token', token, {
         maxAge: 60 * 60 * 1000
@@ -109,7 +106,7 @@ const refresh = async (req, res) => {
   try {
     const data = jwt.verify(token, process.env.SECRET);
     const userId = data.userId;
-    const user = await User.findOne({ userId }, '_id userId profileImage createdAt');
+    const user = await User.findOne({ userId }, '_id userId profileImage createdAt address');
 
     res.status(200).json({ user, token });
   } catch (error) {
