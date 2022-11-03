@@ -74,10 +74,7 @@ const write = async (req, res) => {
       imgFile,
       userId: author._id
     });
-
-    const validation = article.validateSync();
-    if (validation) throw validation.errors;
-
+    
     const newDocument = await article.save();
     const result = await sendtoken5(author.account);
     if(result){
@@ -102,9 +99,6 @@ const comment = async (req, res) => {
       postId,
       userId: author._id
     });
-
-    const validation = comment.validateSync();
-    if (validation) throw validation.errors;
 
     const newDocument = await comment.save();
     res.status(201).send(newDocument);
