@@ -11,6 +11,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 import { Box } from '@mui/system';
+import ListContainerByRegion from './ListContainerByRegion';
 import "../utils/MainPage.css";
 import "../utils/Font.css";
 
@@ -20,11 +21,6 @@ const ListContainer = () => {
   const [openAmerica, setOpenAmerica] = useState(false);
   const [openAfrica, setOpenAfrica] = useState(false);
   const [openME, setOpenME] = useState(false);
-
-
-  const handleClick = (e) => {
-    console.log(e.target.innerText);
-  };
 
   const handleAsiaClick = () => {
     setOpenAsia(!openAsia);
@@ -42,18 +38,6 @@ const ListContainer = () => {
     setOpenME(!openME);
   };
 
-  const ListContainer = ({ primary }) => {
-    return (
-        <List component="div" disablePadding>
-          <ListItemButton sx={{ pl:4 }}>
-            <ListItemIcon>
-              <FlagCircleIcon id="flag"/>
-            </ListItemIcon>
-            <ListItemText className='list-region' primary={primary}/>
-          </ListItemButton>
-        </List>
-    )
-  }
 
   const ListButton = ({ handle, open, primary }) => {
     return (
@@ -88,36 +72,36 @@ const ListContainer = () => {
             }} handle={handleAsiaClick} open={openAsia} primary='Asia'
           />
           <Collapse in={openAsia} timeout='auto'>
-            <ListContainer primary='Seoul' />
-            <ListContainer primary='Tokyo' />
-            <ListContainer primary='BangKok' />
+            <ListContainerByRegion primary='Seoul' />
+            <ListContainerByRegion primary='Tokyo' />
+            <ListContainerByRegion primary='BangKok' />
           </Collapse>
 
           <ListButton handle={handleEuropeClick} open={openEurope} primary='Europe' />
           <Collapse in={openEurope} timeout='auto'>
-            <ListContainer primary='Paris' />
-            <ListContainer primary='Roma' />
-            <ListContainer primary='London' />
+            <ListContainerByRegion primary='Paris' />
+            <ListContainerByRegion primary='Roma' />
+            <ListContainerByRegion primary='London' />
           </Collapse>
 
           <ListButton handle={handleAmericaClick} open={openAmerica} primary='America' />
           <Collapse in={openAmerica} timeour='auto' unmountOnExit>
-            <ListContainer primary='DC' />
-            <ListContainer primary='Ottawa' />
-            <ListContainer primary='NewYork' />
+            <ListContainerByRegion primary='DC' />
+            <ListContainerByRegion primary='Ottawa' />
+            <ListContainerByRegion primary='NewYork' />
           </Collapse>
 
           <ListButton handle={handleAfricaClick} open={openAfrica} primary='Africa' />
           <Collapse in={openAfrica} timeour='auto' unmountOnExit>
-            <ListContainer primary='Morocco' />
-            <ListContainer primary='Egypt' />
+            <ListContainerByRegion primary='Morocco' />
+            <ListContainerByRegion primary='Egypt' />
           </Collapse>
 
-            <ListButton handle={handleClick} open={openME} primary="Middle East"/>
+            <ListButton handle={handleMeClick} open={openME} primary="Middle East"/>
             <Collapse in={openME} timeour="auto" unmountOnExit>
-              <ListContainer primary="Iran" />
-              <ListContainer primary="Riyadh" />
-              <ListContainer primary="dubai" />
+              <ListContainerByRegion primary="Iran" />
+              <ListContainerByRegion primary="Riyadh" />
+              <ListContainerByRegion primary="dubai" />
             </Collapse>
           </List>
           <Box component='footer' sx={{height:"30px",bgcolor:"background.header"}}></Box>
