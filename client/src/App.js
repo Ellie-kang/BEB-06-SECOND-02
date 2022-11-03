@@ -39,7 +39,8 @@ const App = () => {
         paper: '#ffffff',
         footer: 'rgba(47, 83, 239)',
         header: 'rgba(47, 83, 239)',
-        lock: 'rgba(47, 83, 239)'
+        lock: 'rgba(47, 83, 239)',
+        yellow: "#F0B918"
       },
       text: {
         primary: '#ffffff',

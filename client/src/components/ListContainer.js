@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useRef} from 'react';
 import { Stack } from '@mui/material';
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
@@ -11,6 +11,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 import { Box } from '@mui/system';
+import "../utils/MainPage.css"
 
 const ListContainer = () => {
   const [openAsia, setOpenAsia] = useState(false);
@@ -18,6 +19,7 @@ const ListContainer = () => {
   const [openAmerica, setOpenAmerica] = useState(false);
   const [openAfrica, setOpenAfrica] = useState(false);
   const [openME, setOpenME] = useState(false);
+
 
   const handleClick = (e) => {
     console.log(e.target.innerText);
@@ -47,7 +49,7 @@ const ListContainer = () => {
             <ListItemIcon>
               <FlagCircleIcon id="flag"/>
             </ListItemIcon>
-            <ListItemText primary={primary}/>
+            <ListItemText sx={{color: "text.primary"}} primary={primary}/>
           </ListItemButton>
         </List>
     )
@@ -55,7 +57,7 @@ const ListContainer = () => {
 
   const ListButton = ({handle, open, primary}) => {
     return (
-      <ListItemButton onClick={handle}>
+      <ListItemButton sx={{color: "text.primary"}} onClick={handle}>
         <ListItemIcon>
           <FlightTakeoffIcon id="flight"/>
         </ListItemIcon>
@@ -68,16 +70,19 @@ const ListContainer = () => {
   return (
     <>
         <Stack id="list-contianer" sx={{
-          width:"auto",
-          borderRadius:"2px",
+          pr: 3,
+          mt: 10
         }}>
-          <List component="nav" className='nav-list'
-          subheader={
-          <ListSubheader sx={{
-            bgcolor: "background.header",
-            color: "text.primary",
-            }}
-            component="div" id="list-subheader">WHERE IS TAKO?</ListSubheader>
+          <List
+            component="nav" className='nav-list'
+            subheader={
+            <ListSubheader sx={{
+              borderTopLeftRadius:"5px",
+              borderTopRightRadius:"5px",
+              bgcolor: "#ffffff",
+              color: "background.header",
+              }}
+              component="div" id="list-subheader">WHERE IS TAKO?</ListSubheader>
           }>
             <ListButton sx={{
 
@@ -115,7 +120,7 @@ const ListContainer = () => {
               <ListContainer primary="dubai" />
             </Collapse>
           </List>
-          <Box component='footer' sx={{height:"30px",bgcolor:"background.header"}}></Box>
+          <Box component='footer' sx={{height:"30px",bgcolor:"#ffffff"}}></Box>
        </Stack>
     </>
   )
