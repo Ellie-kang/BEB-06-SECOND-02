@@ -93,13 +93,13 @@ const ListContainer = () => {
 
           <ListButton handle={handleAfricaClick} open={openAfrica} primary='Africa' />
           <Collapse in={openAfrica} timeour='auto' unmountOnExit>
-            <ListContainerByRegion primary='Morocco' />
-            <ListContainerByRegion primary='Egypt' />
+            <ListContainerByRegion primary='Rabat' />
+            <ListContainerByRegion primary='Kyro' />
           </Collapse>
 
             <ListButton handle={handleMeClick} open={openME} primary="Middle East"/>
             <Collapse in={openME} timeour="auto" unmountOnExit>
-              <ListContainerByRegion primary="Iran" />
+              <ListContainerByRegion primary="New Delhi" />
               <ListContainerByRegion primary="Riyadh" />
               <ListContainerByRegion primary="dubai" />
             </Collapse>

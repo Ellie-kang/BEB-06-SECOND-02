@@ -17,11 +17,12 @@ const ListContainerByRegion = ({primary}) => {
   const {setMainArticles} = context.action;
 
   const handleButtonClick = useCallback((e) => {
-    axios.get(`http://localhost:3001/regions?${e.target.innerText}`)
+    axios.get(`http://localhost:3001/articles?city=${e.target.innerText}`)
     .then((res) => {
       console.log(res.data)
+      //setMainArticles(res.data)
     })
-  })
+  }, [mainArticles])
 
   return (
     <List component="div" disablePadding>

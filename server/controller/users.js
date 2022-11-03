@@ -6,6 +6,7 @@ const { main, transferFrom } = require('./web3');
 
 const find = async (req, res) => {
   const _queries = req.query;
+  console.log(req.query)
   const user = await User.aggregate([
     { $match: _queries },
     {

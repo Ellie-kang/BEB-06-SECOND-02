@@ -6,6 +6,7 @@ const Region = require('../model/region');
 const jwt = require('jsonwebtoken');
 
 const find = async (req, res) => {
+  // Article.findOne({city : req.query});
   const _queries = req.query;
   // 기존 아티클 도큐먼트에 다른 DB의 도큐먼트를 가져오는 코드
   const articles = await Article.aggregate([
