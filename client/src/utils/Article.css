@@ -1,6 +1,6 @@
 .contents-container {
   max-width: 600px;
-  background-color: white;
+  background-color: rgba(47, 83, 239);
   margin-bottom: 30px;
   border-radius: 10px;
 }
@@ -10,4 +10,11 @@
   font-weight: 600;
   font-size: 17px;
 
+}
+
+.contents-container > footer {
+  align-items: center;
+  color: rgba(47, 83, 239);
+  font-size: 13px;
+  font-weight: 600;
 }

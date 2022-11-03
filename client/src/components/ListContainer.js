@@ -11,6 +11,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 import { Box } from '@mui/system';
+import "../utils/MainPage.css"
 
 const ListContainer = () => {
   const [openAsia, setOpenAsia] = useState(false);
@@ -18,6 +19,7 @@ const ListContainer = () => {
   const [openAmerica, setOpenAmerica] = useState(false);
   const [openAfrica, setOpenAfrica] = useState(false);
   const [openME, setOpenME] = useState(false);
+
 
   const handleClick = (e) => {
     console.log(e.target.innerText);
@@ -41,20 +43,20 @@ const ListContainer = () => {
 
   const ListContainer = ({ primary }) => {
     return (
-      <List component='div' disablePadding>
-        <ListItemButton sx={{ pl: 4 }}>
-          <ListItemIcon>
-            <FlagCircleIcon id='flag' />
-          </ListItemIcon>
-          <ListItemText primary={primary} />
-        </ListItemButton>
-      </List>
-    );
-  };
+        <List component="div" disablePadding>
+          <ListItemButton sx={{ pl:4 }}>
+            <ListItemIcon>
+              <FlagCircleIcon id="flag"/>
+            </ListItemIcon>
+            <ListItemText sx={{color: "text.primary"}} primary={primary}/>
+          </ListItemButton>
+        </List>
+    )
+  }
 
   const ListButton = ({ handle, open, primary }) => {
     return (
-      <ListItemButton onClick={handle}>
+      <ListItemButton sx={{color: "text.primary"}} onClick={handle}>
         <ListItemIcon>
           <FlightTakeoffIcon id='flight' />
         </ListItemIcon>
@@ -66,27 +68,22 @@ const ListContainer = () => {
 
   return (
     <>
-      <Stack
-        id='list-contianer' sx={{
-          width: 'auto',
-          borderRadius: '2px'
-        }}
-      >
-        <List
-          component='nav' className='nav-list'
-          subheader={
-            <ListSubheader
-              sx={{
-                bgcolor: 'background.header',
-                color: 'text.primary'
+        <Stack id="list-contianer" sx={{
+          pr: 3,
+          mt: 10
+        }}>
+          <List
+            component="nav" className='nav-list'
+            subheader={
+            <ListSubheader sx={{
+              borderTopLeftRadius:"5px",
+              borderTopRightRadius:"5px",
+              bgcolor: "#ffffff",
+              color: "background.header",
               }}
-              component='div' id='list-subheader'
-            >WHERE IS TAKO?
-            </ListSubheader>
-          }
-        >
-          <ListButton
-            sx={{
+              component="div" id="list-subheader">WHERE IS TAKO?</ListSubheader>
+          }>
+            <ListButton sx={{
 
             }} handle={handleAsiaClick} open={openAsia} primary='Asia'
           />
@@ -116,15 +113,15 @@ const ListContainer = () => {
             <ListContainer primary='Egypt' />
           </Collapse>
 
-          <ListButton handle={handleClick} open={openME} primary='Middle East' />
-          <Collapse in={openME} timeour='auto' unmountOnExit>
-            <ListContainer primary='Iran' />
-            <ListContainer primary='Riyadh' />
-            <ListContainer primary='dubai' />
-          </Collapse>
-        </List>
-        <Box component='footer' sx={{ height: '30px', bgcolor: 'background.header' }} />
-      </Stack>
+            <ListButton handle={handleClick} open={openME} primary="Middle East"/>
+            <Collapse in={openME} timeour="auto" unmountOnExit>
+              <ListContainer primary="Iran" />
+              <ListContainer primary="Riyadh" />
+              <ListContainer primary="dubai" />
+            </Collapse>
+          </List>
+          <Box component='footer' sx={{height:"30px",bgcolor:"#ffffff"}}></Box>
+       </Stack>
     </>
   );
 };
