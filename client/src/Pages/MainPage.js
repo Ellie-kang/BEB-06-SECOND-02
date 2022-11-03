@@ -9,18 +9,19 @@ import axios from 'axios';
 
 const MainPage = () => {
   const context = useContext(AppContext);
-  const [articles, setArticles] = useState([]);
+    //mainPageArticles
+  const {mainArticles} = context.state;
+  const {setMainArticles} = context.action;
 
   useEffect(() => {
     axios.get('http://localhost:3001/articles', {
       withCredentials: true
     }).then((res) => {
-      setArticles(res.data);
+      setMainArticles(res.data);
     }).catch((err) => {
       console.error(err);
     });
   }, []);
-  console.log(articles)
 
   return (
     <ThemeProvider theme={context.state.theme}>
@@ -30,7 +31,7 @@ const MainPage = () => {
           <ListContainer id="main-list"/>
         </Grid>
         <Grid item xs={6} mt={10} sx={{ width: '100%', height: 'auto' }}>
-          {articles.map((item) => {
+          {mainArticles.map((item) => {
             return <Article key={item._id} userId={item.author.userId} title={item.title} content={item.content} imgFile={item.imgFile} />;
           })}
         </Grid>

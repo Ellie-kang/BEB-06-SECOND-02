@@ -4,6 +4,7 @@ const Region = require('../model/region');
 
 const find = async (req, res) => {
   const _queries = req.query;
+  console.log(_queries)
   // 기존 아티클 도큐먼트에 다른 DB의 도큐먼트를 가져오는 코드
   const articles = await Article.aggregate([
     // /article?queries라는 uri에서 queries에 해당되는 부분을

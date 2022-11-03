@@ -16,8 +16,6 @@ import { useContext } from 'react';
 import axios from 'axios';
 import { AppContext } from '../AppContext';
 
-const theme = createTheme();
-
 export default function WritePage () {
   const context = useContext(AppContext);
   const [activeStep, setActiveStep] = React.useState(0);
@@ -25,15 +23,51 @@ export default function WritePage () {
   const [content, setContent] = React.useState('');
   const { userId } = context.state; // jwt 토큰, userId
   const [writeImg, setWriteImg] = React.useState('');
+  const [region, setRegion] = React.useState('');
+  const [city, setCity] = React.useState('');
+
+  // region 은 넣을필요 없음. 분류할떄만. city만 post
+
+  console.log(region, city)
+
 
   const steps = ['글쓰기', '미리보기', '작성 완료'];
 
   function getStepContent (step) {
     switch (step) {
       case 0:
-        return <WriteForm activeStep={activeStep} steps={steps} handleNext={handleNext} setTitle={setTitle} setContent={setContent} title={title} content={content} writeImg={writeImg} setWriteImg={setWriteImg} />;
+        return (
+          <WriteForm
+        activeStep={activeStep}
+        steps={steps}
+        handleNext={handleNext}
+        setTitle={setTitle}
+        setContent={setContent}
+        title={title}
+        content={content}
+        writeImg={writeImg}
+        setWriteImg={setWriteImg}
+        region={region}
+        setRegion={setRegion}
+        city={city}
+        setCity={setCity}
+        />);
       case 1:
-        return <Review activeStep={activeStep} handleBack={handleBack} handleNext={handleNext} title={title} userId={userId} content={content} writeImg={writeImg} setWriteImg={setWriteImg} />;
+        return (
+          <Review
+          activeStep={activeStep}
+          handleBack={handleBack}
+          handleNext={handleNext}
+          title={title}
+          userId={userId}
+          content={content}
+          writeImg={writeImg}
+          setWriteImg={setWriteImg}
+          region={region}
+          setRegion={setRegion}
+          city={city}
+          setCity={setCity}
+          />);
       case 2:
         return (
           <>
@@ -85,12 +119,13 @@ export default function WritePage () {
     setActiveStep(activeStep - 1);
   };
 
+  const theme = createTheme();
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container component='main' maxWidth='md' sx={{ mb: 4 }}>
-        <Paper variant='outlined' sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-          <Typography component='h1' variant='h4' align='center'>
+      <Container component='main' maxWidth='md' sx={{ mb: 4, }}>
+        <Paper variant='outlined' sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 },  }}>
+          <Typography component='h1' variant='h4' align='center' sx={{color: 'black'}}>
             게시글 작성하기
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
