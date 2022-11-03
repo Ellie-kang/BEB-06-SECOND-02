@@ -11,7 +11,8 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 import { Box } from '@mui/system';
-import "../utils/MainPage.css"
+import "../utils/MainPage.css";
+import "../utils/Font.css";
 
 const ListContainer = () => {
   const [openAsia, setOpenAsia] = useState(false);
@@ -48,7 +49,7 @@ const ListContainer = () => {
             <ListItemIcon>
               <FlagCircleIcon id="flag"/>
             </ListItemIcon>
-            <ListItemText sx={{color: "text.primary"}} primary={primary}/>
+            <ListItemText className='list-region' primary={primary}/>
           </ListItemButton>
         </List>
     )
@@ -56,11 +57,11 @@ const ListContainer = () => {
 
   const ListButton = ({ handle, open, primary }) => {
     return (
-      <ListItemButton sx={{color: "text.primary"}} onClick={handle}>
+      <ListItemButton onClick={handle}>
         <ListItemIcon>
           <FlightTakeoffIcon id='flight' />
         </ListItemIcon>
-        <ListItemText primary={primary} />
+        <ListItemText className='list-continental' primary={primary} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
     );
@@ -70,7 +71,6 @@ const ListContainer = () => {
     <>
         <Stack id="list-contianer" sx={{
           pr: 3,
-          mt: 10
         }}>
           <List
             component="nav" className='nav-list'
@@ -78,8 +78,8 @@ const ListContainer = () => {
             <ListSubheader sx={{
               borderTopLeftRadius:"5px",
               borderTopRightRadius:"5px",
-              bgcolor: "#ffffff",
-              color: "background.header",
+              bgcolor: "background.header",
+              color: "text.primary",
               }}
               component="div" id="list-subheader">WHERE IS TAKO?</ListSubheader>
           }>
@@ -120,7 +120,7 @@ const ListContainer = () => {
               <ListContainer primary="dubai" />
             </Collapse>
           </List>
-          <Box component='footer' sx={{height:"30px",bgcolor:"#ffffff"}}></Box>
+          <Box component='footer' sx={{height:"30px",bgcolor:"background.header"}}></Box>
        </Stack>
     </>
   );
