@@ -11,50 +11,38 @@ export const Like = () => {
 
   return (
     <div>
-      {isLike ?
-        (<IconButton
-            aria-label="add to favorites"
-            style={{ color:'red'}}
-            onClick={() =>{
-              setIsLike(false)
-        }}>
-
+    {isLike
+      ? (
+        <IconButton
+          aria-label='add to favorites'
+          style={{ color: 'red' }}
+          onClick={() => {
+            setIsLike(false);
+          }}
+        >
+          <FavoriteIcon />
           <Badge color="secondary" badgeContent={6} showZero>
             {/*  */}
             <FavoriteIcon />
           </Badge>
-          <Typography style={{ color:'black'}}> 좋아요 
-            <span onclick= {() => {
-              setCount(count + 1)
-            }}>
-            </span>{count}
+          <Typography style={{ color: 'black' }}> 좋아요
+            <span onClick={() => {
+              setCount(count + 1);
+            }}
+            />{count}
           </Typography>
-        </IconButton>) :
-        (<IconButton
-            aria-label="add to favorites" 
-            onClick={() => {
-              setIsLike(false);
-            }}
-          >
-            <FavoriteIcon />
-            <Typography style={{ color: 'black' }}> 좋아요
-              <span onClick={() => {
-                setCount(count + 1);
-              }}
-              />{count}
-            </Typography>
-          </IconButton>
-          )
-        : (
-          <IconButton
-            aria-label='add to favorites'
-            onClick={() => {
-              setIsLike(true);
-            }}
-          >
-            <FavoriteBorderIcon />
-          </IconButton>
-          )}
-    </div>
+        </IconButton>
+        )
+      : (
+        <IconButton
+          aria-label='add to favorites'
+          onClick={() => {
+            setIsLike(true);
+          }}
+        >
+          <FavoriteBorderIcon />
+        </IconButton>
+        )}
+  </div>
   );
 };
