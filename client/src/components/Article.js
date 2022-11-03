@@ -13,7 +13,7 @@ import '../utils/Font.css';
 
 const Article = (props) => {
   const context = useContext(AppContext);
-  const { title, content, imgFile } = props;
+  const { title, content, imgFile, userId } = props;
 
   return (
     <Card
@@ -26,7 +26,6 @@ const Article = (props) => {
         }
         user={context.state.userId}
         title={title}
-        subheader='September 14, 2022'
       />
       <CardMedia
         component='img'
@@ -35,6 +34,7 @@ const Article = (props) => {
       />
       <Like />
       <CardContent>
+        <Typography component="p" sx={{color: 'text.secondary'}}><strong>{userId}</strong></Typography>
         <Typography
           variant='body2' description='' 
           sx={{ 

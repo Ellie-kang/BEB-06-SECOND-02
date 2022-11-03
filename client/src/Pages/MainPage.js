@@ -20,6 +20,7 @@ const MainPage = () => {
       console.error(err);
     });
   }, []);
+  console.log(articles)
 
   return (
     <ThemeProvider theme={context.state.theme}>
@@ -30,7 +31,7 @@ const MainPage = () => {
         </Grid>
         <Grid item xs={6} mt={10} sx={{ width: '100%', height: 'auto' }}>
           {articles.map((item) => {
-            return <Article key={item._id} title={item.title} content={item.content} imgFile={item.imgFile} />;
+            return <Article key={item._id} userId={item.author.userId} title={item.title} content={item.content} imgFile={item.imgFile} />;
           })}
         </Grid>
       </Grid>

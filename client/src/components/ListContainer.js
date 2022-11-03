@@ -70,7 +70,6 @@ const ListContainer = () => {
     <>
         <Stack id="list-contianer" sx={{
           pr: 3,
-          mt: 10
         }}>
           <List
             component="nav" className='nav-list'
