@@ -8,7 +8,7 @@ const abi = require('./abi.json');
 const privateKey = process.env.PRIVATEKEY;
 const contract = new Contract(abi, contractAddress);
 
-const sendtoken3 = async (account) => {
+const sendtoken3 = async (address) => {
     const signer = web3.eth.accounts.privateKeyToAccount(privateKey);
     // web3.eth.accounts.wallet.add(signer);
     // console.log(web3.eth.accounts.wallet)
@@ -26,18 +26,23 @@ const sendtoken3 = async (account) => {
         nonce: accountNonce,
         chainId: 5,
         value: '0x0',
-        data: contract.methods.transfer(account, amount).encodeABI()
+        data: contract.methods.transfer(address, amount).encodeABI()
       };
       signedTx = await web3.eth.accounts.signTransaction(tx, signer.privateKey)
 
-      const receipt = await web3.eth
-      .sendSignedTransaction(signedTx.rawTransaction)
-      .once("transactionHash", (txhash) => {
-          console.log(`Mining transaction ...`);
-          console.log(`https://goerli.etherscan.io/tx/${txhash}`);
-      });
-    // The transaction is now on chain!
-        console.log(`Mined in block ${receipt.blockNumber}`);
+      try{
+        const receipt = await web3.eth
+        .sendSignedTransaction(signedTx.rawTransaction)
+        .once("transactionHash", (txhash) => {
+            console.log(`Mining transaction ...`);
+            console.log(`https://goerli.etherscan.io/tx/${txhash}`);
+        });
+      // The transaction is now on chain!
+          console.log(`Mined in block ${receipt.blockNumber}`);
+          return true
+      } catch{
+        return false
+      }
 }
 
 const sendtoken5 = async (address) => {
@@ -60,18 +65,23 @@ const sendtoken5 = async (address) => {
         nonce: accountNonce,
         chainId: 5,
         value: '0x0',
-        data: contract.methods.transfer(account, amount).encodeABI()
+        data: contract.methods.transfer(address, amount).encodeABI()
       };
       signedTx = await web3.eth.accounts.signTransaction(tx, signer.privateKey)
 
-      const receipt = await web3.eth
-      .sendSignedTransaction(signedTx.rawTransaction)
-      .once("transactionHash", (txhash) => {
-          console.log(`Mining transaction ...`);
-          console.log(`https://goerli.etherscan.io/tx/${txhash}`);
-      });
-    // The transaction is now on chain!
-        console.log(`Mined in block ${receipt.blockNumber}`);
+      try{
+        const receipt = await web3.eth
+        .sendSignedTransaction(signedTx.rawTransaction)
+        .once("transactionHash", (txhash) => {
+            console.log(`Mining transaction ...`);
+            console.log(`https://goerli.etherscan.io/tx/${txhash}`);
+        });
+      // The transaction is now on chain!
+          console.log(`Mined in block ${receipt.blockNumber}`);
+          return true
+      } catch{
+        return false
+      }
     
 }
 
@@ -98,15 +108,21 @@ const user_send = async (sender, recipient, token_amount) => {
         data: contract.methods.transferFrom(sender, recipient, amount).encodeABI()
       };
       signedTx = await web3.eth.accounts.signTransaction(tx, signer.privateKey)
+      try{
+        const receipt = await web3.eth
+        .sendSignedTransaction(signedTx.rawTransaction)
+        .once("transactionHash", (txhash) => {
+            console.log(`Mining transaction ...`);
+            console.log(`https://goerli.etherscan.io/tx/${txhash}`);
+        });
+      // The transaction is now on chain!
+          console.log(`Mined in block ${receipt.blockNumber}`);
+          return true
+      } catch{
+        return false
+      }
 
-      const receipt = await web3.eth
-      .sendSignedTransaction(signedTx.rawTransaction)
-      .once("transactionHash", (txhash) => {
-          console.log(`Mining transaction ...`);
-          console.log(`https://goerli.etherscan.io/tx/${txhash}`);
-      });
-    // The transaction is now on chain!
-        console.log(`Mined in block ${receipt.blockNumber}`);
+
 }
  
 module.exports = {

@@ -77,7 +77,7 @@ const login = async (req, res) => {
     if (!user || !result) throw new Error('Authentication failed. Invalid user or password.');
     else {
       // profile 불러오기 추가. 로그인시.
-      const user = await User.findOne({ userId }, '_id userId profileImage createdAt');
+      const user = await User.findOne({ userId }, '_id userId profileImage createdAt address');
       const token = jwt.sign({ userId }, process.env.SECRET, { expiresIn: '1h' });
       res.cookie('token', token, {
         maxAge: 60 * 60 * 1000
@@ -108,7 +108,7 @@ const refresh = async (req, res) => {
   try {
     const data = jwt.verify(token, process.env.SECRET);
     const userId = data.userId;
-    const user = await User.findOne({ userId }, '_id userId profileImage createdAt');
+    const user = await User.findOne({ userId }, '_id userId profileImage createdAt address');
 
     res.status(200).json({ user, token });
   } catch (error) {
