@@ -2,6 +2,7 @@ require('dotenv').config();
 const Article = require('../model/article');
 const User = require('../model/user');
 const Comment = require('../model/comment');
+const Region = require('../model/region');
 const jwt = require('jsonwebtoken');
 
 const find = async (req, res) => {
@@ -69,8 +70,11 @@ const write = async (req, res) => {
     const verification = await jwt.verify(req.cookies.token, process.env.SECRET);
     const { userId } = verification;
 
-    const { title, content, imgFile } = req.body;
+    const { title, content, imgFile, city } = req.body;
     const author = await User.findOne({ userId: userId }, '_id');
+    const _region = await Region.findOne({ city: city }, '_id');
+
+    if (!_region) throw new Error('You have to insert an existing region.');
 
     // 여기서 필요한 userId는 User DB의 _id를 기입합니다.
     // 따라서 userId로 User model를 필터하여 필요한 _id 정보만 가져와서
@@ -79,6 +83,7 @@ const write = async (req, res) => {
       title,
       content,
       imgFile,
+      city: _region._id,
       userId: author._id
     });
 
@@ -88,13 +93,13 @@ const write = async (req, res) => {
     const newDocument = await article.save();
     res.status(201).send(newDocument);
   } catch (error) {
-    res.status(400).send({ error });
+    res.status(400).json(error);
   }
 };
 
 const comment = async (req, res) => {
   try {
-    if (!req.auth) throw 'Unauthorized to write an article. Please sign in.';
+    if (!req.auth) throw new Error('Unauthorized to write an article. Please sign in.');
     const { content, postId } = req.body;
     const author = await User.findOne({ userId: req.auth.userId }, '_id');
 
@@ -110,7 +115,7 @@ const comment = async (req, res) => {
     const newDocument = await comment.save();
     res.status(201).send(newDocument);
   } catch (error) {
-    res.status(400).send({ error });
+    res.status(400).json(error);
   }
 };
 
