@@ -2,11 +2,11 @@ require('dotenv').config();
 const User = require('../model/user');
 const reward = require('../utility/reward');
 const jwt = require('jsonwebtoken');
+const newAccount = require('../utility/createAccount');
 const { main, transferFrom } = require('./web3');
 
 const find = async (req, res) => {
   const _queries = req.query;
-  console.log(req.query)
   const user = await User.aggregate([
     {
       $lookup: {
@@ -47,21 +47,22 @@ const find = async (req, res) => {
 };
 
 const signup = async (req, res) => {
-  const { userId, password } = req.body;
-
-  // 여기 있는 account 데이터는 추후 이더리움 노드와 연동되면 채워질 부분입니다.
-  const user = new User({
-    userId,
-    password
-  });
-
-  // user 모델에서 mongoose-unique-validator 플러그인을 적용한 채로
-  // User Model에서 userID에 unique 옵션을 설정했기 때문에
-  // validate() 함수에서 유효성 조사하는 과정 중 이중 아이디를 검출가능
   try {
+    const { userId, password } = req.body;
+
+    // 여기 있는 account 데이터는 추후 이더리움 노드와 연동되면 채워질 부분입니다.
+    const user = new User({
+      userId,
+      password
+    });
+
+    // user 모델에서 mongoose-unique-validator 플러그인을 적용한 채로
+    // User Model에서 userID에 unique 옵션을 설정했기 때문에
+    // validate() 함수에서 유효성 조사하는 과정 중 이중 아이디를 검출가능
     const newDocument = await user.save();
     res.status(201).send(newDocument);
   } catch (error) {
+    console.error(error);
     res.status(400).json(error);
   }
 };
@@ -100,10 +101,8 @@ const uploadProfile = async (req, res) => {
 };
 
 const refresh = async (req, res) => {
-  // console.log(req)
-  const token = req.cookies.token;
-
   try {
+    const token = req.cookies.token;
     const data = jwt.verify(token, process.env.SECRET);
     const userId = data.userId;
     const user = await User.findOne({ userId }, '_id userId profileImage createdAt address');
