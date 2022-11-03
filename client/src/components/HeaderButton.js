@@ -8,7 +8,7 @@ const HeaderButton = ({name, cb}) => {
       bgcolor: "transparent"
     }}}
     variant="string" component="label" onClick={() => cb()} >
-      <Typography sx={{fontSize:"18px",color: "text.primary",fontWeight: 550}}>{name}</Typography></Button>
+      <Typography sx={{fontSize:"18px",color: "text.primary",fontWeight: 600}}>{name}</Typography></Button>
   )
 };
 

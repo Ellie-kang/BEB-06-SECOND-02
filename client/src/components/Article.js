@@ -10,42 +10,50 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import '../utils/Article.css';
 import '../utils/Font.css';
-import img from './우주.jpeg';
+import { Box } from '@mui/material';
 
 const Article = (props) => {
   const context = useContext(AppContext);
-  const { title, content, imgFile } = props;
+  const { title, content, imgFile, userId } = props;
+  const date = new Date();
 
   return (
     <Card
       className='contents-container'
-      sx={{
-        borderRadius: '10px'
-      }}
+      sx={{ borderRadius: '10px' }}
     >
       <CardHeader
+        sx={{bgcolor: "background.header"}}
         avatar={
-          <Avatar src={context.state.imgSrc} aria-label='recipe' />
+          <Avatar src={imgFile} aria-label='recipe' />
         }
         user={context.state.userId}
         title={title}
-        subheader='September 14, 2022'
       />
       <CardMedia
         component='img'
-        height='194'
+        height='350'
         image={imgFile}
       />
       <Like />
       <CardContent>
+        <Typography component="p" sx={{color: 'text.secondary'}}><strong>{userId}</strong></Typography>
         <Typography
-          sx={{ color: 'text.secondary' }}
-          noWrap variant='body2' description=''
+          variant='body2' description='' 
+          sx={{ 
+            color: 'text.secondary',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            display: '-webkit-box',
+            WebkitLineClamp: '3',
+            WebkitBoxOrient: 'vertical'
+          }}
         >
           {content}
         </Typography>
         <Comments />
       </CardContent>
+      <Box component="footer" sx={{pl: 3}}>{`${date.getMonth()+1}월 ${date.getDate()}일`}</Box>
     </Card>
   );
 };

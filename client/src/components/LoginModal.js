@@ -9,6 +9,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import { AppContext } from '../AppContext';
 import axios from 'axios';
 
@@ -38,6 +40,8 @@ const LoginModal = () => {
         setIsLoggedin(true);
         setUserId(res.data.user.userId);
         setImgSrc(res.data.user.profileImage);
+        setAddress(res.data.user.address)
+
 
         close();
       }).catch((err) => {
@@ -106,7 +110,7 @@ const LoginModal = () => {
                         Sign In
                       </Button>
                     </Box>
-                    {ismatched ? null : <Typography sx={{ color: 'black' }}>비밀번호를 확인해주세요</Typography>}
+                    {ismatched ? null : <Alert severity="error" sx={{width:"100%"}}><AlertTitle>아이디 비밀번호를 확인해주세요</AlertTitle><strong>Check ID or Password</strong></Alert>}
                   </Box>
                 </Container>
               </ThemeProvider>

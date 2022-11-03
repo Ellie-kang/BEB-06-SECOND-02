@@ -1,7 +1,15 @@
 
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiDyp8kv8JHgFVrJJLmg1hlEA.ttf) format('truetype');
+}
+
 .nav-list {
-  background-color: #ffffff;
-  border: 1px solid rgba(47, 83, 239);
+  background-color: white;
+  border: none;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -13,6 +21,24 @@
   font-size: 17px;
 }
 
+/* 헤더랑 포개지는거.*/
+#list-container {
+  
+}
+
+.list-continental > span {
+  font-size: 16px;
+  font-weight: normal;
+  color: black;
+
+}
+
+.list-region > span {
+  font-size: 14px;
+  font-weight: normal;
+  color: black;
+}
+
 #list-contianer > footer {
   z-index: 1;
   border-bottom-left-radius: 5px;
@@ -20,15 +46,12 @@
 }
 
 #flight {
-  color: rgba(47, 83, 239);
+  color: #a9def9;
 }
 
 #flag {
-  color: rgba(47, 83, 239);
+  color: #a9def9;
 }
 
-.css-m69qwo-MuiStack-root{
-  color : black;
-}
 
 

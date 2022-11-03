@@ -20,17 +20,18 @@ const MainPage = () => {
       console.error(err);
     });
   }, []);
+  console.log(articles)
 
   return (
     <ThemeProvider theme={context.state.theme}>
       <Grid container spacing={4} justifyContent='center'>
         <Grid item xs={2} />
         <Grid item xs={2} justifyContent='center' mt={10} sx={{ width: '100%', height: 'auto' }}>
-          <ListContainer />
+          <ListContainer id="main-list"/>
         </Grid>
         <Grid item xs={6} mt={10} sx={{ width: '100%', height: 'auto' }}>
           {articles.map((item) => {
-            return <Article key={item._id} title={item.title} content={item.content} imgFile={item.imgFile} />;
+            return <Article key={item._id} userId={item.author.userId} title={item.title} content={item.content} imgFile={item.imgFile} />;
           })}
         </Grid>
       </Grid>
