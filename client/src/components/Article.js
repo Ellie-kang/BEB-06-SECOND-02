@@ -10,10 +10,12 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import '../utils/Article.css';
 import '../utils/Font.css';
+import { Box } from '@mui/material';
 
 const Article = (props) => {
   const context = useContext(AppContext);
   const { title, content, imgFile, userId } = props;
+  const date = new Date();
 
   return (
     <Card
@@ -21,8 +23,9 @@ const Article = (props) => {
       sx={{ borderRadius: '10px' }}
     >
       <CardHeader
+        sx={{bgcolor: "background.header"}}
         avatar={
-          <Avatar src={context.state.imgSrc} aria-label='recipe' />
+          <Avatar src={imgFile} aria-label='recipe' />
         }
         user={context.state.userId}
         title={title}
@@ -50,6 +53,7 @@ const Article = (props) => {
         </Typography>
         <Comments />
       </CardContent>
+      <Box component="footer" sx={{pl: 3}}>{`${date.getMonth()+1}월 ${date.getDate()}일`}</Box>
     </Card>
   );
 };

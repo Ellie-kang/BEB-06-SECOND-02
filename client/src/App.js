@@ -37,8 +37,8 @@ const App = () => {
     palette: {
       background: {
         paper: '#ffffff',
-        footer: 'rgba(47, 83, 239)',
-        header: 'rgba(47, 83, 239)',
+        footer: '#a9def9',
+        header: '#a9def9',
         lock: 'rgba(47, 83, 239)',
         yellow: "#F0B918"
       },

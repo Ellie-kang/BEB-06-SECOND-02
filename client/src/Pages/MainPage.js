@@ -27,7 +27,7 @@ const MainPage = () => {
       <Grid container spacing={4} justifyContent='center'>
         <Grid item xs={2} />
         <Grid item xs={2} justifyContent='center' mt={10} sx={{ width: '100%', height: 'auto' }}>
-          <ListContainer />
+          <ListContainer id="main-list"/>
         </Grid>
         <Grid item xs={6} mt={10} sx={{ width: '100%', height: 'auto' }}>
           {articles.map((item) => {
