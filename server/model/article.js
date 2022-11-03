@@ -13,10 +13,10 @@ const schema = new mongoose.Schema({
     type: mongoose.ObjectId,
     required: true
   },
-  region: {
-    type: mongoose.ObjectId,
-    required: true
+  city: {
+    type: mongoose.ObjectId
   },
+  like: Array,
   // imgFile 불러오기.
   imgFile: String,
   createdAt: Date

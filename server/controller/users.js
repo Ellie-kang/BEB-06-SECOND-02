@@ -8,7 +8,6 @@ const find = async (req, res) => {
   const _queries = req.query;
   console.log(req.query)
   const user = await User.aggregate([
-    { $match: _queries },
     {
       $lookup: {
         from: 'Takoyaki-Comment',
@@ -41,7 +40,8 @@ const find = async (req, res) => {
         as: 'articles'
       }
     },
-    { $project: { password: 0 } }
+    { $project: { password: 0 } },
+    { $match: _queries }
   ]);
   res.send(user);
 };

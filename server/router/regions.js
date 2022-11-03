@@ -1,7 +1,7 @@
-const {find} = require('../controller/regions');
+const { listByRegion } = require('../controller/regions');
 const express = require('express');
 const router = express.Router();
 
-router.get('/', find);
+router.get('/', listByRegion);
 
 module.exports = router;

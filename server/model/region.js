@@ -11,7 +11,8 @@ const schema = new mongoose.Schema({
   region: {
     type: String,
     required: true
-  }
+  },
+  createdAt: Date
 });
 
 // save 직전 작동하는 pre hook 함수
