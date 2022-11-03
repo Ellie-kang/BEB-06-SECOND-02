@@ -39,7 +39,8 @@ const find = async (req, res) => {
         ],
         as: 'articles'
       }
-    }
+    },
+    { $project: { password: 0 } }
   ]);
   res.send(user);
 };
@@ -62,8 +63,8 @@ const signup = async (req, res) => {
 
     const newDocument = await user.save();
     res.status(201).send(newDocument);
-  } catch (errors) {
-    res.status(400).send({ errors });
+  } catch (error) {
+    res.status(400).json(error);
   }
 };
 
@@ -81,10 +82,10 @@ const login = async (req, res) => {
       res.cookie('token', token, {
         maxAge: 60 * 60 * 1000
       });
-      res.json({ user, token });
+      res.status(200).json({ user, token });
     }
-  } catch (err) {
-    res.status(401).json(err);
+  } catch (error) {
+    res.status(401).json(error);
   }
 };
 
@@ -93,9 +94,10 @@ const uploadProfile = async (req, res) => {
   const { profileImage, userId } = req.body;
   try {
     // userId 찾아서, profileimg 바꾸기.
-    await User.updateOne({ userId: userId }, { profile_image: profileImage });
-  } catch (e) {
-    console.log(e);
+    const user = await User.updateOne({ userId: userId }, { profile_image: profileImage });
+    res.status(200).json({ user });
+  } catch (error) {
+    res.status(400).json(error);
   }
 };
 
@@ -109,8 +111,8 @@ const refresh = async (req, res) => {
     const user = await User.findOne({ userId }, '_id userId profileImage createdAt');
 
     res.status(200).json({ user, token });
-  } catch (err) {
-    res.status(401).send(err);
+  } catch (error) {
+    res.status(401).json(error);
   }
 };
 

@@ -6,6 +6,7 @@ router.get('/', find);
 router.post('/signup', signup);
 router.post('/login', login);
 router.get('/refresh', refresh);
-router.post('/uploadProfile', uploadProfile);
+router.patch('/uploadProfile', uploadProfile);
+
 
 module.exports = router;

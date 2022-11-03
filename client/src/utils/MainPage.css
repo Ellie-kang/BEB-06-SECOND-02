@@ -1,7 +1,7 @@
 
 .nav-list {
-  background-color: #ffffff;
-  border: 1px solid rgba(47, 83, 239);
+  background-color: #F0B918;
+  border: none;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -13,6 +13,11 @@
   font-size: 17px;
 }
 
+/* 헤더랑 포개지는거.*/
+#list-container {
+  
+}
+
 #list-contianer > footer {
   z-index: 1;
   border-bottom-left-radius: 5px;
@@ -20,15 +25,12 @@
 }
 
 #flight {
-  color: rgba(47, 83, 239);
+  color: #F04866;
 }
 
 #flag {
-  color: rgba(47, 83, 239);
+  color: #F04866;
 }
 
-.css-m69qwo-MuiStack-root{
-  color : black;
-}
 
 

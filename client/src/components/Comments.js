@@ -36,7 +36,7 @@ export const Comments = () => {
         <Stack spacing={1} className='comments-text' direction="row" sx={{marginY:"20px", color:"text.secondary" }} >
           <Avatar className='comments-profile' sx={{width: "30px", height: "30px"}} src={context.state.imgSrc} />
           <Box
-            sx={{width: "100%"}}
+            sx={{width: "100%", bgcolor:"inherit", border:"none"}}
             component="input"
             type="text"
             placeholder="댓글 달기..."
