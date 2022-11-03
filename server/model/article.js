@@ -13,7 +13,7 @@ const schema = new mongoose.Schema({
     type: mongoose.ObjectId,
     required: true
   },
-  region: {
+  city: {
     type: mongoose.ObjectId
   },
   // imgFile 불러오기.
