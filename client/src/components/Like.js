@@ -11,27 +11,11 @@ export const Like = () => {
 
   return (
     <div>
-      {isLike ?
-        (<IconButton
-            aria-label="add to favorites"
-            style={{ color:'red'}}
-            onClick={() =>{
-              setIsLike(false)
-        }}>
-
-          <Badge color="secondary" badgeContent={6} showZero>
-            {/*  */}
-            <FavoriteIcon />
-          </Badge>
-          <Typography style={{ color:'black'}}> 좋아요 
-            <span onclick= {() => {
-              setCount(count + 1)
-            }}>
-            </span>{count}
-          </Typography>
-        </IconButton>) :
-        (<IconButton
-            aria-label="add to favorites" 
+      {isLike
+        ? (
+          <IconButton
+            aria-label='add to favorites'
+            style={{ color: 'red' }}
             onClick={() => {
               setIsLike(false);
             }}
