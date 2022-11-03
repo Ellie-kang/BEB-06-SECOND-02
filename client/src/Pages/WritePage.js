@@ -24,8 +24,6 @@ export default function WritePage () {
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
   const { userId } = context.state; // jwt 토큰, userId
-  console.log(context);
-  // imguplaod
   const [writeImg, setWriteImg] = React.useState('');
 
   const steps = ['글쓰기', '미리보기', '작성 완료'];
@@ -72,8 +70,6 @@ export default function WritePage () {
           }, {
             withCredentials: true
           }).then((res) => {
-            console.log('완료');
-            console.log(res.data);
             setActiveStep(activeStep + 1);
           }).catch((err) => {
             alert('게시글 작성 중 문제가 발생했습니다.');

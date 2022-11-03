@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import { AppContext } from '../../AppContext';
 import { Dummy } from '../../Dummy';
 import { NavLink } from 'react-router-dom';
-import Articles from '../Articles';
+import Articles from '../Article';
 
 const AccountArticles = () => {
 
