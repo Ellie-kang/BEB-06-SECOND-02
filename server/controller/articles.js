@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const { sendtoken3, sendtoken5 } = require('../utility/sendtoken');
 
 const find = async (req, res) => {
+  // Article.findOne({city : req.query});
   const _queries = req.query;
   // 기존 아티클 도큐먼트에 다른 DB의 도큐먼트를 가져오는 코드
   const articles = await Article.aggregate([
