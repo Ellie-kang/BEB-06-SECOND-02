@@ -9,21 +9,30 @@ import { Box } from '@mui/system';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import axios from 'axios';
 
-export const Comments = () => {
+export const Comments = (props) => {
   const context = useContext(AppContext);
+  const { userId } = context.state;
   const [comment, setComment] = useState('');
-  const [commentLists, setCommentLists] = useState([]);
-  const [userId, setUserId] = useState('kimhyungu') // context 로 불러와야합니다.나중엔.
+  const [commentLists, setCommentLists] = useState(props.comments);
   const [isValid, setIsValid] = useState(false);
 
+
   const post = (e) => {
-    const newCommentLists = {
-      id: userId,
-      content: comment,
-    };
-    setCommentLists([...commentLists, newCommentLists]);
-    setComment('');
-    setIsValid(false);
+    axios.post('http://localhost:3001/articles/comment', {
+      articleId : props.articleId,
+      content: comment
+    },{withCredentials : true})
+    .then((res)=> {
+      console.log(res.data)
+
+      setComment('');
+      setIsValid(false);
+
+    }).catch((err)=> {
+      console.log(err)
+    })
+    window.location.replace("/")
+    
   };
 
   const onEnterPost = (e) => {
@@ -32,18 +41,25 @@ export const Comments = () => {
     }
   }
 
-  const deleteComment = (targetId) => {
-    const deleteList = commentLists.filter((comment) => {
-      console.log(comment)
-      return comment.content !== targetId
-    });
-    setCommentLists(deleteList);
+  const deleteComment = async (targetId) => {
+    
+    await axios.delete(`http://localhost:3001/articles/comment/${targetId}`
+    , { withCredentials: true }).then((res)=> {
+      console.log(res)
+      const deleteList = commentLists.filter((comment) => comment._id !== targetId);
+      setCommentLists(deleteList);
+    }).catch((err)=> {
+      console.log(err)
+    })
+
+    
   }
+      
   return (
     <ThemeProvider theme={context.state.theme}>
       <Stack>
         <Stack spacing={1} className='comments-text' direction="row" sx={{marginY:"20px", color:"text.secondary" }} >
-          <Avatar className='comments-profile' sx={{width: "30px", height: "30px"}} src={context.state.userProfileImg} />
+          <Avatar className='comments-profile' sx={{width: "30px", height: "30px"}} src={context.state.imgSrc} />
           <Box
             sx={{width: "100%", bgcolor:"inherit", border:"none"}}
             component="input"
@@ -69,10 +85,10 @@ export const Comments = () => {
         {commentLists.map((comment) => {
           return (
             <Stack spacing={1} className="users-comments" direction="row" sx={{marginY:"5px", color:"text.secondary" }} >
-              <Avatar sx={{width: "30px", height: "30px"}} src=''/* db에서 불러와야하는것. */ />
-              <Typography component="span" sx={{textAlign:"center"}}>{userId}</Typography>
+              <Avatar sx={{width: "30px", height: "30px"}} src={context.state.imgSrc} />
+              <Typography component="span" sx={{textAlign:"center"}}>{comment.author[0].userId}</Typography>
               <Typography component="p">{comment.content}
-                <Button onClick={(id) => deleteComment(comment.content)}>
+                <Button onClick={(_id) => deleteComment(comment._id)}>
                   <HighlightOffIcon />
                 </Button>
               </Typography>
@@ -83,5 +99,6 @@ export const Comments = () => {
       </ThemeProvider>
   )  
 }
+
 
 
