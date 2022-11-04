@@ -117,34 +117,65 @@ const write = async (req, res) => {
       res.status(401).send('transaction err');
     }
   } catch (error) {
-    res.status(400).json(error);
+    const msg = {};
+    msg[`${error.name}`] = `${error.message}`;
+    console.error(`${error.name} : ${error.message}`);
+    res.status(400).json(msg);
   }
 };
 
 const comment = async (req, res) => {
   try {
-    if (!req.auth) throw new Error('Unauthorized to write an article. Please sign in.');
-    const { content, postId } = req.body;
-    const author = await User.findOne({ userId: req.auth.userId }, '_id');
+    const token = req.cookies.token;
+    const data = jwt.verify(token, process.env.SECRET);
+    const author = await User.findOne({ userId: data.userId }, '_id account');
+    const { content, articleId } = req.body;
 
     const comment = new Comment({
       content,
-      postId,
+      articleId,
       userId: author._id
     });
 
     const newDocument = await comment.save();
     res.status(201).send(newDocument);
   } catch (error) {
-    res.status(400).json(error);
+    const msg = {};
+    msg[`${error.name}`] = `${error.message}`;
+    console.error(`${error.name} : ${error.message}`);
+    res.status(400).json(msg);
   }
 };
 
 const like = async (req, res) => {
   try {
-    res.status(200).send();
+    const token = req.cookies.token;
+    const data = jwt.verify(token, process.env.SECRET);
+    const user = await User.findOne({ userId: data.userId }, '_id userId');
+
+    const { articleId } = req.body;
+    const article = await Article.findById(articleId);
+
+    // 중복 아이디 검사 조건문
+    const _loverIdx = article.like.findIndex(_lover => _lover.userId === user.userId);
+    const articleLover = article.like[_loverIdx];
+
+    // 만약 like를 누른 사람이 없다면
+    // like 목록에 추가하고
+    // 있을 경우 지운다
+    if (!articleLover) {
+      article.like.push(user);
+    } else {
+      article.like.splice(_loverIdx, 1);
+    }
+
+    const updatedDocument = await article.save();
+    res.status(201).json({ updatedDocument, likeCount: updatedDocument.like.length });
   } catch (error) {
-    res.status(400).json(error);
+    const msg = {};
+    msg[`${error.name}`] = `${error.message}`;
+    console.error(`${error.name} : ${error.message}`);
+    res.status(400).json(msg);
   }
 };
 
