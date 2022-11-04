@@ -9,7 +9,6 @@ export const Like = () => {
   const [isLike, setIsLike] = useState(false);
   const [count, setCount] = useState(1);
 
-  axios.patch('http://localhost:3001/articles/liek',)
 
   return (
     <div>
