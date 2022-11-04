@@ -86,11 +86,18 @@ const find = async (req, res) => {
 const _delete = async (req, res) => {
   try {
     const token = req.cookies.token;
-    jwt.verify(token, process.env.SECRET);
+    const data = jwt.verify(token, process.env.SECRET);
+    const author = await User.findOne({ userId: data.userId }, '_id account');
 
     const { id } = req.params;
+    const comment = await Comment.findById(id);
+    if (!comment) throw new Error('Not an existed comment');
+
+    console.log(author._id.toString(), comment.userId.toString());
+    if (author._id.toString() !== comment.userId.toString()) throw new Error('You did not write the comment you try to delete.');
+
     const deleted = await Comment.findByIdAndDelete(id);
-    if (!deleted) throw new Error('Not an existed article');
+
     res.status(202).json({ deleted });
   } catch (error) {
     const msg = {};
@@ -122,7 +129,7 @@ const write = async (req, res) => {
       title,
       content,
       imgFile,
-      _city,
+      city: _city._id,
       userId: author._id
     });
 
