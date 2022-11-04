@@ -95,10 +95,12 @@ const login = async (req, res) => {
 
 // profile 사진 업로드.
 const uploadProfile = async (req, res) => {
-  const { profileImage, userId } = req.body;
+  const { profileImage } = req.body;
   try {
-    // userId 찾아서, profileimg 바꾸기.
-    const user = await User.updateOne({ userId: userId }, { profile_image: profileImage });
+    const token = req.cookies.token;
+    const data = jwt.verify(token, process.env.SECRET);
+    const userId = data.userId;
+    const user = await User.updateOne({ userId: userId }, { profileImage: profileImage });
     res.status(200).json({ user });
   } catch (error) {
     const msg = {};

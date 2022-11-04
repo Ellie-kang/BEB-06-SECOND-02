@@ -41,7 +41,7 @@ const AccountPage = () => {
   const handleImgToChange = () => {
     axios.patch('http://localhost:3001/users/uploadProfile', {
       userId: userId,
-      profile_image: imgSrc
+      profileImage: imgSrc
     }, {
       withCredentials: true
     });
