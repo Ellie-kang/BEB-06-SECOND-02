@@ -10,7 +10,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import '../utils/Article.css';
 import '../utils/Font.css';
-import { Box } from '@mui/material';
+import { Box, Link } from '@mui/material';
 
 const Article = (props) => {
   const context = useContext(AppContext);
@@ -23,7 +23,8 @@ const Article = (props) => {
       sx={{ borderRadius: '10px' }}
     >
       <CardHeader
-        sx={{bgcolor: "background.header"}}
+        // sx={{bgcolor: "#ffd2c9"}}
+        sx={{bgcolor: "#fde1e1"}}
         avatar={
           <Avatar src={imgFile} aria-label='recipe' />
         }
