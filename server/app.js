@@ -18,6 +18,7 @@ const port = 3001;
 const articleRouter = require('./router/articles');
 const userRouter = require('./router/users');
 const web3Router = require('./router/web3');
+const regionRouter = require('./router/regions');
 
 app.use(cors({
   origin: true,
@@ -34,6 +35,7 @@ app.use(cookieParser());
 app.use('/articles', articleRouter);
 app.use('/users', userRouter);
 app.use('/web3', web3Router);
+app.use('/regions', regionRouter);
 
 app.get('/', (req, res) => {
   res.status(200).send('Welcome');

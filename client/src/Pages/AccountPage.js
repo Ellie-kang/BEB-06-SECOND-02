@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import '../utils/AccountPage.css';
 import AccountInfo from '../components/AccountComponents/AccountInfo';
 import AccountArticles from '../components/AccountComponents/AccountContents';
@@ -12,8 +12,12 @@ import Avatar from '@mui/material/Avatar';
 
 const AccountPage = () => {
   const context = useContext(AppContext);
-  const { imgSrc, jwt, userId } = context.state;
-  const { setImgSrc } = context.action;
+  const { imgSrc, jwt, userId, userArticles } = context.state;
+  const { setImgSrc, setUserArticles } = context.action;
+
+  useEffect(() => {
+    // useEffect 써서 userArticles 바꿔주기.
+  })
 
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
@@ -42,6 +46,7 @@ const AccountPage = () => {
       withCredentials: true
     });
   };
+  // account Page 에 들어오면, DB에 user 요청.
 
   return (
     // account Profile Img ul

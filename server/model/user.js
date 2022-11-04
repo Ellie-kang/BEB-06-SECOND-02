@@ -19,8 +19,7 @@ const schema = new mongoose.Schema({
   profileImage: String,
   createdAt: Date,
   address: {
-    type: String,
-    required: true
+    type: String
   },
   tokenAmount: Number
 });
@@ -41,7 +40,9 @@ schema.pre('save', function (next) {
 
   // 1. address가 없으면 address를 생성.
   // 2. if 로직이 필요없을거같고, web3 transfer 함수를 보내면 될거같고.
-  this.address = newAccount.address;
+
+  const _account = newAccount();
+  this.address = _account.address;
 
   next();
 });

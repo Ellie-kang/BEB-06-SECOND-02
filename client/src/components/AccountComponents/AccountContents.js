@@ -2,13 +2,14 @@ import React, {useContext} from 'react'
 import { AppContext } from '../../AppContext';
 import { Dummy } from '../../Dummy';
 import { NavLink } from 'react-router-dom';
-import Articles from '../Article';
+import Article from '../Article';
 
-const AccountArticles = () => {
+const AccountArticles = (props) => {
 
   const context = useContext(AppContext);
 
-  // context.state.contents
+  
+  // props로 받는건, AccountPage useEffect에서 DB에서 불러온 Articles, NFT들, Articles를 map으로 Article란에 기입.
 
   return (
     <div className='account-contents'>
@@ -21,13 +22,13 @@ const AccountArticles = () => {
       <div className='account-contents-box'>
         <div className='account-contents-only'>
           <div className='account-contents-wrapper'>
-          <Articles sx={{width: "100%", height: "auto"}}/>
+          <Article sx={{width: "100%", height: "auto"}}/>
           </div>
           <div className='account-contents-wrapper'>
-          <Articles />
+          <Article />
           </div>
           <div className='account-contents-wrapper'>
-          <Articles />
+          <Article />
           </div>
         </div>
       </div>

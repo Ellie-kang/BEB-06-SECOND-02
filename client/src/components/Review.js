@@ -22,9 +22,9 @@ export default function Review (props) {
         <Grid item xs={12}>
           <Typography sx={{ width: '100%', height: 'auto' }} component='img' src={props.writeImg} alt='' />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={6}>
           <Typography variant='h6' gutterBottom sx={{ mt: 2 }}>
-            {props.content}
+            {props.content}asasd
           </Typography>
         </Grid>
         <Grid item container direction='column' xs={12}>

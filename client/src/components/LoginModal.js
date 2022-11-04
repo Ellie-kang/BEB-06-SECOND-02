@@ -40,6 +40,9 @@ const LoginModal = () => {
         setIsLoggedin(true);
         setUserId(res.data.user.userId);
         setImgSrc(res.data.user.profileImage);
+        console.log(res.data.user)
+        setAddress(res.data.user.address)
+
 
         close();
       }).catch((err) => {

@@ -22,16 +22,17 @@ const App = () => {
   const [tokenAmount, setTokenAmount] = useState('');
   const [userArticles, setUserArticles] = useState('');
   const [userNft, setUserNft] = useState('');
-  const [address, setAddress] = useState('0x1929381920399281');
+  const [address, setAddress] = useState('');
   const [imgSrc, setImgSrc] = useState('');
   const [jwt, setJwt] = useState('');
   const [cookie, setCookie, deleteCookie] = useCookies(['token']);
-
   // login 상태
   const [isLoggedin, setIsLoggedin] = useState(false);
   // 회원가입 모달
   const [loginmodalOpen, setLoginModalOpen] = useState(false);
   const [signupModalOpen, setSignupModalOpen] = useState(false);
+    // 메인페이지 Articles
+  const [mainArticles, setMainArticles] = useState([]);
   // mui 팔레트
   const theme = createTheme({
     palette: {
@@ -54,6 +55,7 @@ const App = () => {
     }
   });
 
+
   const context = {
     state: {
       userId: userId,
@@ -68,7 +70,8 @@ const App = () => {
       signupmodalOpen: signupModalOpen,
       theme: theme,
       jwt: jwt,
-      cookie: cookie
+      cookie: cookie,
+      mainArticles: mainArticles
     },
     action: {
       setUserId: setUserId,
@@ -83,7 +86,8 @@ const App = () => {
       setSignupModalOpen: setSignupModalOpen,
       setJwt: setJwt,
       deleteCookie: deleteCookie,
-      setCookie: setCookie
+      setCookie: setCookie,
+      setMainArticles: setMainArticles
     }
   };
 
