@@ -25,6 +25,7 @@ const Header = () => {
       })
         .then((res) => {
           // Web API에서 받은 token 값을 jwt context에 넣습니다.
+          setTokenAmount(res.data.user.tokenAmount)
           setJwt(res.data.token);
           setIsLoggedin(true);
           setUserId(res.data.user.userId);

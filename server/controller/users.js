@@ -53,7 +53,7 @@ const signup = async (req, res) => {
     // 여기 있는 account 데이터는 추후 이더리움 노드와 연동되면 채워질 부분입니다.
     const user = new User({
       userId,
-      password
+      password,
     });
 
     // user 모델에서 mongoose-unique-validator 플러그인을 적용한 채로
@@ -78,7 +78,7 @@ const login = async (req, res) => {
     if (!user || !result) throw new Error('Authentication failed. Invalid user or password.');
     else {
       // profile 불러오기 추가. 로그인시.
-      const user = await User.findOne({ userId }, '_id userId profileImage createdAt address');
+      const user = await User.findOne({ userId }, '_id userId profileImage createdAt address tokenAmount');
       const token = jwt.sign({ userId }, process.env.SECRET, { expiresIn: '1h' });
       res.cookie('token', token, {
         maxAge: 60 * 60 * 1000
@@ -115,7 +115,7 @@ const refresh = async (req, res) => {
     const token = req.cookies.token;
     const data = jwt.verify(token, process.env.SECRET);
     const userId = data.userId;
-    const user = await User.findOne({ userId }, '_id userId profileImage createdAt address');
+    const user = await User.findOne({ userId }, '_id userId profileImage createdAt address tokenAmount');
 
     res.status(200).json({ user, token });
   } catch (error) {

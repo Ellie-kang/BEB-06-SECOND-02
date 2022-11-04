@@ -11,9 +11,18 @@ const userSend = async (req, res) => {
   try {
     const data = jwt.verify(token, process.env.SECRET);
     const userId = data.userId;
-    const user = await User.findOne({ userId }, 'address');
+    const user = await User.findOne({ userId }, 'address tokenAmount');
+    const recip = await User.findOne({address: recipient}, 'tokenAmount');
+
     const result = await user_send(user.address, recipient, amount);
+
     if(result){
+      await User.findOneAndUpdate({userId: userId}, {tokenAmount: user.tokenAmount -= Number(amount)}, {
+        returnOriginal: false
+      });
+      await User.findOneAndUpdate({address: recipient}, {tokenAmount: recip.tokenAmount += Number(amount)}, {
+        returnOriginal: false
+      });
       res.status(200).json('complete');
     }
     else{

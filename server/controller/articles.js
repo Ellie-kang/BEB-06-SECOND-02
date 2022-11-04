@@ -116,7 +116,7 @@ const write = async (req, res) => {
 
     const token = req.cookies.token;
     const data = jwt.verify(token, process.env.SECRET);
-    const author = await User.findOne({ userId: data.userId }, '_id address');
+    const author = await User.findOne({ userId: data.userId }, '_id address tokenAmount');
     const _city = await Region.findOne({ city: city }, '_id');
 
     // 여기서 필요한 userId는 User DB의 _id를 기입합니다.
@@ -131,6 +131,10 @@ const write = async (req, res) => {
     });
 
     const result = await sendtoken5(author.address);
+    
+    await User.findOneAndUpdate({userId: data.userId}, {tokenAmount: author.tokenAmount += 5}, {
+      returnOriginal: false
+    });
 
     const newDocument = await article.save();
     res.status(201).json({newDocument, result});
@@ -153,6 +157,12 @@ const comment = async (req, res) => {
       content,
       articleId,
       userId: author._id
+    });
+
+    const result = await sendtoken3(author.address);
+
+    await User.findOneAndUpdate({userId: data.userId}, {tokenAmount: author.tokenAmount += 3}, {
+      returnOriginal: false
     });
 
     const newDocument = await comment.save();
