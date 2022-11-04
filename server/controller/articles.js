@@ -131,7 +131,7 @@ const write = async (req, res) => {
     });
 
     const result = await sendtoken5(author.address);
-    
+
     await User.findOneAndUpdate({userId: data.userId}, {tokenAmount: author.tokenAmount += 5}, {
       returnOriginal: false
     });
@@ -150,7 +150,7 @@ const comment = async (req, res) => {
   try {
     const token = req.cookies.token;
     const data = jwt.verify(token, process.env.SECRET);
-    const author = await User.findOne({ userId: data.userId }, '_id address');
+    const author = await User.findOne({ userId: data.userId }, '_id address tokenAmount');
     const { content, articleId } = req.body;
 
     const comment = new Comment({

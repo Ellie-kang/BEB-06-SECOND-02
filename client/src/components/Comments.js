@@ -27,11 +27,11 @@ export const Comments = (props) => {
 
       setComment('');
       setIsValid(false);
-
+      window.location.replace("/")
     }).catch((err)=> {
       console.log(err)
     })
-    window.location.replace("/")
+    
     
   };
 
