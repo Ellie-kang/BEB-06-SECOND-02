@@ -83,6 +83,30 @@ const find = async (req, res) => {
   res.send(articles);
 };
 
+const _delete = async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const data = jwt.verify(token, process.env.SECRET);
+    const author = await User.findOne({ userId: data.userId }, '_id account');
+
+    const { id } = req.params;
+    const comment = await Comment.findById(id);
+    if (!comment) throw new Error('Not an existed comment');
+
+    console.log(author._id.toString(), comment.userId.toString());
+    if (author._id.toString() !== comment.userId.toString()) throw new Error('You did not write the comment you try to delete.');
+
+    const deleted = await Comment.findByIdAndDelete(id);
+
+    res.status(202).json({ deleted });
+  } catch (error) {
+    const msg = {};
+    msg[`${error.name}`] = `${error.message}`;
+    console.error(`${error.name} : ${error.message}`);
+    res.status(406).json(msg);
+  }
+};
+
 const write = async (req, res) => {
   try {
     // Authorization 헤더에 jwt token을 넣고 보낸 요청인 경우
@@ -105,7 +129,7 @@ const write = async (req, res) => {
       title,
       content,
       imgFile,
-      _city,
+      city: _city._id,
       userId: author._id
     });
 
@@ -181,6 +205,7 @@ const like = async (req, res) => {
 
 module.exports = {
   find,
+  _delete,
   write,
   comment,
   like
