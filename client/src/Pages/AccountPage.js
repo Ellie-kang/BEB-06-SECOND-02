@@ -16,8 +16,15 @@ const AccountPage = () => {
   const { setUserArticles, setUserProfileImg } = context.action;
 
   useEffect(() => {
-    // useEffect 써서 userArticles 바꿔주기.
-  });
+    axios.get("http://localhost:3001/articles")
+    .then((res) => {
+      const response = res.data;
+      const myArticles = [...response].filter((item) => {
+        return userId === item.author.userId;
+      })
+      setUserArticles(myArticles);
+    })
+  }, [userId]);
 
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
@@ -75,7 +82,7 @@ const AccountPage = () => {
       </div>
       <AccountSend />
       <div className='account-contents-container'>
-        <AccountArticles />
+        <AccountArticles userArticles={userArticles} />
         <AccountNft />
       </div>
     </div>

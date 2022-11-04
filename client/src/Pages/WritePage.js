@@ -124,7 +124,7 @@ export default function WritePage () {
     <ThemeProvider theme={theme}>
       <Container component='div' maxWidth='md' sx={{ mb: 4, }}>
         <Paper elevation={5} sx={{ my: { xs: 3, md: 6 }, p: { xs: 3, md: 6 }, }}>
-          <Typography component='h1' variant='h4' sx={{color: 'black', margin:0}}>
+          <Typography component='h1' variant='h4' sx={{color: '#a9def9', margin:0, textAlign:"center"}}>
             게시글 작성하기
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>

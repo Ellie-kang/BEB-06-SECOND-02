@@ -53,7 +53,7 @@ const Header = () => {
           <NavLink style={{ textDecoration: 'none' }} to='/account'><HeaderButton name='Send' cb={() => { }} /></NavLink>
           <NavLink style={{ textDecoration: 'none' }} to='/mint'><HeaderButton name='Mint' cb={() => { }} /></NavLink>
           <NavLink style={{ textDecoration: 'none' }} to='/write'><HeaderButton name='Write' cb={() => { }} /></NavLink>
-          <NavLink to='/account'><Avatar alt='Remy Sharp' src={context.state.userProfileImg} /></NavLink>
+          <NavLink to='/account'><Avatar alt="" src={context.state.userProfileImg} /></NavLink>
         </Stack>
       </>
     );

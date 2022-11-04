@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { Paper, Typography } from '@mui/material';
 
+
 const MainPage = () => {
   const context = useContext(AppContext);
     //mainPageArticles
@@ -41,7 +42,17 @@ const MainPage = () => {
         </Grid>
         <Grid item xs={6} mt={10} sx={{ width: '100%', height: 'auto' }}>
           {[...mainArticles].reverse().map((item) => {
-            return <Article id={item._id} userId={item.author.userId} title={item.title} content={item.content} imgFile={item.imgFile} userProfile={item.author.profileImage} comments={item.comments} />;
+            return (
+              <Article
+                key={item._id}
+                id={item._id}
+                userId={item.author.userId}
+                title={item.title}
+                content={item.content}
+                imgFile={item.imgFile}
+                userProfile={item.author.profileImage}
+                comments={item.comments}
+                />)
           })}
         </Grid>
         <Grid item xs={12}>
