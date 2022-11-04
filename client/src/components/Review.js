@@ -22,14 +22,14 @@ export default function Review (props) {
       </Typography>
       <Grid container spacing={2} sx={{ width: '100%', height: 'auto' }}>
         <Grid item xs={12}>
-          <Typography sx={{ width: '100%', height: 'auto' }} component='img' src={props.writeImg} alt='' />
+          <Typography sx={{ maxHeight:"500px", width: '100%', height: 'auto'}} component='img' src={props.writeImg} alt='' />
         </Grid>
         <Grid item xs={6}>
           <Typography variant='h6' gutterBottom sx={{ mt: 2 }}>
             {props.content}
           </Typography>
         </Grid>
-        <Grid item xs={3} row>
+        <Grid item xs={3}>
           {region ? <Chip label={region} sx={{mr: 2,bgcolor:"#a9def9", color: "white", fontWeight:600}}/> : null}
           {city ? <Chip label={city} sx={{mr: 2, bgcolor:"#a9def9", color: "white", fontWeight:600}}/> : null}
         </Grid>

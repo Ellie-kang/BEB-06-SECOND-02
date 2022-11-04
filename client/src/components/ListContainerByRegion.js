@@ -20,8 +20,7 @@ const ListContainerByRegion = ({primary}) => {
     // post parameter로.
     axios.get(`http://localhost:3001/articles?city=${e.target.innerText}`)
     .then((res) => {
-      console.log(res.data)
-      //setMainArticles(res.data)
+      setMainArticles(res.data)
     })
   }, [mainArticles])
 

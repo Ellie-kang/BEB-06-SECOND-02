@@ -6,7 +6,7 @@ import { AppContext } from '../AppContext';
 import ListContainer from '../components/ListContainer';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
-import { Paper, Typography , LinearProgress } from '@mui/material';
+import { Paper, Typography, LinearProgress } from '@mui/material';
 
 const MainPage = () => {
   const context = useContext(AppContext);
@@ -41,7 +41,7 @@ const MainPage = () => {
         </Grid>
         <Grid item xs={6} mt={10} sx={{ width: '100%', height: 'auto' }}>
           {[...mainArticles].reverse().map((item) => {
-            return <Article key={item._id} userId={item.author.userId} title={item.title} content={item.content} imgFile={item.imgFile} />;
+            return <Article key={item._id} userId={item.author.userId} title={item.title} content={item.content} imgFile={item.imgFile} userProfile={item.author.profileImage} />;
           })}
         </Grid>
         <Grid item xs={12}>

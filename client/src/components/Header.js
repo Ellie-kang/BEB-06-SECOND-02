@@ -16,7 +16,7 @@ import axios from 'axios';
 const Header = () => {
   const context = useContext(AppContext);
   const { cookie } = context.state;
-  const { setUserId, setJwt, setEmail, setTokenAmount, setUserArticles, setUserNft, setLoginModalOpen, setIsLoggedin, setAddress, setImgSrc } = context.action;
+  const { setUserId, setJwt, setEmail, setTokenAmount, setUserArticles, setUserNft, setLoginModalOpen, setIsLoggedin, setAddress,setUserProfileImg } = context.action;
 
   useEffect(() => {
     if (cookie.token !== undefined) {
@@ -28,7 +28,7 @@ const Header = () => {
           setJwt(res.data.token);
           setIsLoggedin(true);
           setUserId(res.data.user.userId);
-          setImgSrc(res.data.user.profileImage);
+          setUserProfileImg(res.data.user.profileImage);
           setAddress(res.data.user.address);
         }).catch((err) => {
           setIsLoggedin(false);
@@ -52,7 +52,7 @@ const Header = () => {
           <NavLink style={{ textDecoration: 'none' }} to='/account'><HeaderButton name='Send' cb={() => { }} /></NavLink>
           <NavLink style={{ textDecoration: 'none' }} to='/mint'><HeaderButton name='Mint' cb={() => { }} /></NavLink>
           <NavLink style={{ textDecoration: 'none' }} to='/write'><HeaderButton name='Write' cb={() => { }} /></NavLink>
-          <NavLink to='/account'><Avatar alt='Remy Sharp' src={context.state.imgSrc} /></NavLink>
+          <NavLink to='/account'><Avatar alt='Remy Sharp' src={context.state.userProfileImg} /></NavLink>
         </Stack>
       </>
     );

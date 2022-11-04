@@ -33,15 +33,17 @@ export const Comments = () => {
   }
 
   const deleteComment = (targetId) => {
-    const deleteList = commentLists.filter((comment) => comment.id !== targetId);
+    const deleteList = commentLists.filter((comment) => {
+      console.log(comment)
+      return comment.content !== targetId
+    });
     setCommentLists(deleteList);
   }
-      
   return (
     <ThemeProvider theme={context.state.theme}>
       <Stack>
         <Stack spacing={1} className='comments-text' direction="row" sx={{marginY:"20px", color:"text.secondary" }} >
-          <Avatar className='comments-profile' sx={{width: "30px", height: "30px"}} src={context.state.imgSrc} />
+          <Avatar className='comments-profile' sx={{width: "30px", height: "30px"}} src={context.state.userProfileImg} />
           <Box
             sx={{width: "100%", bgcolor:"inherit", border:"none"}}
             component="input"
@@ -67,10 +69,10 @@ export const Comments = () => {
         {commentLists.map((comment) => {
           return (
             <Stack spacing={1} className="users-comments" direction="row" sx={{marginY:"5px", color:"text.secondary" }} >
-              <Avatar sx={{width: "30px", height: "30px"}} src={context.state.imgSrc} />
+              <Avatar sx={{width: "30px", height: "30px"}} src=''/* db에서 불러와야하는것. */ />
               <Typography component="span" sx={{textAlign:"center"}}>{userId}</Typography>
               <Typography component="p">{comment.content}
-                <Button onClick={(id) => deleteComment(comment.id)}>
+                <Button onClick={(id) => deleteComment(comment.content)}>
                   <HighlightOffIcon />
                 </Button>
               </Typography>

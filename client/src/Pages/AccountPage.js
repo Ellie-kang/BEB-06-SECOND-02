@@ -12,12 +12,12 @@ import Avatar from '@mui/material/Avatar';
 
 const AccountPage = () => {
   const context = useContext(AppContext);
-  const { imgSrc, jwt, userId, userArticles } = context.state;
-  const { setImgSrc, setUserArticles } = context.action;
+  const { userProfileImg, jwt, userId, userArticles } = context.state;
+  const { setUserArticles, setUserProfileImg } = context.action;
 
   useEffect(() => {
     // useEffect 써서 userArticles 바꿔주기.
-  })
+  });
 
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
@@ -25,7 +25,7 @@ const AccountPage = () => {
 
     return new Promise((resolve) => {
       reader.onload = () => {
-        setImgSrc(reader.result);
+        setUserProfileImg(reader.result);
         resolve();
       };
     });
@@ -41,10 +41,10 @@ const AccountPage = () => {
   const handleImgToChange = () => {
     axios.patch('http://localhost:3001/users/uploadProfile', {
       userId: userId,
-      profileImage: imgSrc
+      profileImage: userProfileImg
     }, {
       withCredentials: true
-    });
+    }).then((res) => console.log(res));
   };
   // account Page 에 들어오면, DB에 user 요청.
 
@@ -54,7 +54,7 @@ const AccountPage = () => {
     <div className='account-contianer'>
       <div className='account-wrapper'>
         <div className='account-profile'>
-          {imgSrc ? <Box component='img' sx={{ width: '300px', height: '250px' }} src={imgSrc} alt='' /> : <Avatar sx={{ width: '200px', height: '200px' }} alt='Remy Sharp' />}
+          {userProfileImg ? <Box component='img' sx={{ width: '300px', height: '250px' }} src={userProfileImg} alt='' /> : <Avatar sx={{ width: '200px', height: '200px' }} alt='Remy Sharp' />}
           <input id='contained-button-file' style={{ display: 'none' }} type='file' accept='image/*' name='image' onChange={handleImageChange} />
           <label htmlFor='contained-button-file'>
             <Button
