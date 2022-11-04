@@ -6,7 +6,7 @@ import { AppContext } from '../AppContext';
 import ListContainer from '../components/ListContainer';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
-import { Paper, Typography, LinearProgress } from '@mui/material';
+import { Paper, Typography, LinearProgress, } from '@mui/material';
 
 const MainPage = () => {
   const context = useContext(AppContext);
