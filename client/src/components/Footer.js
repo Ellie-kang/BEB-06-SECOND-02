@@ -39,7 +39,7 @@ const Footer = () => {
                 <Typography variant='subtitle1'>
                   ⚒️ 강영아  김현구  홍찬우  박희인 ⚒️
                 </Typography>
-                <Typography variant='overline' align='end'>
+                <Typography variant='overline'>
                   2022@codeStates BEB6th 타코야끼
                 </Typography>
               </Stack>

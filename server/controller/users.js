@@ -98,7 +98,7 @@ const uploadProfile = async (req, res) => {
   const { profileImage, userId } = req.body;
   try {
     // userId 찾아서, profileimg 바꾸기.
-    const user = await User.updateOne({ userId: userId }, { profile_image: profileImage });
+    const user = await User.updateOne({ userId: userId }, { profileImage: profileImage });
     res.status(200).json({ user });
   } catch (error) {
     const msg = {};
