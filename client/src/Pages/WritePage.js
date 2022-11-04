@@ -1,5 +1,4 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -15,9 +14,11 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import axios from 'axios';
 import { AppContext } from '../AppContext';
+import "../utils/WritePage.css"
 
 export default function WritePage () {
   const context = useContext(AppContext);
+  const {jwt} = context.state;
   const [activeStep, setActiveStep] = React.useState(0);
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
@@ -27,10 +28,6 @@ export default function WritePage () {
   const [city, setCity] = React.useState('');
 
   // region 은 넣을필요 없음. 분류할떄만. city만 post
-
-  console.log(region, city)
-
-
   const steps = ['글쓰기', '미리보기', '작성 완료'];
 
   function getStepContent (step) {
@@ -64,9 +61,7 @@ export default function WritePage () {
           writeImg={writeImg}
           setWriteImg={setWriteImg}
           region={region}
-          setRegion={setRegion}
           city={city}
-          setCity={setCity}
           />);
       case 2:
         return (
@@ -88,6 +83,8 @@ export default function WritePage () {
     }
   }
 
+  // axios 에러가 클라이언트에서 나는거같습니다.
+
   const handleNext = () => {
     if (title === '' || content === '') {
       alert('빈칸을 채워주세요');
@@ -101,7 +98,8 @@ export default function WritePage () {
             userId: userId,
             title: title,
             content: content,
-            imgFile: writeImg
+            imgFile: writeImg,
+            city: city,
           }, {
             withCredentials: true
           }).then((res) => {
@@ -122,15 +120,14 @@ export default function WritePage () {
   const theme = createTheme();
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Container component='main' maxWidth='md' sx={{ mb: 4, }}>
-        <Paper variant='outlined' sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 },  }}>
-          <Typography component='h1' variant='h4' align='center' sx={{color: 'black'}}>
+      <Container component='div' maxWidth='md' sx={{ mb: 4, }}>
+        <Paper elevation={5} sx={{ my: { xs: 3, md: 6 }, p: { xs: 3, md: 6 }, }}>
+          <Typography component='h1' variant='h4' align='center' sx={{color: 'black', margin:0}}>
             게시글 작성하기
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
-              <Step key={label}>
+              <Step className='step-container' key={label} >
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}

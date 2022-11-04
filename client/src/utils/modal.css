@@ -1,3 +1,4 @@
+
 .modal.openModal {
   font-family: Poppins, sans-serif;
   line-height: 1.5;
@@ -8,7 +9,7 @@
   align-items: center;
   /* 팝업이 열릴때 스르륵 열리는 효과 */
   animation: modal-bg-show 0.4s;
-  z-index: 0;
+  z-index: 99;
 }
 
 .modal {
@@ -18,13 +19,10 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 99;
+  z-index: 1;
   background-color: rgba(0, 0, 0, 0.6);
   }
 
-  .css-1999axt-MuiAvatar-root {
-    background-color: rgba(47, 83 239);
-  }
   .modal button {
     font-family: Poppins, sans-serif;
     line-height: 1.5;
@@ -33,7 +31,7 @@
     outline: none;
     cursor: pointer;
     border: 0;
-    background-color: rgba(47, 83, 239);
+    background-color: #a9def9;
     color: #ffffff;
   }
 
@@ -42,7 +40,7 @@
     max-width: 450px;
     margin: 0 auto;
     border-radius: 0.3rem;
-    background-color: #fff;
+    background-color: #ffffff;
     /* 팝업이 열릴때 스르륵 열리는 효과 */
     animation: modal-show 0.3s;
     overflow: hidden;
@@ -50,7 +48,7 @@
   .modal > section > header {
     position: relative;
     padding: 16px 64px 16px 16px;
-    background-color: rgba(47, 83, 239);
+    background-color: #a9def9;
     font-weight: 700;
     color: #ffffff;
   }
@@ -92,7 +90,7 @@
     font-weight: 600;
     padding: 6px 12px;
     color: #ffffff;
-    background-color: rgba(47, 83 239);
+    background-color: #a9def9;
     border-radius: 5px;
     font-size: 13px;
   }
