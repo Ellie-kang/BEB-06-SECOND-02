@@ -8,7 +8,7 @@
 }
 
 .nav-list {
-  background-color: white;
+  background-color:white;
   border: none;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -46,11 +46,11 @@
 }
 
 #flight {
-  color: #a9def9;
+  color: rgba(231,127,112);
 }
 
 #flag {
-  color: #a9def9;
+  color: rgba(113,122,133);
 }
 
 
