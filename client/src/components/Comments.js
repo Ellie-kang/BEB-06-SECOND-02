@@ -1,11 +1,13 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext,useEffect } from 'react'
 import { AppContext } from "../AppContext";
 import { ThemeProvider } from '@mui/material/styles';
-import { Stack,Button, fabClasses } from '@mui/material';
+import { Stack,Button, fabClasses, Chip } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import "../utils/Comments.css"
 import { Box } from '@mui/system';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import axios from 'axios';
 
 export const Comments = () => {
   const context = useContext(AppContext);
@@ -30,6 +32,11 @@ export const Comments = () => {
     }
   }
 
+  const deleteComment = (targetId) => {
+    const deleteList = commentLists.filter((comment) => comment.id !== targetId);
+    setCommentLists(deleteList);
+  }
+      
   return (
     <ThemeProvider theme={context.state.theme}>
       <Stack>
@@ -62,7 +69,11 @@ export const Comments = () => {
             <Stack spacing={1} className="users-comments" direction="row" sx={{marginY:"5px", color:"text.secondary" }} >
               <Avatar sx={{width: "30px", height: "30px"}} src={context.state.imgSrc} />
               <Typography component="span" sx={{textAlign:"center"}}>{userId}</Typography>
-              <Typography component="p">{comment.content}</Typography>
+              <Typography component="p">{comment.content}
+                <Button onClick={(id) => deleteComment(comment.id)}>
+                  <HighlightOffIcon />
+                </Button>
+              </Typography>
             </Stack>
           )
         })}

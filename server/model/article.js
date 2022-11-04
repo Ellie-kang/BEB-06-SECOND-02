@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const schema = new mongoose.Schema({
   title: {
@@ -16,11 +17,22 @@ const schema = new mongoose.Schema({
   city: {
     type: mongoose.ObjectId
   },
-  like: Array,
+  like: {
+    type: [
+      new mongoose.Schema({
+        userId: {
+          type: String,
+          required: true
+        }
+      })
+    ]
+  },
   // imgFile 불러오기.
   imgFile: String,
   createdAt: Date
 });
+
+schema.plugin(uniqueValidator);
 
 // save 직전 작동하는 pre hook 함수
 schema.pre('save', function (next) {
