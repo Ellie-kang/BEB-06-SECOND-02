@@ -13,8 +13,12 @@ export const Comments = (props) => {
   const context = useContext(AppContext);
   const { userId } = context.state;
   const [comment, setComment] = useState('');
-  const [commentLists, setCommentLists] = useState(props.comments);
+  //const [commentLists, setCommentLists] = useState(props.comments);
   const [isValid, setIsValid] = useState(false);
+  const {comments} = props;
+
+  const [commentLists, setCommentLists] = useState([...comments]);
+
 
 
   const post = (e) => {
@@ -51,15 +55,12 @@ export const Comments = (props) => {
     }).catch((err)=> {
       console.log(err)
     })
-
-    
   }
-      
   return (
     <ThemeProvider theme={context.state.theme}>
       <Stack>
         <Stack spacing={1} className='comments-text' direction="row" sx={{marginY:"20px", color:"text.secondary" }} >
-          <Avatar className='comments-profile' sx={{width: "30px", height: "30px"}} src={context.state.imgSrc} />
+          <Avatar className='comments-profile' sx={{width: "30px", height: "30px"}} src={context.state.userProfileImg} />
           <Box
             sx={{width: "100%", bgcolor:"inherit", border:"none"}}
             component="input"
@@ -82,10 +83,10 @@ export const Comments = (props) => {
             post
           </Button>
         </Stack>
-        {commentLists.map((comment) => {
+        {commentLists.map((comment, idx) => {
           return (
-            <Stack spacing={1} className="users-comments" direction="row" sx={{marginY:"5px", color:"text.secondary" }} >
-              <Avatar sx={{width: "30px", height: "30px"}} src={context.state.imgSrc} />
+            <Stack key={idx} spacing={1} className="users-comments" direction="row" sx={{marginY:"5px", color:"text.secondary" }} >
+              <Avatar sx={{width: "30px", height: "30px"}} src={''} />
               <Typography component="span" sx={{textAlign:"center"}}>{comment.author[0].userId}</Typography>
               <Typography component="p">{comment.content}
                 <Button onClick={(_id) => deleteComment(comment._id)}>
