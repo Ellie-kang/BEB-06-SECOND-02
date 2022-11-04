@@ -17,6 +17,7 @@ const ListContainerByRegion = ({primary}) => {
   const {setMainArticles} = context.action;
 
   const handleButtonClick = useCallback((e) => {
+    // post parameter로.
     axios.get(`http://localhost:3001/articles?city=${e.target.innerText}`)
     .then((res) => {
       console.log(res.data)
@@ -25,8 +26,8 @@ const ListContainerByRegion = ({primary}) => {
   }, [mainArticles])
 
   return (
-    <List component="div" disablePadding>
-      <ListItemButton sx={{ pl:4 }} onClick={handleButtonClick}>
+    <List component="div" disablePadding >
+      <ListItemButton sx={{ pl:4 }} onClick={handleButtonClick} >
         <ListItemIcon>
           <FlagCircleIcon id="flag"/>
         </ListItemIcon>

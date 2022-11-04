@@ -48,8 +48,7 @@ export default function WriteForm (props) {
     }
   };
 
-  const handleRegionChange = useCallback(
-    (e) => {
+  const handleRegionChange = useCallback((e) => {
       const target = e.target.value
       setRegion(target);
       if (target === "Asia") {

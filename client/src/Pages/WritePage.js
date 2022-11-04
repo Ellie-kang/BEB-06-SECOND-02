@@ -127,7 +127,7 @@ export default function WritePage () {
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
-              <Step key={label} >
+              <Step className='step-container' key={label} >
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}
