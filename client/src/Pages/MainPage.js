@@ -6,6 +6,8 @@ import { AppContext } from '../AppContext';
 import ListContainer from '../components/ListContainer';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
+import { Paper, Typography } from '@mui/material';
+import {LinearProgress} from '@mui/material';
 
 const MainPage = () => {
   const context = useContext(AppContext);
@@ -17,11 +19,13 @@ const MainPage = () => {
     axios.get('http://localhost:3001/articles', {
       withCredentials: true
     }).then((res) => {
+      console.log(res.data)
       setMainArticles(res.data);
     }).catch((err) => {
       console.error(err);
     });
   }, []);
+
 
   return (
     <ThemeProvider theme={context.state.theme}>
@@ -31,9 +35,12 @@ const MainPage = () => {
           <ListContainer id="main-list"/>
         </Grid>
         <Grid item xs={6} mt={10} sx={{ width: '100%', height: 'auto' }}>
-          {mainArticles.map((item) => {
+          {[...mainArticles].reverse().map((item) => {
             return <Article key={item._id} userId={item.author.userId} title={item.title} content={item.content} imgFile={item.imgFile} />;
           })}
+        </Grid>
+        <Grid item xs={12}>
+          <Paper square elevation={0} sx={{height:"25px"}} />
         </Grid>
       </Grid>
     </ThemeProvider>
