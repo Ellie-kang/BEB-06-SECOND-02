@@ -8,10 +8,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import { ThemeProvider } from '@mui/material/styles';
-import { Stack } from '@mui/material';
+import { Stack, Grid, Paper } from '@mui/material';
 import { AppContext } from '../AppContext';
 import HeaderButton from './HeaderButton';
-import {Grid, Paper} from '@mui/material'
 import axios from 'axios';
 
 const Header = () => {
@@ -109,8 +108,8 @@ const Header = () => {
         </Toolbar>
       </AppBar>
       <Grid item xs={12} sx={{}}>
-          <Paper component="header" square elevation={3} sx={{height:"25px"}} />
-        </Grid>
+        <Paper component='header' square elevation={3} sx={{ height: '25px' }} />
+      </Grid>
     </ThemeProvider>
   );
 };

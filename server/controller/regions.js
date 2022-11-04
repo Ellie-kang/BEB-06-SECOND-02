@@ -3,7 +3,7 @@ const Region = require('../model/region');
 
 const listByRegion = async (req, res) => {
   const _queries = req.query;
-  console.log(_queries)
+  console.log(_queries);
   // 기존 아티클 도큐먼트에 다른 DB의 도큐먼트를 가져오는 코드
   const regions = await Region.aggregate([
     {
@@ -12,6 +12,8 @@ const listByRegion = async (req, res) => {
         cities: { $addToSet: '$city' }
       }
     },
+    { $addFields: { region: '$_id' } },
+    { $unset: '_id' },
     { $match: _queries }
   ]);
 

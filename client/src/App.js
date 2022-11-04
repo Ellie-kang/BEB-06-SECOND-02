@@ -34,8 +34,10 @@ const App = () => {
   // 회원가입 모달
   const [loginmodalOpen, setLoginModalOpen] = useState(false);
   const [signupModalOpen, setSignupModalOpen] = useState(false);
-    // 메인페이지 Articles
+  // 메인페이지 Articles
   const [mainArticles, setMainArticles] = useState([]);
+  // 지역 데이터 Regions
+  const [regionList, setRegionList] = useState([]);
   // mui 팔레트
   const theme = createTheme({
     palette: {
@@ -44,7 +46,7 @@ const App = () => {
         footer: '#a9def9',
         header: '#a9def9',
         lock: '#a9def9',
-        yellow: "#F0B918"
+        yellow: '#F0B918'
       },
       text: {
         primary: '#ffffff',
@@ -56,7 +58,6 @@ const App = () => {
 
     }
   });
-
 
   const context = {
     state: {
@@ -75,7 +76,7 @@ const App = () => {
       jwt: jwt,
       cookie: cookie,
       mainArticles: mainArticles,
-      
+      regionList: regionList
     },
     action: {
       setUserId: setUserId,
@@ -92,7 +93,8 @@ const App = () => {
       setJwt: setJwt,
       deleteCookie: deleteCookie,
       setCookie: setCookie,
-      setMainArticles: setMainArticles
+      setMainArticles: setMainArticles,
+      setRegionList: setRegionList
     }
   };
 

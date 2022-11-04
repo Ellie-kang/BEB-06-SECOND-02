@@ -17,7 +17,7 @@ const AccountPage = () => {
 
   useEffect(() => {
     // useEffect 써서 userArticles 바꿔주기.
-  })
+  });
 
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();

@@ -12,8 +12,8 @@ import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 import { Box } from '@mui/system';
 import ListContainerByRegion from './ListContainerByRegion';
-import "../utils/MainPage.css";
-import "../utils/Font.css";
+import '../utils/MainPage.css';
+import '../utils/Font.css';
 
 const ListContainer = () => {
   const [openAsia, setOpenAsia] = useState(false);
@@ -38,7 +38,6 @@ const ListContainer = () => {
     setOpenME(!openME);
   };
 
-
   const ListButton = ({ handle, open, primary }) => {
     return (
       <ListItemButton onClick={handle}>
@@ -53,25 +52,28 @@ const ListContainer = () => {
 
   return (
     <>
-        <Stack id="list-contianer" sx={{
-          pr: 3,
-        }}>
-          <List
-            
-            component="nav" className='nav-list'
-            subheader={
-            <ListSubheader sx={{
-              borderTopLeftRadius:"5px",
-              borderTopRightRadius:"5px",
-              bgcolor: "background.header",
-              color: "text.primary",
+      <Stack
+        id='list-contianer' sx={{
+          pr: 3
+        }}
+      >
+        <List
+          component='nav'
+          className='nav-list'
+          subheader={
+            <ListSubheader
+              sx={{
+                borderTopLeftRadius: '5px',
+                borderTopRightRadius: '5px',
+                bgcolor: 'background.header',
+                color: 'text.primary'
               }}
-              component="div" id="list-subheader">WHERE IS TAKO?</ListSubheader>
-          }>
-            <ListButton sx={{
-
-            }} handle={handleAsiaClick} open={openAsia} primary='Asia'
-          />
+              component='div' id='list-subheader'
+            >WHERE IS TAKO?
+            </ListSubheader>
+          }
+        >
+          <ListButton handle={handleAsiaClick} open={openAsia} primary='Asia' />
           <Collapse in={openAsia} timeout='auto'>
             <ListContainerByRegion primary='Seoul' />
             <ListContainerByRegion primary='Tokyo' />
@@ -98,15 +100,15 @@ const ListContainer = () => {
             <ListContainerByRegion primary='Kyro' />
           </Collapse>
 
-            <ListButton handle={handleMeClick} open={openME} primary="Middle East"/>
-            <Collapse in={openME} timeour="auto" unmountOnExit>
-              <ListContainerByRegion primary="New Delhi" />
-              <ListContainerByRegion primary="Riyadh" />
-              <ListContainerByRegion primary="dubai" />
-            </Collapse>
-          </List>
-          <Box component='footer' sx={{height:"30px",bgcolor:"background.header"}}></Box>
-       </Stack>
+          <ListButton handle={handleMeClick} open={openME} primary='Middle East' />
+          <Collapse in={openME} timeour='auto' unmountOnExit>
+            <ListContainerByRegion primary='New Delhi' />
+            <ListContainerByRegion primary='Riyadh' />
+            <ListContainerByRegion primary='dubai' />
+          </Collapse>
+        </List>
+        <Box component='footer' sx={{ height: '30px', bgcolor: 'background.header' }} />
+      </Stack>
     </>
   );
 };
