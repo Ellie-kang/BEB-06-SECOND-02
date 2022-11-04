@@ -15,7 +15,8 @@ const schema = new mongoose.Schema({
     required: true
   },
   city: {
-    type: mongoose.ObjectId
+    type: mongoose.ObjectId,
+    required: true
   },
   like: {
     type: [
