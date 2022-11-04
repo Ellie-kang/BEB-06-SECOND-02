@@ -62,8 +62,10 @@ const signup = async (req, res) => {
     const newDocument = await user.save();
     res.status(201).send(newDocument);
   } catch (error) {
-    console.error(error);
-    res.status(400).json(error);
+    const msg = {};
+    msg[`${error.name}`] = `${error.message}`;
+    console.error(`${error.name} : ${error.message}`);
+    res.status(401).json(msg);
   }
 };
 
@@ -84,7 +86,10 @@ const login = async (req, res) => {
       res.status(200).json({ user, token });
     }
   } catch (error) {
-    res.status(401).json(error);
+    const msg = {};
+    msg[`${error.name}`] = `${error.message}`;
+    console.error(`${error.name} : ${error.message}`);
+    res.status(401).json(msg);
   }
 };
 
@@ -96,7 +101,10 @@ const uploadProfile = async (req, res) => {
     const user = await User.updateOne({ userId: userId }, { profile_image: profileImage });
     res.status(200).json({ user });
   } catch (error) {
-    res.status(400).json(error);
+    const msg = {};
+    msg[`${error.name}`] = `${error.message}`;
+    console.error(`${error.name} : ${error.message}`);
+    res.status(400).json(msg);
   }
 };
 
@@ -109,7 +117,10 @@ const refresh = async (req, res) => {
 
     res.status(200).json({ user, token });
   } catch (error) {
-    res.status(401).json(error);
+    const msg = {};
+    msg[`${error.name}`] = `${error.message}`;
+    console.error(`${error.name} : ${error.message}`);
+    res.status(401).json(msg);
   }
 };
 
