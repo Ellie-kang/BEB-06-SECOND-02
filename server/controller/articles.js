@@ -83,6 +83,23 @@ const find = async (req, res) => {
   res.send(articles);
 };
 
+const _delete = async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    jwt.verify(token, process.env.SECRET);
+
+    const { id } = req.params;
+    const deleted = await Comment.findByIdAndDelete(id);
+    if (!deleted) throw new Error('Not an existed article');
+    res.status(202).json({ deleted });
+  } catch (error) {
+    const msg = {};
+    msg[`${error.name}`] = `${error.message}`;
+    console.error(`${error.name} : ${error.message}`);
+    res.status(406).json(msg);
+  }
+};
+
 const write = async (req, res) => {
   try {
     // Authorization 헤더에 jwt token을 넣고 보낸 요청인 경우
@@ -181,6 +198,7 @@ const like = async (req, res) => {
 
 module.exports = {
   find,
+  _delete,
   write,
   comment,
   like
