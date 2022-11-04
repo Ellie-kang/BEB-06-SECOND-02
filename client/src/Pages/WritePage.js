@@ -18,7 +18,8 @@ import "../utils/WritePage.css"
 
 export default function WritePage () {
   const context = useContext(AppContext);
-  const {jwt} = context.state;
+  const {setTokenAmount} = context.action;
+  const {jwt, tokenAmount} = context.state;
   const [activeStep, setActiveStep] = React.useState(0);
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
@@ -104,6 +105,7 @@ export default function WritePage () {
             withCredentials: true
           }).then((res) => {
             setActiveStep(activeStep + 1);
+            setTokenAmount(tokenAmount + 5);
           }).catch((err) => {
             alert('게시글 작성 중 문제가 발생했습니다.');
             console.error(err);

@@ -75,7 +75,7 @@ const AccountPage = () => {
       </div>
       <AccountSend />
       <div className='account-contents-container'>
-        <AccountArticles />
+        {/* <AccountArticles /> */}
         <AccountNft />
       </div>
     </div>
