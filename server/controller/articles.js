@@ -87,7 +87,7 @@ const _delete = async (req, res) => {
   try {
     const token = req.cookies.token;
     const data = jwt.verify(token, process.env.SECRET);
-    const author = await User.findOne({ userId: data.userId }, '_id account');
+    const author = await User.findOne({ userId: data.userId }, '_id');
 
     const { id } = req.params;
     const comment = await Comment.findById(id);
@@ -112,14 +112,11 @@ const write = async (req, res) => {
     // Authorization 헤더에 jwt token을 넣고 보낸 요청인 경우
     // req.auth라는 오브젝트 값으로 userId를 받을 수 있다.
 
-    // req.auth를 인식못함.
-    // if (!req.auth) throw 'Unauthorized to write an article. Please sign in.';
-
     const { title, content, imgFile, city } = req.body;
 
     const token = req.cookies.token;
     const data = jwt.verify(token, process.env.SECRET);
-    const author = await User.findOne({ userId: data.userId }, '_id account');
+    const author = await User.findOne({ userId: data.userId }, '_id address');
     const _city = await Region.findOne({ city: city }, '_id');
 
     // 여기서 필요한 userId는 User DB의 _id를 기입합니다.
@@ -133,13 +130,10 @@ const write = async (req, res) => {
       userId: author._id
     });
 
+    const result = await sendtoken5(author.address);
+
     const newDocument = await article.save();
-    const result = await sendtoken5(author.account);
-    if (result) {
-      res.status(201).send(newDocument);
-    } else {
-      res.status(401).send('transaction err');
-    }
+    res.status(201).json({newDocument, result});
   } catch (error) {
     const msg = {};
     msg[`${error.name}`] = `${error.message}`;
@@ -152,7 +146,7 @@ const comment = async (req, res) => {
   try {
     const token = req.cookies.token;
     const data = jwt.verify(token, process.env.SECRET);
-    const author = await User.findOne({ userId: data.userId }, '_id account');
+    const author = await User.findOne({ userId: data.userId }, '_id address');
     const { content, articleId } = req.body;
 
     const comment = new Comment({

@@ -99,7 +99,7 @@ export default function WritePage () {
             title: title,
             content: content,
             imgFile: writeImg,
-            city: city,
+            city: city
           }, {
             withCredentials: true
           }).then((res) => {
