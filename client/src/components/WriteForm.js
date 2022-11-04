@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -8,16 +8,22 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { Chip } from '@mui/material';
+
 
 export default function WriteForm (props) {
   
   const {region, setRegion, city, setCity} = props;
-  
+  const [cityList, setCityList] = useState([]);
+  const asia = ["Seoul", "Tokyo", "BangKok"];
+  const europe = ["Paris", "Roma", "London"];
+  const america = ["DC", "Ottawa", "NewYork"];
+  const africa = ["Rabat", "Kyro"];
+  const middleeast = ["New Delhi", "Riyadh", "dubai"];
 
   const regions = ["Asia", "Europe", "America", "Africa", "Middle East"];
-  const a = {Asia: ["Seoul", "Tokyo", "BangKok"], Europe: ["Paris", "Roma", "London"]}
-  const cities = ["Seoul", "Tokyo", "BangKok", "Paris", "Roma", "London", "DC", "Ottawa", "NewYork", "Rabat", "Kyro", "New Delhi", "Riyadh", "dubai"]
-  console.log(a);
+
+
   const handleChangeTitle = (e) => {
     props.setTitle(e.target.value);
   };
@@ -42,13 +48,33 @@ export default function WriteForm (props) {
     }
   };
 
-  const handleRegionChange = (e) => {
-    setRegion(e.target.value);
-  }
+  const handleRegionChange = useCallback(
+    (e) => {
+      const target = e.target.value
+      setRegion(target);
+      if (target === "Asia") {
+        setCityList(asia);
+      } else if (target === "Europe") {
+        setCityList(europe);
+      } else if (target === "America") {
+        setCityList(america);
+      } else if (target === "Africa") {
+        setCityList(africa);
+      } else {
+        setCityList(middleeast);
+      }
+    }, []
+  )
 
-  const handleCityChange = (e) => {
-    setCity(e.target.value)
-  }
+  const handleCityChange = useCallback(
+    (e) => {
+      if (!region) {
+        alert('지역을 먼저 선택해주세요.');
+        return;
+      }
+      setCity(e.target.value)
+    }, [region]
+  )
 
   return (
     <>
@@ -78,7 +104,11 @@ export default function WriteForm (props) {
               label="region"
               onChange={handleRegionChange}
             >
-              {regions.map((item, idx) => <MenuItem key={idx} value={item}>{item}</MenuItem>)}
+              {regions.map((item, idx) => (
+                <MenuItem sx={{pl: 2}} key={idx} value={item}>
+                  <Chip label={item} sx={{bgcolor:"#a9def9", color: "white", fontWeight:600}}/>
+                </MenuItem>)
+              )}
             </Select>
           </FormControl>
         </Grid>
@@ -92,12 +122,15 @@ export default function WriteForm (props) {
               label="city"
               onChange={handleCityChange}
             >
-              {cities.map((item, idx) => <MenuItem key={idx} value={item}>{item}</MenuItem>)}
+              {cityList.map((item, idx) => (
+              <MenuItem key={idx} value={item}>
+                <Chip label={item} sx={{bgcolor:"#a9def9", color: "white", fontWeight:600}}/>
+              </MenuItem>))}
             </Select>
           </FormControl>
         </Grid>
         <Grid item xs={12}>
-          <Typography sx={{ width: '100%', height: 'auto' }} component='img' src={props.writeImg} alt='' />
+          <Typography sx={{ maxHeight:"500px", width: '100%', height: 'auto' }} component='img' src={props.writeImg} alt='' />
         </Grid>
         <Grid item xs={12}>
           <TextField
@@ -116,7 +149,9 @@ export default function WriteForm (props) {
         <Button
           variant='contained'
           component='label'
-          sx={{ mt: 3, ml: 1 }}
+          sx={{ mt: 3, ml: 1, bgcolor:"#a9def9", "&.MuiButtonBase-root:hover": {
+            bgcolor: "#a9def9"
+          }}}
         >
           Upload File
           <input
@@ -128,7 +163,9 @@ export default function WriteForm (props) {
         <Button
           variant='contained'
           onClick={props.handleNext}
-          sx={{ mt: 3, ml: 1 }}
+          sx={{ mt: 3, ml: 1, bgcolor: "#a9def9", "&.MuiButtonBase-root:hover": {
+            bgcolor: "#a9def9"
+          }  }}
         >
           {props.activeStep !== 0 ? 'Place order' : 'Next'}
         </Button>

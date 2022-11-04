@@ -1,0 +1,14 @@
+*{
+  font-family: Poppins, sans-serif ;
+}
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root > circle {
+  color: #ff85a1;
+}
+
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active > circle {
+  color: #a9def9;
+}
+
+.css-vnkopk-MuiStepLabel-iconContainer .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
+  color: #a9def9;
+}

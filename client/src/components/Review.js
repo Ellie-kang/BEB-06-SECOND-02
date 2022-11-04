@@ -3,10 +3,12 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import { Chip, TextField } from '@mui/material';
 
 export default function Review (props) {
   const date = new Date();
-  const dateString = `${date.getFullYear()}.${date.getMonth()}.${date.getDate()} ${date.getHours()}:${date.getMinutes()} ${date.getHours() > 12 ? 'PM' : 'AM'}`;
+  const dateString = `${date.getFullYear()}.${date.getMonth()+1}.${date.getDate()} ${date.getHours()}:${date.getMinutes()} ${date.getHours() > 12 ? 'PM' : 'AM'}`;
+  const {city, region} = props;
 
   const information = [
     { name: '이름', detail: props.userId },
@@ -24,8 +26,14 @@ export default function Review (props) {
         </Grid>
         <Grid item xs={6}>
           <Typography variant='h6' gutterBottom sx={{ mt: 2 }}>
-            {props.content}asasd
+            {props.content}
           </Typography>
+        </Grid>
+        <Grid item xs={3} row>
+          {region ? <Chip label={region} sx={{mr: 2,bgcolor:"#a9def9", color: "white", fontWeight:600}}/> : null}
+          {city ? <Chip label={city} sx={{mr: 2, bgcolor:"#a9def9", color: "white", fontWeight:600}}/> : null}
+        </Grid>
+        <Grid item xs={3}>
         </Grid>
         <Grid item container direction='column' xs={12}>
           <Typography variant='h6' gutterBottom sx={{ mt: 2 }}>
@@ -43,7 +51,6 @@ export default function Review (props) {
               </React.Fragment>
             ))}
           </Grid>
-
         </Grid>
       </Grid>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>

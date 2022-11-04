@@ -40,7 +40,7 @@ const App = () => {
         paper: '#ffffff',
         footer: '#a9def9',
         header: '#a9def9',
-        lock: 'rgba(47, 83, 239)',
+        lock: '#a9def9',
         yellow: "#F0B918"
       },
       text: {

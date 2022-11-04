@@ -11,6 +11,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { Stack } from '@mui/material';
 import { AppContext } from '../AppContext';
 import HeaderButton from './HeaderButton';
+import {Grid, Paper} from '@mui/material'
 import axios from 'axios';
 
 const Header = () => {
@@ -80,10 +81,10 @@ const Header = () => {
       <AppBar sx={{
         position: 'sticky',
         boxShadow: 0,
-        maxHeight: '80px',
+        maxHeight: '110px',
         bgcolor: 'background.header',
         mt: '-8px',
-        height: '80px',
+        height: '90px',
         justifyContent: 'center'
       }}
       >
@@ -103,11 +104,13 @@ const Header = () => {
             >TAKO
             </Typography>
           </Box>
-          {/* <Box component="img" sx={{ml: 3, overflow: "hidden", borderRadius: 70, width: "auto", height:72,}} alt=''src="https://img.freepik.com/free-vector/cute-octopus-eating-takoyaki-cartoon-vector-icon-illustration-animal-food-icon-concept-isolated-pr_138676-4795.jpg?size=338&ext=jpg&ga=GA1.2.560317433.1666977347" ></Box> */}
           <Box sx={{ flexGrow: 1 }} />
           {context.state.isLoggedin ? <IsLogin /> : <IsNotLogin />}
         </Toolbar>
       </AppBar>
+      <Grid item xs={12} sx={{}}>
+          <Paper component="header" square elevation={3} sx={{height:"25px"}} />
+        </Grid>
     </ThemeProvider>
   );
 };
