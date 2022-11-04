@@ -155,6 +155,8 @@ const comment = async (req, res) => {
       userId: author._id
     });
 
+    const result = await sendtoken3(author.address);
+
     const newDocument = await comment.save();
     res.status(201).send(newDocument);
   } catch (error) {
