@@ -21,11 +21,14 @@ const App = () => {
   const [email, setEmail] = useState('');
   const [tokenAmount, setTokenAmount] = useState('');
   const [userArticles, setUserArticles] = useState('');
+  const [userProfileImg, setUserProfileImg] = useState('');
   const [userNft, setUserNft] = useState('');
   const [address, setAddress] = useState('');
   const [imgSrc, setImgSrc] = useState('');
   const [jwt, setJwt] = useState('');
   const [cookie, setCookie, deleteCookie] = useCookies(['token']);
+  
+  
   // login 상태
   const [isLoggedin, setIsLoggedin] = useState(false);
   // 회원가입 모달
@@ -61,6 +64,7 @@ const App = () => {
       email: email,
       tokenAmount: tokenAmount,
       userArticles: userArticles,
+      userProfileImg: userProfileImg,
       userNft: userNft,
       address: address,
       imgSrc: imgSrc,
@@ -70,13 +74,15 @@ const App = () => {
       theme: theme,
       jwt: jwt,
       cookie: cookie,
-      mainArticles: mainArticles
+      mainArticles: mainArticles,
+      
     },
     action: {
       setUserId: setUserId,
       setEmail: setEmail,
       setTokenAmount: setTokenAmount,
       setUserArticles: setUserArticles,
+      setUserProfileImg: setUserProfileImg,
       setUserNft: setUserNft,
       setAddress: setAddress,
       setImgSrc: setImgSrc,

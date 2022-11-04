@@ -23,7 +23,7 @@ const DetailPage = () => {
       <CssBaseline />
       <Container component='main' maxWidth='md' sx={{ mb: 4 }}>
         <Paper variant='outlined' sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-          <Typography component='h1' variant='h4' align='center'>
+          <Typography component='h1' variant='h4' >
             한일 여객선 재개에 부산 시장 기대감
           </Typography>
           <>
