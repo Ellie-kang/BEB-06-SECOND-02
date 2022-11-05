@@ -25,7 +25,7 @@ const Article = (props) => {
       >
         <CardHeader
           // sx={{bgcolor: "#ffd2c9"}}
-          sx={{bgcolor: "background.header"}}
+          sx={{bgcolor: "#a9def9"}}
           avatar={
             <Avatar src={userProfile} />
           }

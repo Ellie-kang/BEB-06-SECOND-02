@@ -1,64 +1,55 @@
+
+
 .account-contianer {
   margin-top: 72px; /*header height 만큼*/
 }
 
-.account-profile {
-  flex-direction: column;
-}
-
-.account-profile > img {
-  width: 200px;
-  height: 150px;
+.css-bkdk1y-MuiGrid-root > img {
   border-radius: 70%;
-  
-  overflow: hidden;
 }
 
-.account-profile > input {
-  display: block;
+.css-1idn90j-MuiGrid-root > img {
+  border-radius: 70%;
+}
+
+.account-info {
+  width: 70%;
+  height: auto;
+  background: none;
+  border: 3px solid #a9def9;
+  border-radius: 20px;
+}
+.user-id {
+  display: flex;
   align-items: center;
 }
 
-.account-profile > button {
-  display: block;
-  margin-top: 30px;
-  margin-left: 65px;
+.account-icon {
+  color: #ff85a1;
+}
+.account-user-span {
+  
+  color: black;
+  font-weight: 600;
 }
 
-
-.account-sender-container {
-  display: flex;
-  justify-content: center;
-  padding-top:100px;
-  padding: 0 300px;
+.account-sender-input{
+  width: 300px;
 }
 
-.account-sender-wrapper {
-  margin-left: 300px;
+.sender-address {
+  width: 100%;
+  border: 2px solid #a9def9;
+  border-radius: 5px;
 }
 
-.account-wrapper {
-  padding: 0 300px;
-  display: flex;
-  justify-content: space-around;
+.account-sender-button {
+  background-color: transparent;
+  border: none;
 }
-
-.account-sender-continaer {
-  display: flex;
-}
-
-.account-sender-form {
-  padding-top: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.account-sender-label {
-  margin-right: 10px;
-}
-
-.account-sender {
-  display: flex;
+.account-sender-chip {
+  border: none;
+  color: white;
 }
 
 
@@ -75,24 +66,6 @@
   width: auto;
 }
 
-.account-info-container {
-  display: flex;
-}
-
-.account-info {
-  list-style: none;
-  
-}
-.account-name-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-.account-name {
-  width: 18vw;
-  border-radius: 5px;
-  border: 1px solid black;
-  padding-left: 10px
-}
 .account-contents-info {
   display: flex;
   justify-content: space-evenly;

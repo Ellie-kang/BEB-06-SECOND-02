@@ -5,12 +5,9 @@ import { NavLink } from 'react-router-dom';
 import Article from '../Article';
 
 const AccountArticles = (props) => {
-
-
   const context = useContext(AppContext);
   const {userArticles} = props;
-  console.log(userArticles)
-  
+
   // props로 받는건, AccountPage useEffect에서 DB에서 불러온 Articles, NFT들, Articles를 map으로 Article란에 기입.
 
   return (
@@ -23,7 +20,6 @@ const AccountArticles = (props) => {
       </div>
       <div className='account-contents-box'>
         <div className='account-contents-only'>
-
         {[...userArticles].reverse().map((item) => {
             return (
               <Article

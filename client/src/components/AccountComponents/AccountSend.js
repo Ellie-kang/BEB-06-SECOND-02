@@ -1,6 +1,7 @@
 import React, {useState, useContext} from 'react'
 import { AppContext } from '../../AppContext';
 import axios from 'axios'
+import { Box, Stack, Typography, Chip } from '@mui/material';
 
 const AccountSend = () => {
   const context = useContext(AppContext);
@@ -42,26 +43,34 @@ const AccountSend = () => {
   }
 
   return (
-    <div className='account-sender-container'>
-      <div className='account-sender-wrapper'>
-        당신의 계정은: {context.state.address}
-        <form className='account-sender-form' onSubmit={handleSubmit}>
-          <div className='account-sender'>
-            <div className='account-sender-label'>Address</div>
-            <div className='account-sender-input'>
-              <input className='sender-address' placeholder='put address' value={sendAddress} onChange={handleAddressChange} />
-            </div>
-          </div>
-          <div className='account-sender'>
-            <div className='account-sender-label'>Amount</div>
-            <div className='account-sender-input'>
-              <input className='sender-address' placeholder='put amount' value={sendAmount} onChange={handleAmounthange} />
-              <button className='account-sender-label' type='submit'>send</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+    <>
+    <Box className='account-sender' mt={-10} mb={3} ml={6}>
+      <Stack className='account-sender-wrapper' direction="column" spacing={3} sx={{fontSize:"20px", fontFamily:"Poppins", fontWeight:500}}>
+          <span>당신의 계정은: {
+          context.state.address ? context.state.address : "로그인을 해주세요"}
+          </span>
+          <Box component="form" className='account-sender-form' onSubmit={handleSubmit}>
+            <Stack direction="row" spacing={3}>
+              <span>Address</span>
+              <div className='account-sender-input'>
+                <input className='sender-address' placeholder='put address' value={sendAddress} onChange={handleAddressChange} />
+              </div>
+            </Stack>
+            <Stack direction="row" spacing={3}>
+              <span>Amount</span>
+              <div className='account-sender-input'>
+                <input className='sender-address' placeholder='put amount' value={sendAmount} onChange={handleAmounthange} />
+              </div>
+              <button className='account-sender-button' type='submit'>
+                <Chip className='account-sender-chip' label="send" sx={{bgcolor:"#a9def9", color:"white", fontWeight:600}}/>
+              </button>
+            </Stack>
+          </Box>
+      </Stack>
+
+    </Box>
+    </>
+    
   )
 };
 

@@ -11,8 +11,10 @@ import Footer from './components/Footer';
 import { AppContext } from './AppContext';
 import { createTheme } from '@mui/material/styles';
 import { useCookies } from 'react-cookie';
+import { ThemeProvider } from '@mui/material/styles';
 
 import './App.css';
+import { CssBaseline } from '@mui/material';
 
 const App = () => {
   // 서버에서 account 데이터를 불러와서 contextAPI로 저장.
@@ -54,7 +56,7 @@ const App = () => {
       },
       button: {
         primary: '#ba5624'
-      }
+      },
 
     }
   });
@@ -108,7 +110,7 @@ const App = () => {
         <Route path='/write' element={<WritePage />} />
         <Route path='/mint' element={<MintPage />} />
       </Routes>
-      <Footer />
+      <Footer />      
     </AppContext.Provider>
   );
 };
