@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Stack } from '@mui/material';
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
@@ -11,32 +11,24 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 import { Box } from '@mui/system';
+import { AppContext } from '../AppContext';
 import ListContainerByRegion from './ListContainerByRegion';
 import '../utils/MainPage.css';
 import '../utils/Font.css';
 
 const ListContainer = () => {
-  const [openAsia, setOpenAsia] = useState(false);
-  const [openEurope, setOpenEurope] = useState(false);
-  const [openAmerica, setOpenAmerica] = useState(false);
-  const [openAfrica, setOpenAfrica] = useState(false);
-  const [openME, setOpenME] = useState(false);
+  const context = useContext(AppContext);
+  // mainPageArticles
+  const { regionList } = context.state;
+  const [openList, setOpenList] = useState();
 
-  const handleAsiaClick = () => {
-    setOpenAsia(!openAsia);
+  const renewOpenList = () => {
+    console.log('renew');
+    const entries = regionList.map((obj) => [obj.region, false]);
+    setOpenList(Object.fromEntries(entries));
   };
-  const handleEuropeClick = () => {
-    setOpenEurope(!openEurope);
-  };
-  const handleAmericaClick = () => {
-    setOpenAmerica(!openAmerica);
-  };
-  const handleAfricaClick = () => {
-    setOpenAfrica(!openAfrica);
-  };
-  const handleMeClick = () => {
-    setOpenME(!openME);
-  };
+
+  useEffect(renewOpenList, [regionList]);
 
   const ListButton = ({ handle, open, primary }) => {
     return (
@@ -47,6 +39,25 @@ const ListContainer = () => {
         <ListItemText className='list-continental' primary={primary} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
+    );
+  };
+
+  const ListItem = ({ region, cities, openList, setOpenList }) => {
+    const open = openList[region];
+    const handleOpen = () => {
+      const newList = { ...openList };
+      newList[region] = !open;
+      console.log(newList);
+      setOpenList(newList);
+    };
+
+    return (
+      <>
+        <ListButton handle={handleOpen} open={open} primary={region} />
+        <Collapse in={open} timeout='auto'>
+          {cities.map((city, idx) => <ListContainerByRegion key={idx} primary={city} />)}
+        </Collapse>
+      </>
     );
   };
 
@@ -73,6 +84,10 @@ const ListContainer = () => {
             </ListSubheader>
           }
         >
+          {regionList.map(({ region, cities }, idx) => {
+            return <ListItem key={idx} region={region} cities={cities} openList={openList} setOpenList={setOpenList} />;
+          })}
+          {/*
           <ListButton handle={handleAsiaClick} open={openAsia} primary='Asia' />
           <Collapse in={openAsia} timeout='auto'>
             <ListContainerByRegion primary='Seoul' />
@@ -105,7 +120,7 @@ const ListContainer = () => {
             <ListContainerByRegion primary='New Delhi' />
             <ListContainerByRegion primary='Riyadh' />
             <ListContainerByRegion primary='dubai' />
-          </Collapse>
+          </Collapse> */}
         </List>
         <Box component='footer' sx={{ height: '30px', bgcolor: 'background.header' }} />
       </Stack>
