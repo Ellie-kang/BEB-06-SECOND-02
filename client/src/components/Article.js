@@ -25,7 +25,7 @@ const Article = (props) => {
       >
         <CardHeader
           // sx={{bgcolor: "#ffd2c9"}}
-          sx={{bgcolor: "background.header"}}
+          sx={{bgcolor: "#a9def9"}}
           avatar={
             <Avatar src={userProfile} />
           }
@@ -39,11 +39,11 @@ const Article = (props) => {
         />
         <Like articleId={id} like={like}/>
         <CardContent>
-          <Typography component="p" sx={{color: 'text.secondary'}}><strong>{userId}</strong></Typography>
+          <Typography component="p" sx={{color: "black"}}><strong>{userId}</strong></Typography>
           <Typography
             variant='body2' description='' 
             sx={{
-              color: 'text.secondary',
+              color: 'black',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               display: '-webkit-box',

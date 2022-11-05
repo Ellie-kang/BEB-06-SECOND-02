@@ -85,7 +85,8 @@ const Header = () => {
         bgcolor: 'background.header',
         mt: '-8px',
         height: '90px',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        
       }}
       >
         <Toolbar disableGutters>
@@ -97,7 +98,8 @@ const Header = () => {
                 textDecoration: 'none',
                 pl: 7,
                 color: 'text.primary',
-                fontSize: 22
+                fontSize: 22,
+                fontFamily:"Poppins"
               }}
               component='a'
               href='/'
