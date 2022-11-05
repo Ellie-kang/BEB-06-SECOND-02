@@ -55,9 +55,6 @@ const MainPage = () => {
                 />)
           })}
         </Grid>
-        <Grid item xs={12}>
-          <Paper square elevation={0} sx={{height:"25px"}} />
-        </Grid>
       </Grid>
     </ThemeProvider>
   );

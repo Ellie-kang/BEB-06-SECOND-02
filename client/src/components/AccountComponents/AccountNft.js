@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import { AppContext } from '../../AppContext'
 import { NavLink } from 'react-router-dom';
-import { Box, Chip, Stack, Typography } from '@mui/material';
+import { Box, Chip, Stack, Typography,Grow } from '@mui/material';
 import Media from '../Skeleton';
 const AccountNft = () => {
   const context = useContext(AppContext);
@@ -32,14 +32,16 @@ const AccountNft = () => {
           </NavLink>
         </Box>
         </Stack>
-        <Stack direction="column" spacing={3} width="80%" ml={7}>
-         <Media />
-         <Media />
-         <Media />
-         <Media />
-         <Media />
-         <Media />
-        </Stack>
+        <Grow in={true} style={{ transformOrigin: '0 2 0' }} {...(true ? { timeout: 1200 } : {})}>
+          <Stack direction="column" spacing={3} width="80%" ml={7}>
+          <Media />
+          <Media />
+          <Media />
+          <Media />
+          <Media />
+          <Media />
+          </Stack>
+        </Grow>
       </Box>
     </>
   )

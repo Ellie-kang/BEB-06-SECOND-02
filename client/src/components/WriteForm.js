@@ -75,7 +75,8 @@ export default function WriteForm (props) {
 
   return (
     <>
-      <Typography variant='h6' gutterBottom>
+      <Typography variant='h5' mb={4} gutterBottom 
+        sx={{fontFamily: "Poppins", color: "rgba(231,127,112)", fontWeight:600}}>
         게시글 작성
       </Typography>
       <Grid container spacing={3}>

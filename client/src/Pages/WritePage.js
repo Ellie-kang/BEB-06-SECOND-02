@@ -15,6 +15,7 @@ import { useContext } from 'react';
 import axios from 'axios';
 import { AppContext } from '../AppContext';
 import "../utils/WritePage.css"
+import "../utils/Font.css"
 
 export default function WritePage () {
   const context = useContext(AppContext);
@@ -27,6 +28,17 @@ export default function WritePage () {
   const [writeImg, setWriteImg] = React.useState('');
   const [region, setRegion] = React.useState('');
   const [city, setCity] = React.useState('');
+
+  // backdrop logic
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
+
+
 
   // region 은 넣을필요 없음. 분류할떄만. city만 post
   const steps = ['글쓰기', '미리보기', '작성 완료'];
@@ -118,19 +130,23 @@ export default function WritePage () {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
-  const theme = createTheme();
+  const theme= createTheme({
+    typography: {
+      fontFamily: 'Poppins, sans-serif',
+    }
+  });
+  
   return (
     <ThemeProvider theme={theme}>
       <Container component='div' maxWidth='md' sx={{ mb: 4, }}>
         <Paper elevation={5} sx={{ my: { xs: 3, md: 6 }, p: { xs: 3, md: 6 }, }}>
-          <Typography component='h1' variant='h4' sx={{color: '#a9def9', margin:0, textAlign:"center"}}>
+          <Typography component='h1' variant='h4' sx={{color: 'rgba(231,127,112)', margin:0, textAlign:"center", fontWeight:"600"}}>
             게시글 작성하기
           </Typography>
-          <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+          <Stepper activeStep={activeStep} sx={{ mt: 6, mb: 5, }}>
             {steps.map((label) => (
               <Step className='step-container' key={label} >
-                <StepLabel>{label}</StepLabel>
+                <StepLabel className='real-label'>{label}</StepLabel>
               </Step>
             ))}
           </Stepper>

@@ -64,7 +64,7 @@ const AccountPage = () => {
   return (
     // account Profile Img ul
     //
-    <Grid container spacing={3} justifyContent="center">
+    <Grid container spacing={3}>
       <Grid item xs={12}></Grid>
       
       <Grid item xs={3}></Grid>
