@@ -1,25 +1,47 @@
 import React, {useContext} from 'react'
 import { AppContext } from '../../AppContext'
 import { NavLink } from 'react-router-dom';
+import { Box, Chip, Stack, Typography } from '@mui/material';
+import Media from '../Skeleton';
 const AccountNft = () => {
   const context = useContext(AppContext);
 
   // context.state.nft
 
   return (
-    <div className='account-nft'>
-      <div className='account-nft-info'>
-        <h2>NFT</h2>
-        <div>
-          <NavLink to='/create'><button>MINT</button></NavLink>
-        </div>
-      </div>
-      <div className='account-nft-img'>
-        <img src="https://images.pexels.com/photos/13777383/pexels-photo-13777383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt=""/>
-        <img src="https://images.pexels.com/photos/13777383/pexels-photo-13777383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt=""/>
-        <img src="https://images.pexels.com/photos/13777383/pexels-photo-13777383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt=""/>
-      </div>
-    </div>
+    <>
+    <Box component="div" className='account-nft'>
+      <Stack direction="row" spacing={7} mb={5} justifyContent="center" alignItems="center">
+        <Typography variant="h5" 
+          sx={{
+            fontWeight:600,
+            fontFamily:"Poppins"
+        }}>NFT
+        </Typography>
+        <Box component="div">
+          <NavLink className="write-link" to='/mint'>
+            <Chip label="Mint" 
+              sx={{
+                textDecorationLine: "none",
+                fontWeight:500,
+                color: "white",
+                fontSize: "16px",
+                fontFamily:"Poppins",
+                bgcolor:'rgba(231,127,112)',
+                cursor:"pointer"}}/>
+          </NavLink>
+        </Box>
+        </Stack>
+        <Stack direction="column" spacing={3} width="80%" ml={7}>
+         <Media />
+         <Media />
+         <Media />
+         <Media />
+         <Media />
+         <Media />
+        </Stack>
+      </Box>
+    </>
   )
 }
 

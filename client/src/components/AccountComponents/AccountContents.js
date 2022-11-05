@@ -3,27 +3,39 @@ import { AppContext } from '../../AppContext';
 import { Dummy } from '../../Dummy';
 import { NavLink } from 'react-router-dom';
 import Article from '../Article';
+import { Box, Chip, Stack, Typography } from '@mui/material';
+
 
 const AccountArticles = (props) => {
-
-
   const context = useContext(AppContext);
   const {userArticles} = props;
-  console.log(userArticles)
-  
+
   // props로 받는건, AccountPage useEffect에서 DB에서 불러온 Articles, NFT들, Articles를 map으로 Article란에 기입.
 
   return (
-    <div className='account-contents'>
-      <div className='account-contents-info'>
-        <h2>Comments</h2>
-        <div>
-          <NavLink to='/write'><button>Write</button></NavLink>
-        </div>
-      </div>
-      <div className='account-contents-box'>
-        <div className='account-contents-only'>
-
+    <Box className='account-contents' component="div" ml={2}>
+      <Stack direction="row" spacing={7} mb={5} justifyContent="center" alignItems="center">
+        <Typography variant="h5" 
+          sx={{
+            fontWeight:600,
+            fontFamily:"Poppins"
+        }}>Comments
+        </Typography>
+        <Box component="div">
+          <NavLink className="write-link" to='/write'>
+            <Chip label="Write" 
+              sx={{
+                textDecorationLine: "none",
+                fontWeight:500,
+                color: "white",
+                fontSize: "16px",
+                fontFamily:"Poppins",
+                bgcolor:'rgba(231,127,112)',
+                cursor:"pointer"}}/>
+          </NavLink>
+        </Box>
+      </Stack>
+      <Stack direction="column" spacing={2} mr={4} justifyContent="center">
         {[...userArticles].reverse().map((item) => {
             return (
               <Article
@@ -37,9 +49,8 @@ const AccountArticles = (props) => {
                 comments={item.comments}
                 />)
           })}
-        </div>
-      </div>
-    </div>
+      </Stack>
+    </Box>
   )
 }
 
