@@ -52,6 +52,7 @@ const MainPage = () => {
                 imgFile={item.imgFile}
                 userProfile={item.author.profileImage}
                 comments={item.comments}
+                like={item.like}
                 />)
           })}
         </Grid>

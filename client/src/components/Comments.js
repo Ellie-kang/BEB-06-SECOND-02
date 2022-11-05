@@ -19,8 +19,6 @@ export const Comments = (props) => {
 
   const [commentLists, setCommentLists] = useState([...comments]);
 
-
-
   const post = (e) => {
     axios.post('http://localhost:3001/articles/comment', {
       articleId : props.articleId,
@@ -28,15 +26,12 @@ export const Comments = (props) => {
     },{withCredentials : true})
     .then((res)=> {
       console.log(res.data)
-
       setComment('');
       setIsValid(false);
       window.location.replace("/")
     }).catch((err)=> {
       console.log(err)
     })
-    
-    
   };
 
   const onEnterPost = (e) => {

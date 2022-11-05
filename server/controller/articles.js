@@ -180,6 +180,7 @@ const like = async (req, res) => {
     const token = req.cookies.token;
     const data = jwt.verify(token, process.env.SECRET);
     const user = await User.findOne({ userId: data.userId }, '_id userId');
+    console.log(data)
 
     const { articleId } = req.body;
     const article = await Article.findById(articleId);

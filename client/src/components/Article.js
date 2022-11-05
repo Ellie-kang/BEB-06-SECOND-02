@@ -14,7 +14,7 @@ import { Box, Link, Grow } from '@mui/material';
 
 const Article = (props) => {
   const context = useContext(AppContext);
-  const { title, content, imgFile, userId, userProfile, comments, id } = props;
+  const { title, content, imgFile, userId, userProfile, comments, id, like} = props;
   const date = new Date();
 
   return (
@@ -37,7 +37,7 @@ const Article = (props) => {
           height='350'
           image={imgFile}
         />
-        <Like />
+        <Like articleId={id} like={like}/>
         <CardContent>
           <Typography component="p" sx={{color: 'text.secondary'}}><strong>{userId}</strong></Typography>
           <Typography

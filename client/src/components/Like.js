@@ -1,17 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Typography from '@mui/material/Typography';
 import Badge from '@mui/material/Badge';
+import axios from 'axios';
+import { Stack } from '@mui/system';
 
-export const Like = () => {
+export const Like = (props) => {
   const [isLike, setIsLike] = useState(false);
-  const [count, setCount] = useState(1);
 
+  const {like, articleId} = props;
+
+  const isLiked = (e) => {
+    axios.patch('http://localhost:3001/articles/like', {
+      articleId : props.articleId
+    },{ withCredentials : true })
+    .then((res) => {
+      console.log(res.data)
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
 
   return (
-    <div>
+    <Stack direction="row"> 
     {isLike
       ? (
         <IconButton
@@ -19,19 +32,10 @@ export const Like = () => {
           style={{ color: 'red' }}
           onClick={() => {
             setIsLike(false);
+            isLiked(false)
           }}
         >
           <FavoriteIcon />
-          <Badge color="secondary" badgeContent={6} showZero>
-            {/*  */}
-            <FavoriteIcon />
-          </Badge>
-          <Typography style={{ color: 'black' }}> 좋아요
-            <span onClick={() => {
-              setCount(count + 1);
-            }}
-            />{count}
-          </Typography>
         </IconButton>
         )
       : (
@@ -39,11 +43,19 @@ export const Like = () => {
           aria-label='add to favorites'
           onClick={() => {
             setIsLike(true);
+            isLiked(true)
           }}
         >
           <FavoriteBorderIcon />
         </IconButton>
         )}
-  </div>
+    <Typography style={{ color: 'black'}} marginTop="8px"> 좋아요
+        {/* <span onClick={() => {
+          setCount(count + 1);
+        }}
+        /> */}
+        {like.length}
+    </Typography>
+  </Stack>
   );
 };
