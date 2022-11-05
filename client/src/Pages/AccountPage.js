@@ -70,7 +70,7 @@ const AccountPage = () => {
       <Grid item xs={3}></Grid>
       <Grid item xs={2}>
         <Grid container spacing={3}>
-          <Grid item xs={12} mt={10}>
+          <Grid item xs={12} mt={14}>
           {userProfileImg ? <Box component='img' sx={{ width: '100%', height: '250px' }} src={userProfileImg} alt='' /> : <Avatar sx={{ width: '100%', height: '250px' }} alt='Remy Sharp' />}
           </Grid>
           <Grid item xs={6} ml={0}>
@@ -86,6 +86,7 @@ const AccountPage = () => {
                   >
                     <Chip label="사진 변경 하기" 
                       sx={{
+                        maxWidth:"160px",
                         fontWeight:600,
                         color: "white",
                         fontSize: "16px",
@@ -105,6 +106,7 @@ const AccountPage = () => {
                   }}
                 ><Chip label="프로필 변경하기" 
                   sx={{
+                    maxWidth:"150px",
                     fontWeight:600,
                     color: "white",
                     fontSize: "16px",
