@@ -1,140 +1,56 @@
+
+
 .account-contianer {
   margin-top: 72px; /*header height 만큼*/
 }
 
-.account-profile {
-  flex-direction: column;
-}
-
-.account-profile > img {
-  width: 200px;
-  height: 150px;
+.css-bkdk1y-MuiGrid-root > img {
   border-radius: 70%;
-  
-  overflow: hidden;
 }
 
-.account-profile > input {
-  display: block;
-  align-items: center;
-}
-
-.account-profile > button {
-  display: block;
-  margin-top: 30px;
-  margin-left: 65px;
-}
-
-
-.account-sender-container {
-  display: flex;
-  justify-content: center;
-  padding-top:100px;
-  padding: 0 300px;
-}
-
-.account-sender-wrapper {
-  margin-left: 300px;
-}
-
-.account-wrapper {
-  padding: 0 300px;
-  display: flex;
-  justify-content: space-around;
-}
-
-.account-sender-continaer {
-  display: flex;
-}
-
-.account-sender-form {
-  padding-top: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.account-sender-label {
-  margin-right: 10px;
-}
-
-.account-sender {
-  display: flex;
-}
-
-
-.account-contents-container {
-  margin-top: 150px;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 400px; 
-}
-
-.account-contents {
-  margin-right: 30px;
-  justify-content: center;
-  width: auto;
-}
-
-.account-info-container {
-  display: flex;
+.css-1idn90j-MuiGrid-root > img {
+  border-radius: 70%;
 }
 
 .account-info {
-  list-style: none;
-  
-}
-.account-name-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-.account-name {
-  width: 18vw;
-  border-radius: 5px;
-  border: 1px solid black;
-  padding-left: 10px
-}
-.account-contents-info {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.accoutn-contents-box {
-  width: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.account-contents-only {
-  flex-direction: column;
-  
-}
-/*margin bottom 설정 해줘야함.*/
-.account-contents-wrapper {
-  border-radius: 10px;
-  margin-top: 50px;
-  padding: 20px 0px;
-  margin-bottom: -20px;
-  width: 400px;
+  width: 70%;
   height: auto;
-}
+  background: none;
 
-
-.account-nft {
-  display: flex;
-  flex-direction: column;
-  margin-left: 30px;
-  justify-content: center;
 }
-.account-nft-info {
+.user-id {
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
 }
-.account-nft-img > img {
-  width: 100%;
+
+.account-icon {
+  color: rgba(231,127,112);
+}
+.account-user-span {
+  color: black;
+  font-weight: 600;
 }
 
-.card-comments {
-  visibility: hidden;
+.account-sender-input{
+  width: 300px;
 }
+
+.sender-address {
+  width: 100%;
+  border: 2px solid #a9def9;
+  border-radius: 5px;
+}
+
+.account-sender-button {
+  background-color: transparent;
+  border: none;
+}
+.account-sender-chip {
+  border: none;
+  color: white;
+}
+.write-link {
+  text-decoration: none;
+}
+
+
