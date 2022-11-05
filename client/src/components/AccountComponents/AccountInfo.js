@@ -19,15 +19,15 @@ const AccountInfo = () => {
 
   return (
     <>
-    <button type='button' onClick={delete_cookie} > logout</button>
-      <Box className="account-info" mt={12} ml={6} sx={{fontFamily:"Poppins"}}>
-        <Stack direction="row" spacing={3} ml={4} p={1} mt={1} className="user-id"  alignContent="center">
-          <PersonIcon className='account-icon'/>
+    {/* <button type='button' onClick={delete_cookie} > logout</button> */}
+      <Box className="account-info" mt={8} ml={10} sx={{fontFamily:"Poppins"}}>
+        <Stack direction="row" spacing={3} ml={4} p={1} mt={13} className="user-id"  alignContent="center">
+          <PersonIcon className='account-icon' sx={{fontSize:"35px"}}/>
           <Typography className='account-user-span' component="span" sx={{fontSize:"20px", fontFamily:"Poppins", fontWeight:600}}>{userId}</Typography>
         </Stack>
         <Stack direction="row" spacing={3} ml={4} p={1} mb={1} className="user-id"  >
-          <TokenIcon className="account-icon"/>
-          <Typography className='account-user-span' component="span" sx={{fontSize:"20px", fontFamily:"Poppins", fontWeight:600}}>
+          <TokenIcon className="account-icon" sx={{fontSize:"35px"}}/>
+          <Typography className='account-user-span' component="span" sx={{fontSize:"20px", fontFamily:"Poppins", fontWeight:600, }}>
             {(tokenAmount ? tokenAmount : 0)} TAKO
           </Typography>
         </Stack>

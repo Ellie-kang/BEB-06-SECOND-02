@@ -44,25 +44,35 @@ const AccountSend = () => {
 
   return (
     <>
-    <Box className='account-sender' mt={-10} mb={3} ml={6}>
-      <Stack className='account-sender-wrapper' direction="column" spacing={3} sx={{fontSize:"20px", fontFamily:"Poppins", fontWeight:500}}>
-          <span>당신의 계정은: {
-          context.state.address ? context.state.address : "로그인을 해주세요"}
+    <Box className='account-sender' mt={-20} mb={3} ml={10}>
+      <Stack className='account-sender-wrapper' direction="column" spacing={3} ml={5} sx={{fontSize:"20px", fontFamily:"Poppins", fontWeight:500}}>
+          <span>
+          <p>Your Account:</p>
+          {context.state.address ? context.state.address : "로그인을 해주세요"}
           </span>
           <Box component="form" className='account-sender-form' onSubmit={handleSubmit}>
-            <Stack direction="row" spacing={3}>
+            <Stack direction="row" spacing={2}>
               <span>Address</span>
               <div className='account-sender-input'>
                 <input className='sender-address' placeholder='put address' value={sendAddress} onChange={handleAddressChange} />
               </div>
             </Stack>
-            <Stack direction="row" spacing={3}>
+            <Stack direction="row" spacing={2}>
               <span>Amount</span>
               <div className='account-sender-input'>
                 <input className='sender-address' placeholder='put amount' value={sendAmount} onChange={handleAmounthange} />
               </div>
               <button className='account-sender-button' type='submit'>
-                <Chip className='account-sender-chip' label="send" sx={{bgcolor:"#a9def9", color:"white", fontWeight:600}}/>
+                <Chip 
+                  sx={{
+                    bgcolor:"rgba(231,127,112)",
+                    color:"white",
+                    fontWeight:600,
+                    cursor:"pointer",
+                    fontSize: "14px"
+                  }}
+                  className='account-sender-chip'
+                  label="send" />
               </button>
             </Stack>
           </Box>

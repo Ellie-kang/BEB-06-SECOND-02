@@ -9,7 +9,7 @@ import { AppContext } from '../AppContext';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
-import { Chip, Grid } from '@mui/material';
+import { Chip, Grid, Stack } from '@mui/material';
 
 
 const AccountPage = () => {
@@ -73,50 +73,65 @@ const AccountPage = () => {
           <Grid item xs={12} mt={10}>
           {userProfileImg ? <Box component='img' sx={{ width: '100%', height: '250px' }} src={userProfileImg} alt='' /> : <Avatar sx={{ width: '100%', height: '250px' }} alt='Remy Sharp' />}
           </Grid>
-          <Grid item xs={6} ml={1}>
+          <Grid item xs={6} ml={0}>
           <input id='contained-button-file' style={{ display: 'none' }} type='file' accept='image/*' name='image' onChange={handleImageChange} />
             <label htmlFor='contained-button-file'>
               <Button
+                  component='div'
+                  sx={{
+                    '&.MuiButtonBase-root:hover': {
+                        bgcolor: 'transparent'
+                      },
+                  }}
+                  >
+                    <Chip label="사진 변경 하기" 
+                      sx={{
+                        fontWeight:600,
+                        color: "white",
+                        fontSize: "16px",
+                        fontFamily:"Poppins",
+                        bgcolor:'rgba(231,127,112)'}}/>
+              </Button>
+            </label>
+          </Grid>
+          <Grid item xs={5} ml={-1.5}>
+             <Button
+                type='button'
+                onClick={handleImgToChange}
                 sx={{
                   '&.MuiButtonBase-root:hover': {
                     bgcolor: 'transparent'
                   },
-                  color: 'rgba(231,127,112)',
-                  fontSize: "16px",
-                }} component='span'
-              >사진 변경 하기
-              </Button>
-            </label>
-          </Grid>
-          
-          <Grid item xs={5} ml={2}>
-            <Button
-              type='button'
-              onClick={handleImgToChange}
-              sx={{
-                '&.MuiButtonBase-root:hover': {
-                  bgcolor: 'transparent'
-                }, color: 'rgba(231,127,112)', fontSize: "16px" }}>변경하기</Button>
+                  }}
+                ><Chip label="프로필 변경하기" 
+                  sx={{
+                    fontWeight:600,
+                    color: "white",
+                    fontSize: "16px",
+                    fontFamily:"Poppins",
+                    bgcolor:'rgba(231,127,112)'
+                  }}/>
+             </Button>
           </Grid>
         </Grid>
-        
       </Grid>
       <Grid item xs={1}></Grid>
       <Grid item xs={4}>
         <AccountInfo />
       </Grid>
       <Grid item xs={2}></Grid>
-      
       <Grid item xs={6}></Grid>
       <Grid item xs={6}>
         <AccountSend/>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={2}></Grid>
+      <Grid item xs={4} mt={10}>
         <AccountArticles userArticles={userArticles} />
       </Grid>
-      <Grid item xs={6}>
-        <AccountNft />
+      <Grid item xs={4} mt={10}>
+        <AccountNft/>
       </Grid>
+      <Grid item xs={2}></Grid>
     </Grid>
 
   );

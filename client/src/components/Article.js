@@ -39,11 +39,11 @@ const Article = (props) => {
         />
         <Like />
         <CardContent>
-          <Typography component="p" sx={{color: 'text.secondary'}}><strong>{userId}</strong></Typography>
+          <Typography component="p" sx={{color: "black"}}><strong>{userId}</strong></Typography>
           <Typography
             variant='body2' description='' 
             sx={{
-              color: 'text.secondary',
+              color: 'black',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               display: '-webkit-box',
