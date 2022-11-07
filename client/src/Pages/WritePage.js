@@ -14,12 +14,12 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import axios from 'axios';
 import { AppContext } from '../AppContext';
-import "../utils/WritePage.css"
+import '../utils/WritePage.css';
 
 export default function WritePage () {
   const context = useContext(AppContext);
-  const {setTokenAmount} = context.action;
-  const {jwt, tokenAmount} = context.state;
+  const { tokenAmount, regionList } = context.state;
+  const { setTokenAmount, setRegionList } = context.action;
   const [activeStep, setActiveStep] = React.useState(0);
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
@@ -27,6 +27,17 @@ export default function WritePage () {
   const [writeImg, setWriteImg] = React.useState('');
   const [region, setRegion] = React.useState('');
   const [city, setCity] = React.useState('');
+  const [isRegionListLoaded, loadRegionList] = React.useState(false);
+
+  React.useEffect(() => {
+    axios.get('http://localhost:3001/regions')
+      .then((res) => {
+        setRegionList(res.data);
+        loadRegionList(true);
+      }).catch((err) => {
+        console.error(err);
+      });
+  }, [isRegionListLoaded]);
 
   // region 은 넣을필요 없음. 분류할떄만. city만 post
   const steps = ['글쓰기', '미리보기', '작성 완료'];
@@ -36,34 +47,37 @@ export default function WritePage () {
       case 0:
         return (
           <WriteForm
-        activeStep={activeStep}
-        steps={steps}
-        handleNext={handleNext}
-        setTitle={setTitle}
-        setContent={setContent}
-        title={title}
-        content={content}
-        writeImg={writeImg}
-        setWriteImg={setWriteImg}
-        region={region}
-        setRegion={setRegion}
-        city={city}
-        setCity={setCity}
-        />);
+            activeStep={activeStep}
+            steps={steps}
+            handleNext={handleNext}
+            setTitle={setTitle}
+            setContent={setContent}
+            title={title}
+            content={content}
+            writeImg={writeImg}
+            setWriteImg={setWriteImg}
+            region={region}
+            setRegion={setRegion}
+            regionList={regionList}
+            city={city}
+            setCity={setCity}
+          />
+        );
       case 1:
         return (
           <Review
-          activeStep={activeStep}
-          handleBack={handleBack}
-          handleNext={handleNext}
-          title={title}
-          userId={userId}
-          content={content}
-          writeImg={writeImg}
-          setWriteImg={setWriteImg}
-          region={region}
-          city={city}
-          />);
+            activeStep={activeStep}
+            handleBack={handleBack}
+            handleNext={handleNext}
+            title={title}
+            userId={userId}
+            content={content}
+            writeImg={writeImg}
+            setWriteImg={setWriteImg}
+            region={region}
+            city={city}
+          />
+        );
       case 2:
         return (
           <>
@@ -122,14 +136,14 @@ export default function WritePage () {
   const theme = createTheme();
   return (
     <ThemeProvider theme={theme}>
-      <Container component='div' maxWidth='md' sx={{ mb: 4, }}>
-        <Paper elevation={5} sx={{ my: { xs: 3, md: 6 }, p: { xs: 3, md: 6 }, }}>
-          <Typography component='h1' variant='h4' sx={{color: '#a9def9', margin:0, textAlign:"center"}}>
+      <Container component='div' maxWidth='md' sx={{ mb: 4 }}>
+        <Paper elevation={5} sx={{ my: { xs: 3, md: 6 }, p: { xs: 3, md: 6 } }}>
+          <Typography component='h1' variant='h4' sx={{ color: '#a9def9', margin: 0, textAlign: 'center' }}>
             게시글 작성하기
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
-              <Step className='step-container' key={label} >
+              <Step className='step-container' key={label}>
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}
