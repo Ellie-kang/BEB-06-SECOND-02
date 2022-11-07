@@ -14,13 +14,16 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import axios from 'axios';
 import { AppContext } from '../AppContext';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import "../utils/WritePage.css"
 import "../utils/Font.css"
 
-export default function WritePage () {
+export default function WritePage() {
   const context = useContext(AppContext);
-  const { tokenAmount, regionList } = context.state;
+  const { tokenAmount, regionList, jwt } = context.state;
   const { setTokenAmount, setRegionList } = context.action;
+
   const [activeStep, setActiveStep] = React.useState(0);
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
@@ -28,6 +31,8 @@ export default function WritePage () {
   const [writeImg, setWriteImg] = React.useState('');
   const [region, setRegion] = React.useState('');
   const [city, setCity] = React.useState('');
+  const [open, setOpen] = React.useState(false);
+
   const [isRegionListLoaded, loadRegionList] = React.useState(false);
 
   React.useEffect(() => {
@@ -43,11 +48,10 @@ export default function WritePage () {
   // backdrop logic
 
 
-
   // region 은 넣을필요 없음. 분류할떄만. city만 post
   const steps = ['글쓰기', '미리보기', '작성 완료'];
 
-  function getStepContent (step) {
+  function getStepContent(step) {
     switch (step) {
       case 0:
         return (
@@ -68,6 +72,7 @@ export default function WritePage () {
             setCity={setCity}
           />
         );
+
       case 1:
         return (
           <Review
@@ -81,8 +86,9 @@ export default function WritePage () {
             setWriteImg={setWriteImg}
             region={region}
             city={city}
-          />
-        );
+
+          />);
+
       case 2:
         return (
           <>
@@ -117,10 +123,11 @@ export default function WritePage () {
       alert('빈칸을 채워주세요');
     } else {
       switch (activeStep) {
-        case 0 :
+        case 0:
           setActiveStep(activeStep + 1);
           break;
-        case 1 :
+        case 1:
+          setOpen(!open);
           axios.post('http://localhost:3001/articles/write', {
             userId: userId,
             title: title,
@@ -132,7 +139,9 @@ export default function WritePage () {
           }).then((res) => {
             setActiveStep(activeStep + 1);
             setTokenAmount(tokenAmount + 5);
+            setOpen(false);
           }).catch((err) => {
+            setOpen(false);
             alert('게시글 작성 중 문제가 발생했습니다.');
             console.error(err);
           });
@@ -152,6 +161,12 @@ export default function WritePage () {
   
   return (
     <ThemeProvider theme={theme}>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Container component='div' maxWidth='md' sx={{ mb: 4, }}>
         <Paper elevation={5} sx={{ my: { xs: 3, md: 6 }, p: { xs: 3, md: 6 }, }}>
           <Typography component='h1' variant='h4' sx={{color: 'rgba(231,127,112)', margin:0, textAlign:"center", fontWeight:"600"}}>

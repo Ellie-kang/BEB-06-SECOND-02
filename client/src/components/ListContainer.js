@@ -90,40 +90,6 @@ const ListContainer = () => {
           {regionList.map(({ region, cities }, idx) => {
             return <ListItem key={idx} region={region} cities={cities} openList={openList} setOpenList={setOpenList} />;
           })}
-          {/*
-          <ListButton handle={handleAsiaClick} open={openAsia} primary='Asia' />
-          <Collapse in={openAsia} timeout='auto'>
-            <ListContainerByRegion primary='Seoul' />
-            <ListContainerByRegion primary='Tokyo' />
-            <ListContainerByRegion primary='BangKok' />
-          </Collapse>
-
-          <ListButton handle={handleEuropeClick} open={openEurope} primary='Europe' />
-          <Collapse in={openEurope} timeout='auto'>
-            <ListContainerByRegion primary='Paris' />
-            <ListContainerByRegion primary='Roma' />
-            <ListContainerByRegion primary='London' />
-          </Collapse>
-
-          <ListButton handle={handleAmericaClick} open={openAmerica} primary='America' />
-          <Collapse in={openAmerica} timeour='auto' unmountOnExit>
-            <ListContainerByRegion primary='DC' />
-            <ListContainerByRegion primary='Ottawa' />
-            <ListContainerByRegion primary='NewYork' />
-          </Collapse>
-
-          <ListButton handle={handleAfricaClick} open={openAfrica} primary='Africa' />
-          <Collapse in={openAfrica} timeour='auto' unmountOnExit>
-            <ListContainerByRegion primary='Rabat' />
-            <ListContainerByRegion primary='Kyro' />
-          </Collapse>
-
-          <ListButton handle={handleMeClick} open={openME} primary='Middle East' />
-          <Collapse in={openME} timeour='auto' unmountOnExit>
-            <ListContainerByRegion primary='New Delhi' />
-            <ListContainerByRegion primary='Riyadh' />
-            <ListContainerByRegion primary='dubai' />
-          </Collapse> */}
         </List>
         <Box component='footer' sx={{ height: '30px', bgcolor: 'background.header' }} />
       </Stack>
