@@ -1,9 +1,6 @@
 require('dotenv').config();
 const User = require('../model/user');
-const reward = require('../utility/reward');
 const jwt = require('jsonwebtoken');
-const newAccount = require('../utility/createAccount');
-const { main, transferFrom } = require('./web3');
 
 const find = async (req, res) => {
   const _queries = req.query;
@@ -53,7 +50,7 @@ const signup = async (req, res) => {
     // 여기 있는 account 데이터는 추후 이더리움 노드와 연동되면 채워질 부분입니다.
     const user = new User({
       userId,
-      password,
+      password
     });
 
     // user 모델에서 mongoose-unique-validator 플러그인을 적용한 채로
