@@ -6,13 +6,10 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import { Stack } from '@mui/system';
 import { AppContext } from "../AppContext";
-import styled from "styled-components";
 
 export const Like = (props) => {
   const [isLike, setIsLike] = useState(false);
-
   const {like} = props;
-
   const context = useContext(AppContext);
   const { userId } = context.state;
 
@@ -26,19 +23,19 @@ export const Like = (props) => {
       } else {
         setIsLike(true);
       }
-      console.log(res)
       window.location.replace("/")
     }).catch((err) => {
       console.log(err)
     })
   }
 
+
+  
   // 좋아요 유무에 따라 새로고침 되도 그대로 반영함(확인 완료)
   useEffect(() => {
     const _like = like.filter((data) => {
       return data.userId === userId;  
     })[0]
-    console.log(_like)
     if(_like) {
       setIsLike(true)
     }
@@ -65,7 +62,7 @@ export const Like = (props) => {
         </IconButton>
         )}
     <Typography style={{ color: 'black'}} marginTop="8px"> 좋아요
-        {/* {like.length} */}
+        {like.length}
     </Typography>
   </Stack>
   );
