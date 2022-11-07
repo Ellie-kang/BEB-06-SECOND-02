@@ -44,6 +44,8 @@ const mintNft = async (req, res) => {
     // 서버 주소로 10 token 전송.
     const result = await user_send(user.address, "0xA5E535B4c93751d0C72316dA4F6FdC6cb61BC09B", "10");
 
+    
+
     // const result_mint mint logic
     if(result){
       await User.findOneAndUpdate({userId: userId}, {tokenAmount: user.tokenAmount - 10}, {

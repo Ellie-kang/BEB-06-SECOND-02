@@ -4,8 +4,10 @@ import { Grid, Box, Button } from '@mui/material';
 import axios from "axios";
 import { NFTStorage, File } from 'nft.storage/dist/bundle.esm.min.js'
 import {AppContext} from "../AppContext"
+import dotenv from "dotenv";
+dotenv.config();
 
-const NFT_STORAGE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGU2ODU5Njc4OTg1OGE0YzBiODkyRjlFNzI4MzZhNGJDNDZCYWI3RWMiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2NzgwMzYxNjUwNCwibmFtZSI6Ik1pbnRpbmcgbmZ0In0.GQp_NOiz0lBNSAasaCKx7LiANFZOR2BtxDHMrqbNEbs"
+const NFT_STORAGE_KEY = process.env.APITOKEN
 
 
 const MintPage = () => {
