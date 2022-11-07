@@ -1,49 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Typography from '@mui/material/Typography';
-import Badge from '@mui/material/Badge';
+import axios from 'axios';
+import { Stack } from '@mui/system';
+import { AppContext } from "../AppContext";
 
-export const Like = () => {
+
+export const Like = (props) => {
   const [isLike, setIsLike] = useState(false);
-  const [count, setCount] = useState(1);
+  const [color, setColor] = useState('unLike')
 
+  const {like} = props;
+
+  const context = useContext(AppContext);
+  const { userId } = context.state;
+  console.log(userId)
+  console.log(like)
+
+
+  const isLiked = (e) => {
+    axios.patch('http://localhost:3001/articles/like', {
+      articleId : props.articleId,
+    },{withCredentials : true})
+    .then((res) => {
+      if(isLike) {
+        setIsLike(false);
+        setColor('unLike')
+      } else {
+        setIsLike(true);
+        setColor('like')
+      }
+      console.log(res)
+      // window.location.replace("/")
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
 
   return (
-    <div>
-    {isLike
+    <Stack direction="row"> 
+    {isLike 
       ? (
         <IconButton
           aria-label='add to favorites'
           style={{ color: 'red' }}
-          onClick={() => {
-            setIsLike(false);
-          }}
+          onClick={isLiked}
         >
           <FavoriteIcon />
-          <Badge color="secondary" badgeContent={6} showZero>
-            {/*  */}
-            <FavoriteIcon />
-          </Badge>
-          <Typography style={{ color: 'black' }}> 좋아요
-            <span onClick={() => {
-              setCount(count + 1);
-            }}
-            />{count}
-          </Typography>
         </IconButton>
         )
       : (
         <IconButton
-          aria-label='add to favorites'
-          onClick={() => {
-            setIsLike(true);
-          }}
+          aria-label='delete to favorites'
+          onClick={isLiked}
         >
           <FavoriteBorderIcon />
         </IconButton>
         )}
-  </div>
+    <Typography style={{ color: 'black'}} marginTop="8px"> 좋아요
+        {like.length}
+    </Typography>
+  </Stack>
   );
 };

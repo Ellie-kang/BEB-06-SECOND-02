@@ -16,13 +16,21 @@ import { Box, Link, Grow } from '@mui/material';
 const Article = (props) => {
   const context = useContext(AppContext);
   const {setDetailArticle} = context.action;
-  const { title, content, imgFile, userId, userProfile, comments, id } = props;
+  const { title, content, imgFile, userId, userProfile, comments, id, like} = props;
   const date = new Date();
   const navigate = useNavigate();
 
   //Detail Page handling
   const handleTitleClick = (e) => {
     // header를 클릭하면, direction을 바꿔준다.
+
+    // Article에서 img가 없으면 기본 이미지 설정.
+
+
+    // textcontent 말고 , Article을 클릭했을떄 Article 정보를 가져와야함.
+    // mainArticle index를 가져오면 될듯.
+    // 본문 헤더, 이미지.
+    
 
     /* setDetailArticle(e.target.textContent);
     navigate(`/detail/${e.target.textContent}`); */
@@ -34,8 +42,6 @@ const Article = (props) => {
       <Card
         className='contents-container'
         sx={{ borderRadius: '10px',}}
-        onClick={handleTitleClick}
-        
       >
         <CardHeader
           // sx={{bgcolor: "#ffd2c9"}}
@@ -45,13 +51,14 @@ const Article = (props) => {
           }
           user={context.state.userId}
           title={title}
+          onClick={handleTitleClick}
         />
         <CardMedia
           component='img'
           height='350'
           image={imgFile}
         />
-        <Like />
+        <Like articleId={id} like={like} id={id} userId={userId}/>
         <CardContent>
           <Typography component="p" sx={{color: "black"}}><strong>{userId}</strong></Typography>
           <Typography
