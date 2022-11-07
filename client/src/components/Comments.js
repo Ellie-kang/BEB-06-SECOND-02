@@ -4,6 +4,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import { Stack,Button, fabClasses, Chip, Grid, IconButton, makeStyles } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import "../utils/Comments.css"
 import { Box } from '@mui/system';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
@@ -13,21 +15,26 @@ export const Comments = (props) => {
   const context = useContext(AppContext);
   const { userId } = context.state;
   const [comment, setComment] = useState('');
+  const [open, setOpen] = useState(false);
+  //const [commentLists, setCommentLists] = useState(props.comments);
   const [isValid, setIsValid] = useState(false);
   const {comments} = props;
   const [commentLists, setCommentLists] = useState([...comments]);
   
   const post = (e) => {
+    setOpen(!open);
     axios.post('http://localhost:3001/articles/comment', {
       articleId : props.articleId,
       content: comment
     },{withCredentials : true})
     .then((res)=> {
       console.log(res.data)
+      setOpen(false);
       setComment('');
       setIsValid(false);
       window.location.replace("/")
     }).catch((err)=> {
+      setOpen(false);
       console.log(err)
     })
   };
@@ -51,6 +58,12 @@ export const Comments = (props) => {
   return (
     <ThemeProvider theme={context.state.theme}>
       <Stack>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
         <Stack spacing={1} className='comments-text' direction="row" sx={{marginY:"20px", color:"text.secondary" }} >
           <Avatar className='comments-profile' sx={{width: "30px", height: "30px"}} src={context.state.userProfileImg} />
           <Box
