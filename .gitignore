@@ -5,3 +5,4 @@
 /server/credentials
 server/package-lock.json
 .vscode
+client/.env
