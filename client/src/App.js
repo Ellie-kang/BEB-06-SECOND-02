@@ -29,6 +29,7 @@ const App = () => {
   const [imgSrc, setImgSrc] = useState('');
   const [jwt, setJwt] = useState('');
   const [cookie, setCookie, deleteCookie] = useCookies(['token']);
+
   
   
   // login 상태
@@ -40,6 +41,8 @@ const App = () => {
   const [mainArticles, setMainArticles] = useState([]);
   // 지역 데이터 Regions
   const [regionList, setRegionList] = useState([]);
+  // detailArticle
+  const [detailArticle, setDetailArticle] = useState('')
   // mui 팔레트
   const theme = createTheme({
     palette: {
@@ -78,7 +81,8 @@ const App = () => {
       jwt: jwt,
       cookie: cookie,
       mainArticles: mainArticles,
-      regionList: regionList
+      regionList: regionList,
+      detailArticle: detailArticle
     },
     action: {
       setUserId: setUserId,
@@ -96,7 +100,8 @@ const App = () => {
       deleteCookie: deleteCookie,
       setCookie: setCookie,
       setMainArticles: setMainArticles,
-      setRegionList: setRegionList
+      setRegionList: setRegionList,
+      setDetailArticle: setDetailArticle
     }
   };
 
@@ -106,7 +111,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/account' element={<AccountPage />} />
-        <Route path='/detail' element={<DetailPage />} />
+        <Route path='/detail/:id' element={<DetailPage />} />
         <Route path='/write' element={<WritePage />} />
         <Route path='/mint' element={<MintPage />} />
       </Routes>

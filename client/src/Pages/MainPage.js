@@ -11,8 +11,8 @@ import { Paper, Typography } from '@mui/material';
 const MainPage = () => {
   const context = useContext(AppContext);
   // mainPageArticles
-  const { mainArticles } = context.state;
-  const { setMainArticles, setRegionList } = context.action;
+  const { mainArticles, } = context.state;
+  const { setMainArticles, setRegionList,} = context.action;
 
   useEffect(() => {
     axios.get('http://localhost:3001/articles', {
@@ -56,7 +56,7 @@ const MainPage = () => {
           })}
         </Grid>
         <Grid item xs={12}>
-          <Paper square elevation={0} sx={{ height: '25px' }} />
+          <Paper square elevation={0} sx={{height:"25px"}} />
         </Grid>
       </Grid>
     </ThemeProvider>

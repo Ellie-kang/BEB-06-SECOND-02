@@ -1,5 +1,4 @@
-import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
+import React, { useContext, useEffect} from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -8,10 +7,22 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import { useNavigate } from 'react-router-dom';
+import {AppContext} from '../AppContext';
+import Article from '../components/Article';
 
 const theme = createTheme();
 
 const DetailPage = () => {
+
+  const context = useContext(AppContext);
+  const {mainArticles, detailArticle} = context.state;
+  console.log(mainArticles)
+  console.log(detailArticle)
+
+  const filteredArticle = [...mainArticles].filter((item) => {
+    return item.title === detailArticle;
+  })
+  
   const navigate = useNavigate();
 
   const information = [
@@ -20,7 +31,7 @@ const DetailPage = () => {
   ];
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
+      
       <Container component='main' maxWidth='md' sx={{ mb: 4 }}>
         <Paper variant='outlined' sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component='h1' variant='h4' >
@@ -28,8 +39,8 @@ const DetailPage = () => {
           </Typography>
           <>
             <>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
                   <Typography variant='h6' gutterBottom sx={{ mt: 2 }}>
                     한일 바닷길도 열렸다. 정부가 10월28일부터 한일 국제여객선 승선을 허용했다. 일본 항만의 준비가 완료되지 않아 정상화까지는 다소 시간이 소요될 전망이지만, 일본시장의 여객선 비중이 높았던 부산 여행업계는 기대감을 드러냈다.
                     <br />
@@ -56,14 +67,14 @@ const DetailPage = () => {
                     ))}
                   </Grid>
 
-                </Grid>
+          </Grid>
 
-              </Grid>
-              <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button variant='contained' onClick={() => { navigate(-1); }} sx={{ mt: 3, ml: 1 }}>
-                  뒤로 가기
-                </Button>
-              </Box>
+        </Grid>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Button variant='contained' onClick={() => { navigate(-1); }} sx={{ mt: 3, ml: 1 }}>
+            뒤로 가기
+          </Button>
+        </Box>
             </>
           </>
         </Paper>
