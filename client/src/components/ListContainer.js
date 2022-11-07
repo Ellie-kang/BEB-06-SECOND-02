@@ -13,6 +13,7 @@ import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 import { Box } from '@mui/system';
 import { AppContext } from '../AppContext';
 import ListContainerByRegion from './ListContainerByRegion';
+import {Grid} from '@mui/material';
 import '../utils/MainPage.css';
 import '../utils/Font.css';
 
@@ -62,10 +63,12 @@ const ListContainer = () => {
   };
 
   return (
-    <>
+    
       <Stack
-        id='list-contianer' sx={{
-          pr: 3
+        id='list-contianer'  sx={{
+          width:"100%",
+          display:"flex",
+          flexWrap:"wrap",
         }}
       >
         <List
@@ -90,7 +93,6 @@ const ListContainer = () => {
         </List>
         <Box component='footer' sx={{ height: '30px', bgcolor: 'background.header' }} />
       </Stack>
-    </>
   );
 };
 

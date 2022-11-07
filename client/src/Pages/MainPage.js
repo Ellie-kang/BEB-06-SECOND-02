@@ -31,15 +31,33 @@ const MainPage = () => {
         console.error(err);
       });
   }, []);
+  // Grid 수정.
 
   return (
     <ThemeProvider theme={context.state.theme}>
       <Grid container spacing={4} justifyContent='center'>
-        <Grid item xs={2} />
-        <Grid item xs={2} justifyContent='center' mt={10} sx={{ width: '100%', height: 'auto' }}>
+        <Grid item sm={0} md={2}></Grid>
+        <Grid item xs={12} sm={2} justifyContent='center' sx={{width:"100%", ml: {
+          xs:3
+        },
+        pr: {
+          xs:3,
+        },
+        mr: {
+          sm: 10,
+          md: 5,
+          lg: 0
+        },
+        mt: {
+          xs:0,
+          sm: 10,
+        }, height: 'auto',  }}>
           <ListContainer id='main-list' />
         </Grid>
-        <Grid item xs={6} mt={10} sx={{ width: '100%', height: 'auto' }}>
+        <Grid item xs={12} sm={6} sx={{ width: '100%', height: 'auto', mt: {
+          xs:0,
+          sm: 10,
+        }, }}>
           {[...mainArticles].reverse().map((item) => {
             return (
               <Article
@@ -55,6 +73,7 @@ const MainPage = () => {
                 />);
           })}
         </Grid>
+        
         <Grid item xs={12}>
           <Paper square elevation={0} sx={{height:"25px"}} />
         </Grid>
