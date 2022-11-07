@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../AppContext';
 import { Comments } from './Comments';
 import { Like } from './Like';
@@ -14,18 +15,31 @@ import { Box, Link, Grow } from '@mui/material';
 
 const Article = (props) => {
   const context = useContext(AppContext);
+  const {setDetailArticle} = context.action;
   const { title, content, imgFile, userId, userProfile, comments, id } = props;
   const date = new Date();
+  const navigate = useNavigate();
+
+  //Detail Page handling
+  const handleTitleClick = (e) => {
+    // header를 클릭하면, direction을 바꿔준다.
+
+    /* setDetailArticle(e.target.textContent);
+    navigate(`/detail/${e.target.textContent}`); */
+    
+  }
 
   return (
     <Grow in={true} style={{ transformOrigin: '0 2 0' }} {...(true ? { timeout: 1200 } : {})}>
       <Card
         className='contents-container'
-        sx={{ borderRadius: '10px' }}
+        sx={{ borderRadius: '10px',}}
+        onClick={handleTitleClick}
+        
       >
         <CardHeader
           // sx={{bgcolor: "#ffd2c9"}}
-          sx={{bgcolor: "#a9def9"}}
+          sx={{bgcolor: "#a9def9", cursor:"pointer"}}
           avatar={
             <Avatar src={userProfile} />
           }

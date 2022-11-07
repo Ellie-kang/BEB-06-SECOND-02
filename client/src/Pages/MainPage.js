@@ -12,8 +12,8 @@ import { Paper, Typography } from '@mui/material';
 const MainPage = () => {
   const context = useContext(AppContext);
     //mainPageArticles
-    const { mainArticles, regionList } = context.state;
-    const { setMainArticles, setRegionList } = context.action;
+    const { mainArticles, regionList, } = context.state;
+    const { setMainArticles, setRegionList,} = context.action;
 
   useEffect(() => {
     axios.get('http://localhost:3001/articles', {
