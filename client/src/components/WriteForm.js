@@ -9,16 +9,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Chip } from '@mui/material';
-import axios from 'axios';
 
 export default function WriteForm (props) {
   const { region, setRegion, city, setCity, regionList } = props;
   const [cityList, setCityList] = useState([]);
-  const asia = ['Seoul', 'Tokyo', 'BangKok'];
-  const europe = ['Paris', 'Roma', 'London'];
-  const america = ['DC', 'Ottawa', 'NewYork'];
-  const africa = ['Rabat', 'Kyro'];
-  const middleeast = ['New Delhi', 'Riyadh', 'dubai'];
 
   const citiesByRegion = Object.fromEntries(regionList.map(item => [item.region, item.cities]));
   const regions = regionList.map(item => item.region);
@@ -66,8 +60,10 @@ export default function WriteForm (props) {
 
   return (
     <>
-      <Typography variant='h5' mb={4} gutterBottom 
-        sx={{fontFamily: "Poppins", color: "rgba(231,127,112)", fontWeight:600}}>
+      <Typography
+        variant='h5' mb={4} gutterBottom
+        sx={{ fontFamily: 'Poppins', color: 'rgba(231,127,112)', fontWeight: 600 }}
+      >
         게시글 작성
       </Typography>
       <Grid container spacing={3}>

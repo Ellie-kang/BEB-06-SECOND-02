@@ -14,6 +14,7 @@ import { AppContext } from '../AppContext';
 import ListContainerByRegion from './ListContainerByRegion';
 import '../utils/MainPage.css';
 import '../utils/Font.css';
+import axios from 'axios';
 
 const ListContainer = () => {
   const context = useContext(AppContext);
@@ -41,54 +42,59 @@ const ListContainer = () => {
   };
 
   const ListItem = ({ region, cities, openList, setOpenList }) => {
-    const open = openList[region];
-    const handleOpen = () => {
-      const newList = { ...openList };
-      newList[region] = !open;
-      setOpenList(newList);
-    };
+    if (openList) {
+      const open = openList[region];
+      const handleOpen = () => {
+        const newList = { ...openList };
+        newList[region] = !open;
+        console.log(newList);
+        setOpenList(newList);
+      };
 
-    return (
-      <>
-        <ListButton handle={handleOpen} open={open} primary={region} />
-        <Collapse in={open} timeout='auto'>
-          {cities.map((city, idx) => <ListContainerByRegion key={idx} primary={city} />)}
-        </Collapse>
-      </>
-    );
+      return (
+        <>
+          <ListButton handle={handleOpen} open={open} primary={region} />
+          <Collapse in={open} timeout='auto'>
+            {cities.map((city, idx) => <ListContainerByRegion key={idx} primary={city} />)}
+          </Collapse>
+        </>
+      );
+    } else {
+      return <></>;
+    }
   };
 
   return (
-    
-      <Stack
-        id='list-contianer'  sx={{
-          width:"100%",
-          display:"flex",
-          flexWrap:"wrap",
-        }}
-      >
-        <List
-          component='nav'
-          className='nav-list'
-          subheader={
-            <ListSubheader
-              sx={{
-                borderTopLeftRadius: '5px',
-                borderTopRightRadius: '5px',
-                bgcolor: 'background.header',
-                color: 'text.primary'
-              }}
-              component='div' id='list-subheader'
-            >WHERE IS TAKO?
-            </ListSubheader>
+
+    <Stack
+      id='list-contianer' sx={{
+        width: '100%',
+        display: 'flex',
+        flexWrap: 'wrap'
+      }}
+    >
+      <List
+        component='nav'
+        className='nav-list'
+        subheader={
+          <ListSubheader
+            sx={{
+              borderTopLeftRadius: '5px',
+              borderTopRightRadius: '5px',
+              bgcolor: 'background.header',
+              color: 'text.primary'
+            }}
+            component='div' id='list-subheader'
+          >WHERE IS TAKO?
+          </ListSubheader>
           }
-        >
-          {regionList.map(({ region, cities }, idx) => {
-            return <ListItem key={idx} region={region} cities={cities} openList={openList} setOpenList={setOpenList} />;
-          })}
-        </List>
-        <Box component='footer' sx={{ height: '30px', bgcolor: 'background.header' }} />
-      </Stack>
+      >
+        {regionList.map(({ region, cities }, idx) => {
+          return <ListItem key={idx} region={region} cities={cities} openList={openList} setOpenList={setOpenList} />;
+        })}
+      </List>
+      <Box component='footer' sx={{ height: '30px', bgcolor: 'background.header' }} />
+    </Stack>
   );
 };
 

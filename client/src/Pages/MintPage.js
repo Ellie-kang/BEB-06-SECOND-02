@@ -1,88 +1,71 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import Media from '../components/Skeleton';
 import { Grid, Box, Button } from '@mui/material';
-import axios from "axios";
-import { NFTStorage, File } from 'nft.storage/dist/bundle.esm.min.js'
-import {AppContext} from "../AppContext"
-import dotenv from "dotenv";
-dotenv.config();
+import axios from 'axios';
+import { NFTStorage, File } from 'nft.storage/dist/bundle.esm.min.js';
+import { AppContext } from '../AppContext';
 
-const NFT_STORAGE_KEY = process.env.APITOKEN
-
+const NFT_STORAGE_KEY = process.env.REACT_APP_APITOKEN;
 
 const MintPage = () => {
   const context = useContext(AppContext);
-  const name = context.state.userId
+  const name = context.state.userId;
+  const [preview, setPreview] = useState('');
   const [nftImg, setNftImg] = useState(undefined);
 
   const handleMint = async () => {
-    console.log(nftImg)
+    console.log(nftImg);
     try {
-      const image = new File([nftImg], "nft", {type:"image/.jpeg"});
-      
-      console.log(image);
-      const nftstorage = new NFTStorage({token: NFT_STORAGE_KEY});
-      const description = "123123";
+      if (!nftImg) throw new Error('아직 이미지를 선택하지 않았습니다');
+
+      const nftstorage = new NFTStorage({ token: NFT_STORAGE_KEY });
+      const description = '123123';
 
       const result = await nftstorage.store({
-        image,
+        image: nftImg,
         name,
         description
-      })
+      });
 
-      console.log(result)
-    } catch(e) {
-      console.log(e);
-      return e;
+      // Result 변수가 설정되면 nftstorage에 저장되었다는 뜻입니다.
+      console.log(result);
+    } catch (e) {
+      console.error(e);
+      alert(e);
     }
+  };
 
-/*       axios.post("http://localhost:3001/web3/mint", {
-        withCredentials: true
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((e) => {
-        console.log(e);
-        return e;
-      }) */
-  }
-
-/*   const encodeFileToBase64 = (fileBlob) => {
+  const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
 
     return new Promise((resolve) => {
       reader.onload = () => {
-        setNftImg(reader.result);
+        setPreview(reader.result);
         resolve();
       };
     });
-  }; */
+  };
 
   const handleChangeImage = (e) => {
-    if (!nftImg) {
-      return;
-    }
     if (e.target.files) {
-      console.log(e.target.files)
+      encodeFileToBase64(e.target.files[0]);
       setNftImg(e.target.files[0]);
-
     }
   };
 
   const fileInput = React.useRef(null);
-  
+
   const handleButtonClick = e => {
     fileInput.current.click();
   };
-  
+
   const handleChange = e => {
     console.log(e.target.files[0]);
     setNftImg(e.target.files[0]);
   };
 
-/*   async function fileFromPath(filePath) {
+  /*   async function fileFromPath(filePath) {
     const content = await fs.promises.readFile(filePath)
     const type = mime.getType(filePath)
     return new File([content], path.basename(filePath), { type })
@@ -91,35 +74,48 @@ const MintPage = () => {
   return (
     <>
       <Grid container spacing={4}>
-        <Grid item xs={12}></Grid>
-        <Grid item xs={4}></Grid>
+        <Grid item xs={12} />
+        <Grid item xs={4} />
         <Grid item xs={4}>
-          <Box component='img' src={nftImg} alt=""></Box>
+          <Box component='img' src={preview} alt='' />
           <Box>
-          <Button onClick={handleButtonClick}>파일 업로드</Button>
-      <input type="file"
-             ref={fileInput}
-             onChange={handleChange}
-             style={{ display: "none" }} />
             <Button
-            variant='contained'
-            component='label'
-            onClick={handleMint}
-            sx={{
-              bgcolor: '#a9def9',
-              '&.MuiButtonBase-root:hover': {
-                bgcolor: '#a9def9'
-              }
-            }}
+              variant='contained'
+              component='label'
+              sx={{
+                bgcolor: '#a9def9',
+                '&.MuiButtonBase-root:hover': {
+                  bgcolor: '#a9def9'
+                }
+              }}
             >
-            Mint!
+              Select Img
+              <input
+                type='file'
+                hidden
+                onChange={handleChangeImage}
+              />
+            </Button>
+            <Button
+              variant='contained'
+              component='label'
+              onClick={handleMint}
+              sx={{
+                bgcolor: '#a9def9',
+                '&.MuiButtonBase-root:hover': {
+                  bgcolor: '#a9def9'
+                }
+              }}
+            >
+              Mint!
             </Button>
           </Box>
         </Grid>
-        <Grid item xs={4}></Grid>
+        <Grid item xs={4} />
       </Grid>
     </>
-  )
-}
+  );
+};
 
 export default MintPage
+;

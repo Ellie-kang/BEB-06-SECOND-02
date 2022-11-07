@@ -6,19 +6,18 @@ import { AppContext } from '../AppContext';
 import ListContainer from '../components/ListContainer';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
-import { Paper, Typography } from '@mui/material';
+import { Paper } from '@mui/material';
 
 const MainPage = () => {
   const context = useContext(AppContext);
   // mainPageArticles
-  const { mainArticles, } = context.state;
-  const { setMainArticles, setRegionList,} = context.action;
+  const { mainArticles } = context.state;
+  const { setMainArticles, setRegionList } = context.action;
 
   useEffect(() => {
     axios.get('http://localhost:3001/articles', {
       withCredentials: true
     }).then((res) => {
-      console.log(res.data);
       setMainArticles(res.data);
     }).catch((err) => {
       console.error(err);
@@ -36,28 +35,40 @@ const MainPage = () => {
   return (
     <ThemeProvider theme={context.state.theme}>
       <Grid container spacing={4} justifyContent='center'>
-        <Grid item sm={0} md={2}></Grid>
-        <Grid item xs={12} sm={2} justifyContent='center' sx={{width:"100%", ml: {
-          xs:3
-        },
-        pr: {
-          xs:3,
-        },
-        mr: {
-          sm: 10,
-          md: 5,
-          lg: 0
-        },
-        mt: {
-          xs:0,
-          sm: 10,
-        }, height: 'auto',  }}>
+        <Grid item sm={0} md={2} />
+        <Grid
+          item xs={12} sm={2} justifyContent='center' sx={{
+            width: '100%',
+            ml: {
+              xs: 3
+            },
+            pr: {
+              xs: 3
+            },
+            mr: {
+              sm: 10,
+              md: 5,
+              lg: 0
+            },
+            mt: {
+              xs: 0,
+              sm: 10
+            },
+            height: 'auto'
+          }}
+        >
           <ListContainer id='main-list' />
         </Grid>
-        <Grid item xs={12} sm={6} sx={{ width: '100%', height: 'auto', mt: {
-          xs:0,
-          sm: 10,
-        }, }}>
+        <Grid
+          item xs={12} sm={6} sx={{
+            width: '100%',
+            height: 'auto',
+            mt: {
+              xs: 0,
+              sm: 10
+            }
+          }}
+        >
           {[...mainArticles].reverse().map((item) => {
             return (
               <Article
@@ -70,12 +81,13 @@ const MainPage = () => {
                 userProfile={item.author.profileImage}
                 comments={item.comments}
                 like={item.like}
-                />);
+              />
+            );
           })}
         </Grid>
-        
+
         <Grid item xs={12}>
-          <Paper square elevation={0} sx={{height:"25px"}} />
+          <Paper square elevation={0} sx={{ height: '25px' }} />
         </Grid>
       </Grid>
     </ThemeProvider>
