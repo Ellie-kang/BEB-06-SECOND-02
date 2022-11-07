@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import '../utils/Article.css';
 import '../utils/Font.css';
-import { Box, Link, Grow } from '@mui/material';
+import { Box, Grow } from '@mui/material';
 
 const Article = (props) => {
   const context = useContext(AppContext);
