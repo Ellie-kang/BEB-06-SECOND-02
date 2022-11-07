@@ -17,14 +17,14 @@ const MintPage = () => {
 
   const handleMint = async () => {
     try {
-      const image = new File([nftImg], "nft", {type:"image/.jpeg"});
+      //const image = new File(nftImg, "nft", {type:"image/.jpeg"});
       
-      console.log(image);
+      //console.log(image);
       const nftstorage = new NFTStorage({token: NFT_STORAGE_KEY});
       const description = "123123";
 
       const result = await nftstorage.store({
-        image,
+        nftImg,
         name,
         description
       })
