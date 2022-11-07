@@ -12,7 +12,7 @@ import { Chip } from '@mui/material';
 import axios from 'axios';
 
 export default function WriteForm (props) {
-  const { region, setRegion, city, setCity } = props;
+  const { region, setRegion, city, setCity, regionList } = props;
   const [cityList, setCityList] = useState([]);
   const asia = ['Seoul', 'Tokyo', 'BangKok'];
   const europe = ['Paris', 'Roma', 'London'];
@@ -20,7 +20,8 @@ export default function WriteForm (props) {
   const africa = ['Rabat', 'Kyro'];
   const middleeast = ['New Delhi', 'Riyadh', 'dubai'];
 
-  const regions = ['Asia', 'Europe', 'America', 'Africa', 'Middle East'];
+  const citiesByRegion = Object.fromEntries(regionList.map(item => [item.region, item.cities]));
+  const regions = regionList.map(item => item.region);
 
   const handleChangeTitle = (e) => {
     props.setTitle(e.target.value);
@@ -49,18 +50,8 @@ export default function WriteForm (props) {
   const handleRegionChange = useCallback((e) => {
     const target = e.target.value;
     setRegion(target);
-    if (target === 'Asia') {
-      setCityList(asia);
-    } else if (target === 'Europe') {
-      setCityList(europe);
-    } else if (target === 'America') {
-      setCityList(america);
-    } else if (target === 'Africa') {
-      setCityList(africa);
-    } else {
-      setCityList(middleeast);
-    }
-  }, []
+    setCityList(citiesByRegion[target]);
+  }, [regionList]
   );
 
   const handleCityChange = useCallback(
@@ -75,7 +66,8 @@ export default function WriteForm (props) {
 
   return (
     <>
-      <Typography variant='h6' gutterBottom>
+      <Typography variant='h5' mb={4} gutterBottom 
+        sx={{fontFamily: "Poppins", color: "rgba(231,127,112)", fontWeight:600}}>
         게시글 작성
       </Typography>
       <Grid container spacing={3}>

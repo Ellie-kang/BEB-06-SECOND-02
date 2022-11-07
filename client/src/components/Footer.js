@@ -3,7 +3,7 @@ import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import Stack from '@mui/material/Stack';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Grid, Paper } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { AppContext } from '../AppContext';
 
@@ -26,6 +26,7 @@ const Footer = () => {
   return (
     <div>
       <ThemeProvider theme={context.state.theme}>
+        <Paper square elevation={0} sx={{height:"25px", mt:1}} />
         <AppBar position='static' elevation={0} component='footer' sx={{ bgcolor: 'background.footer' }}>
           <Toolbar style={{ justifyContent: 'end' }}>
             <Box p={1} mx={2} my={3} mr={3}>

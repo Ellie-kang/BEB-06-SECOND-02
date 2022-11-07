@@ -3,6 +3,7 @@ import { AppContext } from '../../AppContext';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios'
+import { Box, Stack, Typography, Chip } from '@mui/material';
 
 const AccountSend = () => {
   const context = useContext(AppContext);
@@ -48,32 +49,51 @@ const AccountSend = () => {
   }
 
   return (
-    <div className='account-sender-container'>
-      <Backdrop
+    <>
+    <Box className='account-sender' mt={-20} mb={3} ml={10}>
+          <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={open}
       >
         <CircularProgress color="inherit" />
       </Backdrop>
-      <div className='account-sender-wrapper'>
-        당신의 계정은: {context.state.address}
-        <form className='account-sender-form' onSubmit={handleSubmit}>
-          <div className='account-sender'>
-            <div className='account-sender-label'>Address</div>
-            <div className='account-sender-input'>
-              <input className='sender-address' placeholder='put address' value={sendAddress} onChange={handleAddressChange} />
-            </div>
-          </div>
-          <div className='account-sender'>
-            <div className='account-sender-label'>Amount</div>
-            <div className='account-sender-input'>
-              <input className='sender-address' placeholder='put amount' value={sendAmount} onChange={handleAmounthange} />
-              <button className='account-sender-label' type='submit'>send</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+      <Stack className='account-sender-wrapper' direction="column" spacing={3} ml={5} sx={{fontSize:"20px", fontFamily:"Poppins", fontWeight:500}}>
+          <span>
+          <p>Your Account:</p>
+          {context.state.address ? context.state.address : "로그인을 해주세요"}
+          </span>
+          <Box component="form" className='account-sender-form' onSubmit={handleSubmit}>
+            <Stack direction="row" spacing={2}>
+              <span>Address</span>
+              <div className='account-sender-input'>
+                <input className='sender-address' placeholder='put address' value={sendAddress} onChange={handleAddressChange} />
+              </div>
+            </Stack>
+            <Stack direction="row" spacing={2}>
+              <span>Amount</span>
+              <div className='account-sender-input'>
+                <input className='sender-address' placeholder='put amount' value={sendAmount} onChange={handleAmounthange} />
+              </div>
+              <button className='account-sender-button' type='submit'>
+                <Chip 
+                  sx={{
+                    bgcolor:"rgba(231,127,112)",
+                    color:"white",
+                    fontWeight:600,
+                    cursor:"pointer",
+                    fontSize: "14px"
+                  }}
+                  className='account-sender-chip'
+                  label="send" />
+              </button>
+            </Stack>
+          </Box>
+      </Stack>
+
+    </Box>
+    </>
+    
+
   )
 };
 

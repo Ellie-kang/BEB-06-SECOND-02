@@ -17,11 +17,13 @@ import { AppContext } from '../AppContext';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import "../utils/WritePage.css"
+import "../utils/Font.css"
 
 export default function WritePage() {
   const context = useContext(AppContext);
-  const { setTokenAmount } = context.action;
-  const { jwt, tokenAmount } = context.state;
+  const { tokenAmount, regionList, jwt } = context.state;
+  const { setTokenAmount, setRegionList } = context.action;
+
   const [activeStep, setActiveStep] = React.useState(0);
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
@@ -30,6 +32,21 @@ export default function WritePage() {
   const [region, setRegion] = React.useState('');
   const [city, setCity] = React.useState('');
   const [open, setOpen] = React.useState(false);
+
+  const [isRegionListLoaded, loadRegionList] = React.useState(false);
+
+  React.useEffect(() => {
+    axios.get('http://localhost:3001/regions')
+      .then((res) => {
+        setRegionList(res.data);
+        loadRegionList(true);
+      }).catch((err) => {
+        console.error(err);
+      });
+  }, [isRegionListLoaded]);
+
+  // backdrop logic
+
 
   // region 은 넣을필요 없음. 분류할떄만. city만 post
   const steps = ['글쓰기', '미리보기', '작성 완료'];
@@ -50,9 +67,12 @@ export default function WritePage() {
             setWriteImg={setWriteImg}
             region={region}
             setRegion={setRegion}
+            regionList={regionList}
             city={city}
             setCity={setCity}
-          />);
+          />
+        );
+
       case 1:
         return (
           <Review
@@ -66,7 +86,9 @@ export default function WritePage() {
             setWriteImg={setWriteImg}
             region={region}
             city={city}
+
           />);
+
       case 2:
         return (
           <>
@@ -124,8 +146,12 @@ export default function WritePage() {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
-  const theme = createTheme();
+  const theme= createTheme({
+    typography: {
+      fontFamily: 'Poppins, sans-serif',
+    }
+  });
+  
   return (
     <ThemeProvider theme={theme}>
       <Backdrop
@@ -136,13 +162,13 @@ export default function WritePage() {
       </Backdrop>
       <Container component='div' maxWidth='md' sx={{ mb: 4, }}>
         <Paper elevation={5} sx={{ my: { xs: 3, md: 6 }, p: { xs: 3, md: 6 }, }}>
-          <Typography component='h1' variant='h4' sx={{ color: '#a9def9', margin: 0, textAlign: "center" }}>
+          <Typography component='h1' variant='h4' sx={{color: 'rgba(231,127,112)', margin:0, textAlign:"center", fontWeight:"600"}}>
             게시글 작성하기
           </Typography>
-          <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+          <Stepper activeStep={activeStep} sx={{ mt: 6, mb: 5, }}>
             {steps.map((label) => (
               <Step className='step-container' key={label} >
-                <StepLabel>{label}</StepLabel>
+                <StepLabel className='real-label'>{label}</StepLabel>
               </Step>
             ))}
           </Stepper>
