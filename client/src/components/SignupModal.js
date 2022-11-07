@@ -78,7 +78,6 @@ const SignupModal = () => {
             <main>
               <ThemeProvider theme={context.state.theme}>
                 <Container component='main' maxWidth='xs'>
-                  <CssBaseline />
                   <Box
                     sx={{
                       marginTop: 8,

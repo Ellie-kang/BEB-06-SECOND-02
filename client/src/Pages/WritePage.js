@@ -86,12 +86,19 @@ export default function WritePage () {
       case 2:
         return (
           <>
-            <Typography variant='h5' gutterBottom>
+            <Typography variant='h5' gutterBottom sx={{fontFamily: "Poppins", color: "rgba(231,127,112)", fontWeight:600}}>
               게시글 작성이 완료되었습니다.
             </Typography>
             <Link to='/'>
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button variant='contained' sx={{ mt: 3, ml: 1 }}>
+                <Button variant='contained'
+                  sx={{
+                    mt: 3,
+                    ml: 1,
+                    bgcolor: '#a9def9',
+                    '&.MuiButtonBase-root:hover': {
+                      bgcolor: '#a9def9'
+                    } }}>
                   HOME
                 </Button>
               </Box>
