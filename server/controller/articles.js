@@ -3,6 +3,7 @@ const User = require('../model/user');
 const Comment = require('../model/comment');
 const Region = require('../model/region');
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 const { sendtoken3, sendtoken5 } = require('../utility/sendtoken');
 
 const find = async (req, res) => {
@@ -68,6 +69,71 @@ const find = async (req, res) => {
         }
       }
     },
+    // match로 필터함
+    { $match: _queries }
+  ]);
+
+  res.send(articles);
+};
+
+const findOne = async (req, res) => {
+  const { id } = req.params;
+  const article = await Article.aggregate([
+    {
+      $match:
+      {
+        _id: mongoose.Types.ObjectId(id)
+      }
+    },
+    // 유저DB에서 글쓴이를 가져옴
+    {
+      $lookup: {
+        from: 'Takoyaki-User',
+        localField: 'userId',
+        foreignField: '_id',
+        as: 'author'
+      }
+    },
+    // 코멘트DB에서 코멘트를 가져옴
+    {
+      $lookup: {
+        from: 'Takoyaki-Comment',
+        localField: '_id',
+        foreignField: 'articleId',
+        pipeline: [
+          {
+            $lookup: {
+              from: 'Takoyaki-User',
+              localField: 'userId',
+              foreignField: '_id',
+              as: 'author'
+            }
+          },
+          {
+            $project: {
+              userId: 0,
+              articleId: 0,
+              author: {
+                password: 0
+              }
+            }
+          }
+        ],
+        as: 'comments'
+      }
+    },
+    { $unwind: '$author' },
+    {
+      $lookup: {
+        from: 'Takoyaki-Region',
+        localField: 'city',
+        foreignField: '_id',
+        pipeline: [],
+        as: 'city'
+      }
+    },
+    { $set: { city: { $first: '$city' } } },
+    { $set: { city: '$city.city' } },
     {
       $project: {
         userId: 0,
@@ -75,12 +141,10 @@ const find = async (req, res) => {
           password: 0
         }
       }
-    },
-    // match로 필터함
-    { $match: _queries }
+    }
   ]);
 
-  res.send(articles);
+  res.send(article[0]);
 };
 
 const _delete = async (req, res) => {
@@ -132,12 +196,12 @@ const write = async (req, res) => {
 
     const result = await sendtoken5(author.address);
 
-    await User.findOneAndUpdate({userId: data.userId}, {tokenAmount: author.tokenAmount += 5}, {
+    await User.findOneAndUpdate({ userId: data.userId }, { tokenAmount: author.tokenAmount += 5 }, {
       returnOriginal: false
     });
 
     const newDocument = await article.save();
-    res.status(201).json({newDocument, result});
+    res.status(201).json({ newDocument, result });
   } catch (error) {
     const msg = {};
     msg[`${error.name}`] = `${error.message}`;
@@ -161,7 +225,7 @@ const comment = async (req, res) => {
 
     const result = await sendtoken3(author.address);
 
-    await User.findOneAndUpdate({userId: data.userId}, {tokenAmount: author.tokenAmount += 3}, {
+    await User.findOneAndUpdate({ userId: data.userId }, { tokenAmount: author.tokenAmount += 3 }, {
       returnOriginal: false
     });
 
@@ -209,6 +273,7 @@ const like = async (req, res) => {
 
 module.exports = {
   find,
+  findOne,
   _delete,
   write,
   comment,
