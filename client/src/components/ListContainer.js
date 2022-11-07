@@ -14,6 +14,7 @@ import { AppContext } from '../AppContext';
 import ListContainerByRegion from './ListContainerByRegion';
 import '../utils/MainPage.css';
 import '../utils/Font.css';
+import axios from 'axios';
 
 const ListContainer = () => {
   const context = useContext(AppContext);
@@ -22,7 +23,6 @@ const ListContainer = () => {
   const [openList, setOpenList] = useState();
 
   const renewOpenList = () => {
-    console.log('renew');
     const entries = regionList.map((obj) => [obj.region, false]);
     setOpenList(Object.fromEntries(entries));
   };
@@ -42,22 +42,26 @@ const ListContainer = () => {
   };
 
   const ListItem = ({ region, cities, openList, setOpenList }) => {
-    const open = openList[region];
-    const handleOpen = () => {
-      const newList = { ...openList };
-      newList[region] = !open;
-      console.log(newList);
-      setOpenList(newList);
-    };
+    if (openList) {
+      const open = openList[region];
+      const handleOpen = () => {
+        const newList = { ...openList };
+        newList[region] = !open;
+        console.log(newList);
+        setOpenList(newList);
+      };
 
-    return (
-      <>
-        <ListButton handle={handleOpen} open={open} primary={region} />
-        <Collapse in={open} timeout='auto'>
-          {cities.map((city, idx) => <ListContainerByRegion key={idx} primary={city} />)}
-        </Collapse>
-      </>
-    );
+      return (
+        <>
+          <ListButton handle={handleOpen} open={open} primary={region} />
+          <Collapse in={open} timeout='auto'>
+            {cities.map((city, idx) => <ListContainerByRegion key={idx} primary={city} />)}
+          </Collapse>
+        </>
+      );
+    } else {
+      return <></>;
+    }
   };
 
   return (
