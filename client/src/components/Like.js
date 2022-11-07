@@ -29,8 +29,6 @@ export const Like = (props) => {
     })
   }
 
-
-  
   // 좋아요 유무에 따라 새로고침 되도 그대로 반영함(확인 완료)
   useEffect(() => {
     const _like = like.filter((data) => {
@@ -61,7 +59,7 @@ export const Like = (props) => {
           <FavoriteBorderIcon />
         </IconButton>
         )}
-    <Typography style={{ color: 'black'}} marginTop="8px"> 좋아요
+    <Typography style={{ color: 'black' }} marginTop="8px"> 좋아요
         {like.length}
     </Typography>
   </Stack>
