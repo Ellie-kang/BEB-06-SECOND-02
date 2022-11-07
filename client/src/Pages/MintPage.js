@@ -14,6 +14,7 @@ const MintPage = () => {
   const [nftImg, setNftImg] = useState(undefined);
 
   const handleMint = async () => {
+    console.log(nftImg)
     try {
       const image = new File([nftImg], "nft", {type:"image/.jpeg"});
       
@@ -62,8 +63,21 @@ const MintPage = () => {
       return;
     }
     if (e.target.files) {
+      console.log(e.target.files)
       setNftImg(e.target.files[0]);
+
     }
+  };
+
+  const fileInput = React.useRef(null);
+  
+  const handleButtonClick = e => {
+    fileInput.current.click();
+  };
+  
+  const handleChange = e => {
+    console.log(e.target.files[0]);
+    setNftImg(e.target.files[0]);
   };
 
 /*   async function fileFromPath(filePath) {
@@ -80,23 +94,11 @@ const MintPage = () => {
         <Grid item xs={4}>
           <Box component='img' src={nftImg} alt=""></Box>
           <Box>
-            <Button
-            variant='contained'
-            component='label'
-            sx={{
-              bgcolor: '#a9def9',
-              '&.MuiButtonBase-root:hover': {
-                bgcolor: '#a9def9'
-              }
-            }}
-            >
-            Select Img
-            <input
-              type='file'
-              hidden
-              onChange={handleChangeImage}
-            />
-            </Button>
+          <Button onClick={handleButtonClick}>파일 업로드</Button>
+      <input type="file"
+             ref={fileInput}
+             onChange={handleChange}
+             style={{ display: "none" }} />
             <Button
             variant='contained'
             component='label'
