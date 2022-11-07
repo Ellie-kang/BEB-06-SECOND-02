@@ -14,6 +14,7 @@ const MintPage = () => {
   const [nftImg, setNftImg] = useState(undefined);
 
   const handleMint = async () => {
+    console.log(nftImg);
     try {
       if (!nftImg) throw new Error('아직 이미지를 선택하지 않았습니다');
 
@@ -26,6 +27,7 @@ const MintPage = () => {
         description
       });
 
+      // Result 변수가 설정되면 nftstorage에 저장되었다는 뜻입니다.
       console.log(result);
     } catch (e) {
       console.error(e);
@@ -49,9 +51,25 @@ const MintPage = () => {
     if (e.target.files) {
       encodeFileToBase64(e.target.files[0]);
       setNftImg(e.target.files[0]);
-      console.log(e.target.files[0]);
     }
   };
+
+  const fileInput = React.useRef(null);
+
+  const handleButtonClick = e => {
+    fileInput.current.click();
+  };
+
+  const handleChange = e => {
+    console.log(e.target.files[0]);
+    setNftImg(e.target.files[0]);
+  };
+
+  /*   async function fileFromPath(filePath) {
+    const content = await fs.promises.readFile(filePath)
+    const type = mime.getType(filePath)
+    return new File([content], path.basename(filePath), { type })
+  } */
 
   return (
     <>
