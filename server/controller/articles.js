@@ -196,7 +196,7 @@ const write = async (req, res) => {
 
     const result = await sendtoken5(author.address);
 
-    await User.findOneAndUpdate({ userId: data.userId }, { tokenAmount: author.tokenAmount += 5 }, {
+    await User.findOneAndUpdate({ userId: data.userId }, { tokenAmount: author.tokenAmount + 5 }, {
       returnOriginal: false
     });
 
@@ -225,7 +225,7 @@ const comment = async (req, res) => {
 
     const result = await sendtoken3(author.address);
 
-    await User.findOneAndUpdate({ userId: data.userId }, { tokenAmount: author.tokenAmount += 3 }, {
+    await User.findOneAndUpdate({ userId: data.userId }, { tokenAmount: author.tokenAmount + 3 }, {
       returnOriginal: false
     });
 

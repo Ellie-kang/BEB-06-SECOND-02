@@ -50,17 +50,17 @@ const AccountSend = () => {
 
   return (
     <>
-    <Box className='account-sender' mt={-20} mb={3} ml={10}>
-          <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-      <Stack className='account-sender-wrapper' direction="column" spacing={3} ml={5} sx={{fontSize:"20px", fontFamily:"Poppins", fontWeight:500}}>
+      <Box className='account-sender' mt={-20} mb={3} ml={10}>
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={open}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+        <Stack className='account-sender-wrapper' direction="column" spacing={3} ml={5} sx={{ fontSize: "20px", fontFamily: "Poppins", fontWeight: 500 }}>
           <span>
-          <p>Your Account:</p>
-          {context.state.address ? context.state.address : "로그인을 해주세요"}
+            <p>Your Account:</p>
+            {context.state.address ? context.state.address : "로그인을 해주세요"}
           </span>
           <Box component="form" className='account-sender-form' onSubmit={handleSubmit}>
             <Stack direction="row" spacing={2}>
@@ -75,12 +75,12 @@ const AccountSend = () => {
                 <input className='sender-address' placeholder='put amount' value={sendAmount} onChange={handleAmounthange} />
               </div>
               <button className='account-sender-button' type='submit'>
-                <Chip 
+                <Chip
                   sx={{
-                    bgcolor:"rgba(231,127,112)",
-                    color:"white",
-                    fontWeight:600,
-                    cursor:"pointer",
+                    bgcolor: "rgba(231,127,112)",
+                    color: "white",
+                    fontWeight: 600,
+                    cursor: "pointer",
                     fontSize: "14px"
                   }}
                   className='account-sender-chip'
@@ -88,11 +88,11 @@ const AccountSend = () => {
               </button>
             </Stack>
           </Box>
-      </Stack>
+        </Stack>
 
-    </Box>
+      </Box>
     </>
-    
+
 
   )
 };
