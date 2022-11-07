@@ -9,11 +9,9 @@ import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
-import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 import { Box } from '@mui/system';
 import { AppContext } from '../AppContext';
 import ListContainerByRegion from './ListContainerByRegion';
-import {Grid} from '@mui/material';
 import '../utils/MainPage.css';
 import '../utils/Font.css';
 
@@ -24,7 +22,6 @@ const ListContainer = () => {
   const [openList, setOpenList] = useState();
 
   const renewOpenList = () => {
-    console.log('renew');
     const entries = regionList.map((obj) => [obj.region, false]);
     setOpenList(Object.fromEntries(entries));
   };
@@ -48,7 +45,6 @@ const ListContainer = () => {
     const handleOpen = () => {
       const newList = { ...openList };
       newList[region] = !open;
-      console.log(newList);
       setOpenList(newList);
     };
 
