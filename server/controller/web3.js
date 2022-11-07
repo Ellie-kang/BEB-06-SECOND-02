@@ -44,6 +44,8 @@ const mintNft = async (req, res) => {
     const user = await User.findOne({ userId }, 'address tokenAmount');
     const result = await _userSend(user.address, '0xA5E535B4c93751d0C72316dA4F6FdC6cb61BC09B', '10');
 
+    
+
     // const result_mint mint logic
     if (result) {
       await User.findOneAndUpdate({ userId: userId }, { tokenAmount: user.tokenAmount - 10 }, {
