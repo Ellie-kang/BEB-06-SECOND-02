@@ -65,10 +65,10 @@ const ListContainer = () => {
   return (
     
       <Stack
-        id='list-contianer' sx={{
+        id='list-contianer'  sx={{
           width:"100%",
           display:"flex",
-          flexWrap:"wrap"
+          flexWrap:"wrap",
         }}
       >
         <List

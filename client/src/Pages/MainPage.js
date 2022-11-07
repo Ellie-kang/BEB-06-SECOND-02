@@ -36,20 +36,25 @@ const MainPage = () => {
   return (
     <ThemeProvider theme={context.state.theme}>
       <Grid container spacing={4} justifyContent='center'>
-        <Grid item sm={2}  ></Grid>
+        <Grid item sm={0} md={2}></Grid>
         <Grid item xs={12} sm={2} justifyContent='center' sx={{width:"100%", ml: {
           xs:3
         },
         pr: {
-          xs:3
+          xs:3,
+        },
+        mr: {
+          sm: 10,
+          md: 5,
+          lg: 0
         },
         mt: {
           xs:0,
           sm: 10,
-        }, height: 'auto', display:"flex", flexWrap:"wrap" }}>
+        }, height: 'auto',  }}>
           <ListContainer id='main-list' />
         </Grid>
-        <Grid item xs={12} sm={6} mt={10} sx={{ width: '100%', height: 'auto', mt: {
+        <Grid item xs={12} sm={6} sx={{ width: '100%', height: 'auto', mt: {
           xs:0,
           sm: 10,
         }, }}>
@@ -68,6 +73,7 @@ const MainPage = () => {
                 />);
           })}
         </Grid>
+        
         <Grid item xs={12}>
           <Paper square elevation={0} sx={{height:"25px"}} />
         </Grid>

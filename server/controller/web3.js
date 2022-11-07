@@ -35,13 +35,13 @@ const userSend = async (req, res) => {
 
 const mintNft = async (req, res) => {
   const {address, tokenUrl, tokenAmount } = req.body;
-  const token = req.cookies.token;
 
   const token = req.cookies.token;
   try {
     const data = jwt.verify(token, process.env.SECRET);
     const userId = data.userId;
     const user = await User.findOne({ userId }, 'address tokenAmount');
+    // 서버 주소로 10 token 전송.
     const result = await user_send(user.address, "0xA5E535B4c93751d0C72316dA4F6FdC6cb61BC09B", "10");
 
     // const result_mint mint logic
