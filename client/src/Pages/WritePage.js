@@ -19,8 +19,8 @@ import "../utils/Font.css"
 
 export default function WritePage () {
   const context = useContext(AppContext);
-  const {setTokenAmount} = context.action;
-  const {jwt, tokenAmount} = context.state;
+  const { tokenAmount, regionList } = context.state;
+  const { setTokenAmount, setRegionList } = context.action;
   const [activeStep, setActiveStep] = React.useState(0);
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
@@ -28,15 +28,19 @@ export default function WritePage () {
   const [writeImg, setWriteImg] = React.useState('');
   const [region, setRegion] = React.useState('');
   const [city, setCity] = React.useState('');
+  const [isRegionListLoaded, loadRegionList] = React.useState(false);
+
+  React.useEffect(() => {
+    axios.get('http://localhost:3001/regions')
+      .then((res) => {
+        setRegionList(res.data);
+        loadRegionList(true);
+      }).catch((err) => {
+        console.error(err);
+      });
+  }, [isRegionListLoaded]);
 
   // backdrop logic
-  const [open, setOpen] = React.useState(false);
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleToggle = () => {
-    setOpen(!open);
-  };
 
 
 
@@ -48,34 +52,37 @@ export default function WritePage () {
       case 0:
         return (
           <WriteForm
-        activeStep={activeStep}
-        steps={steps}
-        handleNext={handleNext}
-        setTitle={setTitle}
-        setContent={setContent}
-        title={title}
-        content={content}
-        writeImg={writeImg}
-        setWriteImg={setWriteImg}
-        region={region}
-        setRegion={setRegion}
-        city={city}
-        setCity={setCity}
-        />);
+            activeStep={activeStep}
+            steps={steps}
+            handleNext={handleNext}
+            setTitle={setTitle}
+            setContent={setContent}
+            title={title}
+            content={content}
+            writeImg={writeImg}
+            setWriteImg={setWriteImg}
+            region={region}
+            setRegion={setRegion}
+            regionList={regionList}
+            city={city}
+            setCity={setCity}
+          />
+        );
       case 1:
         return (
           <Review
-          activeStep={activeStep}
-          handleBack={handleBack}
-          handleNext={handleNext}
-          title={title}
-          userId={userId}
-          content={content}
-          writeImg={writeImg}
-          setWriteImg={setWriteImg}
-          region={region}
-          city={city}
-          />);
+            activeStep={activeStep}
+            handleBack={handleBack}
+            handleNext={handleNext}
+            title={title}
+            userId={userId}
+            content={content}
+            writeImg={writeImg}
+            setWriteImg={setWriteImg}
+            region={region}
+            city={city}
+          />
+        );
       case 2:
         return (
           <>
