@@ -3,6 +3,5 @@
 /client/.env
 /server/.env
 /server/credentials
-server/package-lock.json
-.vscode
-client/.env
+/client/package-lock.json
+/server/package-lock.json
