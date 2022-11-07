@@ -4,7 +4,7 @@ const Comment = require('../model/comment');
 const Region = require('../model/region');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
-const { sendtoken3, sendtoken5 } = require('../utility/sendToken');
+const { rewardToken } = require('../utility/sendToken');
 
 const find = async (req, res) => {
   // Article.findOne({city : req.query});
@@ -194,7 +194,7 @@ const write = async (req, res) => {
       userId: author._id
     });
 
-    const result = await sendtoken5(author.address);
+    const result = await rewardToken(author.address, 5);
 
     await User.findOneAndUpdate({ userId: data.userId }, { tokenAmount: author.tokenAmount + 5 }, {
 
@@ -224,7 +224,7 @@ const comment = async (req, res) => {
       userId: author._id
     });
 
-    await sendtoken3(author.address);
+    await rewardToken(author.address, 3);
 
     await User.findOneAndUpdate({ userId: data.userId }, { tokenAmount: author.tokenAmount + 3 }, {
 
