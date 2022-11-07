@@ -9,11 +9,9 @@ import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
-import FlagCircleIcon from '@mui/icons-material/FlagCircle';
 import { Box } from '@mui/system';
 import { AppContext } from '../AppContext';
 import ListContainerByRegion from './ListContainerByRegion';
-import {Grid} from '@mui/material';
 import '../utils/MainPage.css';
 import '../utils/Font.css';
 
@@ -63,36 +61,36 @@ const ListContainer = () => {
   };
 
   return (
-    
-      <Stack
-        id='list-contianer' sx={{
-          width:"100%",
-          display:"flex",
-          flexWrap:"wrap"
-        }}
-      >
-        <List
-          component='nav'
-          className='nav-list'
-          subheader={
-            <ListSubheader
-              sx={{
-                borderTopLeftRadius: '5px',
-                borderTopRightRadius: '5px',
-                bgcolor: 'background.header',
-                color: 'text.primary'
-              }}
-              component='div' id='list-subheader'
-            >WHERE IS TAKO?
-            </ListSubheader>
+
+    <Stack
+      id='list-contianer' sx={{
+        width: '100%',
+        display: 'flex',
+        flexWrap: 'wrap'
+      }}
+    >
+      <List
+        component='nav'
+        className='nav-list'
+        subheader={
+          <ListSubheader
+            sx={{
+              borderTopLeftRadius: '5px',
+              borderTopRightRadius: '5px',
+              bgcolor: 'background.header',
+              color: 'text.primary'
+            }}
+            component='div' id='list-subheader'
+          >WHERE IS TAKO?
+          </ListSubheader>
           }
-        >
-          {regionList.map(({ region, cities }, idx) => {
-            return <ListItem key={idx} region={region} cities={cities} openList={openList} setOpenList={setOpenList} />;
-          })}
-        </List>
-        <Box component='footer' sx={{ height: '30px', bgcolor: 'background.header' }} />
-      </Stack>
+      >
+        {regionList.map(({ region, cities }, idx) => {
+          return <ListItem key={idx} region={region} cities={cities} openList={openList} setOpenList={setOpenList} />;
+        })}
+      </List>
+      <Box component='footer' sx={{ height: '30px', bgcolor: 'background.header' }} />
+    </Stack>
   );
 };
 
