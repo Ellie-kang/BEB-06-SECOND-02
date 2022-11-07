@@ -18,7 +18,6 @@ const MainPage = () => {
     axios.get('http://localhost:3001/articles', {
       withCredentials: true
     }).then((res) => {
-      console.log(res.data);
       setMainArticles(res.data);
     }).catch((err) => {
       console.error(err);
