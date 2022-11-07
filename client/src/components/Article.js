@@ -37,7 +37,7 @@ const Article = (props) => {
           height='350'
           image={imgFile}
         />
-        <Like articleId={id} like={like}/>
+        <Like articleId={id} like={like} id={id} userId={userId}/>
         <CardContent>
           <Typography component="p" sx={{color: "black"}}><strong>{userId}</strong></Typography>
           <Typography

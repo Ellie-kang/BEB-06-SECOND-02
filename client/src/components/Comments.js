@@ -1,7 +1,7 @@
 import React, { useState, useContext,useEffect } from 'react'
 import { AppContext } from "../AppContext";
 import { ThemeProvider } from '@mui/material/styles';
-import { Stack,Button, fabClasses, Chip } from '@mui/material';
+import { Stack,Button, fabClasses, Chip, Grid, IconButton, makeStyles } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import "../utils/Comments.css"
@@ -13,12 +13,10 @@ export const Comments = (props) => {
   const context = useContext(AppContext);
   const { userId } = context.state;
   const [comment, setComment] = useState('');
-  //const [commentLists, setCommentLists] = useState(props.comments);
   const [isValid, setIsValid] = useState(false);
   const {comments} = props;
-
   const [commentLists, setCommentLists] = useState([...comments]);
-
+  
   const post = (e) => {
     axios.post('http://localhost:3001/articles/comment', {
       articleId : props.articleId,
@@ -41,7 +39,6 @@ export const Comments = (props) => {
   }
 
   const deleteComment = async (targetId) => {
-    
     await axios.delete(`http://localhost:3001/articles/comment/${targetId}`
     , { withCredentials: true }).then((res)=> {
       console.log(res)
@@ -80,19 +77,19 @@ export const Comments = (props) => {
         </Stack>
         {commentLists.map((comment, idx) => {
           return (
-            <Stack key={idx} spacing={1} className="users-comments" direction="row" sx={{marginY:"5px", color:"text.secondary" }} >
-              <Avatar sx={{width: "30px", height: "30px"}} src={''} />
-              <Typography component="span" sx={{textAlign:"center"}}>{comment.author[0].userId}</Typography>
-              <Typography component="p">{comment.content}
-                <Button onClick={(_id) => deleteComment(comment._id)}>
-                  <HighlightOffIcon />
-                </Button>
-              </Typography>
-            </Stack>
+            <Stack key={idx} spacing={1} className="users-comments"  direction="row" sx={{marginY:"5px", color:"text.secondary"}}  >
+                <Avatar sx={{ width: "30px", height: "30px" }} src={''} />
+                <Typography component="span" sx={{ textAlign:"center" }}>{comment.author[0].userId}</Typography>
+                <Typography component="p" sx={{ width:1000 }}>{comment.content}</Typography>
+                <IconButton component="button" onClick={(_id) => deleteComment(comment._id)} >
+                    <HighlightOffIcon color="action"/>
+                </IconButton>
+              </Stack>
+      
           )
         })}
       </Stack>
-      </ThemeProvider>
+    </ThemeProvider>
   )  
 }
 
