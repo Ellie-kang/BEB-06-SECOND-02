@@ -33,7 +33,7 @@ export const Like = (props) => {
     })
   }
 
-  // 좋아요 유무에 따라 새로고침 되도 그대로 반영함
+  // 좋아요 유무에 따라 새로고침 되도 그대로 반영함(확인 완료)
   useEffect(() => {
     const _like = like.filter((data) => {
       return data.userId === userId;  
