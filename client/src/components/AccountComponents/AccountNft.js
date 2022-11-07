@@ -1,11 +1,25 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { AppContext } from '../../AppContext'
 import { NavLink } from 'react-router-dom';
 import { Box, Chip, Stack, Typography,Grow } from '@mui/material';
 import Media from '../Skeleton';
 const AccountNft = () => {
   const context = useContext(AppContext);
-
+  const {address} = context.state;
+  const options = {method: 'GET'};
+  const [nftlist, setNftlist] = useState([]);
+  //
+  useEffect(async () => {
+    await fetch(`https://testnets-api.opensea.io/api/v1/assets?owner=${address}&order_direction=desc&offset=0&limit=20&include_orders=false`, options)
+      .then(response => response.json())
+      .then((response) => {
+        console.log(response.assets)
+        if(response.assets){
+          setNftlist(response.assets)
+        }
+      })
+      .catch(err => console.error(err));
+      }, []);
   // context.state.nft
 
   return (
@@ -34,12 +48,12 @@ const AccountNft = () => {
         </Stack>
         <Grow in={true} style={{ transformOrigin: '0 2 0' }} {...(true ? { timeout: 1200 } : {})}>
           <Stack direction="column" spacing={3} width="80%" ml={7}>
-          <Media />
-          <Media />
-          <Media />
-          <Media />
-          <Media />
-          <Media />
+            {
+        
+              nftlist.map((el) => {
+                return <Media />
+              })
+            }
           </Stack>
         </Grow>
       </Box>
