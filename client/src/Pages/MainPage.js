@@ -31,15 +31,28 @@ const MainPage = () => {
         console.error(err);
       });
   }, []);
+  // Grid 수정.
 
   return (
     <ThemeProvider theme={context.state.theme}>
       <Grid container spacing={4} justifyContent='center'>
-        <Grid item xs={2} />
-        <Grid item xs={2} justifyContent='center' mt={10} sx={{ width: '100%', height: 'auto' }}>
+        <Grid item sm={2}  ></Grid>
+        <Grid item xs={12} sm={2} justifyContent='center' sx={{width:"100%", ml: {
+          xs:3
+        },
+        pr: {
+          xs:3
+        },
+        mt: {
+          xs:0,
+          sm: 10,
+        }, height: 'auto', display:"flex", flexWrap:"wrap" }}>
           <ListContainer id='main-list' />
         </Grid>
-        <Grid item xs={6} mt={10} sx={{ width: '100%', height: 'auto' }}>
+        <Grid item xs={12} sm={6} mt={10} sx={{ width: '100%', height: 'auto', mt: {
+          xs:0,
+          sm: 10,
+        }, }}>
           {[...mainArticles].reverse().map((item) => {
             return (
               <Article

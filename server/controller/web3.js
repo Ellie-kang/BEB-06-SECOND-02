@@ -33,6 +33,20 @@ const userSend = async (req, res) => {
   }
 };
 
+const mintNft = async (req, res) => {
+  const {address, tokenUrl, tokenAmount } = req.body;
+  const token = req.cookies.token;
+
+
+
+  // 1. erc 721 contract를 배포한다.
+  // 2. 배포한 컨트랙트 주소를 가져온다.
+  // 3. user_send(transferfrom) 메소드를 이용해, 2번에서 가져온 컨트랙트 주소에 TAKO를 tokenAmount만큼 전송한다. -> DB 저장.
+  // 3-1. 여기서 실제 address 주소로 양도가 이루어지는게 아니라, tokenAmount 가 req.body로 일정양만큼 들어오면? 그냥 민팅 해주는 방식.
+
+  // 민팅이 완료되면 클라이언트에서 opensea API를 사용해서 가져오는 로직으로.
+}
+
 module.exports = {
   userSend
 };
