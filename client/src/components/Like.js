@@ -60,7 +60,7 @@ export const Like = (props) => {
         </IconButton>
         )}
     <Typography style={{ color: 'black'}} marginTop="8px"> 좋아요
-        {like.length}
+        {/* {like.length} */}
     </Typography>
   </Stack>
   );

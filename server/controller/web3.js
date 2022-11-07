@@ -37,6 +37,7 @@ const mintNft = async (req, res) => {
   const {address, tokenUrl, tokenAmount } = req.body;
 
   const token = req.cookies.token;
+
   try {
     const data = jwt.verify(token, process.env.SECRET);
     const userId = data.userId;
