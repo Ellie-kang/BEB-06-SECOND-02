@@ -10,8 +10,8 @@ const AccountNft = () => {
   const options = { method: 'GET' };
   const [nftlist, setNftlist] = useState([]);
 
-  useEffect(async () => {
-    await fetch(`https://testnets-api.opensea.io/api/v1/assets?owner=${address}&order_direction=desc&offset=0&limit=20&include_orders=false`, options)
+  useEffect(() => {
+    fetch(`https://testnets-api.opensea.io/api/v1/assets?owner=${address}&order_direction=desc&offset=0&limit=20&include_orders=false`, options)
       .then(response => response.json())
       .then((response) => {
         console.log(response.assets);
