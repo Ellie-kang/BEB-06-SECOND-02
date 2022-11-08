@@ -3,13 +3,12 @@ import { AppContext } from '../../AppContext';
 import PersonIcon from '@mui/icons-material/Person';
 import TokenIcon from '@mui/icons-material/Token';
 import { Box, Stack } from '@mui/system';
-import { List, Paper, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
 const AccountInfo = () => {
   const context = useContext(AppContext);
-  const {userId, email, tokenAmount} = context.state;
+  const {userId, tokenAmount} = context.state;
   const {deleteCookie, setCookie} = context.action;
-  
 
   const delete_cookie = () => {
     deleteCookie('token');
@@ -19,7 +18,7 @@ const AccountInfo = () => {
 
   return (
     <>
-    {/* <button type='button' onClick={delete_cookie} > logout</button> */}
+    <button type='button' onClick={delete_cookie} > logout</button>
       <Box className="account-info" mt={8} ml={10} sx={{fontFamily:"Poppins"}}>
         <Stack direction="row" spacing={3} ml={4} p={1} mt={13} className="user-id"  alignContent="center">
           <PersonIcon className='account-icon' sx={{fontSize:"35px"}}/>

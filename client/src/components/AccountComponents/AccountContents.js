@@ -1,21 +1,17 @@
 import React, {useContext} from 'react'
-import { AppContext } from '../../AppContext';
-import { Dummy } from '../../Dummy';
 import { NavLink } from 'react-router-dom';
 import Article from '../Article';
 import { Box, Chip, Stack, Typography } from '@mui/material';
 
 
 const AccountArticles = (props) => {
-  const context = useContext(AppContext);
-  const {userArticles} = props;
 
-  // props로 받는건, AccountPage useEffect에서 DB에서 불러온 Articles, NFT들, Articles를 map으로 Article란에 기입.
+  const {userArticles} = props;
 
   return (
     <Box className='account-contents' component="div" ml={2}>
       <Stack direction="row" spacing={7} mb={5} justifyContent="center" alignItems="center">
-        <Typography variant="h5" 
+        <Typography variant="h5"
           sx={{
             fontWeight:600,
             fontFamily:"Poppins"
@@ -23,7 +19,7 @@ const AccountArticles = (props) => {
         </Typography>
         <Box component="div">
           <NavLink className="write-link" to='/write'>
-            <Chip label="Write" 
+            <Chip label="Write"
               sx={{
                 textDecorationLine: "none",
                 fontWeight:500,

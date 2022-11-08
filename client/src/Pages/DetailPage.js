@@ -16,8 +16,8 @@ const DetailPage = () => {
 
   const context = useContext(AppContext);
   const {mainArticles, detailArticle} = context.state;
-  console.log(mainArticles)
-  console.log(detailArticle)
+  console.log(mainArticles);
+  console.log(detailArticle);
 
   const filteredArticle = [...mainArticles].filter((item) => {
     return item.title === detailArticle;
