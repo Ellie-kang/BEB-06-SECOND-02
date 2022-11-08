@@ -39,7 +39,7 @@ export const Like = (props) => {
       setIsLike(true)
     }
   })
- */
+ 
   return (
     <Stack direction="row">
     {isLike
