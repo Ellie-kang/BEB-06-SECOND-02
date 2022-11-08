@@ -10,6 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Chip } from '@mui/material';
 
+
 export default function WriteForm (props) {
   const { region, setRegion, city, setCity, regionList, cityList, setCityList } = props;
 
@@ -154,7 +155,7 @@ export default function WriteForm (props) {
         </Button>
         <Button
           variant='contained'
-          onClick={props.handleNext}
+        onClick={props.handleNext}
           sx={{
             mt: 3,
             ml: 1,

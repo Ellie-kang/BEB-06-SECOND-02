@@ -46,7 +46,7 @@ const ListContainer = () => {
       const handleOpen = () => {
         const newList = { ...openList };
         newList[region] = !open;
-        console.log(newList);
+        //  console.log(newList);
         setOpenList(newList);
       };
 

@@ -108,7 +108,8 @@ export default function WritePage () {
                     bgcolor: '#a9def9',
                     '&.MuiButtonBase-root:hover': {
                       bgcolor: '#a9def9'
-                    }
+                    },
+                    textDecoration:"none"
                   }}
                 >
                   HOME
@@ -152,6 +153,8 @@ export default function WritePage () {
             console.error(err);
           });
           break;
+          default:
+          throw new Error('Unknown step');
       }
     }
   };

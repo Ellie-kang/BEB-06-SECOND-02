@@ -57,7 +57,7 @@ export default function Review (props) {
       </Grid>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button
-variant='contained' onClick={props.handleBack}
+          variant='contained' onClick={props.handleBack}
           sx={{
             mt: 3,
             ml: 1,
