@@ -1,19 +1,22 @@
 import React, { useState, useContext } from 'react';
-import Media from '../components/Skeleton';
 import { Grid, Box, Button } from '@mui/material';
 import axios from 'axios';
 import { NFTStorage } from 'nft.storage/dist/bundle.esm.min.js';
 import { AppContext } from '../AppContext';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const NFT_STORAGE_KEY = process.env.REACT_APP_APITOKEN;
 
 const MintPage = () => {
   const context = useContext(AppContext);
-  const {userId, address} = context.state;
+  const { userId, address } = context.state;
   const [preview, setPreview] = useState('');
   const [nftImg, setNftImg] = useState(undefined);
+  const [open, setOpen] = useState(false);
 
   const handleMint = async () => {
+    setOpen(true);
     try {
       if (!nftImg) throw new Error('아직 이미지를 선택하지 않았습니다');
       if (!address) throw new Error('발급받은 web3주소가 없습니다.');
@@ -31,16 +34,16 @@ const MintPage = () => {
       const onlyCid = result.url.slice(7);
       const tokenURL = `https://ipfs.io/ipfs/${onlyCid}`;
 
-      //ipfs로 보내는건 result.url을 보내주면된다.
-      //image는 ipfs에 올리는데 시간이 걸리기 때문에, openSea에 뜨기까지 시간이 걸림.
+      // ipfs로 보내는건 result.url을 보내주면된다.
+      // image는 ipfs에 올리는데 시간이 걸리기 때문에, openSea에 뜨기까지 시간이 걸림.
       // 하지만 Opensea sdk를 사용해서 assets를 가져오면 됨.
 
       if (result) {
         axios.post('http://localhost:3001/web3/mint', {
           address: address,
-          tokenURL: tokenURL, // or result.url
-        },{
-          withCredentials:true
+          tokenURL: tokenURL // or result.url
+        }, {
+          withCredentials: true
         }).then((res) => {
           console.log(res);
         }).catch((e) => {
@@ -52,6 +55,7 @@ const MintPage = () => {
       console.error(e);
       alert(e);
     }
+    setOpen(false);
   };
 
   const encodeFileToBase64 = (fileBlob) => {
@@ -71,12 +75,18 @@ const MintPage = () => {
       encodeFileToBase64(e.target.files[0]);
       setNftImg(e.target.files[0]);
     } else {
-      return;
+      alert('사용할 이미지를 올려주세요');
     }
   };
 
   return (
     <>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
+        <CircularProgress color='inherit' />
+      </Backdrop>
       <Grid container spacing={4}>
         <Grid item xs={12} />
         <Grid item xs={4} />
