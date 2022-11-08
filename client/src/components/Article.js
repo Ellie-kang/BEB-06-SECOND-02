@@ -35,6 +35,8 @@ const Article = (props) => {
     /* setDetailArticle(e.target.textContent);
     navigate(`/detail/${e.target.textContent}`); */
     
+    
+    
   }
 
   return (

@@ -16,6 +16,7 @@ const DetailPage = () => {
 
   const context = useContext(AppContext);
   const {mainArticles, detailArticle} = context.state;
+  // const { title, content, imgFile, userId, userProfile, comments, id, like} = props;
   console.log(mainArticles)
   console.log(detailArticle)
 

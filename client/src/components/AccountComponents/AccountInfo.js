@@ -19,7 +19,7 @@ const AccountInfo = () => {
 
   return (
     <>
-    {/* <button type='button' onClick={delete_cookie} > logout</button> */}
+    <button type='button' onClick={delete_cookie} > logout</button>
       <Box className="account-info" mt={8} ml={10} sx={{fontFamily:"Poppins"}}>
         <Stack direction="row" spacing={3} ml={4} p={1} mt={13} className="user-id"  alignContent="center">
           <PersonIcon className='account-icon' sx={{fontSize:"35px"}}/>
