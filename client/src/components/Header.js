@@ -25,7 +25,7 @@ const Header = () => {
       })
         .then((res) => {
           // Web API에서 받은 token 값을 jwt context에 넣습니다.
-          setTokenAmount(res.data.user.tokenAmount)
+          setTokenAmount(res.data.user.tokenAmount);
           setJwt(res.data.token);
           setIsLoggedin(true);
           setUserId(res.data.user.userId);
@@ -53,7 +53,7 @@ const Header = () => {
           <NavLink style={{ textDecoration: 'none' }} to='/account'><HeaderButton name='Send' cb={() => { }} /></NavLink>
           <NavLink style={{ textDecoration: 'none' }} to='/mint'><HeaderButton name='Mint' cb={() => { }} /></NavLink>
           <NavLink style={{ textDecoration: 'none' }} to='/write'><HeaderButton name='Write' cb={() => { }} /></NavLink>
-          <NavLink to='/account'><Avatar alt="" src={context.state.userProfileImg} /></NavLink>
+          <NavLink to='/account'><Avatar alt='' src={context.state.userProfileImg} /></NavLink>
         </Stack>
       </>
     );
@@ -85,8 +85,8 @@ const Header = () => {
         bgcolor: 'background.header',
         mt: '-8px',
         height: '90px',
-        justifyContent: 'center',
-        
+        justifyContent: 'center'
+
       }}
       >
         <Toolbar disableGutters>
@@ -99,7 +99,7 @@ const Header = () => {
                 pl: 7,
                 color: 'text.primary',
                 fontSize: 22,
-                fontFamily:"Poppins"
+                fontFamily: 'Poppins'
               }}
               component='a'
               href='/'
