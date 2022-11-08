@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -11,8 +11,7 @@ import Select from '@mui/material/Select';
 import { Chip } from '@mui/material';
 
 export default function WriteForm (props) {
-  const { region, setRegion, city, setCity, regionList } = props;
-  const [cityList, setCityList] = useState([]);
+  const { region, setRegion, city, setCity, regionList, cityList, setCityList } = props;
 
   const citiesByRegion = Object.fromEntries(regionList.map(item => [item.region, item.cities]));
   const regions = regionList.map(item => item.region);
@@ -44,6 +43,9 @@ export default function WriteForm (props) {
   const handleRegionChange = useCallback((e) => {
     const target = e.target.value;
     setRegion(target);
+    if (region) {
+      setCity('');
+    }
     setCityList(citiesByRegion[target]);
   }, [regionList]
   );

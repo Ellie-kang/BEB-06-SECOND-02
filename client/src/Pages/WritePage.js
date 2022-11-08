@@ -32,6 +32,7 @@ export default function WritePage () {
   const [region, setRegion] = React.useState('');
   const [city, setCity] = React.useState('');
   const [open, setOpen] = React.useState(false);
+  const [cityList, setCityList] = React.useState([]);
 
   const [isRegionListLoaded, loadRegionList] = React.useState(false);
 
@@ -69,6 +70,8 @@ export default function WritePage () {
             regionList={regionList}
             city={city}
             setCity={setCity}
+            cityList={cityList}
+            setCityList={setCityList}
           />
         );
 
@@ -122,7 +125,7 @@ export default function WritePage () {
   // axios 에러가 클라이언트에서 나는거같습니다.
 
   const handleNext = () => {
-    if (title === '' || content === '') {
+    if (title === '' || content === '' || city === '') {
       alert('빈칸을 채워주세요');
     } else {
       switch (activeStep) {
