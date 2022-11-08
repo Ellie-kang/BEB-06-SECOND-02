@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Article from '../Article';
 import { Box, Chip, Stack, Typography } from '@mui/material';
+import { chipStyle } from '../../StyledSx';
 
 const AccountArticles = (props) => {
   const { userArticles } = props;
@@ -23,15 +24,7 @@ const AccountArticles = (props) => {
           <NavLink className='write-link' to='/write'>
             <Chip
               label='Write'
-              sx={{
-                textDecorationLine: 'none',
-                fontWeight: 500,
-                color: 'white',
-                fontSize: '16px',
-                fontFamily: 'Poppins',
-                bgcolor: 'rgba(231,127,112)',
-                cursor: 'pointer'
-              }}
+              sx={chipStyle}
             />
           </NavLink>
         </Box>

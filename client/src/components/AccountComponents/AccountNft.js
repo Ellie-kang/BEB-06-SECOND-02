@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { Box, Chip, Stack, Typography,Grow } from '@mui/material';
 import Media from '../Skeleton';
 import AccountNftsCard from './AccountNftsCard';
+import { chipStyle } from '../../StyledSx';
+
 const AccountNft = () => {
   const context = useContext(AppContext);
   const {address, userId} = context.state;
@@ -40,15 +42,7 @@ const AccountNft = () => {
             <NavLink className='write-link' to='/mint'>
               <Chip
                 label='Mint'
-                sx={{
-                  textDecorationLine: 'none',
-                  fontWeight: 500,
-                  color: 'white',
-                  fontSize: '16px',
-                  fontFamily: 'Poppins',
-                  bgcolor: 'rgba(231,127,112)',
-                  cursor: 'pointer'
-                }}
+                sx={chipStyle}
               />
             </NavLink>
           </Box>
