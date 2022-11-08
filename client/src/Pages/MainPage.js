@@ -10,7 +10,6 @@ import '../utils/MainPage.css';
 
 const MainPage = () => {
   const context = useContext(AppContext);
-  // mainPageArticles
   const { mainArticles } = context.state;
   const { setMainArticles, setRegionList } = context.action;
 

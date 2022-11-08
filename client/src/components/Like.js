@@ -29,18 +29,15 @@ export const Like = (props) => {
     })
   }
 
-
-  
   // 좋아요 유무에 따라 새로고침 되도 그대로 반영함(확인 완료)
-/*  useEffect(() => {
-    const _like = like.filter((data) => {
+  useEffect(() => {
+    const _like = like && like.filter((data) => {
       return data.userId === userId;
     })[0]
     if(_like) {
       setIsLike(true)
     }
   })
- */
   return (
     <Stack direction="row">
     {isLike
@@ -62,7 +59,7 @@ export const Like = (props) => {
         </IconButton>
         )}
     <Typography style={{ color: 'black'}} marginTop="8px"> 좋아요
-        {/* {like.length} */}
+     { like && like.length ? like.length : 0 }
     </Typography>
   </Stack>
   );

@@ -26,11 +26,9 @@ const Article = (props) => {
 
     // Article에서 img가 없으면 기본 이미지 설정.
 
-
     // textcontent 말고 , Article을 클릭했을떄 Article 정보를 가져와야함.
     // mainArticle index를 가져오면 될듯.
     // 본문 헤더, 이미지.
-    
 
     /* setDetailArticle(e.target.textContent);
     navigate(`/detail/${e.target.textContent}`); */
@@ -44,7 +42,6 @@ const Article = (props) => {
         sx={{ borderRadius: '10px',}}
       >
         <CardHeader
-          // sx={{bgcolor: "#ffd2c9"}}
           sx={{bgcolor: "#a9def9", cursor:"pointer"}}
           avatar={
             <Avatar src={userProfile} />
