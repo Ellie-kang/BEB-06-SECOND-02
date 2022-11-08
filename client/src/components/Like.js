@@ -32,9 +32,7 @@ export const Like = (props) => {
     })
   }
 
-
-  
-  useEffect(() => {
+useEffect(() => {
     const _like = like && like.filter((data) => {
       return data.userId === userId;
     })[0]
@@ -42,6 +40,7 @@ export const Like = (props) => {
       setIsLike(true)
     }
   })
+  
 
   return (
     <Stack direction="row">
