@@ -2,33 +2,52 @@ import React, { useState, useContext } from 'react';
 import Media from '../components/Skeleton';
 import { Grid, Box, Button } from '@mui/material';
 import axios from 'axios';
-import { NFTStorage, File } from 'nft.storage/dist/bundle.esm.min.js';
+import { NFTStorage } from 'nft.storage/dist/bundle.esm.min.js';
 import { AppContext } from '../AppContext';
 
 const NFT_STORAGE_KEY = process.env.REACT_APP_APITOKEN;
 
 const MintPage = () => {
   const context = useContext(AppContext);
-  const name = context.state.userId;
+  const {userId, address} = context.state;
   const [preview, setPreview] = useState('');
   const [nftImg, setNftImg] = useState(undefined);
 
   const handleMint = async () => {
-    console.log(nftImg);
     try {
       if (!nftImg) throw new Error('아직 이미지를 선택하지 않았습니다');
+      if (!address) throw new Error('발급받은 web3주소가 없습니다.');
+      if (!userId) throw new Error('로그인을 해주세요.');
 
       const nftstorage = new NFTStorage({ token: NFT_STORAGE_KEY });
       const description = '123123';
-
       const result = await nftstorage.store({
+        name: userId,
         image: nftImg,
-        name,
         description
       });
 
-      // Result 변수가 설정되면 nftstorage에 저장되었다는 뜻입니다.
-      console.log(result);
+      // https로 보내는 방법.
+      const onlyCid = result.url.slice(7);
+      const tokenURL = `https://ipfs.io/ipfs/${onlyCid}`;
+
+      //ipfs로 보내는건 result.url을 보내주면된다.
+      //image는 ipfs에 올리는데 시간이 걸리기 때문에, openSea에 뜨기까지 시간이 걸림.
+      // 하지만 Opensea sdk를 사용해서 assets를 가져오면 됨.
+
+      if (result) {
+        axios.post('http://localhost:3001/web3/mint', {
+          address: address,
+          tokenURL: tokenURL, // or result.url
+        },{
+          withCredentials:true
+        }).then((res) => {
+          console.log(res);
+        }).catch((e) => {
+          console.log(e);
+          return e;
+        });
+      }
     } catch (e) {
       console.error(e);
       alert(e);
@@ -51,25 +70,10 @@ const MintPage = () => {
     if (e.target.files) {
       encodeFileToBase64(e.target.files[0]);
       setNftImg(e.target.files[0]);
+    } else {
+      return;
     }
   };
-
-  const fileInput = React.useRef(null);
-
-  const handleButtonClick = e => {
-    fileInput.current.click();
-  };
-
-  const handleChange = e => {
-    console.log(e.target.files[0]);
-    setNftImg(e.target.files[0]);
-  };
-
-  /*   async function fileFromPath(filePath) {
-    const content = await fs.promises.readFile(filePath)
-    const type = mime.getType(filePath)
-    return new File([content], path.basename(filePath), { type })
-  } */
 
   return (
     <>
@@ -86,7 +90,8 @@ const MintPage = () => {
                 bgcolor: '#a9def9',
                 '&.MuiButtonBase-root:hover': {
                   bgcolor: '#a9def9'
-                }
+                },
+                mr: 5
               }}
             >
               Select Img

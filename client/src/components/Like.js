@@ -39,9 +39,9 @@ export const Like = (props) => {
       setIsLike(true)
     }
   })
-  
+ */
   return (
-    <Stack direction="row"> 
+    <Stack direction="row">
     {isLike
       ? (
         <IconButton
