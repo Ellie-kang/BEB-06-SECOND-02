@@ -18,7 +18,7 @@ const Media = () => {
             width='80%'
             style={{ marginBottom: 6 }}
           />
-}
+        }
         subheader={
           <Skeleton animation='wave' height={10} width='40%' />
         }

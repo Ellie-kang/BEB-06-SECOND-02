@@ -22,7 +22,6 @@ export const Like = (props) => {
       articleId: props.articleId
     }, { withCredentials: true })
       .then((res) => {
-        
         if (isLike) {
           setIsLike(false);
           setCurrentlike(res.data.likeCount);
