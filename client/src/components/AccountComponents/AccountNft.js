@@ -6,7 +6,7 @@ import Media from '../Skeleton';
 import AccountNftsCard from './AccountNftsCard';
 const AccountNft = () => {
   const context = useContext(AppContext);
-  const {address, userProfileImg, userId} = context.state;
+  const {address, userId} = context.state;
   const options = {method: 'GET'};
   const [nftlist, setNftlist] = useState([]);
 
@@ -62,7 +62,7 @@ const AccountNft = () => {
                   key={idx}
                   userId={userId}
                   image_preview_url={el.image_preview_url}
-                  userProfileImg={userProfileImg} />
+                />
               );
             })
             :
