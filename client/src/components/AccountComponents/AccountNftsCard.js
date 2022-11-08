@@ -5,31 +5,29 @@ import CardMedia from '@mui/material/CardMedia';
 import Avatar from '@mui/material/Avatar';
 
 const AccountNftsCard = (props) => {
-
   return (
-      <Card width="80%">
-        <CardHeader
-          avatar={
+    <Card width='80%'>
+      <CardHeader
+        avatar={
             (
               <Avatar
-                alt="Ted talk"
+                alt='Ted talk'
                 src={props.userProfileImg}
               />
             )
           }
-          title={props.userId}
-          sx={{color: "black"}}
-          subheader='nfts'
-        />
-          <CardMedia
-            component="img"
-            height="140"
-            image={props.image_preview_url}
-            alt=""
-          />
-      </Card>
+        title={props.userId}
+        sx={{ color: 'black' }}
+        subheader='nfts'
+      />
+      <CardMedia
+        component='img'
+        height='140'
+        image={props.image_preview_url}
+        alt=''
+      />
+    </Card>
   );
-
 };
 
 export default AccountNftsCard;

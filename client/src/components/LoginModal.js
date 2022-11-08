@@ -18,7 +18,7 @@ const LoginModal = () => {
   const context = useContext(AppContext);
   const [ismatched, setIsmatched] = useState(true);
 
-  const { setUserId, setJwt, setTokenAmount, setUserArticles, setUserNft, setLoginModalOpen, setIsLoggedin, setAddress, setUserProfileImg } = context.action;
+  const { setUserId, setJwt, setTokenAmount, setLoginModalOpen, setIsLoggedin, setAddress, setUserProfileImg } = context.action;
   const open = context.state.loginmodalOpen;
   const close = () => {
     setLoginModalOpen(false);
@@ -36,8 +36,8 @@ const LoginModal = () => {
     })
       .then((res) => {
         // Web API에서 받은 token 값을 jwt context에 넣습니다.
-        console.log(res.data)
-        setTokenAmount(res.data.user.tokenAmount)
+        console.log(res.data);
+        setTokenAmount(res.data.user.tokenAmount);
         setJwt(res.data.token);
         setIsLoggedin(true);
         setUserId(res.data.user.userId);
@@ -111,7 +111,7 @@ const LoginModal = () => {
                         Sign In
                       </Button>
                     </Box>
-                    {ismatched ? null : <Alert severity="error" sx={{width:"100%"}}><AlertTitle>아이디 비밀번호를 확인해주세요</AlertTitle><strong>Check ID or Password</strong></Alert>}
+                    {ismatched ? null : <Alert severity='error' sx={{ width: '100%' }}><AlertTitle>아이디 비밀번호를 확인해주세요</AlertTitle><strong>Check ID or Password</strong></Alert>}
                   </Box>
                 </Container>
               </ThemeProvider>
