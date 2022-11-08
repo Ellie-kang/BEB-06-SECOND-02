@@ -3,8 +3,9 @@ import { AppContext } from '../../AppContext';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
-import { Box, Stack, Chip } from '@mui/material';
+import { Box, Stack, Chip, Button, TextField } from '@mui/material';
 import alert from 'alert';
+import Typography from '@mui/material/Typography';
 
 const AccountSend = () => {
   const context = useContext(AppContext);
@@ -46,50 +47,37 @@ const AccountSend = () => {
 
   return (
     <>
-      <Box className='account-sender' mt={-20} mb={3} ml={10}>
-        <Backdrop
-          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          open={open}
-        >
-          <CircularProgress color='inherit' />
-        </Backdrop>
-        <Stack className='account-sender-wrapper' direction='column' spacing={3} ml={5} sx={{ fontSize: '20px', fontFamily: 'Poppins', fontWeight: 500 }}>
-          <span>
-            <p>Your Account:</p>
-            {context.state.address ? context.state.address : '로그인을 해주세요'}
-          </span>
-          <Box component='form' className='account-sender-form' onSubmit={handleSubmit}>
-            <Stack direction='row' spacing={2}>
-              <span>Address</span>
-              <div className='account-sender-input'>
-                <input className='sender-address' placeholder='put address' value={sendAddress} onChange={handleAddressChange} />
-              </div>
-            </Stack>
-            <Stack direction='row' spacing={2}>
-              <span>Amount</span>
-              <div className='account-sender-input'>
-                <input className='sender-address' placeholder='put amount' value={sendAmount} onChange={handleAmounthange} />
-              </div>
-              <button className='account-sender-button' type='submit'>
-                <Chip
-                  sx={{
-                    bgcolor: 'rgba(231,127,112)',
-                    color: 'white',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    fontSize: '14px'
-                  }}
-                  className='account-sender-chip'
-                  label='send'
-                />
-              </button>
-            </Stack>
-          </Box>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
+        <CircularProgress color='inherit' />
+      </Backdrop>
+      <Stack className='account-sender-wrapper' direction='column' spacing={3} sx={{ fontFamily: 'Poppins' }}>
+        <Stack>
+          <Typography variant='h6' gutterBottom>Your Account:</Typography>
+          <Typography variant='subtitle1' sx={{ overflowWrap: 'anywhere' }}>{context.state.address ? context.state.address : '로그인을 해주세요'}</Typography>
         </Stack>
-
-      </Box>
+        <Stack component='form' className='account-sender-form' onSubmit={handleSubmit}>
+          <TextField sx={{ marginBottom: '1em' }} placeholder='put address' label='Address' variant='standard' value={sendAddress} onChange={handleAddressChange} />
+          <TextField sx={{ marginBottom: '1em' }} placeholder='put amount' label='Amount' variant='standard' value={sendAmount} onChange={handleAmounthange} />
+          <Button className='account-sender-button' type='submit'>
+            <Chip
+              sx={{
+                width: 1,
+                bgcolor: 'rgba(231,127,112)',
+                color: 'white',
+                fontWeight: 600,
+                cursor: 'pointer',
+                fontSize: '14px'
+              }}
+              className='account-sender-chip'
+              label='send'
+            />
+          </Button>
+        </Stack>
+      </Stack>
     </>
-
   );
 };
 
