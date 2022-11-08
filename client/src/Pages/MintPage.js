@@ -4,16 +4,20 @@ import { Grid, Box, Button } from '@mui/material';
 import axios from 'axios';
 import { NFTStorage } from 'nft.storage/dist/bundle.esm.min.js';
 import { AppContext } from '../AppContext';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const NFT_STORAGE_KEY = process.env.REACT_APP_APITOKEN;
 
 const MintPage = () => {
   const context = useContext(AppContext);
-  const {userId, address} = context.state;
+  const { userId, address } = context.state;
   const [preview, setPreview] = useState('');
   const [nftImg, setNftImg] = useState(undefined);
+  const [open, setOpen] = useState(false);
 
   const handleMint = async () => {
+    setOpen(true)
     try {
       if (!nftImg) throw new Error('아직 이미지를 선택하지 않았습니다');
       if (!address) throw new Error('발급받은 web3주소가 없습니다.');
@@ -39,8 +43,8 @@ const MintPage = () => {
         axios.post('http://localhost:3001/web3/mint', {
           address: address,
           tokenURL: tokenURL, // or result.url
-        },{
-          withCredentials:true
+        }, {
+          withCredentials: true
         }).then((res) => {
           console.log(res);
         }).catch((e) => {
@@ -52,6 +56,7 @@ const MintPage = () => {
       console.error(e);
       alert(e);
     }
+    setOpen(false)
   };
 
   const encodeFileToBase64 = (fileBlob) => {
@@ -77,6 +82,12 @@ const MintPage = () => {
 
   return (
     <>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Grid container spacing={4}>
         <Grid item xs={12} />
         <Grid item xs={4} />
@@ -123,4 +134,4 @@ const MintPage = () => {
 };
 
 export default MintPage
-;
+  ;
