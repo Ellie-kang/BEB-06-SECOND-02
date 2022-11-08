@@ -18,6 +18,7 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import '../utils/WritePage.css';
 import '../utils/Font.css';
+import alert from 'alert';
 
 export default function WritePage () {
   const context = useContext(AppContext);
@@ -153,7 +154,7 @@ export default function WritePage () {
             console.error(err);
           });
           break;
-          default:
+        default:
           throw new Error('Unknown step');
       }
     }

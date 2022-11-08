@@ -3,7 +3,8 @@ import { AppContext } from '../../AppContext';
 import PersonIcon from '@mui/icons-material/Person';
 import TokenIcon from '@mui/icons-material/Token';
 import { Box, Stack } from '@mui/system';
-import { Typography } from '@mui/material';
+import { Typography, Button, Chip } from '@mui/material';
+import alert from 'alert';
 
 const AccountInfo = () => {
   const context = useContext(AppContext);
@@ -17,21 +18,46 @@ const AccountInfo = () => {
   };
 
   return (
-    <>
-      <button type='button' onClick={_deleteCookie}> logout</button>
-      <Box className='account-info' mt={8} ml={10} sx={{ fontFamily: 'Poppins' }}>
-        <Stack direction='row' spacing={3} ml={4} p={1} mt={13} className='user-id' alignContent='center'>
-          <PersonIcon className='account-icon' sx={{ fontSize: '35px' }} />
-          <Typography className='account-user-span' component='span' sx={{ fontSize: '20px', fontFamily: 'Poppins', fontWeight: 600 }}>{userId}</Typography>
-        </Stack>
-        <Stack direction='row' spacing={3} ml={4} p={1} mb={1} className='user-id'>
-          <TokenIcon className='account-icon' sx={{ fontSize: '35px' }} />
-          <Typography className='account-user-span' component='span' sx={{ fontSize: '20px', fontFamily: 'Poppins', fontWeight: 600 }}>
-            {(tokenAmount || 0)} TAKO
-          </Typography>
-        </Stack>
-      </Box>
-    </>
+    <Stack
+      className='account-info' sx={{
+        width: 1,
+        fontFamily: 'Poppins'
+      }}
+    >
+      <Stack direction='row' spacing={3} className='user-id' alignContent='center'>
+        <PersonIcon className='account-icon' sx={{ fontSize: '35px' }} />
+        <Typography className='account-user-span' component='span' sx={{ fontSize: '20px', fontFamily: 'Poppins', fontWeight: 600 }}>{userId}</Typography>
+      </Stack>
+      <Stack direction='row' spacing={3} className='user-id'>
+        <TokenIcon className='account-icon' sx={{ fontSize: '35px' }} />
+        <Typography className='account-user-span' component='span' sx={{ fontSize: '20px', fontFamily: 'Poppins', fontWeight: 600 }}>
+          {(tokenAmount || 0)} TAKO
+        </Typography>
+      </Stack>
+      {/* 로그아웃 버튼 */}
+      <Button
+        type='button'
+        onClick={_deleteCookie}
+        sx={{
+          width: 1,
+          '&.MuiButtonBase-root:hover': {
+            bgcolor: 'transparent'
+          }
+        }}
+      >
+        <Chip
+          label='로그아웃'
+          sx={{
+            width: 1,
+            fontWeight: 600,
+            color: 'white',
+            fontSize: '16px',
+            fontFamily: 'Poppins',
+            bgcolor: 'rgba(231,127,112)'
+          }}
+        />
+      </Button>
+    </Stack>
   );
 };
 

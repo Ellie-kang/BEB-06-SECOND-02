@@ -5,6 +5,7 @@ import { NFTStorage } from 'nft.storage/dist/bundle.esm.min.js';
 import { AppContext } from '../AppContext';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import alert from 'alert';
 
 const NFT_STORAGE_KEY = process.env.REACT_APP_APITOKEN;
 
