@@ -98,7 +98,6 @@ export const Comments = (props) => {
                     <HighlightOffIcon color="action"/>
                 </IconButton>
               </Stack>
-      
           )
         })}
       </Stack>

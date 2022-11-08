@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react';
-import '../utils/MainPage.css';
 import Article from '../components/Article';
 import { ThemeProvider } from '@mui/material/styles';
 import { AppContext } from '../AppContext';
@@ -7,6 +6,7 @@ import ListContainer from '../components/ListContainer';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { Paper } from '@mui/material';
+import '../utils/MainPage.css';
 
 const MainPage = () => {
   const context = useContext(AppContext);
