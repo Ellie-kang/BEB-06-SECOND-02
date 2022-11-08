@@ -92,7 +92,7 @@ export const Comments = (props) => {
             <Stack key={idx} spacing={1} className='users-comments' direction='row' sx={{ marginY: '5px', color: 'text.secondary' }}>
               <Avatar sx={{ width: '30px', height: '30px' }} src='' />
               <Typography component='span' sx={{ textAlign: 'center' }}>{comment.author[0].userId}</Typography>
-              <Typography component='p' sx={{ width: 1000 }}>{comment.content}</Typography>
+              <Typography description='' sx={{ width: 470 }} component='p' >{comment.content}</Typography>
               <IconButton component='button' onClick={(_id) => deleteComment(comment._id)}>
                 <HighlightOffIcon color='action' />
               </IconButton>
