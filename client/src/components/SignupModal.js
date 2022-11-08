@@ -56,6 +56,8 @@ const SignupModal = () => {
               case 400 :
                 alert('중복된 아이디입니다.');
                 break;
+                default :
+                throw new Error('Unexpected response status')
             }
           }
         });

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -8,7 +8,6 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../AppContext';
-import Article from '../components/Article';
 
 const theme = createTheme();
 
@@ -18,9 +17,9 @@ const DetailPage = () => {
   console.log(mainArticles);
   console.log(detailArticle);
 
-  const filteredArticle = [...mainArticles].filter((item) => {
+/*   const filteredArticle = [...mainArticles].filter((item) => {
     return item.title === detailArticle;
-  });
+  }); */
 
   const navigate = useNavigate();
 
