@@ -3,7 +3,7 @@ import { AppContext } from '../../AppContext';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios'
-import { Box, Stack, Typography, Chip } from '@mui/material';
+import { Box, Stack, Chip } from '@mui/material';
 
 const AccountSend = () => {
   const context = useContext(AppContext);
@@ -26,7 +26,7 @@ const AccountSend = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ sendAddress, sendAmount })
-    if (sendAddress == "" || sendAmount == "") {
+    if (sendAddress === "" || sendAmount === "") {
       alert('빈칸을 채워주세요')
     }
     else {

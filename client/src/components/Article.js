@@ -1,5 +1,4 @@
 import React, { useContext} from 'react';
-import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../AppContext';
 import { Comments } from './Comments';
 import { Like } from './Like';
@@ -15,10 +14,8 @@ import { Box, Grow } from '@mui/material';
 
 const Article = (props) => {
   const context = useContext(AppContext);
-  const {setDetailArticle} = context.action;
   const { title, content, imgFile, userId, userProfile, comments, id, like} = props;
   const date = new Date();
-  const navigate = useNavigate();
 
   //Detail Page handling
   const handleTitleClick = (e) => {
@@ -34,7 +31,7 @@ const Article = (props) => {
 
     /* setDetailArticle(e.target.textContent);
     navigate(`/detail/${e.target.textContent}`); */
-    
+
     
     
   }

@@ -21,7 +21,7 @@ import "../utils/Font.css"
 
 export default function WritePage() {
   const context = useContext(AppContext);
-  const { tokenAmount, regionList, jwt } = context.state;
+  const { tokenAmount, regionList } = context.state;
   const { setTokenAmount, setRegionList } = context.action;
 
   const [activeStep, setActiveStep] = React.useState(0);

@@ -3,7 +3,7 @@ import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import Stack from '@mui/material/Stack';
-import { Box, Typography, Grid, Paper } from '@mui/material';
+import { Box, Typography, Paper } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { AppContext } from '../AppContext';
 

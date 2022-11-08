@@ -1,7 +1,7 @@
-import React, { useState, useContext,useEffect } from 'react'
+import React, { useState, useContext} from 'react'
 import { AppContext } from "../AppContext";
 import { ThemeProvider } from '@mui/material/styles';
-import { Stack,Button, fabClasses, Chip, Grid, IconButton, makeStyles } from '@mui/material';
+import { Stack,Button, IconButton} from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Backdrop from '@mui/material/Backdrop';
@@ -13,7 +13,6 @@ import axios from 'axios';
 
 export const Comments = (props) => {
   const context = useContext(AppContext);
-  const { userId } = context.state;
   const [comment, setComment] = useState('');
   const [open, setOpen] = useState(false);
   //const [commentLists, setCommentLists] = useState(props.comments);
@@ -93,7 +92,9 @@ export const Comments = (props) => {
             <Stack key={idx} spacing={1} className="users-comments"  direction="row" sx={{marginY:"5px", color:"text.secondary"}}  >
                 <Avatar sx={{ width: "30px", height: "30px" }} src={''} />
                 <Typography component="span" sx={{ textAlign:"center" }}>{comment.author[0].userId}</Typography>
-                <Typography component="p" sx={{ width:1000 }}>{comment.content}</Typography>
+                <Typography component="p" sx={{ width: 450, whiteSpace:"pre-line"}}>
+                  {comment.content}
+                </Typography>
                 <IconButton component="button" onClick={(_id) => deleteComment(comment._id)} >
                     <HighlightOffIcon color="action"/>
                 </IconButton>

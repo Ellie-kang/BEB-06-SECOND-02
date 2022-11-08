@@ -18,7 +18,7 @@ const LoginModal = () => {
   const context = useContext(AppContext);
   const [ismatched, setIsmatched] = useState(true);
 
-  const { setUserId, setJwt, setTokenAmount, setUserArticles, setUserNft, setLoginModalOpen, setIsLoggedin, setAddress, setUserProfileImg } = context.action;
+  const { setUserId, setJwt, setTokenAmount, setLoginModalOpen, setIsLoggedin, setAddress, setUserProfileImg } = context.action;
   const open = context.state.loginmodalOpen;
   const close = () => {
     setLoginModalOpen(false);

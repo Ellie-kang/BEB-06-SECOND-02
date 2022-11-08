@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import Media from '../components/Skeleton';
 import { Grid, Box, Button } from '@mui/material';
 import axios from 'axios';
 import { NFTStorage } from 'nft.storage/dist/bundle.esm.min.js';
