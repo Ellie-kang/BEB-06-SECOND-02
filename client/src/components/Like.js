@@ -17,17 +17,18 @@ export const Like = (props) => {
   const { userId } = context.state;
 
   const isLiked = (e) => {
-    console.log(currentlike);
+
     axios.patch('http://localhost:3001/articles/like', {
       articleId: props.articleId
     }, { withCredentials: true })
       .then((res) => {
+        
         if (isLike) {
           setIsLike(false);
-          setCurrentlike(currentlike - 1);
+          setCurrentlike(res.data.likeCount);
         } else {
           setIsLike(true);
-          setCurrentlike(currentlike + 1);
+          setCurrentlike(res.data.likeCount);
         }
       }).catch((err) => {
         console.log(err);
@@ -41,7 +42,7 @@ export const Like = (props) => {
     if (_like) {
       setIsLike(true);
     }
-  });
+  }, []);
 
   return (
     <Stack direction='row'>
