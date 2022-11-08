@@ -10,35 +10,39 @@ import { AppContext } from '../AppContext';
 export const Like = (props) => {
   const [isLike, setIsLike] = useState(false);
   const { like } = props;
+
+  const [currentlike, setCurrentlike] = useState(like.length);
+
   const context = useContext(AppContext);
   const { userId } = context.state;
 
   const isLiked = (e) => {
+    console.log(currentlike);
     axios.patch('http://localhost:3001/articles/like', {
       articleId: props.articleId
     }, { withCredentials: true })
       .then((res) => {
         if (isLike) {
           setIsLike(false);
+          setCurrentlike(currentlike - 1);
         } else {
           setIsLike(true);
+          setCurrentlike(currentlike + 1);
         }
-        window.location.replace('/');
       }).catch((err) => {
         console.log(err);
       });
   };
 
-  // 좋아요 유무에 따라 새로고침 되도 그대로 반영함(확인 완료)
-  /*  useEffect(() => {
-    const _like = like.filter((data) => {
+  useEffect(() => {
+    const _like = like && like.filter((data) => {
       return data.userId === userId;
-    })[0]
-    if(_like) {
-      setIsLike(true)
+    })[0];
+    if (_like) {
+      setIsLike(true);
     }
-  })
- */
+  });
+
   return (
     <Stack direction='row'>
       {isLike
@@ -60,7 +64,7 @@ export const Like = (props) => {
           </IconButton>
           )}
       <Typography style={{ color: 'black' }} marginTop='8px'> 좋아요
-        {/* {like.length} */}
+        {like && currentlike ? currentlike : 0}
       </Typography>
     </Stack>
   );

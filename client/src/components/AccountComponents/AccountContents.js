@@ -39,6 +39,7 @@ const AccountArticles = (props) => {
           return (
             <Article
               key={item._id}
+              like={item.like}
               id={item._id}
               userId={item.author.userId}
               title={item.title}
