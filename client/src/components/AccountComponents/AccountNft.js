@@ -25,10 +25,12 @@ const AccountNft = () => {
   return (
     <>
       <Box component='div' className='account-nft'>
-        <Stack direction='row' spacing={7} mb={5} justifyContent='center' alignItems='center'>
+        <Stack direction='row' mb={2} justifyContent='center' alignItems='center'>
           <Typography
             variant='h5'
+            ml='1em'
             sx={{
+              flexGrow: 1,
               fontWeight: 600,
               fontFamily: 'Poppins'
             }}

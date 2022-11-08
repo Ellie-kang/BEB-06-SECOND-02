@@ -7,11 +7,13 @@ const AccountArticles = (props) => {
   const { userArticles } = props;
 
   return (
-    <Box className='account-contents' component='div' ml={2}>
-      <Stack direction='row' spacing={7} mb={5} justifyContent='center' alignItems='center'>
+    <Box className='account-contents' component='div'>
+      <Stack direction='row' mb={2} justifyContent='center' alignItems='center'>
         <Typography
           variant='h5'
+          ml='1em'
           sx={{
+            flexGrow: 1,
             fontWeight: 600,
             fontFamily: 'Poppins'
           }}
@@ -34,7 +36,7 @@ const AccountArticles = (props) => {
           </NavLink>
         </Box>
       </Stack>
-      <Stack direction='column' spacing={2} mr={4} justifyContent='center'>
+      <Stack direction='column' spacing={2} justifyContent='center'>
         {[...userArticles].reverse().map((item) => {
           return (
             <Article

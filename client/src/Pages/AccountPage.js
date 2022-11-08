@@ -10,6 +10,7 @@ import axios from 'axios';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import { Chip, Grid } from '@mui/material';
+import alert from 'alert';
 
 const AccountPage = () => {
   const context = useContext(AppContext);
@@ -59,87 +60,146 @@ const AccountPage = () => {
   };
   // account Page 에 들어오면, DB에 user 요청.
 
-  return (
-    // account Profile Img ul
-    //
-    <Grid container spacing={3}>
-      <Grid item xs={12} />
+  const profileStyle = {
+    width: '100%',
+    maxWidth: '250px',
+    height: '250px'
+  };
 
-      <Grid item xs={3} />
-      <Grid item xs={2}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} mt={14}>
-            {userProfileImg ? <Box component='img' sx={{ width: '100%', height: '250px' }} src={userProfileImg} alt='' /> : <Avatar sx={{ width: '100%', height: '250px' }} alt='Remy Sharp' />}
-          </Grid>
-          <Grid item xs={6} ml={0}>
-            <input id='contained-button-file' style={{ display: 'none' }} type='file' accept='image/*' name='image' onChange={handleImageChange} />
-            <label htmlFor='contained-button-file'>
-              <Button
-                component='div'
-                sx={{
-                  '&.MuiButtonBase-root:hover': {
-                    bgcolor: 'transparent'
-                  }
-                }}
-              >
-                <Chip
-                  label='사진 변경 하기'
-                  sx={{
-                    maxWidth: '160px',
-                    fontWeight: 600,
-                    color: 'white',
-                    fontSize: '16px',
-                    fontFamily: 'Poppins',
-                    bgcolor: 'rgba(231,127,112)'
-                  }}
-                />
-              </Button>
-            </label>
-          </Grid>
-          <Grid item xs={5} ml={-1.5}>
-            <Button
-              type='button'
-              onClick={handleImgToChange}
-              sx={{
-                '&.MuiButtonBase-root:hover': {
-                  bgcolor: 'transparent'
-                }
+  return (
+    <Grid
+      p={4}
+      pt={12}
+      pb={12}
+      container sx={{
+        flexDirection: 'column',
+        alignContent: 'stretch',
+        alignItems: 'stretch'
+      }}
+    >
+      <Grid item xs={12}>
+        <Grid
+          container
+          mb={8}
+          spacing={6}
+          sx={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignContent: 'stretch',
+            alignItems: 'flex-end'
+          }}
+        >
+          <Grid item xs={12} sm={4}>
+            <Grid
+              container sx={{
+                justifyContent: 'center'
               }}
             >
-              <Chip
-                label='프로필 변경하기'
-                sx={{
-                  maxWidth: '150px',
-                  fontWeight: 600,
-                  color: 'white',
-                  fontSize: '16px',
-                  fontFamily: 'Poppins',
-                  bgcolor: 'rgba(231,127,112)'
-                }}
-              />
-            </Button>
+              {/* 프로필 이미지 */}
+              {
+                userProfileImg
+                  ? <Box component='img' sx={profileStyle} src={userProfileImg} alt='' />
+                  : <Avatar sx={profileStyle} alt='Remy Sharp' />
+              }
+
+              <Grid
+                container
+                mt={4}
+              >
+                <Grid item xs={12}>
+                  {/* 사진 이미지 업로드 버튼 */}
+                  <input id='contained-button-file' style={{ display: 'none' }} type='file' accept='image/*' name='image' onChange={handleImageChange} />
+                  <label htmlFor='contained-button-file'>
+                    <Button
+                      component='div'
+                      sx={{
+                        width: 1,
+                        '&.MuiButtonBase-root:hover': {
+                          bgcolor: 'transparent'
+                        }
+                      }}
+                    >
+                      <Chip
+                        label='사진 변경 하기'
+                        sx={{
+                          width: 1,
+                          fontWeight: 600,
+                          color: 'white',
+                          fontSize: '16px',
+                          fontFamily: 'Poppins',
+                          bgcolor: 'rgba(231,127,112)'
+                        }}
+                      />
+                    </Button>
+                  </label>
+                </Grid>
+                <Grid item xs={12}>
+                  {/* 프로필 이미지 변경 버튼 */}
+                  <Button
+                    type='button'
+                    onClick={handleImgToChange}
+                    sx={{
+                      width: 1,
+                      '&.MuiButtonBase-root:hover': {
+                        bgcolor: 'transparent'
+                      }
+                    }}
+                  >
+                    <Chip
+                      label='프로필 변경하기'
+                      sx={{
+                        width: 1,
+                        fontWeight: 600,
+                        color: 'white',
+                        fontSize: '16px',
+                        fontFamily: 'Poppins',
+                        bgcolor: 'rgba(231,127,112)'
+                      }}
+                    />
+                  </Button>
+                </Grid>
+              </Grid>
+
+            </Grid>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Grid
+              container spacing={3} sx={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignContent: 'flex-start',
+                alignItems: 'stretch'
+              }}
+            >
+              <Grid item xs={12}>
+                <AccountInfo />
+              </Grid>
+              <Grid item xs={12}>
+                <AccountSend />
+              </Grid>
+            </Grid>
+
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={1} />
-      <Grid item xs={4}>
-        <AccountInfo />
+      <Grid item xs={12}>
+        <Grid
+          container spacing={6} sx={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignContent: 'stretch',
+            alignItems: 'flex-start'
+          }}
+        >
+          <Grid item xs={12} sm={4}>
+            <AccountArticles userArticles={userArticles} />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <AccountNft />
+          </Grid>
+        </Grid>
       </Grid>
-      <Grid item xs={2} />
-      <Grid item xs={6} />
-      <Grid item xs={6}>
-        <AccountSend />
-      </Grid>
-      <Grid item xs={2} />
-      <Grid item xs={4} mt={10}>
-        <AccountArticles userArticles={userArticles} />
-      </Grid>
-      <Grid item xs={4} mt={10}>
-        <AccountNft />
-      </Grid>
-      <Grid item xs={2} />
     </Grid>
-
   );
 };
 
