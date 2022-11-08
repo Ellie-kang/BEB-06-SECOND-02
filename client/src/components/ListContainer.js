@@ -14,7 +14,6 @@ import { AppContext } from '../AppContext';
 import ListContainerByRegion from './ListContainerByRegion';
 import '../utils/MainPage.css';
 import '../utils/Font.css';
-import axios from 'axios';
 
 const ListContainer = () => {
   const context = useContext(AppContext);

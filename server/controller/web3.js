@@ -38,7 +38,7 @@ const userSend = async (req, res) => {
 
 const mintNft = async (req, res) => {
   try {
-    const {tokenURL, address} = req.body
+    const { tokenURL, address } = req.body;
     const token = req.cookies.token;
     const data = jwt.verify(token, process.env.SECRET);
     const userId = data.userId;
@@ -47,7 +47,7 @@ const mintNft = async (req, res) => {
 
     const user = await User.findOne({ userId }, 'address tokenAmount');
     const result = await _userSend(user.address, '0xA5E535B4c93751d0C72316dA4F6FdC6cb61BC09B', '10');
-    
+
     // token 이 10개 미만인경우?
 
     // const result_mint mint logic

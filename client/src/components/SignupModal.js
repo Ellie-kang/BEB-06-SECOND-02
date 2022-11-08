@@ -24,9 +24,9 @@ const SignupModal = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const p = data.get('password');
-    const p_c = data.get('confirm_password');
-    if (p !== p_c) {
-      return;
+    const pConfirm = data.get('confirm_password');
+    if (p !== pConfirm) {
+      alert('비밀번호가 일치하지 않습니다');
     } else {
       // DB로 보내기
       axios.post('http://localhost:3001/users/signup', {

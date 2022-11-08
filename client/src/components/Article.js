@@ -1,5 +1,4 @@
-import React, { useContext} from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
 import { AppContext } from '../AppContext';
 import { Comments } from './Comments';
 import { Like } from './Like';
@@ -15,39 +14,32 @@ import { Box, Grow } from '@mui/material';
 
 const Article = (props) => {
   const context = useContext(AppContext);
-  const {setDetailArticle} = context.action;
-  const { title, content, imgFile, userId, userProfile, comments, id, like} = props;
+  const { title, content, imgFile, userId, userProfile, comments, id, like } = props;
   const date = new Date();
-  const navigate = useNavigate();
 
-  //Detail Page handling
+  // Detail Page handling
   const handleTitleClick = (e) => {
     // header를 클릭하면, direction을 바꿔준다.
 
     // Article에서 img가 없으면 기본 이미지 설정.
 
-
     // textcontent 말고 , Article을 클릭했을떄 Article 정보를 가져와야함.
     // mainArticle index를 가져오면 될듯.
     // 본문 헤더, 이미지.
-    
 
     /* setDetailArticle(e.target.textContent);
     navigate(`/detail/${e.target.textContent}`); */
-    
-    
-    
-  }
+  };
 
   return (
-    <Grow in={true} style={{ transformOrigin: '0 2 0' }} {...(true ? { timeout: 1200 } : {})}>
+    <Grow in style={{ transformOrigin: '0 2 0' }} {...({ timeout: 1200 })}>
       <Card
         className='contents-container'
-        sx={{ borderRadius: '10px',}}
+        sx={{ borderRadius: '10px' }}
       >
         <CardHeader
           // sx={{bgcolor: "#ffd2c9"}}
-          sx={{bgcolor: "#a9def9", cursor:"pointer"}}
+          sx={{ bgcolor: '#a9def9', cursor: 'pointer' }}
           avatar={
             <Avatar src={userProfile} />
           }
@@ -60,11 +52,11 @@ const Article = (props) => {
           height='350'
           image={imgFile}
         />
-        <Like articleId={id} like={like} id={id} userId={userId}/>
+        <Like articleId={id} like={like} id={id} userId={userId} />
         <CardContent>
-          <Typography component="p" sx={{color: "black"}}><strong>{userId}</strong></Typography>
+          <Typography component='p' sx={{ color: 'black' }}><strong>{userId}</strong></Typography>
           <Typography
-            variant='body2' description='' 
+            variant='body2' description=''
             sx={{
               color: 'black',
               overflow: 'hidden',
@@ -76,9 +68,9 @@ const Article = (props) => {
           >
             {content}
           </Typography>
-          <Comments articleId={id} comments={comments}/>
+          <Comments articleId={id} comments={comments} />
         </CardContent>
-        <Box component="footer" sx={{pl: 3}}>{`${date.getMonth()+1}월 ${date.getDate()}일`}</Box>
+        <Box component='footer' sx={{ pl: 3 }}>{`${date.getMonth() + 1}월 ${date.getDate()}일`}</Box>
       </Card>
     </Grow>
   );
