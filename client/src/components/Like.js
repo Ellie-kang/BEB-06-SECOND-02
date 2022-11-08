@@ -10,7 +10,9 @@ import { AppContext } from "../AppContext";
 export const Like = (props) => {
   const [isLike, setIsLike] = useState(false);
   const {like} = props;
+  
   const [currentlike, setCurrentlike] = useState(like.length);
+
   const context = useContext(AppContext);
   const { userId } = context.state;
 
