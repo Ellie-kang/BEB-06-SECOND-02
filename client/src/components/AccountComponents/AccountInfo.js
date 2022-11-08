@@ -4,6 +4,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import TokenIcon from '@mui/icons-material/Token';
 import { Box, Stack } from '@mui/system';
 import { Typography } from '@mui/material';
+import alert from 'alert';
 
 const AccountInfo = () => {
   const context = useContext(AppContext);

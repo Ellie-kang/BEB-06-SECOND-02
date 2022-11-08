@@ -4,6 +4,7 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
 import { Box, Stack, Chip } from '@mui/material';
+import alert from 'alert';
 
 const AccountSend = () => {
   const context = useContext(AppContext);
@@ -11,10 +12,6 @@ const AccountSend = () => {
   const [sendAddress, setSendAddress] = useState('');
   const [sendAmount, setSendAmount] = useState('');
   const [open, setOpen] = useState(false);
-
-  /*   const handleChange = (e) => {
-      setImg(e.target.value)
-    } */
 
   const handleAddressChange = (e) => {
     setSendAddress(e.target.value);

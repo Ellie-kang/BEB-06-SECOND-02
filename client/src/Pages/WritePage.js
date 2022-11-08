@@ -18,10 +18,11 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import '../utils/WritePage.css';
 import '../utils/Font.css';
+import alert from 'alert';
 
 export default function WritePage () {
   const context = useContext(AppContext);
-  const { tokenAmount, regionList, jwt } = context.state;
+  const { tokenAmount, regionList } = context.state;
   const { setTokenAmount, setRegionList } = context.action;
 
   const [activeStep, setActiveStep] = React.useState(0);
@@ -152,6 +153,8 @@ export default function WritePage () {
             console.error(err);
           });
           break;
+        default:
+          throw new Error('Unknown step');
       }
     }
   };

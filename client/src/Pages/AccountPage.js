@@ -10,6 +10,7 @@ import axios from 'axios';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import { Chip, Grid } from '@mui/material';
+import alert from 'alert';
 
 const AccountPage = () => {
   const context = useContext(AppContext);

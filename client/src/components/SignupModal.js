@@ -11,6 +11,7 @@ import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { AppContext } from '../AppContext';
+import alert from 'alert';
 
 const SignupModal = () => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
@@ -56,6 +57,8 @@ const SignupModal = () => {
               case 400 :
                 alert('중복된 아이디입니다.');
                 break;
+              default:
+                alert('알 수 없는 오류가 발생했습니다.');
             }
           }
         });

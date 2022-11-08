@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Chip } from '@mui/material';
+import alert from 'alert';
 
 export default function WriteForm (props) {
   const { region, setRegion, city, setCity, regionList, cityList, setCityList } = props;
