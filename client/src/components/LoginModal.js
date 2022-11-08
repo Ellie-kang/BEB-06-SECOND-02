@@ -111,7 +111,12 @@ const LoginModal = () => {
                         Sign In
                       </Button>
                     </Box>
-                    {ismatched ? null : <Alert severity='error' sx={{ width: '100%' }}><AlertTitle>아이디 비밀번호를 확인해주세요</AlertTitle><strong>Check ID or Password</strong></Alert>}
+                    {ismatched
+                    ? null
+                    : <Alert severity='error' sx={{ width: '100%' }}>
+                        <AlertTitle>아이디 비밀번호를 확인해주세요</AlertTitle>
+                        <strong>Check ID or Password</strong>
+                      </Alert>}
                   </Box>
                 </Container>
               </ThemeProvider>
