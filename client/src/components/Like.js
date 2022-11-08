@@ -10,6 +10,7 @@ import { AppContext } from "../AppContext";
 export const Like = (props) => {
   const [isLike, setIsLike] = useState(false);
   const {like} = props;
+  console.log(like)
   const context = useContext(AppContext);
   const { userId } = context.state;
 
@@ -28,19 +29,17 @@ export const Like = (props) => {
       console.log(err)
     })
   }
-
-
-  
-  // 좋아요 유무에 따라 새로고침 되도 그대로 반영함(확인 완료)
-/*  useEffect(() => {
-    const _like = like.filter((data) => {
-      return data.userId === userId;
+ 
+  // 좋아요 유무에 따라 새로고침 되도 그대로 반영 (확인 완료)
+  useEffect(() => {
+    const _like = like && like.filter((data) => {
+      return data.userId === userId;  
     })[0]
     if(_like) {
       setIsLike(true)
     }
   })
- */
+ 
   return (
     <Stack direction="row">
     {isLike
@@ -61,8 +60,8 @@ export const Like = (props) => {
           <FavoriteBorderIcon />
         </IconButton>
         )}
-    <Typography style={{ color: 'black'}} marginTop="8px"> 좋아요
-        {/* {like.length} */}
+    <Typography style={{ color: 'black' }} marginTop="8px"> 좋아요
+        { like && like.length ? like.length : 0 }
     </Typography>
   </Stack>
   );
