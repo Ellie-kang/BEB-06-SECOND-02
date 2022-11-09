@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import { Chip, Grid } from '@mui/material';
 import alert from 'alert';
+import { profileStyle, chipStyle } from '../StyledSx';
 
 const AccountPage = () => {
   const context = useContext(AppContext);
@@ -59,12 +60,6 @@ const AccountPage = () => {
     });
   };
   // account Page 에 들어오면, DB에 user 요청.
-
-  const profileStyle = {
-    width: '100%',
-    maxWidth: '250px',
-    height: '250px'
-  };
 
   return (
     <Grid
@@ -119,17 +114,7 @@ const AccountPage = () => {
                         }
                       }}
                     >
-                      <Chip
-                        label='사진 변경 하기'
-                        sx={{
-                          width: 1,
-                          fontWeight: 600,
-                          color: 'white',
-                          fontSize: '16px',
-                          fontFamily: 'Poppins',
-                          bgcolor: 'rgba(231,127,112)'
-                        }}
-                      />
+                      <Chip label='사진 변경 하기' sx={chipStyle} />
                     </Button>
                   </label>
                 </Grid>
@@ -145,21 +130,10 @@ const AccountPage = () => {
                       }
                     }}
                   >
-                    <Chip
-                      label='프로필 변경하기'
-                      sx={{
-                        width: 1,
-                        fontWeight: 600,
-                        color: 'white',
-                        fontSize: '16px',
-                        fontFamily: 'Poppins',
-                        bgcolor: 'rgba(231,127,112)'
-                      }}
-                    />
+                    <Chip label='프로필 변경하기' sx={chipStyle} />
                   </Button>
                 </Grid>
               </Grid>
-
             </Grid>
           </Grid>
           <Grid item xs={12} sm={4}>

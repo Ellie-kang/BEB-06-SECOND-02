@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import '../utils/modal.css';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -9,6 +9,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import axios from 'axios';
 import { AppContext } from '../AppContext';
 import alert from 'alert';
@@ -16,6 +18,7 @@ import alert from 'alert';
 const SignupModal = () => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
   const context = useContext(AppContext);
+  const [ismatched, setIsmatched] = useState(true);
   const open = context.state.signupmodalOpen;
   const close = () => {
     context.action.setSignupModalOpen(false);
@@ -27,9 +30,11 @@ const SignupModal = () => {
     const p = data.get('password');
     const pConfirm = data.get('confirm_password');
     if (p !== pConfirm) {
-      alert('비밀번호가 일치하지 않습니다');
+      // signup modal popup
+      setIsmatched(false);
     } else {
       // DB로 보내기
+      setIsmatched(true);
       axios.post('http://localhost:3001/users/signup', {
         userId: data.get('id'),
         password: data.get('password')
@@ -139,6 +144,12 @@ const SignupModal = () => {
                         Sign Up
                       </Button>
                     </Box>
+                    {ismatched === true
+                    ? <></>
+                    : <Alert severity='error' sx={{ width: '100%' }}>
+                        <AlertTitle>아이디 비밀번호를 확인해주세요</AlertTitle>
+                        <strong>Check ID or Password</strong>
+                      </Alert>}
                   </Box>
                 </Container>
               </ThemeProvider>

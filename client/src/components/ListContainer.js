@@ -46,7 +46,7 @@ const ListContainer = () => {
       const handleOpen = () => {
         const newList = { ...openList };
         newList[region] = !open;
-        console.log(newList);
+        //  console.log(newList);
         setOpenList(newList);
       };
 
@@ -66,7 +66,8 @@ const ListContainer = () => {
   return (
 
     <Stack
-      id='list-contianer' sx={{
+      id='list-contianer'
+      sx={{
         width: '100%',
         display: 'flex',
         flexWrap: 'wrap'
@@ -83,7 +84,8 @@ const ListContainer = () => {
               bgcolor: 'background.header',
               color: 'text.primary'
             }}
-            component='div' id='list-subheader'
+            component='div'
+            id='list-subheader'
           >WHERE IS TAKO?
           </ListSubheader>
           }

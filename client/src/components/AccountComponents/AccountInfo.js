@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import { AppContext } from '../../AppContext';
 import PersonIcon from '@mui/icons-material/Person';
 import TokenIcon from '@mui/icons-material/Token';
-import { Box, Stack } from '@mui/system';
+import { Stack } from '@mui/system';
 import { Typography, Button, Chip } from '@mui/material';
 import alert from 'alert';
+import { chipStyle } from '../../StyledSx';
 
 const AccountInfo = () => {
   const context = useContext(AppContext);
@@ -47,14 +48,7 @@ const AccountInfo = () => {
       >
         <Chip
           label='로그아웃'
-          sx={{
-            width: 1,
-            fontWeight: 600,
-            color: 'white',
-            fontSize: '16px',
-            fontFamily: 'Poppins',
-            bgcolor: 'rgba(231,127,112)'
-          }}
+          sx={chipStyle}
         />
       </Button>
     </Stack>

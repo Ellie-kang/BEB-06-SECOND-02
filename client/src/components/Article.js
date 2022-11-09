@@ -38,8 +38,7 @@ const Article = (props) => {
         sx={{ borderRadius: '10px' }}
       >
         <CardHeader
-          // sx={{bgcolor: "#ffd2c9"}}
-          sx={{ bgcolor: '#a9def9', cursor: 'pointer' }}
+          sx={{bgcolor: "#a9def9", cursor:"pointer"}}
           avatar={
             <Avatar src={userProfile} />
           }

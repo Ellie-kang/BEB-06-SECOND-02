@@ -15,7 +15,6 @@ import { useCookies } from 'react-cookie';
 import './App.css';
 
 const App = () => {
-  // 서버에서 account 데이터를 불러와서 contextAPI로 저장.
 
   const [userId, setUserId] = useState('');
   const [email, setEmail] = useState('');
