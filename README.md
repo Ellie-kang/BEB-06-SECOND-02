@@ -32,7 +32,8 @@
 ## 페이지 샘플<a name="pages"></a>
 
 ### MainPage
-![화면 기록 2022-10-26 오후 1 26 com](https://user-images.githubusercontent.com/97439643/197947925-a715a060-44fd-4b70-9c30-4c4157c865f8.gif)
+![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d350af69-9692-4312-85d7-e9ca4777d88e/beforeSignin.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T052941Z&X-Amz-Expires=86400&X-Amz-Signature=104f5cba89fe72bb3bf1e477638778130d4898127bae882482e6acdc536b2f30&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22beforeSignin.gif%22&x-id=GetObject)
+
 
 ### CreatePage
 
@@ -49,7 +50,7 @@
 ## 🗣 Tako팀을 소개합니다.
 | 이름 | 역할 | 블로그 |
 |---|---|---|
-| <b>강영아</b> | <div style="text-align: center;">팀 리더<br>프론트엔드<br>Repo 관리</div> | https://ellie-kang.tistory.com/ |
-| <b>김현구</b> | <div style="text-align: center;">프론트엔드<br>NFT 스마트</div>  | https://www.notion.so/697962e7730f43cbb6ea960bf8cd81ac |
-| <b>홍찬우</b> | <div style="text-align: center;">백엔드<br>토큰 스마트 컨트랙트</div> | https://hcw-code.github.io/ |
-| <b>박희인</b> | <div style="text-align: center;">백엔드<br>데이터베이스</div> | https://red-rain.notion.site/4884b18274ca40dc8247221f044dcbdf |
+| <b>강영아</b> | 팀 리더<br>프론트엔드<br>Repo 관리 | https://ellie-kang.tistory.com/ |
+| <b>김현구</b> | 프론트엔드<br>NFT 스마트  | https://www.notion.so/697962e7730f43cbb6ea960bf8cd81ac |
+| <b>홍찬우</b> | 백엔드<br>토큰 스마트 컨트랙트 | https://hcw-code.github.io/ |
+| <b>박희인</b> | 백엔드<br>데이터베이스 | https://red-rain.notion.site/4884b18274ca40dc8247221f044dcbdf |
