@@ -64,5 +64,5 @@
 |---|:---:|---|
 | <b>강영아</b> | 팀 리더<br>프론트엔드<br>Repo 관리 | https://ellie-kang.tistory.com/ |
 | <b>김현구</b> | 프론트엔드<br>NFT 스마트 컨트랙트 | https://www.notion.so/697962e7730f43cbb6ea960bf8cd81ac |
-| <b>홍찬우</b> | 백엔드<br>토큰 스마트 컨트랙트 | https://hcw-code.github.io/ |
+| <b>홍찬우</b> | 백엔드<br>토큰 스마트 컨트랙트 | https://hcw-code.github.io/project/project_2nd/ |
 | <b>박희인</b> | 백엔드<br>데이터베이스 | https://red-rain.notion.site/4884b18274ca40dc8247221f044dcbdf |
