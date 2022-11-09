@@ -19,6 +19,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import '../utils/WritePage.css';
 import '../utils/Font.css';
 import alert from 'alert';
+import { writeButtons } from '../StyledSx';
 
 export default function WritePage () {
   const context = useContext(AppContext);
@@ -103,13 +104,8 @@ export default function WritePage () {
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <Button
                   variant='contained'
+                  style={writeButtons}
                   sx={{
-                    mt: 3,
-                    ml: 1,
-                    bgcolor: '#a9def9',
-                    '&.MuiButtonBase-root:hover': {
-                      bgcolor: '#a9def9'
-                    },
                     textDecoration:"none"
                   }}
                 >

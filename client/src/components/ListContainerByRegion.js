@@ -17,7 +17,7 @@ const ListContainerByRegion = ({ primary }) => {
 
   const handleButtonClick = useCallback((e) => {
     // post parameter로.
-    axios.get(`http://localhost:3001/articles?city=${e.target.innerText}`)
+    axios.get(`http://localhost:3001/articles?city=${e.target.textContent}`)
       .then((res) => {
         setMainArticles(res.data);
       });

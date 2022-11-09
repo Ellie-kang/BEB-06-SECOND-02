@@ -11,7 +11,8 @@ export const chipStyle = {
   color: 'white',
   fontSize: '16px',
   fontFamily: 'Poppins',
-  bgcolor: 'rgba(231,127,112)'
+  bgcolor: 'rgba(231,127,112)',
+  
 }
 
 export const ListContainerStyle = {
@@ -32,4 +33,20 @@ export const ListContainerStyle = {
     sm: 10
   },
   height: 'auto'
+}
+
+export const accountLetters = {
+  fontSize: '20px',
+  fontFamily: 'Poppins',
+  fontWeight: 600,
+}
+
+export const writeButtons = {
+  mt: 3,
+  ml: 1,
+  color: 'white',
+  bgcolor: '#a9def9',
+  '&.MuiButtonBase-root:hover': {
+    bgcolor: '#a9def9'
+  }
 }

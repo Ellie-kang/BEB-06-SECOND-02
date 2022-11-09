@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Chip } from '@mui/material';
 import alert from 'alert';
-
+import { writeButtons } from '../StyledSx';
 
 export default function WriteForm (props) {
   const { region, setRegion, city, setCity, regionList, cityList, setCityList } = props;
@@ -138,14 +138,7 @@ export default function WriteForm (props) {
         <Button
           variant='contained'
           component='label'
-          sx={{
-            mt: 3,
-            ml: 1,
-            bgcolor: '#a9def9',
-            '&.MuiButtonBase-root:hover': {
-              bgcolor: '#a9def9'
-            }
-          }}
+          sx={writeButtons}
         >
           Upload File
           <input
@@ -156,15 +149,8 @@ export default function WriteForm (props) {
         </Button>
         <Button
           variant='contained'
-        onClick={props.handleNext}
-          sx={{
-            mt: 3,
-            ml: 1,
-            bgcolor: '#a9def9',
-            '&.MuiButtonBase-root:hover': {
-              bgcolor: '#a9def9'
-            }
-          }}
+          onClick={props.handleNext}
+          sx={writeButtons}
         >
           {props.activeStep !== 0 ? 'Place order' : 'Next'}
         </Button>

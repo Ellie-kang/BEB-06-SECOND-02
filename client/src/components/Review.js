@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { Chip } from '@mui/material';
+import { writeButtons } from '../StyledSx';
 
 export default function Review (props) {
   const date = new Date();
@@ -58,30 +59,14 @@ export default function Review (props) {
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Button
           variant='contained' onClick={props.handleBack}
-          sx={{
-            mt: 3,
-            ml: 1,
-            color: 'white',
-            bgcolor: '#a9def9',
-            '&.MuiButtonBase-root:hover': {
-              bgcolor: '#a9def9'
-            }
-          }}
+          sx={writeButtons}
         >
           Back
         </Button>
         <Button
           variant='contained'
           onClick={props.handleNext}
-          sx={{
-            mt: 3,
-            ml: 1,
-            color: 'white',
-            bgcolor: '#a9def9',
-            '&.MuiButtonBase-root:hover': {
-              bgcolor: '#a9def9'
-            }
-          }}
+          sx={writeButtons}
         >
           {props.activeStep === 1 ? 'Complete' : 'Next'}
         </Button>

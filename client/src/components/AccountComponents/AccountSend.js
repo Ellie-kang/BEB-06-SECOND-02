@@ -3,10 +3,10 @@ import { AppContext } from '../../AppContext';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
-import { Box, Stack, Chip, Button, TextField } from '@mui/material';
+import { Stack, Chip, Button, TextField } from '@mui/material';
 import alert from 'alert';
 import Typography from '@mui/material/Typography';
-import { chipStyle } from '../../StyledSx';
+import { chipStyle, accountLetters } from '../../StyledSx';
 
 const AccountSend = () => {
   const context = useContext(AppContext);
@@ -56,10 +56,12 @@ const AccountSend = () => {
       </Backdrop>
       <Stack className='account-sender-wrapper' direction='column' spacing={3} sx={{ fontFamily: 'Poppins' }}>
         <Stack>
-          <Typography variant='h6' gutterBottom >Your Account:</Typography>
-          <Typography variant='subtitle1' sx={{ overflowWrap: 'anywhere', }}>{context.state.address ? context.state.address : '로그인을 해주세요'}</Typography>
+          <Typography variant='h6' gutterBottom sx={accountLetters} >Your Account:</Typography>
+          <Typography variant='subtitle1' style={accountLetters} sx={{ overflowWrap: 'anywhere'}}>
+            {context.state.address ? context.state.address : '로그인을 해주세요'}
+          </Typography>
         </Stack>
-        <Stack component='form' className='account-sender-form' onSubmit={handleSubmit}>
+        <Stack component='form' className='account-sender-form' onSubmit={handleSubmit} style={accountLetters}>
           <TextField sx={{ marginBottom: '1em' }} placeholder='put address' label='Address' variant='standard' value={sendAddress} onChange={handleAddressChange} />
           <TextField sx={{ marginBottom: '1em' }} placeholder='put amount' label='Amount' variant='standard' value={sendAmount} onChange={handleAmounthange} />
           <Button className='account-sender-button' type='submit'>
