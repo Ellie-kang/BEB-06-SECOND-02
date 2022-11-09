@@ -13,16 +13,19 @@
 <br />
 
 ## 🕵🏼 어떤 기술이 사용되었나요?<a name="techStack"></a>
-<div>
-<img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white"/>
-<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white"/>
-<img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"/>
-<img src="https://img.shields.io/badge/Web3.js-F16822?style=flat-square&logo=web3.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/IPFS-65C2CB?style=flat-square&logo=ipfs&logoColor=white"/>
-<img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white"/>
-<img src="https://img.shields.io/badge/RactRouter-CA4245?style=flat-square&logo=reactRouter&logoColor=white"/
-</div>
+
+[![axios - ^1.1.3](https://img.shields.io/badge/axios-^1.1.3-2ea44f)](https://www.npmjs.com/package/axios)
+[![nft.storage - ^7.0.0](https://img.shields.io/badge/nft.storage-^7.0.0-2ea44f)](https://www.npmjs.com/package/nft.storage)
+[![react - ^18.2.0](https://img.shields.io/badge/react-^18.2.0-skyblue)](https://www.npmjs.com/package/react)
+[![react-router-dom - ^6.4.2](https://img.shields.io/badge/react--router--dom-^6.4.2-skyblue)](https://www.npmjs.com/package/react-router-dom)
+[![@mui/material - ^5.10.11](https://img.shields.io/badge/%40mui%2Fmaterial-^5.10.11-violet)](https://www.npmjs.com/package/@mui/material)
+[![bycrypt - ^5.1.0](https://img.shields.io/badge/bycrypt-^5.1.0-green)](https://www.npmjs.com/package/bcrypt)
+[![express - ^4.18.2](https://img.shields.io/badge/express-^4.18.2-green)](https://www.npmjs.com/package/express)
+[![jsonwebtoken - ^8.5.1](https://img.shields.io/badge/jsonwebtoken-^8.5.1-green)](https://www.npmjs.com/package/jsonwebtoken)
+[![mongodb - ^4.11](https://img.shields.io/badge/mongodb-^4.11-red)](https://www.npmjs.com/package/mongodb)
+[![mongoose - ^6.7.0](https://img.shields.io/badge/mongoose-^6.7.0-red)](https://www.npmjs.com/package/mongoose)
+[![web3 - ^1.8.0](https://img.shields.io/badge/web3-^1.8.0-red)](https://www.npmjs.com/package/web3)
+
 
 <br />
 
