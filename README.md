@@ -35,7 +35,8 @@
 ![Login](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d350af69-9692-4312-85d7-e9ca4777d88e/beforeSignin.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T052934Z&X-Amz-Expires=86400&X-Amz-Signature=02be04cb045d4dcad197bfb532cec650b3785f8b18bbd13a47f7d42ec94cc1e6&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22beforeSignin.gif%22&x-id=GetObject)
 
 ### SignUp
-![SignUp](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c13ac390-a1bf-4141-8b2b-e7c4b31f067d/beforeSignup.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T053639Z&X-Amz-Expires=86400&X-Amz-Signature=e373501be6d49065c369e64adef56dc1b61ae39783cc34d589f29f9e57769ad1&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22beforeSignup.gif%22&x-id=GetObject)
+![signup2](https://user-images.githubusercontent.com/97439643/200754570-1a5e0be8-de76-4d54-897f-c8840fa2c4e3.gif)
+
 
 ### Main
 ![Main](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/aba332d0-17f8-4aa6-8666-288e826879a1/mainpage_and_like.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T053523Z&X-Amz-Expires=86400&X-Amz-Signature=62e8dd332110d01891e9d67a09db87277e0101dba54b7be47dbb1b684a70607d&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22mainpage%2520and%2520like.gif%22&x-id=GetObject)
@@ -46,7 +47,9 @@
 ![Write2](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/523070b8-518b-4450-b516-d3824c6bf96c/afterwrite.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T053715Z&X-Amz-Expires=86400&X-Amz-Signature=057c06c0ce0225a44d92ad91397c49a88a38359a2fcf8af9ac9659380c7f2168&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22afterwrite.gif%22&x-id=GetObject)
 
 ### Account
-![Account](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e6ef214c-9b47-48f9-9eb5-1c1a1aa37ede/changeProfile.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T053854Z&X-Amz-Expires=86400&X-Amz-Signature=34d111b4ae37def2cd71b1949f861f9ad306d0204b13d13c620396f8388ffbfa&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22changeProfile.gif%22&x-id=GetObject)
+![changeProfile1](https://user-images.githubusercontent.com/97439643/200754338-ff339744-5189-44b3-93a9-5a9f8babdf3f.gif)
+![profile2](https://user-images.githubusercontent.com/97439643/200754453-4379727a-509d-49b6-9cd8-36775d588bba.gif)
+
 
 ### Mint
 ![Mint1](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a0cb35ed-73d9-419f-87f5-1e68bffa183d/mint.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T053941Z&X-Amz-Expires=86400&X-Amz-Signature=c0fe1d6593bea9abed8b967ee3e89158410cb78f365c936ea8bfb829a5a9f19f&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22mint.gif%22&x-id=GetObject)
