@@ -8,7 +8,7 @@
 
 <p>스펙, 데이터 스키마 등 자세한 정보는 Wiki에 모두 기록했습니다. 궁금하신 분이면 참고해 주시기 바랍니다.</p>
 
-### [checkout WIKI](https://github.com/codestates-beb/BEB-06-Angry-Cactus/wiki)
+### [checkout WIKI](https://github.com/codestates-beb/BEB-06-SECOND-02/wiki)
 
 <br />
 
@@ -41,11 +41,12 @@
 #### Mint NFT
 <img width="550" alt="스크린샷 2022-10-26 오전 11 33 13" src="https://user-images.githubusercontent.com/97439643/197921502-6f11b917-14b7-43f4-981d-1e80364246a3.png">
 
+<br />
 
 ## 🗣 Tako팀을 소개합니다.
 | 이름 | 역할 | 블로그 |
 |---|---|---|
-| <b>강영아</b> | 팀 리더<br>프론트엔드 | https://ellie-kang.tistory.com/ |
-| <b>김현구</b> | 프론트엔드 | https://www.notion.so/697962e7730f43cbb6ea960bf8cd81ac |
+| <b>강영아</b> | 팀 리더<br>프론트엔드<br>Repo 관리 | https://ellie-kang.tistory.com/ |
+| <b>김현구</b> | 프론트엔드<br>NFT 스마트  | https://www.notion.so/697962e7730f43cbb6ea960bf8cd81ac |
 | <b>홍찬우</b> | 백엔드<br>토큰 스마트 컨트랙트 | https://hcw-code.github.io/ |
 | <b>박희인</b> | 백엔드<br>데이터베이스 | https://red-rain.notion.site/4884b18274ca40dc8247221f044dcbdf |
