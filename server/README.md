@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# Tako Server API
+![npm](https://img.shields.io/npm/v/axios?label=axios)
+![npm](https://img.shields.io/npm/v/bcrypt?label=bcrypt)
+![npm](https://img.shields.io/npm/v/cookie-parser?label=cookie-parser)
+![npm](https://img.shields.io/npm/v/cors?label=cors)
+![npm](https://img.shields.io/npm/v/dotenv?label=dotenv)
+![npm](https://img.shields.io/npm/v/express?label=express)
+![npm](https://img.shields.io/npm/v/express-session?label=express-session)
+![npm](https://img.shields.io/npm/v/jsonwebtoken?label=jsonwebtoken)
+![npm](https://img.shields.io/npm/v/mongodb?label=mongodb)
+![npm](https://img.shields.io/npm/v/mongoose?label=mongoose)
+![npm](https://img.shields.io/npm/v/mongoose-unique-validator?label=mongoose-unique-validator)
+![npm](https://img.shields.io/npm/v/morgan?label=morgan)
+![npm](https://img.shields.io/npm/v/web3?label=web3)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Tako API는 아래 기능을 수행합니다.
 
-## Available Scripts
+- Takoyaki MongoDB에서 데이터를 가져와 배포합니다.
+- POST 명령어를 통해 Article, User, Comment 등 데이터를 Takoyaki MongoDB로 추가합니다.
+- Goerli 테스트넷으로 배포한 ERC-20 스마트컨트랙트와 상호작용하여 토큰 교환, 토큰 보상을 수행합니다.
+- ERC-721 스마트컨트랙트와 연동해서 NFT를 새로 발행합니다.
 
-In the project directory, you can run:
+# 실행
+## 로컬 환경
+Git Repo를 받은 뒤 npm 패키지를 설치합니다.
+<pre><code>npm install</code></pre>
+npm 패키지를 설치한 후 앱을 실행합니다.
+<pre><code>npm run start</code></pre>
+앱이 실행되면 localhost:3001라는 URI를 통해 API를 이용할 수 있습니다.
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### __클라이언트 React앱을 실행하기 전에 반드시 Server API를 실행해주세요.__
