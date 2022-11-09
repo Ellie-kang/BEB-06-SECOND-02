@@ -31,26 +31,34 @@
 
 ## 페이지 샘플<a name="pages"></a>
 
-### MainPage
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d350af69-9692-4312-85d7-e9ca4777d88e/beforeSignin.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T052941Z&X-Amz-Expires=86400&X-Amz-Signature=104f5cba89fe72bb3bf1e477638778130d4898127bae882482e6acdc536b2f30&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22beforeSignin.gif%22&x-id=GetObject)
+### Login
+![Login](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d350af69-9692-4312-85d7-e9ca4777d88e/beforeSignin.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T052934Z&X-Amz-Expires=86400&X-Amz-Signature=02be04cb045d4dcad197bfb532cec650b3785f8b18bbd13a47f7d42ec94cc1e6&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22beforeSignin.gif%22&x-id=GetObject)
 
+### SignUp
+![SignUp](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c13ac390-a1bf-4141-8b2b-e7c4b31f067d/beforeSignup.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T053639Z&X-Amz-Expires=86400&X-Amz-Signature=e373501be6d49065c369e64adef56dc1b61ae39783cc34d589f29f9e57769ad1&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22beforeSignup.gif%22&x-id=GetObject)
 
-### CreatePage
+### Main
+![Main](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/aba332d0-17f8-4aa6-8666-288e826879a1/mainpage_and_like.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T053523Z&X-Amz-Expires=86400&X-Amz-Signature=62e8dd332110d01891e9d67a09db87277e0101dba54b7be47dbb1b684a70607d&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22mainpage%2520and%2520like.gif%22&x-id=GetObject)
 
-<img width="600" alt="스크린샷 2022-10-26 오전 11 32 09" src="https://user-images.githubusercontent.com/97439643/197921408-3953841e-40e8-4e59-a07f-2f40c8f860de.png">
+### Write
+![Write1](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/233d4969-24d3-47e3-8953-75985d946a4c/write.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T053711Z&X-Amz-Expires=86400&X-Amz-Signature=9850832fe856de8d3954140e93621158507ebbbf56c7fea1a1eb70ad2e2ce69f&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22write.gif%22&x-id=GetObject)
 
-#### Wallet Alert
-<img width="600" alt="스크린샷 2022-10-26 오전 11 31 50" src="https://user-images.githubusercontent.com/97439643/197921443-a8409806-90e1-46ca-94ce-cc075e19140a.png">
+![Write2](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/523070b8-518b-4450-b516-d3824c6bf96c/afterwrite.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T053715Z&X-Amz-Expires=86400&X-Amz-Signature=057c06c0ce0225a44d92ad91397c49a88a38359a2fcf8af9ac9659380c7f2168&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22afterwrite.gif%22&x-id=GetObject)
 
-#### Mint NFT
-<img width="550" alt="스크린샷 2022-10-26 오전 11 33 13" src="https://user-images.githubusercontent.com/97439643/197921502-6f11b917-14b7-43f4-981d-1e80364246a3.png">
+### Account
+![Account](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e6ef214c-9b47-48f9-9eb5-1c1a1aa37ede/changeProfile.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T053854Z&X-Amz-Expires=86400&X-Amz-Signature=34d111b4ae37def2cd71b1949f861f9ad306d0204b13d13c620396f8388ffbfa&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22changeProfile.gif%22&x-id=GetObject)
+
+### Mint
+![Mint1](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a0cb35ed-73d9-419f-87f5-1e68bffa183d/mint.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T053941Z&X-Amz-Expires=86400&X-Amz-Signature=c0fe1d6593bea9abed8b967ee3e89158410cb78f365c936ea8bfb829a5a9f19f&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22mint.gif%22&x-id=GetObject)
+
+![Mint2](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b63a31fd-8fd0-4233-87cb-9ca35eb98b9e/after_mint.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T053945Z&X-Amz-Expires=86400&X-Amz-Signature=62710a72cb1c0c61bd87a6c1b4e61bfbe7609491049e94ac9af2b53c919295e1&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22after%2520mint.gif%22&x-id=GetObject)
 
 <br />
 
 ## 🗣 Tako팀을 소개합니다.
 | 이름 | 역할 | 블로그 |
-|---|---|---|
+|---|:---:|---|
 | <b>강영아</b> | 팀 리더<br>프론트엔드<br>Repo 관리 | https://ellie-kang.tistory.com/ |
-| <b>김현구</b> | 프론트엔드<br>NFT 스마트  | https://www.notion.so/697962e7730f43cbb6ea960bf8cd81ac |
+| <b>김현구</b> | 프론트엔드<br>NFT 스마트 컨트랙트 | https://www.notion.so/697962e7730f43cbb6ea960bf8cd81ac |
 | <b>홍찬우</b> | 백엔드<br>토큰 스마트 컨트랙트 | https://hcw-code.github.io/ |
 | <b>박희인</b> | 백엔드<br>데이터베이스 | https://red-rain.notion.site/4884b18274ca40dc8247221f044dcbdf |
